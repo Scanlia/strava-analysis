@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strava Analysis Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #141420;
+  --surface2: #1c1c30;
+  --border: #2a2a3a;
+  --text: #e0e0ea;
+  --text2: #8888a0;
+  --run: #ff6b6b;
+  --ride: #4ecdc4;
+  --swim: #45b7d1;
+  --hike: #96ceb4;
+  --accent: #7c5bf0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1.2rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+header h1 { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--run), var(--ride), var(--hike)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+header .sub { color: var(--text2); font-size: 0.85rem; }
+.container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }
+.grid { display: grid; gap: 1.25rem; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--accent); }
+.card-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.stat-value { font-size: 2rem; font-weight: 700; }
+.stat-label { font-size: 0.8rem; color: var(--text2); margin-top: 0.25rem; }
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.stat-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.run-bg { background: rgba(255,107,107,0.15); color: var(--run); }
+.ride-bg { background: rgba(78,205,196,0.15); color: var(--ride); }
+.swim-bg { background: rgba(69,183,209,0.15); color: var(--swim); }
+.hike-bg { background: rgba(150,206,180,0.15); color: var(--hike); }
+.tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tab:hover:not(.active) { border-color: var(--text2); }
+canvas { max-height: 400px; }
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+th, td { padding: 0.6rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+th { color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.7rem; }
+tr:hover td { background: var(--surface2); }
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.badge-run { background: rgba(255,107,107,0.2); color: var(--run); }
+.badge-ride { background: rgba(78,205,196,0.2); color: var(--ride); }
+.badge-swim { background: rgba(69,183,209,0.2); color: var(--swim); }
+.badge-hike { background: rgba(150,206,180,0.2); color: var(--hike); }
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+}
+.epic-card {
+  background: linear-gradient(135deg, var(--surface), var(--surface2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  grid-column: span 2;
+}
+.epic-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+.bar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.bar-row .label { width: 120px; font-size: 0.8rem; color: var(--text2); flex-shrink: 0; }
+.bar-row .bar { flex: 1; height: 24px; background: var(--surface2); border-radius: 6px; overflow: hidden; }
+.bar-row .fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+.bar-row .value { width: 60px; text-align: right; font-size: 0.85rem; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .epic-card { grid-column: span 1; }
+}
+@media (max-width: 500px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  header { padding: 1rem; }
+  .container { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Strava Multisport Analysis</h1>
+  <div class="sub">Run · Ride · Swim · Hike — Comprehensive fitness tracking</div>
+</header>
+<div class="container">
+
+  <div class="grid grid-4" id="summary-cards"></div>
+
+  <div class="section-title">Training Volume</div>
+  <div class="tabs" id="volume-tabs">
+    <div class="tab active" data-view="monthly">Monthly</div>
+    <div class="tab" data-view="weekly">Weekly</div>
+    <div class="tab" data-view="yearly">Yearly</div>
+  </div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Distance by Sport</div><canvas id="chart-distance"></canvas></div>
+    <div class="card"><div class="card-title">Time by Sport</div><canvas id="chart-time"></canvas></div>
+  </div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Elevation Gain</div><canvas id="chart-elevation"></canvas></div>
+    <div class="card"><div class="card-title">Relative Effort</div><canvas id="chart-effort"></canvas></div>
+  </div>
+
+  <div class="section-title">Heart Rate Analysis</div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Average HR Trend (Activities with HR data)</div><canvas id="chart-hr"></canvas></div>
+    <div class="card"><div class="card-title">Efficiency Factor Over Time</div><canvas id="chart-ef"></canvas></div>
+  </div>
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">HR Zone Distribution</div><canvas id="chart-zones"></canvas></div>
+    <div class="card"><div class="card-title">Aerobic Decoupling</div><canvas id="chart-decoupling"></canvas></div>
+    <div class="card"><div class="card-title">TRIMP Load</div><canvas id="chart-trimp"></canvas></div>
+  </div>
+
+  <div class="section-title">Best Efforts & Records</div>
+  <div class="grid grid-4" id="best-efforts"></div>
+
+  <div class="section-title">Gear Mileage</div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Distance by Gear</div><canvas id="chart-gear"></canvas></div>
+    <div class="card" style="overflow-x:auto"><div class="card-title">Gear Details</div><div id="gear-table"></div></div>
+  </div>
+
+  <div class="section-title">Activity Explorer</div>
+  <div class="tabs" id="act-tabs">
+    <div class="tab active" data-sport="all">All</div>
+    <div class="tab" data-sport="Run">Run</div>
+    <div class="tab" data-sport="Ride">Ride</div>
+    <div class="tab" data-sport="Swim">Swim</div>
+    <div class="tab" data-sport="Hike">Hike</div>
+  </div>
+  <div class="card" style="overflow-x:auto">
+    <table id="act-table"></table>
+  </div>
+  <div id="act-pagination" style="text-align:center;margin-top:1rem;"></div>
+
+  <div style="text-align:center;padding:3rem 0 1rem;color:var(--text2);font-size:0.8rem;">
+    Strava Analysis Dashboard · Data exported May 2026 · <span id="date-range-display"></span>
+  </div>
+</div>
+
+<script>
+// --- Data loading ---
+let aggregate, allActivities, summary;
+
+async function init() {
+  const [aggRes, allRes, sumRes] = await Promise.all([
+    fetch('data/aggregate.json').then(r => r.json()),
+    fetch('data/all_activities.json').then(r => r.json()),
+    fetch('data/summary.json').then(r => r.json()),
+  ]);
+  aggregate = aggRes;
+  allActivities = allRes;
+  summary = sumRes;
+  allActivities.sort((a,b) => (a.start_time_utc || '').localeCompare(b.start_time_utc || ''));
+
+  document.getElementById('date-range-display').textContent =
+    `${formatDate(aggregate.date_range.first)} — ${formatDate(aggregate.date_range.last)}`;
+
+  renderSummaryCards();
+  renderVolumeCharts('monthly');
+  renderHRCharts();
+  renderBestEfforts();
+  renderGear();
+  renderActivityTable('all');
+  setupTabs();
+}
+
+function formatDate(d) {
+  if (!d) return 'N/A';
+  return new Date(d).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+}
+function formatKM(m) { return (m / 1000).toFixed(1) + ' km'; }
+function formatHrs(s) { return (s / 3600).toFixed(1) + ' hrs'; }
+function formatPace(mps) {
+  if (!mps || mps === 0) return '—';
+  const minPerKm = (1000 / mps) / 60;
+  const mins = Math.floor(minPerKm);
+  const secs = Math.round((minPerKm - mins) * 60);
+  return mins + ':' + String(secs).padStart(2,'0') + ' /km';
+}
+function formatSpeed(mps) {
+  if (!mps || mps === 0) return '—';
+  return (mps * 3.6).toFixed(1) + ' km/h';
+}
+
+// --- Summary Cards ---
+function renderSummaryCards() {
+  const sports = [
+    { key: 'run', label: 'Running', icon: '🏃', cls: 'run-bg' },
+    { key: 'ride', label: 'Cycling', icon: '🚴', cls: 'ride-bg' },
+    { key: 'swim', label: 'Swimming', icon: '🏊', cls: 'swim-bg' },
+    { key: 'hike', label: 'Hiking', icon: '🥾', cls: 'hike-bg' },
+  ];
+  let html = '';
+  for (const s of sports) {
+    const d = summary[s.key];
+    html += `<div class="card stat-card">
+      <div class="stat-icon ${s.cls}">${s.icon}</div>
+      <div>
+        <div class="stat-value">${d ? d.count : 0}</div>
+        <div class="stat-label">${s.label} · ${d ? d.total_distance_km.toFixed(0) : 0} km · ${d ? d.total_time_hours.toFixed(0) : 0} hrs</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('summary-cards').innerHTML = html;
+}
+
+// --- Volume Charts ---
+let distChart, timeChart, elevChart, effortChart;
+function renderVolumeCharts(view) {
+  const dataKey = view;
+  const data = aggregate[dataKey] || [];
+  const labelKey = view === 'monthly' ? 'month' : (view === 'weekly' ? 'week' : 'year');
+
+  const labels = data.map(d => d[labelKey]);
+  const sports = [
+    { key: 'run', color: '#ff6b6b' },
+    { key: 'ride', color: '#4ecdc4' },
+    { key: 'hike', color: '#96ceb4' },
+    { key: 'swim', color: '#45b7d1' },
+  ];
+
+  function destroy(c) { if (c) c.destroy(); }
+
+  destroy(distChart);
+  const distCtx = document.getElementById('chart-distance').getContext('2d');
+  distChart = new Chart(distCtx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: sports.map(s => ({
+        label: s.key.charAt(0).toUpperCase() + s.key.slice(1),
+        data: data.map(d => d[s.key]?.distance_km || 0),
+        backgroundColor: s.color,
+        borderRadius: 4,
+      }))
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } } },
+      scales: {
+        x: { stacked: true, ticks: { color: '#8888a0', maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, grid: { color: '#2a2a3a' } },
+        y: { stacked: true, title: { display: true, text: 'km', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  destroy(timeChart);
+  const timeCtx = document.getElementById('chart-time').getContext('2d');
+  timeChart = new Chart(timeCtx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: sports.map(s => ({
+        label: s.key.charAt(0).toUpperCase() + s.key.slice(1),
+        data: data.map(d => d[s.key]?.time_hours || 0),
+        backgroundColor: s.color,
+        borderRadius: 4,
+      }))
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } } },
+      scales: {
+        x: { stacked: true, ticks: { color: '#8888a0', maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, grid: { color: '#2a2a3a' } },
+        y: { stacked: true, title: { display: true, text: 'hours', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  destroy(elevChart);
+  const elevCtx = document.getElementById('chart-elevation').getContext('2d');
+  elevChart = new Chart(elevCtx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Run', data: data.map(d => d.run?.elevation_m || 0), backgroundColor: '#ff6b6b' },
+        { label: 'Ride', data: data.map(d => d.ride?.elevation_m || 0), backgroundColor: '#4ecdc4' },
+        { label: 'Hike', data: data.map(d => d.hike?.elevation_m || 0), backgroundColor: '#96ceb4' },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } } },
+      scales: {
+        x: { stacked: true, ticks: { color: '#8888a0', maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, grid: { color: '#2a2a3a' } },
+        y: { stacked: true, title: { display: true, text: 'meters', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  destroy(effortChart);
+  const effortCtx = document.getElementById('chart-effort').getContext('2d');
+  effortChart = new Chart(effortCtx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: sports.map(s => ({
+        label: s.key.charAt(0).toUpperCase() + s.key.slice(1),
+        data: data.map(d => d[s.key]?.relative_effort || 0),
+        borderColor: s.color,
+        backgroundColor: s.color + '30',
+        fill: false,
+        tension: 0.3,
+        pointRadius: 2,
+      }))
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } } },
+      scales: {
+        x: { ticks: { color: '#8888a0', maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, grid: { color: '#2a2a3a' } },
+        y: { title: { display: true, text: 'Relative Effort', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+}
+
+// --- HR Charts ---
+let hrChart, efChart, zonesChart, decoupChart, trimpChart;
+function renderHRCharts() {
+  const actsWithHR = allActivities.filter(a => a.has_hr && a.avg_hr > 0).sort(
+    (a,b) => (a.start_time_utc || '').localeCompare(b.start_time_utc || '')
+  );
+
+  const hrLabels = actsWithHR.map(a => a.start_time_utc ? new Date(a.start_time_utc).toLocaleDateString('en-US', {month:'short',day:'numeric'}) : '');
+
+  const hrCtx = document.getElementById('chart-hr').getContext('2d');
+  new Chart(hrCtx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label: 'Run', data: actsWithHR.filter(a=>a.sport==='Run').map(a=>({x:a.start_time_utc?new Date(a.start_time_utc):0,y:a.avg_hr})), backgroundColor: '#ff6b6b', pointRadius: 5 },
+        { label: 'Ride', data: actsWithHR.filter(a=>a.sport==='Ride').map(a=>({x:a.start_time_utc?new Date(a.start_time_utc):0,y:a.avg_hr})), backgroundColor: '#4ecdc4', pointRadius: 5 },
+        { label: 'Hike', data: actsWithHR.filter(a=>a.sport==='Hike').map(a=>({x:a.start_time_utc?new Date(a.start_time_utc):0,y:a.avg_hr})), backgroundColor: '#96ceb4', pointRadius: 5 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } } },
+      scales: {
+        x: { type: 'time', time: { unit: 'month' }, title: { display: true, text: 'Date', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } },
+        y: { title: { display: true, text: 'Avg HR (bpm)', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  // EF chart
+  const efActs = allActivities.filter(a => a.efficiency_factor > 0).sort(
+    (a,b) => (a.start_time_utc || '').localeCompare(b.start_time_utc || '')
+  );
+  const efLabels = efActs.map(a => a.start_time_utc ? new Date(a.start_time_utc).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '');
+  const runEF = efActs.filter(a => a.sport === 'Run');
+  const rideEF = efActs.filter(a => a.sport === 'Ride');
+
+  const efCtx = document.getElementById('chart-ef').getContext('2d');
+  new Chart(efCtx, {
+    type: 'line',
+    data: {
+      datasets: [
+        { label: 'Run EF', data: runEF.map(a=>({x: a.start_time_utc ? new Date(a.start_time_utc):0, y: a.efficiency_factor})), borderColor: '#ff6b6b', backgroundColor: '#ff6b6b30', tension: 0.3, pointRadius: 4 },
+        { label: 'Ride EF', data: rideEF.map(a=>({x: a.start_time_utc ? new Date(a.start_time_utc):0, y: a.efficiency_factor})), borderColor: '#4ecdc4', backgroundColor: '#4ecdc430', tension: 0.3, pointRadius: 4 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } }, tooltip: { callbacks: { label: ctx => 'EF: ' + ctx.parsed.y.toFixed(2) } } },
+      scales: {
+        x: { type: 'time', time: { unit: 'month' }, title: { display: true, text: 'Date', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } },
+        y: { title: { display: true, text: 'Efficiency Factor', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  // HR Zone distribution (accumulated)
+  let totalZones = { Z1:0, Z2:0, Z3:0, Z4:0, Z5:0 };
+  allActivities.forEach(a => {
+    if (a.hr_zones) {
+      for (const [k,v] of Object.entries(a.hr_zones)) totalZones[k] += v;
+    }
+  });
+  const zonesCtx = document.getElementById('chart-zones').getContext('2d');
+  new Chart(zonesCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Z1 Recovery', 'Z2 Endurance', 'Z3 Tempo', 'Z4 Threshold', 'Z5 Max'],
+      datasets: [{
+        data: [totalZones.Z1 || 0, totalZones.Z2 || 0, totalZones.Z3 || 0, totalZones.Z4 || 0, totalZones.Z5 || 0],
+        backgroundColor: ['#96ceb4', '#4ecdc4', '#ffe66d', '#ff6b6b', '#ff3333'],
+        borderColor: '#141420',
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true, font: { size: 10 } } } }
+    }
+  });
+
+  // Aerobic decoupling
+  const decouplingActs = allActivities.filter(a => a.aerobic_decoupling_pct !== undefined && a.aerobic_decoupling_pct !== null).sort(
+    (a,b) => (a.start_time_utc || '').localeCompare(b.start_time_utc || '')
+  );
+  const decCtx = document.getElementById('chart-decoupling').getContext('2d');
+  new Chart(decCtx, {
+    type: 'bar',
+    data: {
+      labels: decouplingActs.map(a => a.start_time_utc ? new Date(a.start_time_utc).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : ''),
+      datasets: [{
+        data: decouplingActs.map(a => a.aerobic_decoupling_pct),
+        backgroundColor: decouplingActs.map(a => a.aerobic_decoupling_pct > 5 ? '#ff6b6b' : '#4ecdc4'),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => 'Decoupling: ' + ctx.parsed.y.toFixed(2) + '%' } } },
+      scales: {
+        x: { ticks: { color: '#8888a0', maxRotation: 45, autoSkip: true, maxTicksLimit: 15 }, grid: { color: '#2a2a3a' } },
+        y: { title: { display: true, text: '% (lower = fitter)', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  // TRIMP chart
+  const trimpActs = allActivities.filter(a => a.trimp > 0).sort(
+    (a,b) => (a.start_time_utc || '').localeCompare(b.start_time_utc || '')
+  );
+  const trimpLabels = trimpActs.map(a => a.start_time_utc ? new Date(a.start_time_utc).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '');
+  const trimpCtx = document.getElementById('chart-trimp').getContext('2d');
+  new Chart(trimpCtx, {
+    type: 'bar',
+    data: {
+      labels: trimpLabels,
+      datasets: sportsData(trimpActs),
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#e0e0ea', usePointStyle: true } } },
+      scales: {
+        x: { stacked: true, ticks: { color: '#8888a0', maxRotation: 45, autoSkip: true, maxTicksLimit: 15 }, grid: { color: '#2a2a3a' } },
+        y: { stacked: true, title: { display: true, text: 'TRIMP', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+}
+
+function sportsData(acts) {
+  const run = acts.filter(a => a.sport === 'Run');
+  const ride = acts.filter(a => a.sport === 'Ride');
+  const hike = acts.filter(a => a.sport === 'Hike');
+  return [
+    { label: 'Run', data: run.map(a => a.trimp || 0), backgroundColor: '#ff6b6b', borderRadius: 2 },
+    { label: 'Ride', data: ride.map(a => a.trimp || 0), backgroundColor: '#4ecdc4', borderRadius: 2 },
+    { label: 'Hike', data: hike.map(a => a.trimp || 0), backgroundColor: '#96ceb4', borderRadius: 2 },
+  ];
+}
+
+// --- Best Efforts ---
+function renderBestEfforts() {
+  const be = aggregate.best_efforts;
+  const cards = [
+    { key: 'run', label: 'Running', icon: '🏃', color: '#ff6b6b', cls: 'run-bg', metric: 'Longest Run' },
+    { key: 'ride', label: 'Cycling', icon: '🚴', color: '#4ecdc4', cls: 'ride-bg', metric: 'Longest Ride' },
+    { key: 'hike', label: 'Hiking', icon: '🥾', color: '#96ceb4', cls: 'hike-bg', metric: 'Longest Hike' },
+    { key: 'swim', label: 'Swimming', icon: '🏊', color: '#45b7d1', cls: 'swim-bg', metric: 'Longest Swim' },
+  ];
+  let html = '';
+  for (const c of cards) {
+    const d = be[c.key];
+    if (!d) continue;
+    html += `<div class="card">
+      <div class="card-title">${c.label}</div>
+      <div style="font-size:1.5rem;font-weight:700;color:${c.color}">${d.longest_distance_km} km</div>
+      <div style="font-size:0.75rem;color:var(--text2);margin-bottom:0.5rem">${d.longest_name}</div>
+      <div style="font-size:0.8rem;color:var(--text2)">Most elevation: <strong>${d.most_elevation_m} m</strong></div>
+      <div style="font-size:0.75rem;color:var(--text2);margin-bottom:0.3rem">${d.most_elev_name}</div>
+      ${d.highest_max_hr ? `<div style="font-size:0.8rem;color:var(--text2)">Max HR: <strong>${d.highest_max_hr} bpm</strong></div>` : ''}
+    </div>`;
+  }
+  document.getElementById('best-efforts').innerHTML = html;
+}
+
+// --- Gear ---
+function renderGear() {
+  const gear = aggregate.gear;
+  const gearCtx = document.getElementById('chart-gear').getContext('2d');
+  new Chart(gearCtx, {
+    type: 'bar',
+    data: {
+      labels: gear.map(g => g.name),
+      datasets: [{
+        label: 'Distance (km)',
+        data: gear.map(g => g.distance_km),
+        backgroundColor: ['#4ecdc4', '#ff6b6b', '#96ceb4', '#45b7d1'],
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: 'km', color: '#8888a0' }, ticks: { color: '#8888a0' }, grid: { color: '#2a2a3a' } },
+        y: { ticks: { color: '#e0e0ea' }, grid: { color: '#2a2a3a' } }
+      }
+    }
+  });
+
+  let html = '<table><thead><tr><th>Gear</th><th>Activities</th><th>Distance</th><th>Sports</th></tr></thead><tbody>';
+  for (const g of gear) {
+    html += `<tr><td><strong>${g.name}</strong></td><td>${g.activities}</td><td>${g.distance_km} km</td><td>${g.sports.join(', ')}</td></tr>`;
+  }
+  html += '</tbody></table>';
+  document.getElementById('gear-table').innerHTML = html;
+}
+
+// --- Activity Table ---
+let currentFilter = 'all';
+let currentPage = 0;
+const PER_PAGE = 25;
+
+function renderActivityTable(filter) {
+  currentFilter = filter;
+  currentPage = 0;
+  showPage();
+}
+
+function showPage() {
+  let acts = currentFilter === 'all' ? allActivities : allActivities.filter(a => a.sport === currentFilter);
+  const totalPages = Math.ceil(acts.length / PER_PAGE);
+  const page = Math.min(currentPage, totalPages - 1, Math.max(0, currentPage));
+  currentPage = page;
+  const start = page * PER_PAGE;
+  const pageActs = acts.slice(start, start + PER_PAGE);
+
+  let html = '<thead><tr><th>Date</th><th>Sport</th><th>Name</th><th>Distance</th><th>Time</th><th>Elev.</th><th>Avg HR</th><th>EF</th><th>Pace/Speed</th></tr></thead><tbody>';
+  for (const a of pageActs) {
+    const badgeCls = 'badge-' + a.sport.toLowerCase();
+    html += `<tr>
+      <td>${formatDate(a.start_time_utc)}</td>
+      <td><span class="badge ${badgeCls}">${a.sport}</span></td>
+      <td>${a.name}</td>
+      <td>${formatKM(a.distance_m)}</td>
+      <td>${formatHrs(a.moving_time_sec)}</td>
+      <td>${(a.elevation_gain_m || 0).toFixed(0)} m</td>
+      <td>${a.avg_hr > 0 ? a.avg_hr : '—'}</td>
+      <td>${a.efficiency_factor ? a.efficiency_factor.toFixed(2) : '—'}</td>
+      <td>${a.sport === 'Run' ? formatPace(a.avg_speed) : formatSpeed(a.avg_speed)}</td>
+    </tr>`;
+  }
+  html += '</tbody>';
+  document.getElementById('act-table').innerHTML = html;
+
+  let pag = '';
+  if (page > 0) pag += `<button onclick="goPage(${page-1})" style="padding:0.4rem 1rem;margin:0.2rem;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:6px;cursor:pointer">← Prev</button>`;
+  pag += `<span style="margin:0 0.8rem;color:var(--text2);font-size:0.85rem">${page+1} / ${totalPages}</span>`;
+  if (page < totalPages - 1) pag += `<button onclick="goPage(${page+1})" style="padding:0.4rem 1rem;margin:0.2rem;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:6px;cursor:pointer">Next →</button>`;
+  document.getElementById('act-pagination').innerHTML = pag;
+}
+
+function goPage(n) { currentPage = n; showPage(); }
+
+// --- Tab Setup ---
+function setupTabs() {
+  document.getElementById('volume-tabs').addEventListener('click', e => {
+    if (e.target.classList.contains('tab')) {
+      document.querySelectorAll('#volume-tabs .tab').forEach(t => t.classList.remove('active'));
+      e.target.classList.add('active');
+      renderVolumeCharts(e.target.dataset.view);
+    }
+  });
+  document.getElementById('act-tabs').addEventListener('click', e => {
+    if (e.target.classList.contains('tab')) {
+      document.querySelectorAll('#act-tabs .tab').forEach(t => t.classList.remove('active'));
+      e.target.classList.add('active');
+      renderActivityTable(e.target.dataset.sport);
+    }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
