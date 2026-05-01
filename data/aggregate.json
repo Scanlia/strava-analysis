@@ -1,0 +1,4072 @@
+{
+ "monthly": [
+  {
+   "month": "2020-07",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 6.9,
+    "time_hours": 0.3,
+    "elevation_m": 24.4,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 2,
+    "distance_km": 25.3,
+    "time_hours": 8.3,
+    "elevation_m": 1825.1,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 32.2,
+    "time_hours": 8.6,
+    "elevation_m": 1849.5,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2020-09",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 36.6,
+    "time_hours": 1.7,
+    "elevation_m": 185.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 36.6,
+    "time_hours": 1.7,
+    "elevation_m": 185.5,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2020-12",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 0.7,
+    "elevation_m": 114.2,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 3,
+    "distance_km": 77.5,
+    "time_hours": 19.5,
+    "elevation_m": 3047.8,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 4,
+    "distance_km": 85.5,
+    "time_hours": 20.2,
+    "elevation_m": 3162.0,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-01",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 3,
+    "distance_km": 62.2,
+    "time_hours": 3.5,
+    "elevation_m": 462.8,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 62.2,
+    "time_hours": 3.5,
+    "elevation_m": 462.8,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-02",
+   "run": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.1,
+    "elevation_m": 5.6,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 17.1,
+    "time_hours": 4.4,
+    "elevation_m": 404.4,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 18.0,
+    "time_hours": 4.5,
+    "elevation_m": 410.0,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-03",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 2,
+    "distance_km": 8.3,
+    "time_hours": 2.3,
+    "elevation_m": 587.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 8.3,
+    "time_hours": 2.3,
+    "elevation_m": 587.5,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-04",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 13,
+    "distance_km": 114.1,
+    "time_hours": 6.0,
+    "elevation_m": 529.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 28.5,
+    "time_hours": 6.6,
+    "elevation_m": 716.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 14,
+    "distance_km": 142.6,
+    "time_hours": 12.6,
+    "elevation_m": 1246.0,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-05",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 6,
+    "distance_km": 32.7,
+    "time_hours": 1.6,
+    "elevation_m": 148.9,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 6,
+    "distance_km": 32.7,
+    "time_hours": 1.6,
+    "elevation_m": 148.9,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-06",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 16.6,
+    "time_hours": 0.9,
+    "elevation_m": 139.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 16.6,
+    "time_hours": 0.9,
+    "elevation_m": 139.5,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-07",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 1.9,
+    "time_hours": 0.1,
+    "elevation_m": 30.2,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 1.9,
+    "time_hours": 0.1,
+    "elevation_m": 30.2,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-08",
+   "run": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3,
+    "elevation_m": 16.9,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 11.7,
+    "time_hours": 0.8,
+    "elevation_m": 105.3,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 14.0,
+    "time_hours": 1.1,
+    "elevation_m": 122.2,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2021-09",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 26,
+    "distance_km": 63.3,
+    "time_hours": 4.2,
+    "elevation_m": 1005.5,
+    "relative_effort": 64,
+    "trimp": 192.6
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 26,
+    "distance_km": 63.3,
+    "time_hours": 4.2,
+    "elevation_m": 1005.5,
+    "relative_effort": 64,
+    "trimp": 192.6
+   }
+  },
+  {
+   "month": "2021-10",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 5,
+    "distance_km": 9.6,
+    "time_hours": 0.6,
+    "elevation_m": 117.9,
+    "relative_effort": 25,
+    "trimp": 66.8
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 5,
+    "distance_km": 9.6,
+    "time_hours": 0.6,
+    "elevation_m": 117.9,
+    "relative_effort": 25,
+    "trimp": 66.8
+   }
+  },
+  {
+   "month": "2021-12",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 43.9,
+    "time_hours": 10.0,
+    "elevation_m": 1278.4,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 43.9,
+    "time_hours": 10.0,
+    "elevation_m": 1278.4,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2022-04",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 7.0,
+    "time_hours": 0.6,
+    "elevation_m": 161.8,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 7.0,
+    "time_hours": 0.6,
+    "elevation_m": 161.8,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2022-06",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 11.8,
+    "time_hours": 0.6,
+    "elevation_m": 325.8,
+    "relative_effort": 97,
+    "trimp": 100.3
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 11.8,
+    "time_hours": 0.6,
+    "elevation_m": 325.8,
+    "relative_effort": 97,
+    "trimp": 100.3
+   }
+  },
+  {
+   "month": "2022-07",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 19.3,
+    "time_hours": 1.0,
+    "elevation_m": 292.2,
+    "relative_effort": 64,
+    "trimp": 115.4
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 19.3,
+    "time_hours": 1.0,
+    "elevation_m": 292.2,
+    "relative_effort": 64,
+    "trimp": 115.4
+   }
+  },
+  {
+   "month": "2022-08",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 19.9,
+    "time_hours": 1.2,
+    "elevation_m": 140.0,
+    "relative_effort": 91,
+    "trimp": 135.6
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 19.9,
+    "time_hours": 1.2,
+    "elevation_m": 140.0,
+    "relative_effort": 91,
+    "trimp": 135.6
+   }
+  },
+  {
+   "month": "2022-10",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 16.9,
+    "time_hours": 0.8,
+    "elevation_m": 153.2,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 16.9,
+    "time_hours": 0.8,
+    "elevation_m": 153.2,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2022-12",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 3,
+    "distance_km": 28.7,
+    "time_hours": 2.1,
+    "elevation_m": 127.9,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 28.7,
+    "time_hours": 2.1,
+    "elevation_m": 127.9,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2023-01",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
+    "elevation_m": 291.2,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
+    "elevation_m": 291.2,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2023-04",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 7,
+    "distance_km": 59.5,
+    "time_hours": 2.7,
+    "elevation_m": 532.4,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 7,
+    "distance_km": 59.5,
+    "time_hours": 2.7,
+    "elevation_m": 532.4,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2023-05",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 17.4,
+    "time_hours": 0.7,
+    "elevation_m": 169.8,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 17.4,
+    "time_hours": 0.7,
+    "elevation_m": 169.8,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2023-06",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 7,
+    "distance_km": 62.2,
+    "time_hours": 2.8,
+    "elevation_m": 627.2,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 7,
+    "distance_km": 62.2,
+    "time_hours": 2.8,
+    "elevation_m": 627.2,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2023-07",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.8,
+    "time_hours": 0.4,
+    "elevation_m": 85.1,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.8,
+    "time_hours": 0.4,
+    "elevation_m": 85.1,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2024-01",
+   "run": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
+    "elevation_m": 114.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
+    "elevation_m": 114.5,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2024-02",
+   "run": {
+    "count": 1,
+    "distance_km": 3.5,
+    "time_hours": 0.4,
+    "elevation_m": 19.2,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 4,
+    "distance_km": 85.8,
+    "time_hours": 4.7,
+    "elevation_m": 509.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 5,
+    "distance_km": 89.3,
+    "time_hours": 5.1,
+    "elevation_m": 528.7,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2024-03",
+   "run": {
+    "count": 2,
+    "distance_km": 9.2,
+    "time_hours": 1.0,
+    "elevation_m": 63.5,
+    "relative_effort": 32,
+    "trimp": 168.5
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 0.5,
+    "elevation_m": 39.1,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 17.9,
+    "time_hours": 1.5,
+    "elevation_m": 102.6,
+    "relative_effort": 32,
+    "trimp": 168.5
+   }
+  },
+  {
+   "month": "2024-04",
+   "run": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
+    "elevation_m": 31.0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
+    "elevation_m": 31.0,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2024-06",
+   "run": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "elevation_m": 22.6,
+    "relative_effort": 18,
+    "trimp": 108.1
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "elevation_m": 22.6,
+    "relative_effort": 18,
+    "trimp": 108.1
+   }
+  },
+  {
+   "month": "2024-07",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
+    "elevation_m": 267.1,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
+    "elevation_m": 267.1,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2024-08",
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "elevation_m": 40.9,
+    "relative_effort": 10,
+    "trimp": 86.0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 22.7,
+    "time_hours": 2.2,
+    "elevation_m": 281.7,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 26.7,
+    "time_hours": 2.7,
+    "elevation_m": 322.6,
+    "relative_effort": 10,
+    "trimp": 86.0
+   }
+  },
+  {
+   "month": "2024-12",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 70.2,
+    "time_hours": 6.2,
+    "elevation_m": 674.4,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 70.2,
+    "time_hours": 6.2,
+    "elevation_m": 674.4,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2025-01",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 28.4,
+    "time_hours": 2.0,
+    "elevation_m": 597.1,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.8,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 29.2,
+    "time_hours": 2.3,
+    "elevation_m": 597.1,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2025-03",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 3,
+    "distance_km": 36.8,
+    "time_hours": 2.4,
+    "elevation_m": 148.7,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 36.8,
+    "time_hours": 2.4,
+    "elevation_m": 148.7,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2025-09",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.2,
+    "elevation_m": 246.7,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.2,
+    "elevation_m": 246.7,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2025-10",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 15.7,
+    "time_hours": 1.4,
+    "elevation_m": 218.4,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 15.7,
+    "time_hours": 1.4,
+    "elevation_m": 218.4,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2025-12",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 20.2,
+    "time_hours": 2.2,
+    "elevation_m": 70.8,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 20.2,
+    "time_hours": 2.2,
+    "elevation_m": 70.8,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2026-03",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 29.7,
+    "time_hours": 7.5,
+    "elevation_m": 1127.7,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 29.7,
+    "time_hours": 7.5,
+    "elevation_m": 1127.7,
+    "relative_effort": 0,
+    "trimp": 0
+   }
+  },
+  {
+   "month": "2026-04",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 13.0,
+    "time_hours": 2.7,
+    "elevation_m": 362.4,
+    "relative_effort": 24,
+    "trimp": 312.7
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 13.0,
+    "time_hours": 2.7,
+    "elevation_m": 362.4,
+    "relative_effort": 24,
+    "trimp": 312.7
+   }
+  }
+ ],
+ "weekly": [
+  {
+   "week": "2020-W28",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 2.7,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 2.7
+   }
+  },
+  {
+   "week": "2020-W31",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 6.9,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 16.5,
+    "time_hours": 5.7,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 23.4,
+    "time_hours": 6.0
+   }
+  },
+  {
+   "week": "2020-W36",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 30.2,
+    "time_hours": 1.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 30.2,
+    "time_hours": 1.4
+   }
+  },
+  {
+   "week": "2020-W37",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 6.5,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 6.5,
+    "time_hours": 0.3
+   }
+  },
+  {
+   "week": "2020-W50",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 3,
+    "distance_km": 77.5,
+    "time_hours": 19.5,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 77.5,
+    "time_hours": 19.5
+   }
+  },
+  {
+   "week": "2020-W53",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 0.7,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 0.7
+   }
+  },
+  {
+   "week": "2021-W02",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 44.6,
+    "time_hours": 2.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 44.6,
+    "time_hours": 2.4
+   }
+  },
+  {
+   "week": "2021-W04",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 17.6,
+    "time_hours": 1.1,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 17.6,
+    "time_hours": 1.1
+   }
+  },
+  {
+   "week": "2021-W05",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 17.1,
+    "time_hours": 4.4,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 17.1,
+    "time_hours": 4.4
+   }
+  },
+  {
+   "week": "2021-W06",
+   "run": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.1,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.1
+   }
+  },
+  {
+   "week": "2021-W09",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 1.4,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 1.4
+   }
+  },
+  {
+   "week": "2021-W10",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 3.2,
+    "time_hours": 0.9,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 3.2,
+    "time_hours": 0.9
+   }
+  },
+  {
+   "week": "2021-W13",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 17.5,
+    "time_hours": 1.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 17.5,
+    "time_hours": 1.4
+   }
+  },
+  {
+   "week": "2021-W14",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 4.4,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 4.4,
+    "time_hours": 0.3
+   }
+  },
+  {
+   "week": "2021-W15",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 19.8,
+    "time_hours": 0.8,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 28.5,
+    "time_hours": 6.6,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 48.3,
+    "time_hours": 7.4
+   }
+  },
+  {
+   "week": "2021-W16",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 9,
+    "distance_km": 72.4,
+    "time_hours": 3.5,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 9,
+    "distance_km": 72.4,
+    "time_hours": 3.5
+   }
+  },
+  {
+   "week": "2021-W18",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 6,
+    "distance_km": 32.7,
+    "time_hours": 1.6,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 6,
+    "distance_km": 32.7,
+    "time_hours": 1.6
+   }
+  },
+  {
+   "week": "2021-W25",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 16.6,
+    "time_hours": 0.9,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 16.6,
+    "time_hours": 0.9
+   }
+  },
+  {
+   "week": "2021-W27",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 1.9,
+    "time_hours": 0.1,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 1.9,
+    "time_hours": 0.1
+   }
+  },
+  {
+   "week": "2021-W31",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 11.7,
+    "time_hours": 0.8,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 11.7,
+    "time_hours": 0.8
+   }
+  },
+  {
+   "week": "2021-W34",
+   "run": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3
+   }
+  },
+  {
+   "week": "2021-W35",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 17.9,
+    "time_hours": 1.5,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 17.9,
+    "time_hours": 1.5
+   }
+  },
+  {
+   "week": "2021-W36",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 9,
+    "distance_km": 17.4,
+    "time_hours": 1.1,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 9,
+    "distance_km": 17.4,
+    "time_hours": 1.1
+   }
+  },
+  {
+   "week": "2021-W37",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 6,
+    "distance_km": 11.0,
+    "time_hours": 0.6,
+    "avg_hr": 132.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 6,
+    "distance_km": 11.0,
+    "time_hours": 0.6
+   }
+  },
+  {
+   "week": "2021-W38",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 9,
+    "distance_km": 17.0,
+    "time_hours": 1.0,
+    "avg_hr": 162.4
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 9,
+    "distance_km": 17.0,
+    "time_hours": 1.0
+   }
+  },
+  {
+   "week": "2021-W40",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 5,
+    "distance_km": 9.6,
+    "time_hours": 0.6,
+    "avg_hr": 157.4
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 5,
+    "distance_km": 9.6,
+    "time_hours": 0.6
+   }
+  },
+  {
+   "week": "2021-W51",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 43.9,
+    "time_hours": 10.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 43.9,
+    "time_hours": 10.0
+   }
+  },
+  {
+   "week": "2022-W15",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 7.0,
+    "time_hours": 0.6,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 7.0,
+    "time_hours": 0.6
+   }
+  },
+  {
+   "week": "2022-W22",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 11.8,
+    "time_hours": 0.6,
+    "avg_hr": 175.6
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 11.8,
+    "time_hours": 0.6
+   }
+  },
+  {
+   "week": "2022-W30",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 19.3,
+    "time_hours": 1.0,
+    "avg_hr": 154.7
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 19.3,
+    "time_hours": 1.0
+   }
+  },
+  {
+   "week": "2022-W32",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 11.6,
+    "time_hours": 0.8,
+    "avg_hr": 174.5
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 11.6,
+    "time_hours": 0.8
+   }
+  },
+  {
+   "week": "2022-W33",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.4,
+    "time_hours": 0.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.4,
+    "time_hours": 0.4
+   }
+  },
+  {
+   "week": "2022-W40",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 16.9,
+    "time_hours": 0.8,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 16.9,
+    "time_hours": 0.8
+   }
+  },
+  {
+   "week": "2022-W51",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 15.9,
+    "time_hours": 1.3,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 15.9,
+    "time_hours": 1.3
+   }
+  },
+  {
+   "week": "2022-W52",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 12.8,
+    "time_hours": 0.8,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 12.8,
+    "time_hours": 0.8
+   }
+  },
+  {
+   "week": "2023-W01",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3
+   }
+  },
+  {
+   "week": "2023-W14",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 17.4,
+    "time_hours": 0.9,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 17.4,
+    "time_hours": 0.9
+   }
+  },
+  {
+   "week": "2023-W15",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 0.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 0.4
+   }
+  },
+  {
+   "week": "2023-W16",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 3,
+    "distance_km": 25.7,
+    "time_hours": 1.1,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 25.7,
+    "time_hours": 1.1
+   }
+  },
+  {
+   "week": "2023-W17",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 7.7,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 7.7,
+    "time_hours": 0.3
+   }
+  },
+  {
+   "week": "2023-W18",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 17.4,
+    "time_hours": 0.7,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 17.4,
+    "time_hours": 0.7
+   }
+  },
+  {
+   "week": "2023-W25",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 6,
+    "distance_km": 53.4,
+    "time_hours": 2.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 6,
+    "distance_km": 53.4,
+    "time_hours": 2.4
+   }
+  },
+  {
+   "week": "2023-W26",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.9,
+    "time_hours": 0.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.9,
+    "time_hours": 0.4
+   }
+  },
+  {
+   "week": "2023-W28",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.8,
+    "time_hours": 0.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.8,
+    "time_hours": 0.4
+   }
+  },
+  {
+   "week": "2024-W05",
+   "run": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 27.6,
+    "time_hours": 1.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 2,
+    "distance_km": 35.6,
+    "time_hours": 2.4
+   }
+  },
+  {
+   "week": "2024-W06",
+   "run": {
+    "count": 1,
+    "distance_km": 3.5,
+    "time_hours": 0.4,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 2,
+    "distance_km": 18.5,
+    "time_hours": 1.1,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 22.0,
+    "time_hours": 1.5
+   }
+  },
+  {
+   "week": "2024-W07",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 39.7,
+    "time_hours": 2.2,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 39.7,
+    "time_hours": 2.2
+   }
+  },
+  {
+   "week": "2024-W09",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 0.5,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 8.7,
+    "time_hours": 0.5
+   }
+  },
+  {
+   "week": "2024-W11",
+   "run": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 0.6,
+    "avg_hr": 144.9
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 0.6
+   }
+  },
+  {
+   "week": "2024-W12",
+   "run": {
+    "count": 1,
+    "distance_km": 4.1,
+    "time_hours": 0.5,
+    "avg_hr": 131.5
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 4.1,
+    "time_hours": 0.5
+   }
+  },
+  {
+   "week": "2024-W17",
+   "run": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3
+   }
+  },
+  {
+   "week": "2024-W26",
+   "run": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "avg_hr": 135.1
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7
+   }
+  },
+  {
+   "week": "2024-W29",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8
+   }
+  },
+  {
+   "week": "2024-W32",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 22.7,
+    "time_hours": 2.2,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 22.7,
+    "time_hours": 2.2
+   }
+  },
+  {
+   "week": "2024-W33",
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "avg_hr": 138.7
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5
+   }
+  },
+  {
+   "week": "2024-W50",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 28.2,
+    "time_hours": 2.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 28.2,
+    "time_hours": 2.4
+   }
+  },
+  {
+   "week": "2024-W51",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 42.1,
+    "time_hours": 3.7,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 42.1,
+    "time_hours": 3.7
+   }
+  },
+  {
+   "week": "2025-W02",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 28.4,
+    "time_hours": 2.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 28.4,
+    "time_hours": 2.0
+   }
+  },
+  {
+   "week": "2025-W03",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.8,
+    "time_hours": 0.3,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 0.8,
+    "time_hours": 0.3
+   }
+  },
+  {
+   "week": "2025-W13",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 3,
+    "distance_km": 36.8,
+    "time_hours": 2.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 3,
+    "distance_km": 36.8,
+    "time_hours": 2.4
+   }
+  },
+  {
+   "week": "2025-W39",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.2,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.2
+   }
+  },
+  {
+   "week": "2025-W40",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 15.7,
+    "time_hours": 1.4,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 15.7,
+    "time_hours": 1.4
+   }
+  },
+  {
+   "week": "2025-W51",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 1,
+    "distance_km": 20.2,
+    "time_hours": 2.2,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 20.2,
+    "time_hours": 2.2
+   }
+  },
+  {
+   "week": "2026-W12",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 29.7,
+    "time_hours": 7.5,
+    "avg_hr": null
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 29.7,
+    "time_hours": 7.5
+   }
+  },
+  {
+   "week": "2026-W17",
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 13.0,
+    "time_hours": 2.7,
+    "avg_hr": 97.7
+   },
+   "total": {
+    "count": 1,
+    "distance_km": 13.0,
+    "time_hours": 2.7
+   }
+  }
+ ],
+ "yearly": [
+  {
+   "year": 2020,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "ride": {
+    "count": 4,
+    "distance_km": 51.5,
+    "time_hours": 2.7,
+    "elevation_m": 324.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "hike": {
+    "count": 5,
+    "distance_km": 102.8,
+    "time_hours": 27.8,
+    "elevation_m": 4872.9
+   }
+  },
+  {
+   "year": 2021,
+   "run": {
+    "count": 2,
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "elevation_m": 22.5
+   },
+   "ride": {
+    "count": 56,
+    "distance_km": 312.1,
+    "time_hours": 17.8,
+    "elevation_m": 2539.6
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "hike": {
+    "count": 5,
+    "distance_km": 97.8,
+    "time_hours": 23.3,
+    "elevation_m": 2986.8
+   }
+  },
+  {
+   "year": 2022,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "ride": {
+    "count": 9,
+    "distance_km": 103.6,
+    "time_hours": 6.3,
+    "elevation_m": 1200.9
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   }
+  },
+  {
+   "year": 2023,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "ride": {
+    "count": 17,
+    "distance_km": 148.0,
+    "time_hours": 6.6,
+    "elevation_m": 1414.5
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
+    "elevation_m": 291.2
+   }
+  },
+  {
+   "year": 2024,
+   "run": {
+    "count": 7,
+    "distance_km": 33.3,
+    "time_hours": 3.9,
+    "elevation_m": 291.7
+   },
+   "ride": {
+    "count": 8,
+    "distance_km": 187.4,
+    "time_hours": 13.6,
+    "elevation_m": 1504.7
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
+    "elevation_m": 267.1
+   }
+  },
+  {
+   "year": 2025,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "ride": {
+    "count": 6,
+    "distance_km": 101.1,
+    "time_hours": 7.9,
+    "elevation_m": 1035.0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.8,
+    "time_hours": 0.3,
+    "elevation_m": 0.0
+   },
+   "hike": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.2,
+    "elevation_m": 246.7
+   }
+  },
+  {
+   "year": 2026,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "ride": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
+   },
+   "hike": {
+    "count": 2,
+    "distance_km": 42.7,
+    "time_hours": 10.2,
+    "elevation_m": 1490.1
+   }
+  }
+ ],
+ "best_efforts": {
+  "run": {
+   "longest_distance_km": 8.0,
+   "longest_name": "City",
+   "most_elevation_m": 114.5,
+   "most_elev_name": "City",
+   "highest_max_hr": 189,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "Morning Run"
+  },
+  "ride": {
+   "longest_distance_km": 42.1,
+   "longest_name": "Loop",
+   "most_elevation_m": 597.1,
+   "most_elev_name": "Inner City Loop",
+   "highest_max_hr": 215,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "2XU Tri Ride"
+  },
+  "swim": {
+   "longest_distance_km": 0.8,
+   "longest_name": "Morning Swim",
+   "most_elevation_m": 0.0,
+   "most_elev_name": "Afternoon Swim",
+   "highest_max_hr": 176,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "MSAC Swim"
+  },
+  "hike": {
+   "longest_distance_km": 54.5,
+   "longest_name": "Three Capes Walk",
+   "most_elevation_m": 2708.9,
+   "most_elev_name": "Torres del Paine W Trek",
+   "highest_max_hr": 172,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "Lunch Hike"
+  }
+ },
+ "gear": [
+  {
+   "name": "HASA R3 Sora",
+   "activities": 136,
+   "distance_km": 771.1,
+   "sports": [
+    "Ride"
+   ]
+  },
+  {
+   "name": "Lime/Neuron",
+   "activities": 4,
+   "distance_km": 99.3,
+   "sports": [
+    "Ride"
+   ]
+  },
+  {
+   "name": "Keen Targhee",
+   "activities": 6,
+   "distance_km": 97.2,
+   "sports": [
+    "Hike"
+   ]
+  }
+ ],
+ "sport_counts": {
+  "Run": 34,
+  "Hike": 23,
+  "Swim": 13,
+  "Ride": 145
+ },
+ "total_activities": 215,
+ "date_range": {
+  "first": null,
+  "last": "2026-04-25T14:45:41+00:00"
+ }
+}
