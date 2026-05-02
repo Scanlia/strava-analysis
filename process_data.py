@@ -476,7 +476,7 @@ def compute_gap_segments(streams, activity_type, grade_points):
       - Cycling: simplified gravitational + aerodynamic model
         GAS = speed / (1 + 0.033 * grade) for uphill adjustments
     """
-    segment_length = 1000 if activity_type == "Run" else 3000  # 1km runs, 3km rides
+    segment_length = 2000 if activity_type == "Run" else 5000  # 2km runs, 5km rides
 
     points = streams.get("raw_points", [])
     if len(points) < 3:
@@ -492,7 +492,7 @@ def compute_gap_segments(streams, activity_type, grade_points):
     seg_ele_end = seg_ele_start
 
     # Speed caps per sport to filter GPS/accelerometer noise
-    max_speed = 5.5 if activity_type == "Run" else 22.0  # m/s: ~3:00/km run, ~80km/h ride
+    max_speed = 4.5 if activity_type == "Run" else 22.0  # m/s: ~3:42/km run, ~80km/h ride
 
     for i, pt in enumerate(points):
         d = pt.get("d", 0)
@@ -560,8 +560,8 @@ def compute_gap_segments(streams, activity_type, grade_points):
             seg_ele_start = e
 
     # Include trailing partial segment if it has meaningful distance
-    # Runs: ≥500m (half a km), Rides: ≥1000m (third of a segment) to avoid grade bias
-    min_tail = 500 if activity_type == "Run" else 1000
+    # Runs: ≥1000m (half a segment), Rides: ≥2000m to avoid grade bias
+    min_tail = 1000 if activity_type == "Run" else 2000
     last_pt = points[-1] if points else None
     if last_pt and seg_speeds:
         d = last_pt.get("d", 0)

@@ -125,7 +125,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
           <div className="flex gap-2 mb-3 text-[10px]">
             {(["activity", "segments"] as const).map((m) => (
               <button key={m} onClick={() => setRunSegmentMode(m)} className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${runSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"}`}>
-                {m === "activity" ? "Per Activity" : "Per 1km Split"}
+                {m === "activity" ? "Per Activity" : "Per 2km Split"}
               </button>
             ))}
             <span className="border-r border-white/10 mx-0.5" />
@@ -139,7 +139,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
             <p className="text-xs mb-3"><span className="font-semibold" style={{ color: runReg.slope < 0 ? "#8a9e8a" : "#9e8a8a" }}>{runReg.slope < 0 ? "Getting faster \u2705" : "Getting slower \u26a0\ufe0f"}</span><span className="text-gray-500"> — pace changing by {Math.abs(runReg.slope).toFixed(3)} min/km per run</span></p>
           )}
           {runSegReg && runSegmentMode === "segments" && (
-            <p className="text-xs mb-3"><span className="font-semibold" style={{ color: runSegReg.slope < 0 ? "#8a9e8a" : "#9e8a8a" }}>{runSegReg.slope < 0 ? "Getting faster \u2705" : "Getting slower \u26a0\ufe0f"}</span><span className="text-gray-500"> — pace changing by {Math.abs(runSegReg.slope).toFixed(3)} min/km per km</span></p>
+            <p className="text-xs mb-3"><span className="font-semibold" style={{ color: runSegReg.slope < 0 ? "#8a9e8a" : "#9e8a8a" }}>{runSegReg.slope < 0 ? "Getting faster \u2705" : "Getting slower \u26a0\ufe0f"}</span><span className="text-gray-500"> — pace changing by {Math.abs(runSegReg.slope).toFixed(3)} min/km per 2km</span></p>
           )}
           <div className="h-80">
             <Line
@@ -149,7 +149,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                 ...(trendMode === "ewma" && runEWMA.length > 0 ? [{ label: "EWMA Trend", data: runEWMA as any, borderColor: RUN_COLOR + "cc", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2 }] : []),
                 { label: "Raw Pace", data: runsWithGAP.map((a) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.avg_pace_min_per_km ?? null })) as any, borderColor: RUN_COLOR + "50", borderDash: [3, 3], pointRadius: 2, showLine: false, order: 3 },
               ] : [
-                { label: "1km Pace (Grade Adj.)", data: runSegments as any, borderColor: RUN_COLOR, backgroundColor: RUN_COLOR + "66", pointRadius: 4, showLine: false, order: 2 },
+                { label: "2km Pace (Grade Adj.)", data: runSegments as any, borderColor: RUN_COLOR, backgroundColor: RUN_COLOR + "66", pointRadius: 4, showLine: false, order: 2 },
                 ...(trendMode === "linear" && runSegTrendline.length > 0 ? [{ label: "Linear Trend", data: runSegTrendline as any, borderColor: "#f59e0b", borderWidth: 2, borderDash: [6, 3], pointRadius: 0, tension: 0, order: 1 }] : []),
                 ...(trendMode === "ewma" && runSegEWMA.length > 0 ? [{ label: "EWMA Trend", data: runSegEWMA as any, borderColor: RUN_COLOR + "cc", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
               ] }}
@@ -165,7 +165,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
           <div className="flex gap-2 mb-3 text-[10px]">
             {(["activity", "segments"] as const).map((m) => (
               <button key={m} onClick={() => setRideSegmentMode(m)} className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${rideSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"}`}>
-                {m === "activity" ? "Per Activity" : "Per 3km Split"}
+                {m === "activity" ? "Per Activity" : "Per 5km Split"}
               </button>
             ))}
             <span className="border-r border-white/10 mx-0.5" />
@@ -179,7 +179,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
             <p className="text-xs mb-3"><span className="font-semibold" style={{ color: rideReg.slope > 0 ? "#8a9e8a" : "#9e8a8a" }}>{rideReg.slope > 0 ? "Getting faster \u2705" : "Getting slower \u26a0\ufe0f"}</span><span className="text-gray-500"> — speed changing by {Math.abs(rideReg.slope).toFixed(3)} km/h per ride</span></p>
           )}
           {rideSegReg && rideSegmentMode === "segments" && (
-            <p className="text-xs mb-3"><span className="font-semibold" style={{ color: rideSegReg.slope > 0 ? "#8a9e8a" : "#9e8a8a" }}>{rideSegReg.slope > 0 ? "Getting faster \u2705" : "Getting slower \u26a0\ufe0f"}</span><span className="text-gray-500"> — speed changing by {Math.abs(rideSegReg.slope).toFixed(3)} km/h per 3km</span></p>
+            <p className="text-xs mb-3"><span className="font-semibold" style={{ color: rideSegReg.slope > 0 ? "#8a9e8a" : "#9e8a8a" }}>{rideSegReg.slope > 0 ? "Getting faster \u2705" : "Getting slower \u26a0\ufe0f"}</span><span className="text-gray-500"> — speed changing by {Math.abs(rideSegReg.slope).toFixed(3)} km/h per 5km</span></p>
           )}
           <div className="h-80">
             <Line
@@ -189,7 +189,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                 ...(trendMode === "ewma" && rideEWMA.length > 0 ? [{ label: "EWMA Trend", data: rideEWMA as any, borderColor: RIDE_COLOR + "cc", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2 }] : []),
                 { label: "Raw Speed", data: ridesWithGAS.map((a) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.avg_speed_kmh ?? null })) as any, borderColor: RIDE_COLOR + "50", borderDash: [3, 3], pointRadius: 2, showLine: false, order: 3 },
               ] : [
-                { label: "3km Speed (Grade Adj.)", data: rideSegments as any, borderColor: RIDE_COLOR, backgroundColor: RIDE_COLOR + "66", pointRadius: 4, showLine: false, order: 2 },
+                { label: "5km Speed (Grade Adj.)", data: rideSegments as any, borderColor: RIDE_COLOR, backgroundColor: RIDE_COLOR + "66", pointRadius: 4, showLine: false, order: 2 },
                 ...(trendMode === "linear" && rideSegTrendline.length > 0 ? [{ label: "Linear Trend", data: rideSegTrendline as any, borderColor: "#f59e0b", borderWidth: 2, borderDash: [6, 3], pointRadius: 0, tension: 0, order: 1 }] : []),
                 ...(trendMode === "ewma" && rideSegEWMA.length > 0 ? [{ label: "EWMA Trend", data: rideSegEWMA as any, borderColor: RIDE_COLOR + "cc", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
               ] }}
