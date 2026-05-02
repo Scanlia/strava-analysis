@@ -1,4 +1,20 @@
 {
+ "ride": {
+  "count": 145,
+  "total_distance_km": 1536.4,
+  "total_time_hours": 94.5,
+  "total_elevation_m": 17247.8,
+  "avg_hr": 132.6,
+  "activities_with_hr": 42
+ },
+ "hike": {
+  "count": 23,
+  "total_distance_km": 421.5,
+  "total_time_hours": 113.5,
+  "total_elevation_m": 22780.5,
+  "avg_hr": 107.7,
+  "activities_with_hr": 7
+ },
  "run": {
   "count": 34,
   "total_distance_km": 126.6,
@@ -14,21 +30,5 @@
   "total_elevation_m": 0.0,
   "avg_hr": 131.8,
   "activities_with_hr": 8
- },
- "hike": {
-  "count": 23,
-  "total_distance_km": 421.5,
-  "total_time_hours": 113.5,
-  "total_elevation_m": 22780.5,
-  "avg_hr": 107.7,
-  "activities_with_hr": 7
- },
- "ride": {
-  "count": 145,
-  "total_distance_km": 1536.4,
-  "total_time_hours": 94.5,
-  "total_elevation_m": 17247.8,
-  "avg_hr": 132.6,
-  "activities_with_hr": 42
  }
 }

@@ -53,6 +53,9 @@ export interface Activity {
   gap_segments: GapSegment[] | null;
   best_efforts?: Record<string, { target?: number; unit?: string; distance_m?: number; time_s?: number; speed_ms: number; pace_min_km: number | null; speed_kmh: number }>;
   stream?: { t?: string; d: number; e?: number; hr?: number; s?: number; lat?: number; lon?: number; m?: boolean }[];
+  is_negative_split?: boolean;
+  neg_split_pct?: number;
+  naismith_ratio?: number;
   trimp: number | null;
   elevation_per_km: number | null;
   vam: number | null;
@@ -107,6 +110,7 @@ export interface Aggregate {
   sport_max_hr: Record<string, number>;
   ctl_atl_tsb: { date: string; ctl: number; atl: number; tsb: number }[];
   speed_duration: Record<string, SpeedDuration>;
+  dow_hour: any;
   sport_counts: Record<string, number>;
   total_activities: number;
   date_range: { first: string | null; last: string | null };

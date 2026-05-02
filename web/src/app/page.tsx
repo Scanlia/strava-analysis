@@ -2,9 +2,12 @@ import { getAggregate, getAllActivities, getSummary } from "@/lib/data";
 import SummaryCards from "@/components/SummaryCards";
 import VolumeCharts from "@/components/VolumeCharts";
 import YearOverYearChart from "@/components/YearOverYearChart";
+import DOWHourHeatmap from "@/components/DOWHourHeatmap";
 import HRCharts from "@/components/HRCharts";
 import PaceHRScatter from "@/components/PaceHRScatter";
 import GAPCharts from "@/components/GAPCharts";
+import NegativeSplitChart from "@/components/NegativeSplitChart";
+import NaismithChart from "@/components/NaismithChart";
 import CTLChart from "@/components/CTLChart";
 import SpeedDurationChart from "@/components/SpeedDurationChart";
 import RacePredictor from "@/components/RacePredictor";
@@ -72,6 +75,11 @@ export default function Dashboard() {
         </section>
 
         <section>
+          <h2 className="text-xl font-bold mb-5">Training Patterns</h2>
+          <DOWHourHeatmap aggregate={aggregate} />
+        </section>
+
+        <section>
           <h2 className="text-xl font-bold mb-5">Training Load (CTL / ATL / TSB)</h2>
           <CTLChart aggregate={aggregate} />
         </section>
@@ -84,6 +92,14 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Race Predictor</h2>
           <RacePredictor activities={activities} />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-5">Sport-Specific</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <NegativeSplitChart activities={activities} />
+            <NaismithChart activities={activities} />
+          </div>
         </section>
 
         <section>

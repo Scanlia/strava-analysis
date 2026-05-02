@@ -989,6 +989,39 @@ def compute_derived_metrics(act, streams):
             trimp = streams["moving_time"] / 60 * hr_ratio * weighting
             d["trimp"] = round(trimp, 1)
 
+    # --- Sport-specific metrics ---
+
+    # Running: negative split rate
+    if act.get("Activity Type") in ["Run"] and streams.get("is_moving"):
+        is_mv = streams["is_moving"]
+        dists = streams["distances"]
+        total_moving_dist = sum(dists[i + 1] - dists[i] for i in range(len(is_mv)) if is_mv[i] and i + 1 < len(dists) and dists[i] is not None and dists[i + 1] is not None)
+        if total_moving_dist > 3000:
+            mid_dist = total_moving_dist / 2
+            cd = 0; mid_idx = 0
+            for i in range(len(is_mv)):
+                if is_mv[i] and i + 1 < len(dists) and dists[i] is not None and dists[i + 1] is not None:
+                    cd += dists[i + 1] - dists[i]
+                if cd >= mid_dist:
+                    mid_idx = i
+                    break
+            if mid_idx > 0:
+                seg_dt = streams.get("_seg_dt", [])
+                first_half_time = sum(seg_dt[i] for i in range(min(mid_idx, len(seg_dt))) if i < len(is_mv) and is_mv[i])
+                second_half_time = sum(seg_dt[i] for i in range(mid_idx, len(seg_dt))) if seg_dt else 0
+                if first_half_time > 0 and second_half_time > 0:
+                    d["is_negative_split"] = second_half_time < first_half_time
+                    d["neg_split_pct"] = round(((first_half_time - second_half_time) / first_half_time) * 100, 1)
+
+    # Hiking: Naismith ratio
+    if act.get("Activity Type") in ["Hike"] and streams["moving_time"] > 0 and streams["cumulative_distance"] > 0:
+        dist_km = streams["cumulative_distance"] / 1000
+        ascent_m = streams["total_elevation_gain"]
+        naismith_minutes = (dist_km / 5) * 60 + (ascent_m / 600) * 60
+        actual_minutes = streams["moving_time"] / 60
+        if naismith_minutes > 0:
+            d["naismith_ratio"] = round(actual_minutes / naismith_minutes, 3)
+
     return d
 
 
@@ -1165,6 +1198,27 @@ def compute_best_efforts(streams, sport):
                 }
 
     return results
+
+
+def compute_dow_hour_stats(all_activities):
+    """7x24 grid: day-of-week (Mon-Sun) x hour-of-day (0-23) coloured by count/TRIMP."""
+    grid = [[{"count": 0, "trimp": 0} for _ in range(24)] for _ in range(7)]
+    for a in all_activities:
+        st = a.get("start_time_utc")
+        if not st:
+            continue
+        try:
+            dt_str = str(st).replace("Z", "+00:00")
+            dt = datetime.fromisoformat(dt_str)
+            # Convert to local time: +10 for AEST approx
+            local_dt = dt + timedelta(hours=10)
+            dow = local_dt.weekday()  # 0=Mon, 6=Sun
+            hour = local_dt.hour
+            grid[dow][hour]["count"] += 1
+            grid[dow][hour]["trimp"] += a.get("trimp", 0) or 0
+        except:
+            pass
+    return [[{k: round(v, 1) if k == "trimp" else v for k, v in cell.items()} for cell in row] for row in grid]
 
 
 # --- Main processing ---
@@ -1794,6 +1848,7 @@ def main():
         "sport_max_hr": sport_max_hr,
         "ctl_atl_tsb": ctl_atl_tsb,
         "speed_duration": speed_duration,
+        "dow_hour": compute_dow_hour_stats(all_activities),
         "sport_counts": {s: len(acts) for s, acts in by_sport.items()},
         "total_activities": len(all_activities),
         "date_range": {
