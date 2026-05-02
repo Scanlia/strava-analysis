@@ -3,6 +3,7 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, BarElement, Title, Tooltip, Legend, TimeScale, Filler } from "chart.js";
 import "chartjs-adapter-luxon";
 import { Line, Bar } from "react-chartjs-2";
+import { useState } from "react";
 import type { Activity } from "@/lib/data";
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, BarElement, TimeScale, Filler, Title, Tooltip, Legend);
@@ -32,6 +33,18 @@ function linearRegression(data: { x: number; y: number }[]): { slope: number; in
   return { slope, intercept, r2 };
 }
 
+function ewma(points: { x: number; y: number }[], alpha: number = 0.3): { x: number; y: number }[] {
+  if (points.length === 0) return [];
+  const result: { x: number; y: number }[] = [{ x: points[0].x, y: points[0].y }];
+  for (let i = 1; i < points.length; i++) {
+    result.push({
+      x: points[i].x,
+      y: alpha * points[i].y + (1 - alpha) * result[i - 1].y,
+    });
+  }
+  return result;
+}
+
 function trendLine(slope: number, intercept: number, x1: number, x2: number) {
   return [
     { x: x1, y: intercept + slope * x1 },
@@ -39,7 +52,10 @@ function trendLine(slope: number, intercept: number, x1: number, x2: number) {
   ];
 }
 
+type TrendMode = "linear" | "ewma";
+
 export default function GAPCharts({ activities }: { activities: Activity[] }) {
+  const [trendMode, setTrendMode] = useState<TrendMode>("linear");
   // --- Running GAP ---
   const runsWithGAP = activities
     .filter((a) => a.sport === "Run" && (a.gap_avg_pace_min_per_km ?? 0) > 0 && a.start_time_utc)
@@ -56,7 +72,12 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
     y: p.y,
   })) : [];
 
-  const isRunImproving = runReg ? runReg.slope < 0 : false; // negative slope in data = lower pace = faster = improving
+  const runEWMA = ewma(runPoints.map((p, i) => ({ x: i, y: p.y }))).map((p, i) => ({
+    x: runPoints[i]?.x ?? runPoints[0]?.x,
+    y: p.y,
+  }));
+
+  const isRunImproving = runReg ? runReg.slope < 0 : false;
 
   // --- Cycling Grade Adjusted Speed ---
   const ridesWithGAS = activities
@@ -74,15 +95,35 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
     y: p.y,
   })) : [];
 
+  const rideEWMA = ewma(ridePoints.map((p, i) => ({ x: i, y: p.y }))).map((p, i) => ({
+    x: ridePoints[i]?.x ?? ridePoints[0]?.x,
+    y: p.y,
+  }));
+
   const isRideImproving = rideReg ? rideReg.slope > 0 : false;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Running GAP */}
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-        <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">
-          Running — Grade Adjusted Pace vs Raw Pace
-        </h3>
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">
+            Running — Grade Adjusted Pace vs Raw Pace
+          </h3>
+          <div className="flex gap-1">
+            {(["linear", "ewma"] as const).map((m) => (
+              <button
+                key={m}
+                onClick={() => setTrendMode(m)}
+                className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+                  trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+                }`}
+              >
+                {m === "linear" ? "Linear" : "EWMA"}
+              </button>
+            ))}
+          </div>
+        </div>
         {runReg && (
           <p className="text-xs mb-3">
             <span className={isRunImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
@@ -100,19 +141,32 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                   data: runPoints as any,
                   borderColor: RUN_COLOR,
                   backgroundColor: RUN_COLOR + "30",
-                  tension: 0.3,
+                  tension: 0,
                   pointRadius: 5,
-                  fill: false,
+                  showLine: false,
                   order: 1,
                 },
-                ...(runTrendline.length > 0
+                ...(trendMode === "linear" && runTrendline.length > 0
                   ? [{
-                      label: "Trend",
+                      label: "Linear Trend",
                       data: runTrendline as any,
-                      borderColor: isRunImproving ? "#4ade80" : "#f87171",
+                      borderColor: RUN_COLOR + "cc",
                       backgroundColor: "transparent",
                       borderWidth: 2.5,
                       borderDash: [6, 3],
+                      pointRadius: 0,
+                      fill: false,
+                      tension: 0,
+                      order: 2,
+                    }]
+                  : []),
+                ...(trendMode === "ewma" && runEWMA.length > 0
+                  ? [{
+                      label: "EWMA Trend",
+                      data: runEWMA as any,
+                      borderColor: RUN_COLOR + "cc",
+                      backgroundColor: "transparent",
+                      borderWidth: 2.5,
                       pointRadius: 0,
                       fill: false,
                       tension: 0,
@@ -125,9 +179,9 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                   borderColor: RUN_COLOR + "50",
                   backgroundColor: "transparent",
                   borderDash: [3, 3],
-                  tension: 0.3,
+                  tension: 0,
                   pointRadius: 2,
-                  fill: false,
+                  showLine: false,
                   order: 3,
                 },
               ],
@@ -149,9 +203,24 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
 
       {/* Cycling Grade Adjusted Speed */}
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-        <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">
-          Cycling — Grade Adjusted Speed vs Raw Speed
-        </h3>
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">
+            Cycling — Grade Adjusted Speed vs Raw Speed
+          </h3>
+          <div className="flex gap-1">
+            {(["linear", "ewma"] as const).map((m) => (
+              <button
+                key={m}
+                onClick={() => setTrendMode(m)}
+                className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+                  trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+                }`}
+              >
+                {m === "linear" ? "Linear" : "EWMA"}
+              </button>
+            ))}
+          </div>
+        </div>
         {rideReg && (
           <p className="text-xs mb-3">
             <span className={isRideImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
@@ -169,19 +238,32 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                   data: ridePoints as any,
                   borderColor: RIDE_COLOR,
                   backgroundColor: RIDE_COLOR + "30",
-                  tension: 0.3,
+                  tension: 0,
                   pointRadius: 5,
-                  fill: false,
+                  showLine: false,
                   order: 1,
                 },
-                ...(rideTrendline.length > 0
+                ...(trendMode === "linear" && rideTrendline.length > 0
                   ? [{
-                      label: "Trend",
+                      label: "Linear Trend",
                       data: rideTrendline as any,
-                      borderColor: isRideImproving ? "#4ade80" : "#f87171",
+                      borderColor: RIDE_COLOR + "cc",
                       backgroundColor: "transparent",
                       borderWidth: 2.5,
                       borderDash: [6, 3],
+                      pointRadius: 0,
+                      fill: false,
+                      tension: 0,
+                      order: 2,
+                    }]
+                  : []),
+                ...(trendMode === "ewma" && rideEWMA.length > 0
+                  ? [{
+                      label: "EWMA Trend",
+                      data: rideEWMA as any,
+                      borderColor: RIDE_COLOR + "cc",
+                      backgroundColor: "transparent",
+                      borderWidth: 2.5,
                       pointRadius: 0,
                       fill: false,
                       tension: 0,
@@ -194,9 +276,9 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                   borderColor: RIDE_COLOR + "50",
                   backgroundColor: "transparent",
                   borderDash: [3, 3],
-                  tension: 0.3,
+                  tension: 0,
                   pointRadius: 2,
-                  fill: false,
+                  showLine: false,
                   order: 3,
                 },
               ],

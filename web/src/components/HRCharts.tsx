@@ -7,6 +7,7 @@ import {
 } from "chart.js";
 import "chartjs-adapter-luxon";
 import { Bar, Doughnut, Line, Scatter } from "react-chartjs-2";
+import { useState } from "react";
 import type { Activity } from "@/lib/data";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, TimeScale, Title, Tooltip, Legend);
@@ -40,7 +41,22 @@ function linearRegression(data: { x: number; y: number }[]): { slope: number; in
   return { slope, intercept, r2 };
 }
 
+function ewma(points: { x: number; y: number }[], alpha: number = 0.3): { x: number; y: number }[] {
+  if (points.length === 0) return [];
+  const result: { x: number; y: number }[] = [{ x: points[0].x, y: points[0].y }];
+  for (let i = 1; i < points.length; i++) {
+    result.push({
+      x: points[i].x,
+      y: alpha * points[i].y + (1 - alpha) * result[i - 1].y,
+    });
+  }
+  return result;
+}
+
+type TrendMode = "linear" | "ewma";
+
 export default function HRCharts({ activities }: { activities: Activity[] }) {
+  const [efTrendMode, setEfTrendMode] = useState<TrendMode>("linear");
   // --- HR scatter ---
   const withHR = activities
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
@@ -91,25 +107,38 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
       data: sorted,
       borderColor: COLORS[sport] || "#8888a0",
       backgroundColor: (COLORS[sport] || "#8888a0") + "30",
-      tension: 0.3,
+      tension: 0,
       pointRadius: 4,
-      showLine: true,
+      showLine: false,
       fill: false,
       order: 1,
     }];
     const reg = efRegressions[sport];
-    if (reg && sorted.length >= 2) {
-      const isImproving = reg.slope > 0; // higher EF = better
+    if (efTrendMode === "linear" && reg && sorted.length >= 2) {
       datasets.push({
         label: sport + " Trend",
         data: [
           { x: sorted[0].x, y: reg.intercept },
           { x: sorted[sorted.length - 1].x, y: reg.intercept + reg.slope * (sorted.length - 1) },
         ],
-        borderColor: isImproving ? "#4ade80" : "#f87171",
+        borderColor: (COLORS[sport] || "#8888a0") + "cc",
         backgroundColor: "transparent",
         borderWidth: 2.5,
         borderDash: [6, 3],
+        pointRadius: 0,
+        fill: false,
+        tension: 0,
+        order: 2,
+      });
+    } else if (efTrendMode === "ewma" && sorted.length >= 2) {
+      const e = ewma(sorted.map((p, i) => ({ x: i, y: p.y })));
+      const eData = e.map((p, i) => ({ x: sorted[i]?.x ?? sorted[0].x, y: p.y }));
+      datasets.push({
+        label: sport + " EWMA",
+        data: eData,
+        borderColor: (COLORS[sport] || "#8888a0") + "cc",
+        backgroundColor: "transparent",
+        borderWidth: 2.5,
         pointRadius: 0,
         fill: false,
         tension: 0,
@@ -178,7 +207,22 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
 
         {/* EF Trend */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Efficiency Factor Trend</h3>
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">Efficiency Factor Trend</h3>
+            <div className="flex gap-1">
+              {(["linear", "ewma"] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => setEfTrendMode(m)}
+                  className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+                    efTrendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+                  }`}
+                >
+                  {m === "linear" ? "Linear" : "EWMA"}
+                </button>
+              ))}
+            </div>
+          </div>
           <p className="text-xs text-gray-400 mb-3">
             EF = speed ÷ HR. Higher EF = more speed per heartbeat = fitter.
           </p>

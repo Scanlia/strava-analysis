@@ -32,7 +32,7 @@ export default function VolumeCharts({
   weekly: WeeklyEntry[];
   yearly: YearlyEntry[];
 }) {
-  const [view, setView] = useState<"monthly" | "weekly" | "yearly">("monthly");
+  const [view, setView] = useState<"weekly" | "monthly" | "yearly">("monthly");
   const data = view === "monthly" ? monthly : view === "weekly" ? weekly : yearly;
   const labelKey = view === "monthly" ? "month" : view === "weekly" ? "week" : "year";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,11 +56,11 @@ export default function VolumeCharts({
   return (
     <div>
       <div className="flex gap-2 mb-6 flex-wrap">
-        {(["monthly", "weekly", "yearly"] as const).map((v) => (
+        {(["weekly", "monthly", "yearly"] as const).map((v) => (
           <button
             key={v}
             onClick={() => setView(v)}
-            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${
               view === v ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
             }`}
           >

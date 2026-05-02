@@ -42,7 +42,7 @@ export default function ActivityTable({ activities }: { activities: Activity[] }
           <button
             key={s}
             onClick={() => { setFilter(s); setPage(0); }}
-            className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
               filter === s ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
             }`}
           >
@@ -91,7 +91,7 @@ export default function ActivityTable({ activities }: { activities: Activity[] }
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={currentPage === 0}
-            className="px-3 py-1.5 rounded-lg text-xs bg-white/5 border border-white/10 text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+            className="px-3 py-1.5 rounded-lg text-xs bg-white/5 border border-white/10 text-gray-400 hover:text-white cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           >
             ← Prev
           </button>
@@ -99,7 +99,7 @@ export default function ActivityTable({ activities }: { activities: Activity[] }
           <button
             onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={currentPage >= totalPages - 1}
-            className="px-3 py-1.5 rounded-lg text-xs bg-white/5 border border-white/10 text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+            className="px-3 py-1.5 rounded-lg text-xs bg-white/5 border border-white/10 text-gray-400 hover:text-white cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Next →
           </button>
