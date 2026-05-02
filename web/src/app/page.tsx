@@ -1,11 +1,15 @@
 import { getAggregate, getAllActivities, getSummary } from "@/lib/data";
 import SummaryCards from "@/components/SummaryCards";
 import VolumeCharts from "@/components/VolumeCharts";
+import YearOverYearChart from "@/components/YearOverYearChart";
 import HRCharts from "@/components/HRCharts";
+import PaceHRScatter from "@/components/PaceHRScatter";
 import GAPCharts from "@/components/GAPCharts";
 import CTLChart from "@/components/CTLChart";
 import SpeedDurationChart from "@/components/SpeedDurationChart";
+import RacePredictor from "@/components/RacePredictor";
 import CalendarHeatmap from "@/components/CalendarHeatmap";
+import GPSHeatmap from "@/components/GPSHeatmap";
 import BestEfforts from "@/components/BestEfforts";
 import GearCharts from "@/components/GearCharts";
 import ActivityTable from "@/components/ActivityTable";
@@ -58,6 +62,16 @@ export default function Dashboard() {
         </section>
 
         <section>
+          <h2 className="text-xl font-bold mb-5">Pace vs Heart Rate Efficiency</h2>
+          <PaceHRScatter activities={activities} aggregate={aggregate} />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-5">Year-over-Year Comparison</h2>
+          <YearOverYearChart activities={activities} />
+        </section>
+
+        <section>
           <h2 className="text-xl font-bold mb-5">Training Load (CTL / ATL / TSB)</h2>
           <CTLChart aggregate={aggregate} />
         </section>
@@ -68,6 +82,11 @@ export default function Dashboard() {
         </section>
 
         <section>
+          <h2 className="text-xl font-bold mb-5">Race Predictor</h2>
+          <RacePredictor activities={activities} />
+        </section>
+
+        <section>
           <h2 className="text-xl font-bold mb-5">Best Efforts & Records</h2>
           <BestEfforts aggregate={aggregate} />
         </section>
@@ -75,6 +94,11 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Gear Mileage</h2>
           <GearCharts aggregate={aggregate} />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-5">GPS Activity Map</h2>
+          <GPSHeatmap activities={activities} />
         </section>
 
         <section>

@@ -51,6 +51,8 @@ export interface Activity {
   gap_avg_pace_min_per_km: number | null;
   grade_adjusted_speed_kmh: number | null;
   gap_segments: GapSegment[] | null;
+  best_efforts?: Record<string, { target?: number; unit?: string; distance_m?: number; time_s?: number; speed_ms: number; pace_min_km: number | null; speed_kmh: number }>;
+  stream?: { t?: string; d: number; e?: number; hr?: number; s?: number; lat?: number; lon?: number; m?: boolean }[];
   trimp: number | null;
   elevation_per_km: number | null;
   vam: number | null;
