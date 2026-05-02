@@ -438,7 +438,8 @@ def compute_gap_segments(streams, activity_type, grade_points):
             seg_ele_end = e
 
         # Check if we've covered enough distance for a segment
-        if d - seg_start_dist >= segment_length and seg_speeds:
+        dist_covered = d - seg_start_dist
+        if dist_covered >= segment_length and seg_speeds:
             # Compute grade for this segment
             dist_covered = d - seg_start_dist
             ele_change = (seg_ele_end - seg_ele_start) if seg_ele_start is not None and seg_ele_end is not None else 0
@@ -487,6 +488,49 @@ def compute_gap_segments(streams, activity_type, grade_points):
             seg_grades = []
             seg_hrs = []
             seg_ele_start = e
+
+    # Include trailing partial segment if it has meaningful distance (>200m)
+    last_pt = points[-1] if points else None
+    if last_pt and seg_speeds:
+        d = last_pt.get("d", 0)
+        dist_covered = d - seg_start_dist
+        if dist_covered >= 200:  # At least 200m to be meaningful
+            ele_change = (seg_ele_end - seg_ele_start) if seg_ele_start is not None and seg_ele_end is not None else 0
+            avg_grade = (ele_change / dist_covered) * 100 if dist_covered > 0 else 0
+            avg_speed = sum(seg_speeds) / len(seg_speeds)
+            avg_hr = sum(seg_hrs) / len(seg_hrs) if seg_hrs else None
+
+            if activity_type == "Run":
+                if avg_grade > 0:
+                    gap_factor = 1 + 0.033 * avg_grade
+                elif avg_grade < -1:
+                    gap_factor = 1 - 0.017 * abs(avg_grade)
+                else:
+                    gap_factor = 1.0
+                gap_speed = avg_speed * gap_factor
+                gap_pace = (1000 / gap_speed) / 60 if gap_speed > 0 else None
+                gas = None
+            else:
+                if avg_grade > 0:
+                    gap_factor = 1 + 0.033 * avg_grade
+                elif avg_grade < -1:
+                    gap_factor = 1 - 0.012 * abs(avg_grade)
+                else:
+                    gap_factor = 1.0
+                gap_speed = avg_speed * gap_factor
+                gas = gap_speed * 3.6
+                gap_pace = None
+
+            segments.append({
+                "dist_km": round(d / 1000, 2),
+                "grade_pct": round(avg_grade, 2),
+                "speed_ms": round(avg_speed, 2),
+                "speed_kmh": round(avg_speed * 3.6, 1),
+                "gap_pace_min_km": round(gap_pace, 2) if gap_pace else None,
+                "gap_speed_kmh": round(gas, 1) if gas else None,
+                "avg_hr": round(avg_hr, 1) if avg_hr else None,
+                "ele_gain": round(max(0, ele_change), 1),
+            })
 
     return segments
 

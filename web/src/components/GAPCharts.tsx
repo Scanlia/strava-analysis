@@ -94,7 +94,13 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
   }
   runSegments.sort((a, b) => a.x - b.x);
 
+  const runSegReg = linearRegression(runSegments.map((p, i) => ({ x: i, y: p.y })));
+  const runSegTrendline = runSegReg && runSegments.length >= 2
+    ? [{ x: runSegments[0]?.x, y: runSegReg.intercept }, { x: runSegments[runSegments.length - 1]?.x, y: runSegReg.intercept + runSegReg.slope * (runSegments.length - 1) }]
+    : [];
+
   const isRunImproving = runReg ? runReg.slope < 0 : false;
+  const isRunSegImproving = runSegReg ? runSegReg.slope < 0 : false;
 
   // --- Cycling Grade Adjusted Speed ---
   const ridesWithGAS = activities
@@ -131,7 +137,13 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
   }
   rideSegments.sort((a, b) => a.x - b.x);
 
+  const rideSegReg = linearRegression(rideSegments.map((p, i) => ({ x: i, y: p.y })));
+  const rideSegTrendline = rideSegReg && rideSegments.length >= 2
+    ? [{ x: rideSegments[0]?.x, y: rideSegReg.intercept }, { x: rideSegments[rideSegments.length - 1]?.x, y: rideSegReg.intercept + rideSegReg.slope * (rideSegments.length - 1) }]
+    : [];
+
   const isRideImproving = rideReg ? rideReg.slope > 0 : false;
+  const isRideSegImproving = rideSegReg ? rideSegReg.slope > 0 : false;
 
   const runChartOptions = (mode: SegmentMode) => ({
     responsive: true, maintainAspectRatio: false,
@@ -173,40 +185,45 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Running GAP */}
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-        <div className="flex items-center justify-between mb-1">
-          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">
-            Running — Grade Adjusted Pace vs Raw Pace
-          </h3>
-          <div className="flex gap-1">
-            <div className="flex gap-1 mr-2 border-r border-white/10 pr-2">
-              {(["activity", "segments"] as const).map((m) => (
-                <button key={m} onClick={() => setRunSegmentMode(m)}
-                  className={`px-2 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
-                    runSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
-                  }`}>
-                  {m === "activity" ? "Per Activity" : "Per 1km"}
-                </button>
-              ))}
-            </div>
-            {(["linear", "ewma"] as const).map((m) => (
-              <button key={m} onClick={() => setTrendMode(m)}
-                className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
-                  trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
-                }`}>
-                {m === "linear" ? "Linear" : "EWMA"}
-              </button>
-            ))}
-          </div>
-        </div>
+        <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">
+          Running — Grade Adjusted Pace vs Raw Pace
+        </h3>
         <p className="text-[10px] text-gray-500 mb-2">
-          Grade-adjusted using Minetti metabolic model (k=0.033 uphill, k=0.017 downhill). GAP = pace × (1 + k·grade%).
+          Minetti metabolic model (k=0.033 uphill, k=0.017 downhill). GAP = pace × (1 + k·grade%).
         </p>
-        {runReg && (
+        <div className="flex gap-2 mb-3 text-[10px]">
+          {(["activity", "segments"] as const).map((m) => (
+            <button key={m} onClick={() => setRunSegmentMode(m)}
+              className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${
+                runSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
+              }`}>
+              {m === "activity" ? "Per Activity" : "Per 1km Split"}
+            </button>
+          ))}
+          <span className="border-r border-white/10 mx-0.5" />
+          {(["linear", "ewma"] as const).map((m) => (
+            <button key={m} onClick={() => setTrendMode(m)}
+              className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${
+                trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+              }`}>
+              {m === "linear" ? "Linear Trend" : "EWMA Trend"}
+            </button>
+          ))}
+        </div>
+        {runSegmentMode === "activity" && runReg && (
           <p className="text-xs mb-3">
             <span className="font-semibold" style={{ color: isRunImproving ? "#8a9e8a" : "#9e8a8a" }}>
               {isRunImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
             </span>
             <span className="text-gray-500"> — GAP changing by {Math.abs(runReg.slope).toFixed(3)} min/km per run</span>
+          </p>
+        )}
+        {runSegmentMode === "segments" && runSegReg && (
+          <p className="text-xs mb-3">
+            <span className="font-semibold" style={{ color: isRunSegImproving ? "#8a9e8a" : "#9e8a8a" }}>
+              {isRunSegImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
+            </span>
+            <span className="text-gray-500"> — 1km split GAP changing by {Math.abs(runSegReg.slope).toFixed(3)} min/km per split</span>
           </p>
         )}
         <div className="h-80">
@@ -280,10 +297,10 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                     showLine: false,
                     order: 2,
                   },
-                  ...(trendMode === "linear" && runTrendline.length > 0
+                  ...(trendMode === "linear" && runSegTrendline.length > 0
                     ? [{
                         label: "Linear Trend",
-                        data: runTrendline as any,
+                        data: runSegTrendline as any,
                         borderColor: "#f59e0b",
                         backgroundColor: "transparent",
                         borderWidth: 2,
@@ -304,40 +321,45 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
 
       {/* Cycling Grade Adjusted Speed */}
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-        <div className="flex items-center justify-between mb-1">
-          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">
-            Cycling — Grade Adjusted Speed vs Raw Speed
-          </h3>
-          <div className="flex gap-1">
-            <div className="flex gap-1 mr-2 border-r border-white/10 pr-2">
-              {(["activity", "segments"] as const).map((m) => (
-                <button key={m} onClick={() => setRideSegmentMode(m)}
-                  className={`px-2 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
-                    rideSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
-                  }`}>
-                  {m === "activity" ? "Per Activity" : "Per 3km"}
-                </button>
-              ))}
-            </div>
-            {(["linear", "ewma"] as const).map((m) => (
-              <button key={m} onClick={() => setTrendMode(m)}
-                className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
-                  trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
-                }`}>
-                {m === "linear" ? "Linear" : "EWMA"}
-              </button>
-            ))}
-          </div>
-        </div>
+        <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">
+          Cycling — Grade Adjusted Speed vs Raw Speed
+        </h3>
         <p className="text-[10px] text-gray-500 mb-2">
-          Grade-adjusted using gravitational model. GAS = speed × (1 + 0.033·grade%) for uphill.
+          Simplified gravitational model. GAS = speed × (1 + 0.033·grade%) for uphill.
         </p>
-        {rideReg && rideSegmentMode === "activity" && (
+        <div className="flex gap-2 mb-3 text-[10px]">
+          {(["activity", "segments"] as const).map((m) => (
+            <button key={m} onClick={() => setRideSegmentMode(m)}
+              className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${
+                rideSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
+              }`}>
+              {m === "activity" ? "Per Activity" : "Per 3km Split"}
+            </button>
+          ))}
+          <span className="border-r border-white/10 mx-0.5" />
+          {(["linear", "ewma"] as const).map((m) => (
+            <button key={m} onClick={() => setTrendMode(m)}
+              className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${
+                trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+              }`}>
+              {m === "linear" ? "Linear Trend" : "EWMA Trend"}
+            </button>
+          ))}
+        </div>
+        {rideSegmentMode === "activity" && rideReg && (
           <p className="text-xs mb-3">
             <span className="font-semibold" style={{ color: isRideImproving ? "#8a9e8a" : "#9e8a8a" }}>
               {isRideImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
             </span>
             <span className="text-gray-500"> — GAS changing by {Math.abs(rideReg.slope).toFixed(3)} km/h per ride</span>
+          </p>
+        )}
+        {rideSegmentMode === "segments" && rideSegReg && (
+          <p className="text-xs mb-3">
+            <span className="font-semibold" style={{ color: isRideSegImproving ? "#8a9e8a" : "#9e8a8a" }}>
+              {isRideSegImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
+            </span>
+            <span className="text-gray-500"> — 3km split GAS changing by {Math.abs(rideSegReg.slope).toFixed(3)} km/h per split</span>
           </p>
         )}
         <div className="h-80">
@@ -411,10 +433,10 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
                     showLine: false,
                     order: 2,
                   },
-                  ...(trendMode === "linear" && rideTrendline.length > 0
+                  ...(trendMode === "linear" && rideSegTrendline.length > 0
                     ? [{
                         label: "Linear Trend",
-                        data: rideTrendline as any,
+                        data: rideSegTrendline as any,
                         borderColor: "#f59e0b",
                         backgroundColor: "transparent",
                         borderWidth: 2,
