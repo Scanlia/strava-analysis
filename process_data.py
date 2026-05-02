@@ -472,7 +472,7 @@ def compute_gap_segments(streams, activity_type, grade_points):
 
     Reference: Minetti et al. (2002) J. Applied Physiology
     """
-    segment_length = 1000  # 1km splits for both run and ride
+    segment_length = 1000 if activity_type == "Run" else 5000  # 1km runs, 5km rides
 
     points = streams.get("raw_points", [])
     if len(points) < 10:
@@ -1064,6 +1064,130 @@ def main():
         })
     gear_list.sort(key=lambda x: x["distance_km"], reverse=True)
 
+    # --- Compute LOESS trend data for runs and rides ---
+    from statsmodels.nonparametric.smoothers_lowess import lowess
+    import numpy as np
+
+    gap_trends = {}
+    for sport_key in ["run", "ride"]:
+        sport_name = {"run": "Run", "ride": "Ride"}[sport_key]
+        is_run = (sport_key == "run")
+        sport_acts = [a for a in all_activities if a["sport"] == sport_name and a.get("gap_segments")]
+
+        # Per-split data: (days since first, gap value)
+        split_points = []
+        for a in sport_acts:
+            if not a.get("start_time_utc"):
+                continue
+            try:
+                dt_str = a["start_time_utc"]
+                if dt_str.endswith("Z"):
+                    act_dt = datetime.fromisoformat(dt_str.replace("Z", "+00:00"))
+                elif "+" in dt_str or dt_str.count("-") > 2:
+                    act_dt = datetime.fromisoformat(dt_str)
+                else:
+                    act_dt = datetime.fromisoformat(dt_str).replace(tzinfo=timezone.utc)
+            except:
+                continue
+            for seg in a["gap_segments"]:
+                val = seg.get("gap_pace_min_km") if is_run else seg.get("gap_speed_kmh")
+                if val is not None and val > 0:
+                    split_points.append((act_dt, val))
+
+        if not split_points:
+            continue
+
+        split_points.sort(key=lambda x: x[0])
+        ref_dt = split_points[0][0]
+        xs_splits = np.array([(dt - ref_dt).total_seconds() / 86400 for dt, _ in split_points])
+        ys_splits = np.array([v for _, v in split_points])
+
+        # Per-activity collapsed: distance-weighted mean of split GAP speeds
+        seg_dist = 1000 if is_run else 5000  # standard segment distance in metres
+        act_points = []
+        for a in sport_acts:
+            if not a.get("start_time_utc"):
+                continue
+            try:
+                dt_str = a["start_time_utc"]
+                if dt_str.endswith("Z"):
+                    act_dt = datetime.fromisoformat(dt_str.replace("Z", "+00:00"))
+                elif "+" in dt_str or dt_str.count("-") > 2:
+                    act_dt = datetime.fromisoformat(dt_str)
+                else:
+                    act_dt = datetime.fromisoformat(dt_str).replace(tzinfo=timezone.utc)
+            except:
+                continue
+            total_weight = 0.0
+            weighted_speed = 0.0
+            for seg in a["gap_segments"]:
+                val = seg.get("gap_pace_min_km") if is_run else seg.get("gap_speed_kmh")
+                if val is not None and val > 0:
+                    if is_run:
+                        gap_speed = 1000 / (val * 60)  # min/km → m/s
+                    else:
+                        gap_speed = val / 3.6  # km/h → m/s
+                    weighted_speed += gap_speed * seg_dist
+                    total_weight += seg_dist
+            if total_weight > 0:
+                avg_gap_speed = weighted_speed / total_weight
+                if is_run:
+                    act_val = (1000 / avg_gap_speed) / 60  # m/s → min/km
+                else:
+                    act_val = avg_gap_speed * 3.6  # m/s → km/h
+                act_points.append((act_dt, act_val))
+
+        if not act_points:
+            continue
+
+        act_points.sort(key=lambda x: x[0])
+        xs_acts = np.array([(dt - ref_dt).total_seconds() / 86400 for dt, _ in act_points])
+        ys_acts = np.array([v for _, v in act_points])
+
+        # LOESS on per-split data
+        try:
+            loess_split = lowess(ys_splits, xs_splits, frac=0.3, it=3, return_sorted=True)
+            loess_split_data = [{"days": float(x), "value": float(y)} for x, y in zip(loess_split[:, 0], loess_split[:, 1])]
+        except Exception:
+            loess_split_data = []
+
+        # LOESS on per-activity data
+        try:
+            loess_act = lowess(ys_acts, xs_acts, frac=0.4, it=3, return_sorted=True)
+            loess_act_data = [{"days": float(x), "value": float(y)} for x, y in zip(loess_act[:, 0], loess_act[:, 1])]
+        except Exception:
+            loess_act_data = []
+
+        # Linear regression on per-split
+        if len(xs_splits) > 1:
+            slope_split, intercept_split = np.polyfit(xs_splits, ys_splits, 1)
+            slope_per_month = slope_split * 30.44
+        else:
+            slope_split, intercept_split, slope_per_month = 0, 0, 0
+
+        # Linear regression on per-activity
+        if len(xs_acts) > 1:
+            slope_act, intercept_act = np.polyfit(xs_acts, ys_acts, 1)
+            slope_act_per_month = slope_act * 30.44
+        else:
+            slope_act, intercept_act, slope_act_per_month = 0, 0, 0
+
+        gap_trends[sport_key] = {
+            "ref_date": ref_dt.isoformat(),
+            "loess_split": loess_split_data,
+            "loess_act": loess_act_data,
+            "linear_split": {
+                "slope_per_month": round(slope_per_month, 4),
+                "intercept": round(float(intercept_split), 4),
+            },
+            "linear_act": {
+                "slope_per_month": round(slope_act_per_month, 4),
+                "intercept": round(float(intercept_act), 4),
+            },
+            "n_splits": len(split_points),
+            "n_activities": len(act_points),
+        }
+
     # Write output JSON files
     print("\nWriting output files...")
 
@@ -1083,6 +1207,7 @@ def main():
         "yearly": yearly_list,
         "best_efforts": best_efforts,
         "gear": gear_list,
+        "gap_trends": gap_trends,
         "sport_counts": {s: len(acts) for s, acts in by_sport.items()},
         "total_activities": len(all_activities),
         "date_range": {

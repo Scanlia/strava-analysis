@@ -2,7 +2,7 @@
  "monthly": [
   {
    "month": "2020-05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -26,7 +26,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -45,7 +45,7 @@
   },
   {
    "month": "2020-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -69,7 +69,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -88,12 +88,12 @@
   },
   {
    "month": "2020-07",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
+   "run": {
+    "count": 4,
+    "distance_km": 17.1,
+    "time_hours": 1.8,
+    "elevation_m": 337.2,
+    "relative_effort": 83,
     "trimp": 0
    },
    "ride": {
@@ -112,12 +112,12 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 4,
-    "distance_km": 17.1,
-    "time_hours": 1.8,
-    "elevation_m": 337.2,
-    "relative_effort": 83,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
     "trimp": 0
    },
    "total": {
@@ -131,7 +131,7 @@
   },
   {
    "month": "2020-08",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -155,7 +155,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -174,11 +174,11 @@
   },
   {
    "month": "2020-09",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.6,
+    "time_hours": 0.4,
+    "elevation_m": 502.0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -198,11 +198,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.6,
-    "time_hours": 0.4,
-    "elevation_m": 502.0,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -217,7 +217,7 @@
   },
   {
    "month": "2020-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -241,7 +241,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -260,7 +260,7 @@
   },
   {
    "month": "2020-12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -284,7 +284,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -303,7 +303,7 @@
   },
   {
    "month": "2021-01",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -327,7 +327,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -346,11 +346,11 @@
   },
   {
    "month": "2021-02",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.1,
+    "elevation_m": 5.6,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -370,11 +370,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.1,
-    "elevation_m": 5.6,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -389,7 +389,7 @@
   },
   {
    "month": "2021-03",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -413,7 +413,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -432,7 +432,7 @@
   },
   {
    "month": "2021-04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -456,7 +456,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -475,7 +475,7 @@
   },
   {
    "month": "2021-05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -499,7 +499,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -518,7 +518,7 @@
   },
   {
    "month": "2021-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -542,7 +542,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -561,7 +561,7 @@
   },
   {
    "month": "2021-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -585,7 +585,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -604,11 +604,11 @@
   },
   {
    "month": "2021-08",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3,
+    "elevation_m": 16.9,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -628,11 +628,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.3,
-    "time_hours": 0.3,
-    "elevation_m": 16.9,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -647,11 +647,11 @@
   },
   {
    "month": "2021-09",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.1,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
     "time_hours": 0.0,
-    "elevation_m": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -671,11 +671,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
+   "swim": {
+    "count": 1,
+    "distance_km": 0.1,
     "time_hours": 0.0,
-    "elevation_m": 0,
+    "elevation_m": 0.0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -690,7 +690,7 @@
   },
   {
    "month": "2021-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -714,7 +714,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -733,7 +733,7 @@
   },
   {
    "month": "2021-12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -757,7 +757,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -776,7 +776,7 @@
   },
   {
    "month": "2022-04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -800,7 +800,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -819,7 +819,7 @@
   },
   {
    "month": "2022-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -843,7 +843,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -862,7 +862,7 @@
   },
   {
    "month": "2022-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -886,7 +886,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -905,7 +905,7 @@
   },
   {
    "month": "2022-08",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -929,7 +929,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -948,7 +948,7 @@
   },
   {
    "month": "2022-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -972,7 +972,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -991,7 +991,7 @@
   },
   {
    "month": "2022-12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1015,7 +1015,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1034,12 +1034,12 @@
   },
   {
    "month": "2023-01",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.6,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 25,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
     "trimp": 0
    },
    "ride": {
@@ -1058,12 +1058,12 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
+   "swim": {
+    "count": 1,
+    "distance_km": 0.6,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 25,
     "trimp": 0
    },
    "total": {
@@ -1077,7 +1077,7 @@
   },
   {
    "month": "2023-04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1101,7 +1101,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1120,7 +1120,7 @@
   },
   {
    "month": "2023-05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1144,7 +1144,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1163,7 +1163,7 @@
   },
   {
    "month": "2023-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1187,7 +1187,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1206,7 +1206,7 @@
   },
   {
    "month": "2023-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1230,7 +1230,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1249,11 +1249,11 @@
   },
   {
    "month": "2024-01",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
+    "elevation_m": 114.5,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1273,11 +1273,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 8.0,
-    "time_hours": 1.0,
-    "elevation_m": 114.5,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1292,12 +1292,12 @@
   },
   {
    "month": "2024-02",
-   "swim": {
-    "count": 2,
-    "distance_km": 0.5,
-    "time_hours": 0.2,
-    "elevation_m": 0.0,
-    "relative_effort": 10,
+   "run": {
+    "count": 1,
+    "distance_km": 3.5,
+    "time_hours": 0.4,
+    "elevation_m": 19.2,
+    "relative_effort": 0,
     "trimp": 0
    },
    "ride": {
@@ -1316,12 +1316,12 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.5,
-    "time_hours": 0.4,
-    "elevation_m": 19.2,
-    "relative_effort": 0,
+   "swim": {
+    "count": 2,
+    "distance_km": 0.5,
+    "time_hours": 0.2,
+    "elevation_m": 0.0,
+    "relative_effort": 10,
     "trimp": 0
    },
    "total": {
@@ -1335,13 +1335,13 @@
   },
   {
    "month": "2024-03",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 3,
+    "distance_km": 11.9,
+    "time_hours": 1.3,
+    "elevation_m": 73.1,
+    "relative_effort": 49,
+    "trimp": 168.5
    },
    "ride": {
     "count": 2,
@@ -1359,13 +1359,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 3,
-    "distance_km": 11.9,
-    "time_hours": 1.3,
-    "elevation_m": 73.1,
-    "relative_effort": 49,
-    "trimp": 168.5
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 5,
@@ -1378,11 +1378,11 @@
   },
   {
    "month": "2024-04",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
+    "elevation_m": 31.0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1402,11 +1402,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.5,
-    "time_hours": 0.3,
-    "elevation_m": 31.0,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1421,13 +1421,13 @@
   },
   {
    "month": "2024-06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "elevation_m": 22.6,
+    "relative_effort": 18,
+    "trimp": 108.1
    },
    "ride": {
     "count": 0,
@@ -1445,13 +1445,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 6.1,
-    "time_hours": 0.7,
-    "elevation_m": 22.6,
-    "relative_effort": 18,
-    "trimp": 108.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 1,
@@ -1464,7 +1464,7 @@
   },
   {
    "month": "2024-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1488,7 +1488,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1507,13 +1507,13 @@
   },
   {
    "month": "2024-08",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 3,
+    "distance_km": 8.8,
+    "time_hours": 1.1,
+    "elevation_m": 316.8,
+    "relative_effort": 20,
+    "trimp": 168.8
    },
    "ride": {
     "count": 1,
@@ -1531,13 +1531,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 3,
-    "distance_km": 8.8,
-    "time_hours": 1.1,
-    "elevation_m": 316.8,
-    "relative_effort": 20,
-    "trimp": 168.8
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -1550,13 +1550,13 @@
   },
   {
    "month": "2024-09",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 3.6,
+    "time_hours": 0.5,
+    "elevation_m": 84.7,
+    "relative_effort": 10,
+    "trimp": 73.9
    },
    "ride": {
     "count": 1,
@@ -1574,13 +1574,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.6,
-    "time_hours": 0.5,
-    "elevation_m": 84.7,
-    "relative_effort": 10,
-    "trimp": 73.9
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 2,
@@ -1593,13 +1593,13 @@
   },
   {
    "month": "2024-10",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 3.3,
+    "time_hours": 0.4,
+    "elevation_m": 82.2,
+    "relative_effort": 18,
+    "trimp": 64.2
    },
    "ride": {
     "count": 1,
@@ -1617,13 +1617,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.3,
-    "time_hours": 0.4,
-    "elevation_m": 82.2,
-    "relative_effort": 18,
-    "trimp": 64.2
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 2,
@@ -1636,13 +1636,13 @@
   },
   {
    "month": "2024-12",
-   "swim": {
+   "run": {
     "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 11,
-    "trimp": 0
+    "distance_km": 3.8,
+    "time_hours": 0.6,
+    "elevation_m": 94.8,
+    "relative_effort": 10,
+    "trimp": 55.8
    },
    "ride": {
     "count": 2,
@@ -1660,13 +1660,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 1,
-    "distance_km": 3.8,
-    "time_hours": 0.6,
-    "elevation_m": 94.8,
-    "relative_effort": 10,
-    "trimp": 55.8
+    "distance_km": 0.9,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 11,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -1679,13 +1679,13 @@
   },
   {
    "month": "2025-01",
-   "swim": {
-    "count": 3,
-    "distance_km": 1.9,
-    "time_hours": 0.6,
-    "elevation_m": 0.0,
-    "relative_effort": 8,
-    "trimp": 3.2
+   "run": {
+    "count": 1,
+    "distance_km": 2.1,
+    "time_hours": 0.3,
+    "elevation_m": 10.0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "ride": {
     "count": 6,
@@ -1703,13 +1703,13 @@
     "relative_effort": 40,
     "trimp": 313.6
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.1,
-    "time_hours": 0.3,
-    "elevation_m": 10.0,
-    "relative_effort": 0,
-    "trimp": 0
+   "swim": {
+    "count": 3,
+    "distance_km": 1.9,
+    "time_hours": 0.6,
+    "elevation_m": 0.0,
+    "relative_effort": 8,
+    "trimp": 3.2
    },
    "total": {
     "count": 12,
@@ -1722,7 +1722,7 @@
   },
   {
    "month": "2025-02",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1746,7 +1746,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1765,7 +1765,7 @@
   },
   {
    "month": "2025-03",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1789,7 +1789,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1808,13 +1808,13 @@
   },
   {
    "month": "2025-05",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 1.4,
+    "time_hours": 0.2,
+    "elevation_m": 36.0,
+    "relative_effort": 2,
+    "trimp": 25.9
    },
    "ride": {
     "count": 2,
@@ -1832,13 +1832,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.4,
-    "time_hours": 0.2,
-    "elevation_m": 36.0,
-    "relative_effort": 2,
-    "trimp": 25.9
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 3,
@@ -1851,7 +1851,7 @@
   },
   {
    "month": "2025-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1875,7 +1875,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1894,13 +1894,13 @@
   },
   {
    "month": "2025-09",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "elevation_m": 142.3,
+    "relative_effort": 10,
+    "trimp": 50.7
    },
    "ride": {
     "count": 2,
@@ -1918,13 +1918,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.2,
-    "time_hours": 0.4,
-    "elevation_m": 142.3,
-    "relative_effort": 10,
-    "trimp": 50.7
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -1937,7 +1937,7 @@
   },
   {
    "month": "2025-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1961,7 +1961,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1980,13 +1980,13 @@
   },
   {
    "month": "2025-11",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 2,
+    "distance_km": 4.1,
+    "time_hours": 1.3,
+    "elevation_m": 180.6,
+    "relative_effort": 51,
+    "trimp": 48.3
    },
    "ride": {
     "count": 0,
@@ -2004,13 +2004,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 4.1,
-    "time_hours": 1.3,
-    "elevation_m": 180.6,
-    "relative_effort": 51,
-    "trimp": 48.3
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 2,
@@ -2023,12 +2023,12 @@
   },
   {
    "month": "2025-12",
-   "swim": {
-    "count": 1,
+   "run": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 0.1,
-    "elevation_m": 0.0,
-    "relative_effort": 1,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
     "trimp": 0
    },
    "ride": {
@@ -2047,12 +2047,12 @@
     "relative_effort": 33,
     "trimp": 35.2
    },
-   "run": {
-    "count": 0,
+   "swim": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
+    "time_hours": 0.1,
+    "elevation_m": 0.0,
+    "relative_effort": 1,
     "trimp": 0
    },
    "total": {
@@ -2066,13 +2066,13 @@
   },
   {
    "month": "2026-01",
-   "swim": {
+   "run": {
     "count": 2,
-    "distance_km": 0.0,
-    "time_hours": 0.9,
-    "elevation_m": 0.0,
-    "relative_effort": 41,
-    "trimp": 0
+    "distance_km": 10.1,
+    "time_hours": 1.5,
+    "elevation_m": 291.8,
+    "relative_effort": 68,
+    "trimp": 98.9
    },
    "ride": {
     "count": 2,
@@ -2090,13 +2090,13 @@
     "relative_effort": 27,
     "trimp": 126.9
    },
-   "run": {
+   "swim": {
     "count": 2,
-    "distance_km": 10.1,
-    "time_hours": 1.5,
-    "elevation_m": 291.8,
-    "relative_effort": 68,
-    "trimp": 98.9
+    "distance_km": 0.0,
+    "time_hours": 0.9,
+    "elevation_m": 0.0,
+    "relative_effort": 41,
+    "trimp": 0
    },
    "total": {
     "count": 7,
@@ -2109,13 +2109,13 @@
   },
   {
    "month": "2026-02",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "trimp": 0
+   "run": {
+    "count": 4,
+    "distance_km": 18.3,
+    "time_hours": 2.1,
+    "elevation_m": 389.4,
+    "relative_effort": 94,
+    "trimp": 205.1
    },
    "ride": {
     "count": 5,
@@ -2133,13 +2133,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 4,
-    "distance_km": 18.3,
-    "time_hours": 2.1,
-    "elevation_m": 389.4,
-    "relative_effort": 94,
-    "trimp": 205.1
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "trimp": 0
    },
    "total": {
     "count": 10,
@@ -2152,13 +2152,13 @@
   },
   {
    "month": "2026-03",
-   "swim": {
+   "run": {
     "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "trimp": 0
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "elevation_m": 77.0,
+    "relative_effort": 12,
+    "trimp": 33.0
    },
    "ride": {
     "count": 0,
@@ -2176,13 +2176,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 1,
-    "distance_km": 4.0,
-    "time_hours": 0.5,
-    "elevation_m": 77.0,
-    "relative_effort": 12,
-    "trimp": 33.0
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -2195,13 +2195,13 @@
   },
   {
    "month": "2026-04",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 2,
+    "distance_km": 7.0,
+    "time_hours": 0.9,
+    "elevation_m": 126.2,
+    "relative_effort": 45,
+    "trimp": 71.1
    },
    "ride": {
     "count": 0,
@@ -2219,13 +2219,13 @@
     "relative_effort": 52,
     "trimp": 346.3
    },
-   "run": {
-    "count": 2,
-    "distance_km": 7.0,
-    "time_hours": 0.9,
-    "elevation_m": 126.2,
-    "relative_effort": 45,
-    "trimp": 71.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 5,
@@ -2240,7 +2240,7 @@
  "weekly": [
   {
    "week": "2020-W21",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2264,7 +2264,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2282,7 +2282,7 @@
   },
   {
    "week": "2020-W22",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2306,7 +2306,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2324,7 +2324,7 @@
   },
   {
    "week": "2020-W23",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2348,7 +2348,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2366,7 +2366,7 @@
   },
   {
    "week": "2020-W25",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2390,7 +2390,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2408,13 +2408,13 @@
   },
   {
    "week": "2020-W27",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.7,
+    "time_hours": 0.5,
+    "elevation_m": 20.4,
+    "relative_effort": 31,
+    "avg_hr": 151.0
    },
    "ride": {
     "count": 0,
@@ -2432,13 +2432,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.7,
-    "time_hours": 0.5,
-    "elevation_m": 20.4,
-    "relative_effort": 31,
-    "avg_hr": 151.0
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -2450,13 +2450,13 @@
   },
   {
    "week": "2020-W28",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 6.4,
+    "time_hours": 0.7,
+    "elevation_m": 9.3,
+    "relative_effort": 50,
+    "avg_hr": 157.0
    },
    "ride": {
     "count": 2,
@@ -2474,13 +2474,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 6.4,
-    "time_hours": 0.7,
-    "elevation_m": 9.3,
-    "relative_effort": 50,
-    "avg_hr": 157.0
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 4,
@@ -2492,13 +2492,13 @@
   },
   {
    "week": "2020-W29",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 1.4,
+    "time_hours": 0.2,
+    "elevation_m": 4.5,
+    "relative_effort": 2,
+    "avg_hr": 129.0
    },
    "ride": {
     "count": 1,
@@ -2516,13 +2516,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.4,
-    "time_hours": 0.2,
-    "elevation_m": 4.5,
-    "relative_effort": 2,
-    "avg_hr": 129.0
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -2534,11 +2534,11 @@
   },
   {
    "week": "2020-W30",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.7,
+    "time_hours": 0.5,
+    "elevation_m": 303.0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -2558,11 +2558,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.7,
-    "time_hours": 0.5,
-    "elevation_m": 303.0,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -2576,7 +2576,7 @@
   },
   {
    "week": "2020-W31",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2600,7 +2600,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2618,7 +2618,7 @@
   },
   {
    "week": "2020-W33",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2642,7 +2642,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2660,7 +2660,7 @@
   },
   {
    "week": "2020-W34",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2684,7 +2684,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2702,7 +2702,7 @@
   },
   {
    "week": "2020-W35",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2726,7 +2726,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2744,7 +2744,7 @@
   },
   {
    "week": "2020-W36",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2768,7 +2768,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2786,11 +2786,11 @@
   },
   {
    "week": "2020-W37",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.6,
+    "time_hours": 0.4,
+    "elevation_m": 502.0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -2810,11 +2810,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.6,
-    "time_hours": 0.4,
-    "elevation_m": 502.0,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -2828,7 +2828,7 @@
   },
   {
    "week": "2020-W38",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2852,7 +2852,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2870,7 +2870,7 @@
   },
   {
    "week": "2020-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2894,7 +2894,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2912,7 +2912,7 @@
   },
   {
    "week": "2020-W44",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2936,7 +2936,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2954,7 +2954,7 @@
   },
   {
    "week": "2020-W50",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2978,7 +2978,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2996,7 +2996,7 @@
   },
   {
    "week": "2020-W53",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3020,7 +3020,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3038,7 +3038,7 @@
   },
   {
    "week": "2021-W02",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3062,7 +3062,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3080,7 +3080,7 @@
   },
   {
    "week": "2021-W04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3104,7 +3104,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3122,7 +3122,7 @@
   },
   {
    "week": "2021-W05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3146,7 +3146,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3164,11 +3164,11 @@
   },
   {
    "week": "2021-W06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.1,
+    "elevation_m": 5.6,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -3188,11 +3188,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.1,
-    "elevation_m": 5.6,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -3206,7 +3206,7 @@
   },
   {
    "week": "2021-W09",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3230,7 +3230,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3248,7 +3248,7 @@
   },
   {
    "week": "2021-W10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3272,7 +3272,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3290,7 +3290,7 @@
   },
   {
    "week": "2021-W13",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3314,7 +3314,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3332,7 +3332,7 @@
   },
   {
    "week": "2021-W14",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3356,7 +3356,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3374,7 +3374,7 @@
   },
   {
    "week": "2021-W15",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3398,7 +3398,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3416,7 +3416,7 @@
   },
   {
    "week": "2021-W16",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3440,7 +3440,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3458,7 +3458,7 @@
   },
   {
    "week": "2021-W18",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3482,7 +3482,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3500,7 +3500,7 @@
   },
   {
    "week": "2021-W25",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3524,7 +3524,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3542,7 +3542,7 @@
   },
   {
    "week": "2021-W27",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3566,7 +3566,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3584,7 +3584,7 @@
   },
   {
    "week": "2021-W31",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3608,7 +3608,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3626,11 +3626,11 @@
   },
   {
    "week": "2021-W34",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3,
+    "elevation_m": 16.9,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -3650,11 +3650,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.3,
-    "time_hours": 0.3,
-    "elevation_m": 16.9,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -3668,7 +3668,7 @@
   },
   {
    "week": "2021-W35",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3692,7 +3692,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3710,13 +3710,13 @@
   },
   {
    "week": "2021-W36",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.1,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
     "time_hours": 0.0,
-    "elevation_m": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
-    "avg_hr": 124.0
+    "avg_hr": null
    },
    "ride": {
     "count": 9,
@@ -3734,13 +3734,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
+   "swim": {
+    "count": 1,
+    "distance_km": 0.1,
     "time_hours": 0.0,
-    "elevation_m": 0,
+    "elevation_m": 0.0,
     "relative_effort": 0,
-    "avg_hr": null
+    "avg_hr": 124.0
    },
    "total": {
     "count": 10,
@@ -3752,7 +3752,7 @@
   },
   {
    "week": "2021-W37",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3776,7 +3776,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3794,7 +3794,7 @@
   },
   {
    "week": "2021-W38",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3818,7 +3818,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3836,7 +3836,7 @@
   },
   {
    "week": "2021-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3860,7 +3860,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3878,7 +3878,7 @@
   },
   {
    "week": "2021-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3902,7 +3902,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3920,7 +3920,7 @@
   },
   {
    "week": "2022-W15",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3944,7 +3944,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3962,7 +3962,7 @@
   },
   {
    "week": "2022-W22",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3986,7 +3986,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4004,7 +4004,7 @@
   },
   {
    "week": "2022-W30",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4028,7 +4028,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4046,7 +4046,7 @@
   },
   {
    "week": "2022-W32",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4070,7 +4070,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4088,7 +4088,7 @@
   },
   {
    "week": "2022-W33",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4112,7 +4112,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4130,7 +4130,7 @@
   },
   {
    "week": "2022-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4154,7 +4154,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4172,7 +4172,7 @@
   },
   {
    "week": "2022-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4196,7 +4196,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4214,7 +4214,7 @@
   },
   {
    "week": "2022-W52",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4238,7 +4238,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4256,7 +4256,7 @@
   },
   {
    "week": "2023-W01",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4280,7 +4280,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4298,13 +4298,13 @@
   },
   {
    "week": "2023-W04",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.6,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 25,
-    "avg_hr": 143.0
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 0,
@@ -4322,13 +4322,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "swim": {
+    "count": 1,
+    "distance_km": 0.6,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 25,
+    "avg_hr": 143.0
    },
    "total": {
     "count": 1,
@@ -4340,7 +4340,7 @@
   },
   {
    "week": "2023-W14",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4364,7 +4364,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4382,7 +4382,7 @@
   },
   {
    "week": "2023-W15",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4406,7 +4406,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4424,7 +4424,7 @@
   },
   {
    "week": "2023-W16",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4448,7 +4448,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4466,7 +4466,7 @@
   },
   {
    "week": "2023-W17",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4490,7 +4490,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4508,7 +4508,7 @@
   },
   {
    "week": "2023-W18",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4532,7 +4532,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4550,7 +4550,7 @@
   },
   {
    "week": "2023-W25",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4574,7 +4574,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4592,7 +4592,7 @@
   },
   {
    "week": "2023-W26",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4616,7 +4616,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4634,7 +4634,7 @@
   },
   {
    "week": "2023-W28",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4658,7 +4658,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4676,13 +4676,13 @@
   },
   {
    "week": "2024-W05",
-   "swim": {
-    "count": 2,
-    "distance_km": 0.5,
-    "time_hours": 0.2,
-    "elevation_m": 0.0,
-    "relative_effort": 10,
-    "avg_hr": 145.0
+   "run": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
+    "elevation_m": 114.5,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 1,
@@ -4700,13 +4700,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 8.0,
-    "time_hours": 1.0,
-    "elevation_m": 114.5,
-    "relative_effort": 0,
-    "avg_hr": null
+   "swim": {
+    "count": 2,
+    "distance_km": 0.5,
+    "time_hours": 0.2,
+    "elevation_m": 0.0,
+    "relative_effort": 10,
+    "avg_hr": 145.0
    },
    "total": {
     "count": 4,
@@ -4718,11 +4718,11 @@
   },
   {
    "week": "2024-W06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 3.5,
+    "time_hours": 0.4,
+    "elevation_m": 19.2,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -4742,11 +4742,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.5,
-    "time_hours": 0.4,
-    "elevation_m": 19.2,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -4760,7 +4760,7 @@
   },
   {
    "week": "2024-W07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4784,7 +4784,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4802,7 +4802,7 @@
   },
   {
    "week": "2024-W09",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4826,7 +4826,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4844,13 +4844,13 @@
   },
   {
    "week": "2024-W11",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 0.6,
+    "elevation_m": 35.3,
+    "relative_effort": 19,
+    "avg_hr": 144.9
    },
    "ride": {
     "count": 1,
@@ -4868,13 +4868,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 5.1,
-    "time_hours": 0.6,
-    "elevation_m": 35.3,
-    "relative_effort": 19,
-    "avg_hr": 144.9
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -4886,13 +4886,13 @@
   },
   {
    "week": "2024-W12",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.1,
+    "time_hours": 0.5,
+    "elevation_m": 28.2,
+    "relative_effort": 13,
+    "avg_hr": 131.5
    },
    "ride": {
     "count": 0,
@@ -4910,13 +4910,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.1,
-    "time_hours": 0.5,
-    "elevation_m": 28.2,
-    "relative_effort": 13,
-    "avg_hr": 131.5
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4928,13 +4928,13 @@
   },
   {
    "week": "2024-W13",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 2.8,
+    "time_hours": 0.3,
+    "elevation_m": 9.6,
+    "relative_effort": 17,
+    "avg_hr": 153.0
    },
    "ride": {
     "count": 0,
@@ -4952,13 +4952,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.8,
-    "time_hours": 0.3,
-    "elevation_m": 9.6,
-    "relative_effort": 17,
-    "avg_hr": 153.0
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4970,11 +4970,11 @@
   },
   {
    "week": "2024-W17",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
+    "elevation_m": 31.0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -4994,11 +4994,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.5,
-    "time_hours": 0.3,
-    "elevation_m": 31.0,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -5012,13 +5012,13 @@
   },
   {
    "week": "2024-W26",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "elevation_m": 22.6,
+    "relative_effort": 18,
+    "avg_hr": 135.1
    },
    "ride": {
     "count": 0,
@@ -5036,13 +5036,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 6.1,
-    "time_hours": 0.7,
-    "elevation_m": 22.6,
-    "relative_effort": 18,
-    "avg_hr": 135.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5054,7 +5054,7 @@
   },
   {
    "week": "2024-W29",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5078,7 +5078,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5096,7 +5096,7 @@
   },
   {
    "week": "2024-W32",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5120,7 +5120,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5138,13 +5138,13 @@
   },
   {
    "week": "2024-W33",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "elevation_m": 40.9,
+    "relative_effort": 10,
+    "avg_hr": 138.7
    },
    "ride": {
     "count": 0,
@@ -5162,13 +5162,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.0,
-    "time_hours": 0.5,
-    "elevation_m": 40.9,
-    "relative_effort": 10,
-    "avg_hr": 138.7
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5180,13 +5180,13 @@
   },
   {
    "week": "2024-W35",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 2,
+    "distance_km": 4.8,
+    "time_hours": 0.7,
+    "elevation_m": 275.9,
+    "relative_effort": 10,
+    "avg_hr": 116.1
    },
    "ride": {
     "count": 0,
@@ -5204,13 +5204,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 2,
-    "distance_km": 4.8,
-    "time_hours": 0.7,
-    "elevation_m": 275.9,
-    "relative_effort": 10,
-    "avg_hr": 116.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -5222,13 +5222,13 @@
   },
   {
    "week": "2024-W36",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.6,
+    "time_hours": 0.5,
+    "elevation_m": 84.7,
+    "relative_effort": 10,
+    "avg_hr": 137.4
    },
    "ride": {
     "count": 0,
@@ -5246,13 +5246,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.6,
-    "time_hours": 0.5,
-    "elevation_m": 84.7,
-    "relative_effort": 10,
-    "avg_hr": 137.4
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5264,7 +5264,7 @@
   },
   {
    "week": "2024-W38",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5288,7 +5288,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5306,7 +5306,7 @@
   },
   {
    "week": "2024-W42",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5330,7 +5330,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5348,13 +5348,13 @@
   },
   {
    "week": "2024-W44",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.3,
+    "time_hours": 0.4,
+    "elevation_m": 82.2,
+    "relative_effort": 18,
+    "avg_hr": 148.0
    },
    "ride": {
     "count": 0,
@@ -5372,13 +5372,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.3,
-    "time_hours": 0.4,
-    "elevation_m": 82.2,
-    "relative_effort": 18,
-    "avg_hr": 148.0
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5390,13 +5390,13 @@
   },
   {
    "week": "2024-W49",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 11,
-    "avg_hr": 135.2
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 0,
@@ -5414,13 +5414,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "swim": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 11,
+    "avg_hr": 135.2
    },
    "total": {
     "count": 1,
@@ -5432,7 +5432,7 @@
   },
   {
    "week": "2024-W50",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5456,7 +5456,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5474,7 +5474,7 @@
   },
   {
    "week": "2024-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5498,7 +5498,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5516,13 +5516,13 @@
   },
   {
    "week": "2024-W52",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.8,
+    "time_hours": 0.6,
+    "elevation_m": 94.8,
+    "relative_effort": 10,
+    "avg_hr": 128.1
    },
    "ride": {
     "count": 0,
@@ -5540,13 +5540,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.8,
-    "time_hours": 0.6,
-    "elevation_m": 94.8,
-    "relative_effort": 10,
-    "avg_hr": 128.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5558,7 +5558,7 @@
   },
   {
    "week": "2025-W01",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5582,7 +5582,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5600,11 +5600,11 @@
   },
   {
    "week": "2025-W02",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.1,
+    "time_hours": 0.3,
+    "elevation_m": 10.0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -5624,11 +5624,11 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.1,
-    "time_hours": 0.3,
-    "elevation_m": 10.0,
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -5642,13 +5642,13 @@
   },
   {
    "week": "2025-W03",
-   "swim": {
-    "count": 2,
-    "distance_km": 1.1,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 3,
-    "avg_hr": 126.3
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 0,
@@ -5666,13 +5666,13 @@
     "relative_effort": 40,
     "avg_hr": 121.6
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "swim": {
+    "count": 2,
+    "distance_km": 1.1,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 3,
+    "avg_hr": 126.3
    },
    "total": {
     "count": 4,
@@ -5684,13 +5684,13 @@
   },
   {
    "week": "2025-W04",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.8,
-    "time_hours": 0.2,
-    "elevation_m": 0.0,
-    "relative_effort": 5,
-    "avg_hr": 130.4
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 1,
@@ -5708,13 +5708,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "swim": {
+    "count": 1,
+    "distance_km": 0.8,
+    "time_hours": 0.2,
+    "elevation_m": 0.0,
+    "relative_effort": 5,
+    "avg_hr": 130.4
    },
    "total": {
     "count": 2,
@@ -5726,7 +5726,7 @@
   },
   {
    "week": "2025-W06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5750,7 +5750,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5768,7 +5768,7 @@
   },
   {
    "week": "2025-W09",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5792,7 +5792,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5810,7 +5810,7 @@
   },
   {
    "week": "2025-W13",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5834,7 +5834,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5852,13 +5852,13 @@
   },
   {
    "week": "2025-W21",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 1.4,
+    "time_hours": 0.2,
+    "elevation_m": 36.0,
+    "relative_effort": 2,
+    "avg_hr": 133.4
    },
    "ride": {
     "count": 0,
@@ -5876,13 +5876,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.4,
-    "time_hours": 0.2,
-    "elevation_m": 36.0,
-    "relative_effort": 2,
-    "avg_hr": 133.4
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5894,7 +5894,7 @@
   },
   {
    "week": "2025-W22",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5918,7 +5918,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5936,7 +5936,7 @@
   },
   {
    "week": "2025-W28",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5960,7 +5960,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5978,7 +5978,7 @@
   },
   {
    "week": "2025-W36",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6002,7 +6002,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6020,13 +6020,13 @@
   },
   {
    "week": "2025-W37",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "elevation_m": 142.3,
+    "relative_effort": 10,
+    "avg_hr": 132.1
    },
    "ride": {
     "count": 0,
@@ -6044,13 +6044,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.2,
-    "time_hours": 0.4,
-    "elevation_m": 142.3,
-    "relative_effort": 10,
-    "avg_hr": 132.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -6062,7 +6062,7 @@
   },
   {
    "week": "2025-W39",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6086,7 +6086,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6104,7 +6104,7 @@
   },
   {
    "week": "2025-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6128,7 +6128,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6146,7 +6146,7 @@
   },
   {
    "week": "2025-W43",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6170,7 +6170,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6188,13 +6188,13 @@
   },
   {
    "week": "2025-W45",
-   "swim": {
-    "count": 0,
+   "run": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+    "time_hours": 0.8,
+    "elevation_m": 0.0,
+    "relative_effort": 36,
+    "avg_hr": 143.8
    },
    "ride": {
     "count": 0,
@@ -6212,13 +6212,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
+   "swim": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 0.8,
-    "elevation_m": 0.0,
-    "relative_effort": 36,
-    "avg_hr": 143.8
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -6230,13 +6230,13 @@
   },
   {
    "week": "2025-W46",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.1,
+    "time_hours": 0.5,
+    "elevation_m": 180.6,
+    "relative_effort": 15,
+    "avg_hr": 144.5
    },
    "ride": {
     "count": 0,
@@ -6254,13 +6254,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.1,
-    "time_hours": 0.5,
-    "elevation_m": 180.6,
-    "relative_effort": 15,
-    "avg_hr": 144.5
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -6272,7 +6272,7 @@
   },
   {
    "week": "2025-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6296,7 +6296,7 @@
     "relative_effort": 8,
     "avg_hr": 98.9
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6314,13 +6314,13 @@
   },
   {
    "week": "2025-W52",
-   "swim": {
-    "count": 1,
+   "run": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 0.1,
-    "elevation_m": 0.0,
-    "relative_effort": 1,
-    "avg_hr": 105.3
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 1,
@@ -6338,13 +6338,13 @@
     "relative_effort": 25,
     "avg_hr": 97.7
    },
-   "run": {
-    "count": 0,
+   "swim": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+    "time_hours": 0.1,
+    "elevation_m": 0.0,
+    "relative_effort": 1,
+    "avg_hr": 105.3
    },
    "total": {
     "count": 3,
@@ -6356,13 +6356,13 @@
   },
   {
    "week": "2026-W01",
-   "swim": {
+   "run": {
     "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.5,
-    "elevation_m": 0.0,
-    "relative_effort": 11,
-    "avg_hr": 125.0
+    "distance_km": 5.4,
+    "time_hours": 0.9,
+    "elevation_m": 209.6,
+    "relative_effort": 37,
+    "avg_hr": 141.0
    },
    "ride": {
     "count": 1,
@@ -6380,13 +6380,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 1,
-    "distance_km": 5.4,
-    "time_hours": 0.9,
-    "elevation_m": 209.6,
-    "relative_effort": 37,
-    "avg_hr": 141.0
+    "distance_km": 0.0,
+    "time_hours": 0.5,
+    "elevation_m": 0.0,
+    "relative_effort": 11,
+    "avg_hr": 125.0
    },
    "total": {
     "count": 3,
@@ -6398,7 +6398,7 @@
   },
   {
    "week": "2026-W03",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6422,7 +6422,7 @@
     "relative_effort": 27,
     "avg_hr": 102.8
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6440,13 +6440,13 @@
   },
   {
    "week": "2026-W04",
-   "swim": {
-    "count": 1,
+   "run": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 30,
-    "avg_hr": 147.7
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 1,
@@ -6464,13 +6464,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
+   "swim": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 30,
+    "avg_hr": 147.7
    },
    "total": {
     "count": 2,
@@ -6482,13 +6482,13 @@
   },
   {
    "week": "2026-W05",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.7,
+    "time_hours": 0.6,
+    "elevation_m": 82.2,
+    "relative_effort": 31,
+    "avg_hr": 154.9
    },
    "ride": {
     "count": 1,
@@ -6506,13 +6506,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.7,
-    "time_hours": 0.6,
-    "elevation_m": 82.2,
-    "relative_effort": 31,
-    "avg_hr": 154.9
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -6524,13 +6524,13 @@
   },
   {
    "week": "2026-W06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 0.6,
+    "elevation_m": 156.6,
+    "relative_effort": 13,
+    "avg_hr": 136.1
    },
    "ride": {
     "count": 1,
@@ -6548,13 +6548,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 5.1,
-    "time_hours": 0.6,
-    "elevation_m": 156.6,
-    "relative_effort": 13,
-    "avg_hr": 136.1
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -6566,13 +6566,13 @@
   },
   {
    "week": "2026-W07",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.0,
+    "time_hours": 0.4,
+    "elevation_m": 23.4,
+    "relative_effort": 14,
+    "avg_hr": 143.0
    },
    "ride": {
     "count": 2,
@@ -6590,13 +6590,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.0,
-    "time_hours": 0.4,
-    "elevation_m": 23.4,
-    "relative_effort": 14,
-    "avg_hr": 143.0
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 3,
@@ -6608,13 +6608,13 @@
   },
   {
    "week": "2026-W08",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "avg_hr": 127.3
+   "run": {
+    "count": 2,
+    "distance_km": 10.1,
+    "time_hours": 1.2,
+    "elevation_m": 209.4,
+    "relative_effort": 67,
+    "avg_hr": 149.8
    },
    "ride": {
     "count": 2,
@@ -6632,13 +6632,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 2,
-    "distance_km": 10.1,
-    "time_hours": 1.2,
-    "elevation_m": 209.4,
-    "relative_effort": 67,
-    "avg_hr": 149.8
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "avg_hr": 127.3
    },
    "total": {
     "count": 5,
@@ -6650,13 +6650,13 @@
   },
   {
    "week": "2026-W10",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "elevation_m": 77.0,
+    "relative_effort": 12,
+    "avg_hr": 132.9
    },
    "ride": {
     "count": 0,
@@ -6674,13 +6674,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.0,
-    "time_hours": 0.5,
-    "elevation_m": 77.0,
-    "relative_effort": 12,
-    "avg_hr": 132.9
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -6692,13 +6692,13 @@
   },
   {
    "week": "2026-W11",
-   "swim": {
-    "count": 1,
+   "run": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "avg_hr": 127.3
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "ride": {
     "count": 0,
@@ -6716,13 +6716,13 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
+   "swim": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "avg_hr": 127.3
    },
    "total": {
     "count": 1,
@@ -6734,7 +6734,7 @@
   },
   {
    "week": "2026-W12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6758,7 +6758,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6776,7 +6776,7 @@
   },
   {
    "week": "2026-W13",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6800,7 +6800,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6818,13 +6818,13 @@
   },
   {
    "week": "2026-W17",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 1.7,
+    "time_hours": 0.3,
+    "elevation_m": 63.6,
+    "relative_effort": 5,
+    "avg_hr": 134.3
    },
    "ride": {
     "count": 0,
@@ -6842,13 +6842,13 @@
     "relative_effort": 24,
     "avg_hr": 97.7
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.7,
-    "time_hours": 0.3,
-    "elevation_m": 63.6,
-    "relative_effort": 5,
-    "avg_hr": 134.3
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 3,
@@ -6860,13 +6860,13 @@
   },
   {
    "week": "2026-W18",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 5.2,
+    "time_hours": 0.6,
+    "elevation_m": 62.6,
+    "relative_effort": 40,
+    "avg_hr": 152.5
    },
    "ride": {
     "count": 0,
@@ -6884,13 +6884,13 @@
     "relative_effort": 28,
     "avg_hr": 113.6
    },
-   "run": {
-    "count": 1,
-    "distance_km": 5.2,
-    "time_hours": 0.6,
-    "elevation_m": 62.6,
-    "relative_effort": 40,
-    "avg_hr": 152.5
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -6904,12 +6904,12 @@
  "yearly": [
   {
    "year": 2020,
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0
+   "run": {
+    "count": 5,
+    "distance_km": 21.8,
+    "time_hours": 2.3,
+    "elevation_m": 839.2,
+    "relative_effort": 83
    },
    "ride": {
     "count": 21,
@@ -6925,21 +6925,21 @@
     "elevation_m": 4872.9,
     "relative_effort": 0
    },
-   "run": {
-    "count": 5,
-    "distance_km": 21.8,
-    "time_hours": 2.3,
-    "elevation_m": 839.2,
-    "relative_effort": 83
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0
    }
   },
   {
    "year": 2021,
-   "swim": {
-    "count": 1,
-    "distance_km": 0.1,
-    "time_hours": 0.0,
-    "elevation_m": 0.0,
+   "run": {
+    "count": 2,
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "elevation_m": 22.5,
     "relative_effort": 0
    },
    "ride": {
@@ -6956,17 +6956,17 @@
     "elevation_m": 2986.8,
     "relative_effort": 0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 3.2,
-    "time_hours": 0.4,
-    "elevation_m": 22.5,
+   "swim": {
+    "count": 1,
+    "distance_km": 0.1,
+    "time_hours": 0.0,
+    "elevation_m": 0.0,
     "relative_effort": 0
    }
   },
   {
    "year": 2022,
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6987,7 +6987,7 @@
     "elevation_m": 0,
     "relative_effort": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6997,12 +6997,12 @@
   },
   {
    "year": 2023,
-   "swim": {
-    "count": 1,
-    "distance_km": 0.6,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 25
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0
    },
    "ride": {
     "count": 17,
@@ -7018,22 +7018,22 @@
     "elevation_m": 291.2,
     "relative_effort": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0
+   "swim": {
+    "count": 1,
+    "distance_km": 0.6,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 25
    }
   },
   {
    "year": 2024,
-   "swim": {
-    "count": 3,
-    "distance_km": 1.4,
-    "time_hours": 0.5,
-    "elevation_m": 0.0,
-    "relative_effort": 21
+   "run": {
+    "count": 13,
+    "distance_km": 51.5,
+    "time_hours": 6.3,
+    "elevation_m": 838.9,
+    "relative_effort": 125
    },
    "ride": {
     "count": 11,
@@ -7049,22 +7049,22 @@
     "elevation_m": 267.1,
     "relative_effort": 0
    },
-   "run": {
-    "count": 13,
-    "distance_km": 51.5,
-    "time_hours": 6.3,
-    "elevation_m": 838.9,
-    "relative_effort": 125
+   "swim": {
+    "count": 3,
+    "distance_km": 1.4,
+    "time_hours": 0.5,
+    "elevation_m": 0.0,
+    "relative_effort": 21
    }
   },
   {
    "year": 2025,
-   "swim": {
-    "count": 4,
-    "distance_km": 1.9,
-    "time_hours": 0.7,
-    "elevation_m": 0.0,
-    "relative_effort": 9
+   "run": {
+    "count": 5,
+    "distance_km": 10.7,
+    "time_hours": 2.1,
+    "elevation_m": 368.9,
+    "relative_effort": 63
    },
    "ride": {
     "count": 23,
@@ -7080,22 +7080,22 @@
     "elevation_m": 1047.1,
     "relative_effort": 73
    },
-   "run": {
-    "count": 5,
-    "distance_km": 10.7,
-    "time_hours": 2.1,
-    "elevation_m": 368.9,
-    "relative_effort": 63
+   "swim": {
+    "count": 4,
+    "distance_km": 1.9,
+    "time_hours": 0.7,
+    "elevation_m": 0.0,
+    "relative_effort": 9
    }
   },
   {
    "year": 2026,
-   "swim": {
-    "count": 4,
-    "distance_km": 0.0,
-    "time_hours": 1.5,
-    "elevation_m": 0.0,
-    "relative_effort": 55
+   "run": {
+    "count": 9,
+    "distance_km": 39.4,
+    "time_hours": 5.0,
+    "elevation_m": 884.4,
+    "relative_effort": 219
    },
    "ride": {
     "count": 7,
@@ -7111,24 +7111,24 @@
     "elevation_m": 13315.4,
     "relative_effort": 79
    },
-   "run": {
-    "count": 9,
-    "distance_km": 39.4,
-    "time_hours": 5.0,
-    "elevation_m": 884.4,
-    "relative_effort": 219
+   "swim": {
+    "count": 4,
+    "distance_km": 0.0,
+    "time_hours": 1.5,
+    "elevation_m": 0.0,
+    "relative_effort": 55
    }
   }
  ],
  "best_efforts": {
-  "swim": {
-   "longest_distance_km": 0.9,
-   "longest_name": "Lunch Swim",
-   "most_elevation_m": 0.0,
-   "most_elev_name": "Afternoon Swim",
-   "highest_max_hr": 176,
-   "best_avg_speed_kmh": 4.0,
-   "best_speed_name": "MSAC Swim"
+  "run": {
+   "longest_distance_km": 8.0,
+   "longest_name": "City",
+   "most_elevation_m": 502.0,
+   "most_elev_name": "Evening Run",
+   "highest_max_hr": 189,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "Evening Run"
   },
   "ride": {
    "longest_distance_km": 42.1,
@@ -7148,14 +7148,14 @@
    "best_avg_speed_kmh": 4.9,
    "best_speed_name": "Lunch Hike"
   },
-  "run": {
-   "longest_distance_km": 8.0,
-   "longest_name": "City",
-   "most_elevation_m": 502.0,
-   "most_elev_name": "Evening Run",
-   "highest_max_hr": 189,
-   "best_avg_speed_kmh": 0.0,
-   "best_speed_name": "Evening Run"
+  "swim": {
+   "longest_distance_km": 0.9,
+   "longest_name": "Lunch Swim",
+   "most_elevation_m": 0.0,
+   "most_elev_name": "Afternoon Swim",
+   "highest_max_hr": 176,
+   "best_avg_speed_kmh": 4.0,
+   "best_speed_name": "MSAC Swim"
   }
  },
  "gear": [
@@ -7184,6 +7184,2214 @@
    ]
   }
  ],
+ "gap_trends": {
+  "run": {
+   "ref_date": "2021-02-09T08:19:28+00:00",
+   "loess_split": [
+    {
+     "days": 0.0,
+     "value": 8.349046486850387
+    },
+    {
+     "days": 195.89806712962962,
+     "value": 8.624636730825108
+    },
+    {
+     "days": 195.89806712962962,
+     "value": 8.624636730825108
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 9.535592616767168
+    },
+    {
+     "days": 1096.1606712962962,
+     "value": 9.140090887272178
+    },
+    {
+     "days": 1096.1606712962962,
+     "value": 9.140090887272178
+    },
+    {
+     "days": 1096.1606712962962,
+     "value": 9.140090887272178
+    },
+    {
+     "days": 1129.684988425926,
+     "value": 8.050266783603416
+    },
+    {
+     "days": 1129.684988425926,
+     "value": 8.050266783603416
+    },
+    {
+     "days": 1129.684988425926,
+     "value": 8.050266783603416
+    },
+    {
+     "days": 1129.684988425926,
+     "value": 8.050266783603416
+    },
+    {
+     "days": 1129.684988425926,
+     "value": 8.050266783603416
+    },
+    {
+     "days": 1132.7252893518519,
+     "value": 7.965059912010904
+    },
+    {
+     "days": 1132.7252893518519,
+     "value": 7.965059912010904
+    },
+    {
+     "days": 1132.7252893518519,
+     "value": 7.965059912010904
+    },
+    {
+     "days": 1132.7252893518519,
+     "value": 7.965059912010904
+    },
+    {
+     "days": 1172.6089351851851,
+     "value": 7.01554256521553
+    },
+    {
+     "days": 1172.6089351851851,
+     "value": 7.01554256521553
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 6.9836160717547
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 6.9836160717547
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 6.9836160717547
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 6.9836160717547
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 6.9836160717547
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 6.9836160717547
+    },
+    {
+     "days": 1280.0186458333333,
+     "value": 7.5818039586509505
+    },
+    {
+     "days": 1280.0186458333333,
+     "value": 7.5818039586509505
+    },
+    {
+     "days": 1280.0186458333333,
+     "value": 7.5818039586509505
+    },
+    {
+     "days": 1280.0186458333333,
+     "value": 7.5818039586509505
+    },
+    {
+     "days": 1295.6616319444445,
+     "value": 7.637818723395876
+    },
+    {
+     "days": 1297.6393055555557,
+     "value": 7.648806949519603
+    },
+    {
+     "days": 1297.6393055555557,
+     "value": 7.648806949519603
+    },
+    {
+     "days": 1297.6393055555557,
+     "value": 7.648806949519603
+    },
+    {
+     "days": 1297.6393055555557,
+     "value": 7.648806949519603
+    },
+    {
+     "days": 1301.778263888889,
+     "value": 7.673611032256821
+    },
+    {
+     "days": 1301.778263888889,
+     "value": 7.673611032256821
+    },
+    {
+     "days": 1301.778263888889,
+     "value": 7.673611032256821
+    },
+    {
+     "days": 1301.778263888889,
+     "value": 7.673611032256821
+    },
+    {
+     "days": 1357.9821412037038,
+     "value": 8.03038108232023
+    },
+    {
+     "days": 1357.9821412037038,
+     "value": 8.03038108232023
+    },
+    {
+     "days": 1357.9821412037038,
+     "value": 8.03038108232023
+    },
+    {
+     "days": 1417.6548842592592,
+     "value": 8.145471673059205
+    },
+    {
+     "days": 1417.6548842592592,
+     "value": 8.145471673059205
+    },
+    {
+     "days": 1417.6548842592592,
+     "value": 8.145471673059205
+    },
+    {
+     "days": 1417.6548842592592,
+     "value": 8.145471673059205
+    },
+    {
+     "days": 1565.8104166666667,
+     "value": 7.2796446970309105
+    },
+    {
+     "days": 1677.7096180555557,
+     "value": 6.265568579109579
+    },
+    {
+     "days": 1677.7096180555557,
+     "value": 6.265568579109579
+    },
+    {
+     "days": 1677.7096180555557,
+     "value": 6.265568579109579
+    },
+    {
+     "days": 1736.0293865740741,
+     "value": 5.371796452509977
+    },
+    {
+     "days": 1736.0293865740741,
+     "value": 5.371796452509977
+    },
+    {
+     "days": 1736.0293865740741,
+     "value": 5.371796452509977
+    },
+    {
+     "days": 1736.0293865740741,
+     "value": 5.371796452509977
+    },
+    {
+     "days": 1787.812037037037,
+     "value": 6.7773149685620835
+    },
+    {
+     "days": 1787.812037037037,
+     "value": 6.7773149685620835
+    },
+    {
+     "days": 1787.812037037037,
+     "value": 6.7773149685620835
+    },
+    {
+     "days": 1787.812037037037,
+     "value": 6.7773149685620835
+    },
+    {
+     "days": 1787.812037037037,
+     "value": 6.7773149685620835
+    },
+    {
+     "days": 1817.0236342592593,
+     "value": 3.6606165397267056
+    },
+    {
+     "days": 1817.0236342592593,
+     "value": 3.6606165397267056
+    },
+    {
+     "days": 1817.0236342592593,
+     "value": 3.6606165397267056
+    },
+    {
+     "days": 1817.0236342592593,
+     "value": 3.6606165397267056
+    },
+    {
+     "days": 1817.0236342592593,
+     "value": 3.6606165397267056
+    },
+    {
+     "days": 1820.9789236111112,
+     "value": 3.9069521112817944
+    },
+    {
+     "days": 1820.9789236111112,
+     "value": 3.9069521112817944
+    },
+    {
+     "days": 1820.9789236111112,
+     "value": 3.9069521112817944
+    },
+    {
+     "days": 1820.9789236111112,
+     "value": 3.9069521112817944
+    },
+    {
+     "days": 1820.9789236111112,
+     "value": 3.9069521112817944
+    },
+    {
+     "days": 1829.7352777777778,
+     "value": 4.472947089030674
+    },
+    {
+     "days": 1829.7352777777778,
+     "value": 4.472947089030674
+    },
+    {
+     "days": 1829.7352777777778,
+     "value": 4.472947089030674
+    },
+    {
+     "days": 1835.1260416666667,
+     "value": 4.778257193129217
+    },
+    {
+     "days": 1835.1260416666667,
+     "value": 4.778257193129217
+    },
+    {
+     "days": 1835.1260416666667,
+     "value": 4.778257193129217
+    },
+    {
+     "days": 1835.1260416666667,
+     "value": 4.778257193129217
+    },
+    {
+     "days": 1835.1260416666667,
+     "value": 4.778257193129217
+    },
+    {
+     "days": 1838.6500462962963,
+     "value": 4.976461281636284
+    },
+    {
+     "days": 1838.6500462962963,
+     "value": 4.976461281636284
+    },
+    {
+     "days": 1838.6500462962963,
+     "value": 4.976461281636284
+    },
+    {
+     "days": 1838.6500462962963,
+     "value": 4.976461281636284
+    },
+    {
+     "days": 1838.6500462962963,
+     "value": 4.976461281636284
+    },
+    {
+     "days": 1846.913599537037,
+     "value": 5.4488721416229895
+    },
+    {
+     "days": 1846.913599537037,
+     "value": 5.4488721416229895
+    },
+    {
+     "days": 1846.913599537037,
+     "value": 5.4488721416229895
+    },
+    {
+     "days": 1846.913599537037,
+     "value": 5.4488721416229895
+    },
+    {
+     "days": 1896.5179398148148,
+     "value": 4.194279344131067
+    },
+    {
+     "days": 1896.5179398148148,
+     "value": 4.194279344131067
+    },
+    {
+     "days": 1905.3835185185185,
+     "value": 4.044501807358337
+    },
+    {
+     "days": 1905.3835185185185,
+     "value": 4.044501807358337
+    },
+    {
+     "days": 1905.3835185185185,
+     "value": 4.044501807358337
+    },
+    {
+     "days": 1905.3835185185185,
+     "value": 4.044501807358337
+    },
+    {
+     "days": 1905.3835185185185,
+     "value": 4.044501807358337
+    }
+   ],
+   "loess_act": [
+    {
+     "days": 0.0,
+     "value": 8.192656641155626
+    },
+    {
+     "days": 195.89806712962962,
+     "value": 8.322383168852364
+    },
+    {
+     "days": 1085.8912268518518,
+     "value": 8.401439542712938
+    },
+    {
+     "days": 1096.1606712962962,
+     "value": 8.232872440011567
+    },
+    {
+     "days": 1129.684988425926,
+     "value": 7.75935384355013
+    },
+    {
+     "days": 1132.7252893518519,
+     "value": 7.720916533902617
+    },
+    {
+     "days": 1172.6089351851851,
+     "value": 7.301156851672298
+    },
+    {
+     "days": 1230.989537037037,
+     "value": 7.525320466898903
+    },
+    {
+     "days": 1280.0186458333333,
+     "value": 7.658351567275322
+    },
+    {
+     "days": 1295.6616319444445,
+     "value": 7.669781739226214
+    },
+    {
+     "days": 1297.6393055555557,
+     "value": 7.6764369649395405
+    },
+    {
+     "days": 1301.778263888889,
+     "value": 7.6924675312078525
+    },
+    {
+     "days": 1357.9821412037038,
+     "value": 7.949575349350135
+    },
+    {
+     "days": 1417.6548842592592,
+     "value": 7.923958174259235
+    },
+    {
+     "days": 1565.8104166666667,
+     "value": 7.42019045125492
+    },
+    {
+     "days": 1677.7096180555557,
+     "value": 6.334979851496299
+    },
+    {
+     "days": 1736.0293865740741,
+     "value": 5.593038129196335
+    },
+    {
+     "days": 1787.812037037037,
+     "value": 4.614569208139585
+    },
+    {
+     "days": 1817.0236342592593,
+     "value": 4.942359626459027
+    },
+    {
+     "days": 1820.9789236111112,
+     "value": 4.898881120844117
+    },
+    {
+     "days": 1829.7352777777778,
+     "value": 4.838788576055569
+    },
+    {
+     "days": 1835.1260416666667,
+     "value": 4.808481969312593
+    },
+    {
+     "days": 1838.6500462962963,
+     "value": 4.7892062460572555
+    },
+    {
+     "days": 1846.913599537037,
+     "value": 4.747795218121956
+    },
+    {
+     "days": 1896.5179398148148,
+     "value": 4.572402236490634
+    },
+    {
+     "days": 1905.3835185185185,
+     "value": 4.543488155234488
+    }
+   ],
+   "linear_split": {
+    "slope_per_month": -0.1124,
+    "intercept": 12.3426
+   },
+   "linear_act": {
+    "slope_per_month": -0.0779,
+    "intercept": 10.3925
+   },
+   "n_splits": 98,
+   "n_activities": 26
+  },
+  "ride": {
+   "ref_date": "2020-07-29T11:24:35+00:00",
+   "loess_split": [
+    {
+     "days": 0.0,
+     "value": 22.466591944907833
+    },
+    {
+     "days": 0.0,
+     "value": 22.466591944907833
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.199335952449697
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.199335952449697
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.199335952449697
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.199335952449697
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.199335952449697
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.199335952449697
+    },
+    {
+     "days": 40.51109953703704,
+     "value": 22.168805410127685
+    },
+    {
+     "days": 40.51109953703704,
+     "value": 22.168805410127685
+    },
+    {
+     "days": 152.80274305555557,
+     "value": 21.553177638131103
+    },
+    {
+     "days": 152.80274305555557,
+     "value": 21.553177638131103
+    },
+    {
+     "days": 165.64981481481482,
+     "value": 21.435289322863575
+    },
+    {
+     "days": 165.64981481481482,
+     "value": 21.435289322863575
+    },
+    {
+     "days": 165.64981481481482,
+     "value": 21.435289322863575
+    },
+    {
+     "days": 165.64981481481482,
+     "value": 21.435289322863575
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.411394234385558
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.411394234385558
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.411394234385558
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.411394234385558
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.411394234385558
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.411394234385558
+    },
+    {
+     "days": 180.9104513888889,
+     "value": 21.244851825514555
+    },
+    {
+     "days": 180.9104513888889,
+     "value": 21.244851825514555
+    },
+    {
+     "days": 180.9104513888889,
+     "value": 21.244851825514555
+    },
+    {
+     "days": 180.9104513888889,
+     "value": 21.244851825514555
+    },
+    {
+     "days": 246.53104166666665,
+     "value": 21.725079135214337
+    },
+    {
+     "days": 246.53104166666665,
+     "value": 21.725079135214337
+    },
+    {
+     "days": 246.53104166666665,
+     "value": 21.725079135214337
+    },
+    {
+     "days": 246.53104166666665,
+     "value": 21.725079135214337
+    },
+    {
+     "days": 255.5082175925926,
+     "value": 21.923741858649688
+    },
+    {
+     "days": 262.82369212962965,
+     "value": 22.06989690200419
+    },
+    {
+     "days": 262.82369212962965,
+     "value": 22.06989690200419
+    },
+    {
+     "days": 262.82369212962965,
+     "value": 22.06989690200419
+    },
+    {
+     "days": 263.4650115740741,
+     "value": 22.081928663167226
+    },
+    {
+     "days": 263.4650115740741,
+     "value": 22.081928663167226
+    },
+    {
+     "days": 263.8261689814815,
+     "value": 22.088641439611724
+    },
+    {
+     "days": 263.8261689814815,
+     "value": 22.088641439611724
+    },
+    {
+     "days": 264.4527199074074,
+     "value": 22.100175511080288
+    },
+    {
+     "days": 264.4527199074074,
+     "value": 22.100175511080288
+    },
+    {
+     "days": 264.68686342592594,
+     "value": 22.104448392849232
+    },
+    {
+     "days": 264.68686342592594,
+     "value": 22.104448392849232
+    },
+    {
+     "days": 265.47630787037036,
+     "value": 22.11869809005816
+    },
+    {
+     "days": 265.47630787037036,
+     "value": 22.11869809005816
+    },
+    {
+     "days": 265.6745138888889,
+     "value": 22.122236403379056
+    },
+    {
+     "days": 265.6745138888889,
+     "value": 22.122236403379056
+    },
+    {
+     "days": 266.4765972222222,
+     "value": 22.136384464376945
+    },
+    {
+     "days": 266.4765972222222,
+     "value": 22.136384464376945
+    },
+    {
+     "days": 266.7326851851852,
+     "value": 22.140841639213406
+    },
+    {
+     "days": 266.7326851851852,
+     "value": 22.140841639213406
+    },
+    {
+     "days": 267.4979050925926,
+     "value": 22.15397601529264
+    },
+    {
+     "days": 267.4979050925926,
+     "value": 22.15397601529264
+    },
+    {
+     "days": 267.57663194444444,
+     "value": 22.155311024701266
+    },
+    {
+     "days": 267.57663194444444,
+     "value": 22.155311024701266
+    },
+    {
+     "days": 278.5222337962963,
+     "value": 22.29053193401063
+    },
+    {
+     "days": 278.5222337962963,
+     "value": 22.29053193401063
+    },
+    {
+     "days": 278.78569444444446,
+     "value": 22.2917772918095
+    },
+    {
+     "days": 278.78569444444446,
+     "value": 22.2917772918095
+    },
+    {
+     "days": 280.4323263888889,
+     "value": 22.296025578734266
+    },
+    {
+     "days": 280.9040972222222,
+     "value": 22.296012400645328
+    },
+    {
+     "days": 281.51189814814813,
+     "value": 22.295106573309102
+    },
+    {
+     "days": 281.51189814814813,
+     "value": 22.295106573309102
+    },
+    {
+     "days": 281.6584027777778,
+     "value": 22.294732475567066
+    },
+    {
+     "days": 281.6584027777778,
+     "value": 22.294732475567066
+    },
+    {
+     "days": 326.7084722222222,
+     "value": 20.10561502037771
+    },
+    {
+     "days": 326.7084722222222,
+     "value": 20.10561502037771
+    },
+    {
+     "days": 326.7084722222222,
+     "value": 20.10561502037771
+    },
+    {
+     "days": 326.7084722222222,
+     "value": 20.10561502037771
+    },
+    {
+     "days": 343.62516203703706,
+     "value": 19.251910306033178
+    },
+    {
+     "days": 371.5256712962963,
+     "value": 17.828895713532383
+    },
+    {
+     "days": 371.5256712962963,
+     "value": 17.828895713532383
+    },
+    {
+     "days": 371.5256712962963,
+     "value": 17.828895713532383
+    },
+    {
+     "days": 399.7028935185185,
+     "value": 16.365511085782458
+    },
+    {
+     "days": 399.7028935185185,
+     "value": 16.365511085782458
+    },
+    {
+     "days": 399.7028935185185,
+     "value": 16.365511085782458
+    },
+    {
+     "days": 399.7028935185185,
+     "value": 16.365511085782458
+    },
+    {
+     "days": 403.36607638888887,
+     "value": 16.178009368945965
+    },
+    {
+     "days": 403.67895833333336,
+     "value": 16.162255953732565
+    },
+    {
+     "days": 404.40623842592595,
+     "value": 16.125826633050444
+    },
+    {
+     "days": 404.8414583333333,
+     "value": 16.104157984551126
+    },
+    {
+     "days": 405.4053935185185,
+     "value": 16.076233503989585
+    },
+    {
+     "days": 405.77663194444443,
+     "value": 16.057947675710345
+    },
+    {
+     "days": 406.41216435185186,
+     "value": 16.026827628071885
+    },
+    {
+     "days": 406.6838657407407,
+     "value": 16.01359566317135
+    },
+    {
+     "days": 407.4152662037037,
+     "value": 15.978197017717298
+    },
+    {
+     "days": 407.78108796296294,
+     "value": 15.960614814791443
+    },
+    {
+     "days": 411.4142824074074,
+     "value": 15.790646009061621
+    },
+    {
+     "days": 412.5984722222222,
+     "value": 15.737124077832846
+    },
+    {
+     "days": 412.6896990740741,
+     "value": 15.733039624870878
+    },
+    {
+     "days": 413.4139583333333,
+     "value": 15.70080924443715
+    },
+    {
+     "days": 413.6331597222222,
+     "value": 15.691123252676444
+    },
+    {
+     "days": 417.41263888888886,
+     "value": 15.52907046198089
+    },
+    {
+     "days": 417.8233912037037,
+     "value": 15.512011072396783
+    },
+    {
+     "days": 418.402650462963,
+     "value": 15.488131758180621
+    },
+    {
+     "days": 418.77917824074075,
+     "value": 15.472720641651495
+    },
+    {
+     "days": 419.4198148148148,
+     "value": 15.446697637211344
+    },
+    {
+     "days": 419.7847106481481,
+     "value": 15.431985457073154
+    },
+    {
+     "days": 420.4516550925926,
+     "value": 15.405298214558522
+    },
+    {
+     "days": 420.7983796296296,
+     "value": 15.391526640892389
+    },
+    {
+     "days": 421.4100115740741,
+     "value": 15.36553859717111
+    },
+    {
+     "days": 421.6053587962963,
+     "value": 15.355248325688786
+    },
+    {
+     "days": 434.5857986111111,
+     "value": 14.80491118876867
+    },
+    {
+     "days": 434.82550925925926,
+     "value": 14.798393173614079
+    },
+    {
+     "days": 435.8361689814815,
+     "value": 14.772235436118269
+    },
+    {
+     "days": 438.42237268518517,
+     "value": 14.715355700894428
+    },
+    {
+     "days": 438.49244212962964,
+     "value": 14.714019055681439
+    },
+    {
+     "days": 624.6427546296296,
+     "value": 18.515040293671042
+    },
+    {
+     "days": 624.6427546296296,
+     "value": 18.515040293671042
+    },
+    {
+     "days": 674.676412037037,
+     "value": 18.909473804233112
+    },
+    {
+     "days": 674.676412037037,
+     "value": 18.909473804233112
+    },
+    {
+     "days": 674.676412037037,
+     "value": 18.909473804233112
+    },
+    {
+     "days": 725.6488541666666,
+     "value": 19.773995840363785
+    },
+    {
+     "days": 725.6488541666666,
+     "value": 19.773995840363785
+    },
+    {
+     "days": 725.6488541666666,
+     "value": 19.773995840363785
+    },
+    {
+     "days": 725.6488541666666,
+     "value": 19.773995840363785
+    },
+    {
+     "days": 744.5992476851852,
+     "value": 20.008823710447402
+    },
+    {
+     "days": 744.5992476851852,
+     "value": 20.008823710447402
+    },
+    {
+     "days": 744.5992476851852,
+     "value": 20.008823710447402
+    },
+    {
+     "days": 752.7134837962963,
+     "value": 20.094428834150566
+    },
+    {
+     "days": 752.7134837962963,
+     "value": 20.094428834150566
+    },
+    {
+     "days": 800.7812962962963,
+     "value": 20.779967968110256
+    },
+    {
+     "days": 800.7812962962963,
+     "value": 20.779967968110256
+    },
+    {
+     "days": 800.7812962962963,
+     "value": 20.779967968110256
+    },
+    {
+     "days": 800.7812962962963,
+     "value": 20.779967968110256
+    },
+    {
+     "days": 875.1303819444445,
+     "value": 21.922055964000567
+    },
+    {
+     "days": 875.1303819444445,
+     "value": 21.922055964000567
+    },
+    {
+     "days": 877.0611574074074,
+     "value": 21.949516333022533
+    },
+    {
+     "days": 877.0611574074074,
+     "value": 21.949516333022533
+    },
+    {
+     "days": 883.8120138888889,
+     "value": 22.03994077422282
+    },
+    {
+     "days": 883.8120138888889,
+     "value": 22.03994077422282
+    },
+    {
+     "days": 883.8120138888889,
+     "value": 22.03994077422282
+    },
+    {
+     "days": 979.4294328703704,
+     "value": 22.466443246633258
+    },
+    {
+     "days": 979.4294328703704,
+     "value": 22.466443246633258
+    },
+    {
+     "days": 979.8412268518518,
+     "value": 22.46611482999272
+    },
+    {
+     "days": 979.8412268518518,
+     "value": 22.46611482999272
+    },
+    {
+     "days": 991.4371180555555,
+     "value": 22.470330719637573
+    },
+    {
+     "days": 991.4371180555555,
+     "value": 22.470330719637573
+    },
+    {
+     "days": 991.7939467592593,
+     "value": 22.471717917904886
+    },
+    {
+     "days": 991.7939467592593,
+     "value": 22.471717917904886
+    },
+    {
+     "days": 992.4377314814815,
+     "value": 22.47421512305949
+    },
+    {
+     "days": 992.4377314814815,
+     "value": 22.47421512305949
+    },
+    {
+     "days": 992.7778587962963,
+     "value": 22.47553157376366
+    },
+    {
+     "days": 992.7778587962963,
+     "value": 22.47553157376366
+    },
+    {
+     "days": 1003.5857986111112,
+     "value": 22.516322900189337
+    },
+    {
+     "days": 1003.5857986111112,
+     "value": 22.516322900189337
+    },
+    {
+     "days": 1009.4425810185185,
+     "value": 22.53757719258312
+    },
+    {
+     "days": 1009.4425810185185,
+     "value": 22.53757719258312
+    },
+    {
+     "days": 1009.854525462963,
+     "value": 22.539049197595084
+    },
+    {
+     "days": 1009.854525462963,
+     "value": 22.539049197595084
+    },
+    {
+     "days": 1054.5842824074075,
+     "value": 22.677289335890222
+    },
+    {
+     "days": 1054.5842824074075,
+     "value": 22.677289335890222
+    },
+    {
+     "days": 1055.4802662037036,
+     "value": 22.679517724321336
+    },
+    {
+     "days": 1055.4802662037036,
+     "value": 22.679517724321336
+    },
+    {
+     "days": 1055.8036574074074,
+     "value": 22.680315542627437
+    },
+    {
+     "days": 1055.8036574074074,
+     "value": 22.680315542627437
+    },
+    {
+     "days": 1057.4832638888888,
+     "value": 22.68440307678781
+    },
+    {
+     "days": 1057.4832638888888,
+     "value": 22.68440307678781
+    },
+    {
+     "days": 1057.761875,
+     "value": 22.685071907371306
+    },
+    {
+     "days": 1057.761875,
+     "value": 22.685071907371306
+    },
+    {
+     "days": 1061.3816898148148,
+     "value": 22.693516762621876
+    },
+    {
+     "days": 1061.3816898148148,
+     "value": 22.693516762621876
+    },
+    {
+     "days": 1061.7481828703703,
+     "value": 22.694345900021855
+    },
+    {
+     "days": 1061.7481828703703,
+     "value": 22.694345900021855
+    },
+    {
+     "days": 1075.5883333333334,
+     "value": 22.72195918542269
+    },
+    {
+     "days": 1075.5883333333334,
+     "value": 22.72195918542269
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 20.637749556097933
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 20.637749556097933
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 20.637749556097933
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 20.637749556097933
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 20.637749556097933
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 20.637749556097933
+    },
+    {
+     "days": 1291.2365162037038,
+     "value": 20.51452690501927
+    },
+    {
+     "days": 1291.2365162037038,
+     "value": 20.51452690501927
+    },
+    {
+     "days": 1291.3326273148148,
+     "value": 20.512964132301242
+    },
+    {
+     "days": 1291.3326273148148,
+     "value": 20.512964132301242
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 20.481227951616553
+    },
+    {
+     "days": 1311.4775925925926,
+     "value": 20.182126102714395
+    },
+    {
+     "days": 1311.4775925925926,
+     "value": 20.182126102714395
+    },
+    {
+     "days": 1467.6753587962962,
+     "value": 18.574322051505852
+    },
+    {
+     "days": 1467.6753587962962,
+     "value": 18.574322051505852
+    },
+    {
+     "days": 1467.6753587962962,
+     "value": 18.574322051505852
+    },
+    {
+     "days": 1467.6753587962962,
+     "value": 18.574322051505852
+    },
+    {
+     "days": 1467.6753587962962,
+     "value": 18.574322051505852
+    },
+    {
+     "days": 1511.9408680555555,
+     "value": 17.068839384607305
+    },
+    {
+     "days": 1511.9408680555555,
+     "value": 17.068839384607305
+    },
+    {
+     "days": 1511.9408680555555,
+     "value": 17.068839384607305
+    },
+    {
+     "days": 1537.6580787037037,
+     "value": 16.599142681194362
+    },
+    {
+     "days": 1537.6580787037037,
+     "value": 16.599142681194362
+    },
+    {
+     "days": 1537.6580787037037,
+     "value": 16.599142681194362
+    },
+    {
+     "days": 1537.6580787037037,
+     "value": 16.599142681194362
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 17.767414097863732
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 17.767414097863732
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 17.767414097863732
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 17.767414097863732
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 17.767414097863732
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 17.767414097863732
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 17.88133718647447
+    },
+    {
+     "days": 1617.9272453703704,
+     "value": 18.054024791546727
+    },
+    {
+     "days": 1617.9272453703704,
+     "value": 18.054024791546727
+    },
+    {
+     "days": 1617.9272453703704,
+     "value": 18.054024791546727
+    },
+    {
+     "days": 1618.401875,
+     "value": 18.060631130262802
+    },
+    {
+     "days": 1618.401875,
+     "value": 18.060631130262802
+    },
+    {
+     "days": 1618.401875,
+     "value": 18.060631130262802
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 18.132183338435084
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 18.132183338435084
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 18.132183338435084
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 18.132183338435084
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 18.132183338435084
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 18.132183338435084
+    },
+    {
+     "days": 1627.9241666666667,
+     "value": 18.187093443754677
+    },
+    {
+     "days": 1627.9241666666667,
+     "value": 18.187093443754677
+    },
+    {
+     "days": 1627.9241666666667,
+     "value": 18.187093443754677
+    },
+    {
+     "days": 1628.3956134259258,
+     "value": 18.193104911884838
+    },
+    {
+     "days": 1628.3956134259258,
+     "value": 18.193104911884838
+    },
+    {
+     "days": 1628.3956134259258,
+     "value": 18.193104911884838
+    },
+    {
+     "days": 1639.6814351851851,
+     "value": 18.33487693086712
+    },
+    {
+     "days": 1639.6814351851851,
+     "value": 18.33487693086712
+    },
+    {
+     "days": 1639.6814351851851,
+     "value": 18.33487693086712
+    },
+    {
+     "days": 1639.6814351851851,
+     "value": 18.33487693086712
+    },
+    {
+     "days": 1639.6814351851851,
+     "value": 18.33487693086712
+    },
+    {
+     "days": 1651.7061574074073,
+     "value": 18.494996012004695
+    },
+    {
+     "days": 1651.7061574074073,
+     "value": 18.494996012004695
+    },
+    {
+     "days": 1651.7061574074073,
+     "value": 18.494996012004695
+    },
+    {
+     "days": 1651.7061574074073,
+     "value": 18.494996012004695
+    },
+    {
+     "days": 1674.9008217592593,
+     "value": 18.78263959923957
+    },
+    {
+     "days": 1674.9008217592593,
+     "value": 18.78263959923957
+    },
+    {
+     "days": 1700.3255902777778,
+     "value": 19.0739882151766
+    },
+    {
+     "days": 1700.3255902777778,
+     "value": 19.0739882151766
+    },
+    {
+     "days": 1700.3255902777778,
+     "value": 19.0739882151766
+    },
+    {
+     "days": 1700.3255902777778,
+     "value": 19.0739882151766
+    },
+    {
+     "days": 1702.4423842592594,
+     "value": 19.098361801741028
+    },
+    {
+     "days": 1702.4423842592594,
+     "value": 19.098361801741028
+    },
+    {
+     "days": 1703.231898148148,
+     "value": 19.1075021932197
+    },
+    {
+     "days": 1703.231898148148,
+     "value": 19.1075021932197
+    },
+    {
+     "days": 1703.231898148148,
+     "value": 19.1075021932197
+    },
+    {
+     "days": 1766.9403009259258,
+     "value": 19.694814601822966
+    },
+    {
+     "days": 1766.9403009259258,
+     "value": 19.694814601822966
+    },
+    {
+     "days": 1766.9403009259258,
+     "value": 19.694814601822966
+    },
+    {
+     "days": 1766.9403009259258,
+     "value": 19.694814601822966
+    },
+    {
+     "days": 1767.4484143518519,
+     "value": 19.69048440603349
+    },
+    {
+     "days": 1767.4484143518519,
+     "value": 19.69048440603349
+    },
+    {
+     "days": 1767.4484143518519,
+     "value": 19.69048440603349
+    },
+    {
+     "days": 1803.7227199074075,
+     "value": 19.79878125370967
+    },
+    {
+     "days": 1803.7227199074075,
+     "value": 19.79878125370967
+    },
+    {
+     "days": 1803.7227199074075,
+     "value": 19.79878125370967
+    },
+    {
+     "days": 1863.7247800925925,
+     "value": 19.867372078785717
+    },
+    {
+     "days": 1863.7247800925925,
+     "value": 19.867372078785717
+    },
+    {
+     "days": 1863.7247800925925,
+     "value": 19.867372078785717
+    },
+    {
+     "days": 1864.007800925926,
+     "value": 19.87191547697273
+    },
+    {
+     "days": 1864.007800925926,
+     "value": 19.87191547697273
+    },
+    {
+     "days": 1864.007800925926,
+     "value": 19.87191547697273
+    },
+    {
+     "days": 1892.7269907407408,
+     "value": 20.323891194874786
+    },
+    {
+     "days": 1892.7269907407408,
+     "value": 20.323891194874786
+    },
+    {
+     "days": 1892.7269907407408,
+     "value": 20.323891194874786
+    },
+    {
+     "days": 1892.7269907407408,
+     "value": 20.323891194874786
+    },
+    {
+     "days": 1910.6521064814815,
+     "value": 20.59681493258461
+    },
+    {
+     "days": 1910.6521064814815,
+     "value": 20.59681493258461
+    },
+    {
+     "days": 1964.7550115740742,
+     "value": 21.386978481479108
+    },
+    {
+     "days": 1964.7550115740742,
+     "value": 21.386978481479108
+    },
+    {
+     "days": 1964.7550115740742,
+     "value": 21.386978481479108
+    },
+    {
+     "days": 1964.7550115740742,
+     "value": 21.386978481479108
+    },
+    {
+     "days": 1968.7064583333333,
+     "value": 21.443141212068987
+    },
+    {
+     "days": 1968.7064583333333,
+     "value": 21.443141212068987
+    },
+    {
+     "days": 1968.7064583333333,
+     "value": 21.443141212068987
+    },
+    {
+     "days": 1968.7064583333333,
+     "value": 21.443141212068987
+    },
+    {
+     "days": 1968.7064583333333,
+     "value": 21.443141212068987
+    },
+    {
+     "days": 1971.6652314814814,
+     "value": 21.48513272568284
+    },
+    {
+     "days": 1971.6652314814814,
+     "value": 21.48513272568284
+    },
+    {
+     "days": 1971.6652314814814,
+     "value": 21.48513272568284
+    },
+    {
+     "days": 1971.6652314814814,
+     "value": 21.48513272568284
+    },
+    {
+     "days": 2005.8282291666667,
+     "value": 21.98087331307887
+    },
+    {
+     "days": 2005.8282291666667,
+     "value": 21.98087331307887
+    },
+    {
+     "days": 2005.8282291666667,
+     "value": 21.98087331307887
+    },
+    {
+     "days": 2020.8381828703705,
+     "value": 22.21455612382507
+    },
+    {
+     "days": 2020.8381828703705,
+     "value": 22.21455612382507
+    },
+    {
+     "days": 2020.8381828703705,
+     "value": 22.21455612382507
+    },
+    {
+     "days": 2020.8381828703705,
+     "value": 22.21455612382507
+    },
+    {
+     "days": 2025.8049537037036,
+     "value": 22.295003449545487
+    },
+    {
+     "days": 2025.8049537037036,
+     "value": 22.295003449545487
+    },
+    {
+     "days": 2033.4890046296296,
+     "value": 22.42281076101904
+    },
+    {
+     "days": 2033.4890046296296,
+     "value": 22.42281076101904
+    },
+    {
+     "days": 2033.4890046296296,
+     "value": 22.42281076101904
+    },
+    {
+     "days": 2033.4890046296296,
+     "value": 22.42281076101904
+    }
+   ],
+   "loess_act": [
+    {
+     "days": 0.0,
+     "value": 22.26358945242594
+    },
+    {
+     "days": 35.77935185185185,
+     "value": 22.143139565651012
+    },
+    {
+     "days": 40.51109953703704,
+     "value": 22.131119943544345
+    },
+    {
+     "days": 152.80274305555557,
+     "value": 21.79784140319057
+    },
+    {
+     "days": 165.64981481481482,
+     "value": 21.682597352078524
+    },
+    {
+     "days": 167.8653125,
+     "value": 21.65847968540203
+    },
+    {
+     "days": 180.9104513888889,
+     "value": 21.48882338004908
+    },
+    {
+     "days": 246.53104166666665,
+     "value": 22.162699497332902
+    },
+    {
+     "days": 255.5082175925926,
+     "value": 22.406996432507245
+    },
+    {
+     "days": 262.82369212962965,
+     "value": 22.58083898839833
+    },
+    {
+     "days": 263.4650115740741,
+     "value": 22.59457931120103
+    },
+    {
+     "days": 263.8261689814815,
+     "value": 22.60218703147732
+    },
+    {
+     "days": 264.4527199074074,
+     "value": 22.615152245748998
+    },
+    {
+     "days": 264.68686342592594,
+     "value": 22.61991874306741
+    },
+    {
+     "days": 265.47630787037036,
+     "value": 22.63565816334161
+    },
+    {
+     "days": 265.6745138888889,
+     "value": 22.639526477871147
+    },
+    {
+     "days": 266.4765972222222,
+     "value": 22.65481873496866
+    },
+    {
+     "days": 266.7326851851852,
+     "value": 22.659573997477693
+    },
+    {
+     "days": 267.4979050925926,
+     "value": 22.67339383348151
+    },
+    {
+     "days": 267.57663194444444,
+     "value": 22.674781318443554
+    },
+    {
+     "days": 278.5222337962963,
+     "value": 22.773986933228034
+    },
+    {
+     "days": 278.78569444444446,
+     "value": 22.773202128113063
+    },
+    {
+     "days": 280.4323263888889,
+     "value": 22.7638621574056
+    },
+    {
+     "days": 280.9040972222222,
+     "value": 22.759737593350177
+    },
+    {
+     "days": 281.51189814814813,
+     "value": 22.75345236350315
+    },
+    {
+     "days": 281.6584027777778,
+     "value": 22.751772979180082
+    },
+    {
+     "days": 326.7084722222222,
+     "value": 20.92153434518852
+    },
+    {
+     "days": 343.62516203703706,
+     "value": 20.15380980594907
+    },
+    {
+     "days": 371.5256712962963,
+     "value": 18.54945160274356
+    },
+    {
+     "days": 399.7028935185185,
+     "value": 16.757585795012346
+    },
+    {
+     "days": 403.36607638888887,
+     "value": 16.521004203180773
+    },
+    {
+     "days": 403.67895833333336,
+     "value": 16.50078864992471
+    },
+    {
+     "days": 404.40623842592595,
+     "value": 16.453794460769384
+    },
+    {
+     "days": 404.8414583333333,
+     "value": 16.42566936662692
+    },
+    {
+     "days": 405.4053935185185,
+     "value": 16.389223244374715
+    },
+    {
+     "days": 405.77663194444443,
+     "value": 16.365228912948307
+    },
+    {
+     "days": 406.41216435185186,
+     "value": 16.32414888735585
+    },
+    {
+     "days": 406.6838657407407,
+     "value": 16.306584987356622
+    },
+    {
+     "days": 407.4152662037037,
+     "value": 16.259299338472168
+    },
+    {
+     "days": 407.78108796296294,
+     "value": 16.235645662590418
+    },
+    {
+     "days": 411.4142824074074,
+     "value": 16.000572235737156
+    },
+    {
+     "days": 412.5984722222222,
+     "value": 15.923872267215328
+    },
+    {
+     "days": 412.6896990740741,
+     "value": 15.917961472163716
+    },
+    {
+     "days": 413.4139583333333,
+     "value": 15.871024116211535
+    },
+    {
+     "days": 413.6331597222222,
+     "value": 15.856814339487425
+    },
+    {
+     "days": 417.41263888888886,
+     "value": 15.611513668439276
+    },
+    {
+     "days": 417.8233912037037,
+     "value": 15.58482014035462
+    },
+    {
+     "days": 418.402650462963,
+     "value": 15.547164172812643
+    },
+    {
+     "days": 418.77917824074075,
+     "value": 15.522679847562452
+    },
+    {
+     "days": 419.4198148148148,
+     "value": 15.481008169247193
+    },
+    {
+     "days": 419.7847106481481,
+     "value": 15.45726520437696
+    },
+    {
+     "days": 420.4516550925926,
+     "value": 15.41385453201781
+    },
+    {
+     "days": 420.7983796296296,
+     "value": 15.391279371649981
+    },
+    {
+     "days": 421.4100115740741,
+     "value": 15.351443984681909
+    },
+    {
+     "days": 421.6053587962963,
+     "value": 15.338717811159281
+    },
+    {
+     "days": 434.5857986111111,
+     "value": 14.489417961668426
+    },
+    {
+     "days": 434.82550925925926,
+     "value": 14.473663962495026
+    },
+    {
+     "days": 435.8361689814815,
+     "value": 14.407213465192545
+    },
+    {
+     "days": 438.42237268518517,
+     "value": 14.236942769703598
+    },
+    {
+     "days": 438.49244212962964,
+     "value": 14.23232457185791
+    },
+    {
+     "days": 624.6427546296296,
+     "value": 18.454775216652994
+    },
+    {
+     "days": 674.676412037037,
+     "value": 18.828148776335986
+    },
+    {
+     "days": 725.6488541666666,
+     "value": 19.66173923177183
+    },
+    {
+     "days": 744.5992476851852,
+     "value": 19.87976770357506
+    },
+    {
+     "days": 752.7134837962963,
+     "value": 19.981716288633542
+    },
+    {
+     "days": 800.7812962962963,
+     "value": 20.72113167779929
+    },
+    {
+     "days": 875.1303819444445,
+     "value": 21.93468743557282
+    },
+    {
+     "days": 877.0611574074074,
+     "value": 21.96705778318257
+    },
+    {
+     "days": 883.8120138888889,
+     "value": 22.07855472718688
+    },
+    {
+     "days": 979.4294328703704,
+     "value": 22.83601381916665
+    },
+    {
+     "days": 979.8412268518518,
+     "value": 22.836552976166907
+    },
+    {
+     "days": 991.4371180555555,
+     "value": 22.845011892194776
+    },
+    {
+     "days": 991.7939467592593,
+     "value": 22.845065346688795
+    },
+    {
+     "days": 992.4377314814815,
+     "value": 22.845130693728134
+    },
+    {
+     "days": 992.7778587962963,
+     "value": 22.845149086999157
+    },
+    {
+     "days": 1003.5857986111112,
+     "value": 22.840038750591074
+    },
+    {
+     "days": 1009.4425810185185,
+     "value": 22.83434803122833
+    },
+    {
+     "days": 1009.854525462963,
+     "value": 22.833733792392486
+    },
+    {
+     "days": 1054.5842824074075,
+     "value": 22.711952942634767
+    },
+    {
+     "days": 1055.4802662037036,
+     "value": 22.707129278145715
+    },
+    {
+     "days": 1055.8036574074074,
+     "value": 22.705084564308155
+    },
+    {
+     "days": 1057.4832638888888,
+     "value": 22.694296258740767
+    },
+    {
+     "days": 1057.761875,
+     "value": 22.692480176268464
+    },
+    {
+     "days": 1061.3816898148148,
+     "value": 22.66825369934793
+    },
+    {
+     "days": 1061.7481828703703,
+     "value": 22.66574007767543
+    },
+    {
+     "days": 1075.5883333333334,
+     "value": 22.57742799038375
+    },
+    {
+     "days": 1283.5663541666668,
+     "value": 21.54651528637475
+    },
+    {
+     "days": 1291.2365162037038,
+     "value": 21.508872626113664
+    },
+    {
+     "days": 1291.3326273148148,
+     "value": 21.508394585052212
+    },
+    {
+     "days": 1293.2765046296297,
+     "value": 21.498689914064673
+    },
+    {
+     "days": 1311.4775925925926,
+     "value": 21.383769850248218
+    },
+    {
+     "days": 1467.6753587962962,
+     "value": 19.844823350151994
+    },
+    {
+     "days": 1511.9408680555555,
+     "value": 19.545218002733574
+    },
+    {
+     "days": 1537.6580787037037,
+     "value": 19.488148284053263
+    },
+    {
+     "days": 1599.5909837962963,
+     "value": 19.300504614849086
+    },
+    {
+     "days": 1606.5888541666666,
+     "value": 19.2754893235053
+    },
+    {
+     "days": 1617.9272453703704,
+     "value": 19.234040742897456
+    },
+    {
+     "days": 1618.401875,
+     "value": 19.232285217412464
+    },
+    {
+     "days": 1623.6921527777777,
+     "value": 19.212625301930025
+    },
+    {
+     "days": 1627.9241666666667,
+     "value": 19.19678809999182
+    },
+    {
+     "days": 1628.3956134259258,
+     "value": 19.195018449881204
+    },
+    {
+     "days": 1639.6814351851851,
+     "value": 19.15238229427795
+    },
+    {
+     "days": 1651.7061574074073,
+     "value": 19.106503305723756
+    },
+    {
+     "days": 1674.9008217592593,
+     "value": 19.017310745416626
+    },
+    {
+     "days": 1700.3255902777778,
+     "value": 18.919382335558172
+    },
+    {
+     "days": 1702.4423842592594,
+     "value": 18.91124347212697
+    },
+    {
+     "days": 1703.231898148148,
+     "value": 18.908208735947888
+    },
+    {
+     "days": 1766.9403009259258,
+     "value": 18.665160448498604
+    },
+    {
+     "days": 1767.4484143518519,
+     "value": 18.663236213442463
+    },
+    {
+     "days": 1803.7227199074075,
+     "value": 18.52618997836351
+    },
+    {
+     "days": 1863.7247800925925,
+     "value": 18.298902463390338
+    },
+    {
+     "days": 1864.007800925926,
+     "value": 18.29782292682306
+    },
+    {
+     "days": 1892.7269907407408,
+     "value": 18.18763905186559
+    },
+    {
+     "days": 1910.6521064814815,
+     "value": 18.118042062771607
+    },
+    {
+     "days": 1964.7550115740742,
+     "value": 17.90163816355827
+    },
+    {
+     "days": 1968.7064583333333,
+     "value": 17.885337320061367
+    },
+    {
+     "days": 1971.6652314814814,
+     "value": 17.873079757685417
+    },
+    {
+     "days": 2005.8282291666667,
+     "value": 17.728456028193897
+    },
+    {
+     "days": 2020.8381828703705,
+     "value": 17.6632398564148
+    },
+    {
+     "days": 2025.8049537037036,
+     "value": 17.641453024053362
+    },
+    {
+     "days": 2033.4890046296296,
+     "value": 17.60755183647776
+    }
+   ],
+   "linear_split": {
+    "slope_per_month": -0.0153,
+    "intercept": 20.6001
+   },
+   "linear_act": {
+    "slope_per_month": 0.0177,
+    "intercept": 19.4236
+   },
+   "n_splits": 298,
+   "n_activities": 121
+  }
+ },
  "sport_counts": {
   "Run": 34,
   "Hike": 23,
