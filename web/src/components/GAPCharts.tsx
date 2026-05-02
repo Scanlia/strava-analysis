@@ -42,8 +42,8 @@ type SegmentMode = "activity" | "segments";
 
 export default function GAPCharts({ activities }: { activities: Activity[] }) {
   const [trendMode, setTrendMode] = useState<TrendMode>("linear");
-  const [runSegmentMode, setRunSegmentMode] = useState<SegmentMode>("activity");
-  const [rideSegmentMode, setRideSegmentMode] = useState<SegmentMode>("activity");
+  const [runSegmentMode, setRunSegmentMode] = useState<SegmentMode>("segments");
+  const [rideSegmentMode, setRideSegmentMode] = useState<SegmentMode>("segments");
 
   // --- Running data ---
   const runsWithGAP = activities
