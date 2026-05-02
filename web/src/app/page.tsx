@@ -45,7 +45,7 @@ export default function Dashboard() {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold mb-5">Grade Adjusted Performance</h2>
+          <h2 className="text-xl font-bold mb-5">Grade Adjusted Pace &amp; Speed</h2>
           <GAPCharts activities={activities} />
         </section>
 
