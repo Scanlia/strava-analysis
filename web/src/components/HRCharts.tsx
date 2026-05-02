@@ -57,7 +57,7 @@ type TrendMode = "linear" | "ewma";
 
 export default function HRCharts({ activities }: { activities: Activity[] }) {
   const [efTrendMode, setEfTrendMode] = useState<TrendMode>("linear");
-  const [decTrendMode, setDecTrendMode] = useState<TrendMode>("linear");
+  const [decTrendMode, setDecTrendMode] = useState<TrendMode>("ewma");
   // --- HR scatter ---
   const withHR = activities
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
