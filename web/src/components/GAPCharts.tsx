@@ -13,6 +13,7 @@ const RIDE_COLOR = "#4ecdc4";
 const HIKE_COLOR = "#96ceb4";
 
 type TrendMode = "split" | "activity";
+type TrendType = "loess" | "linear";
 
 function slopeLabel(trends: GapTrends | undefined, mode: TrendMode, isRun: boolean): string {
   if (!trends) return "";
@@ -29,9 +30,27 @@ function slopeLabel(trends: GapTrends | undefined, mode: TrendMode, isRun: boole
 export default function GAPCharts({ activities, trends }: { activities: Activity[]; trends: Record<string, GapTrends> }) {
   const [runTrendMode, setRunTrendMode] = useState<TrendMode>("split");
   const [rideTrendMode, setRideTrendMode] = useState<TrendMode>("split");
+  const [runTrendType, setRunTrendType] = useState<TrendType>("loess");
+  const [rideTrendType, setRideTrendType] = useState<TrendType>("loess");
 
   const runTrend = trends.run;
   const rideTrend = trends.ride;
+
+  // --- Helper: build linear regression line from server data ---
+  function buildLinearLine(trend: GapTrends | undefined, mode: TrendMode) {
+    if (!trend) return [];
+    const lin = mode === "split" ? trend.linear_split : trend.linear_act;
+    if (!lin || !lin.slope_per_month || lin.slope_per_month === 0) return [];
+    const data = mode === "split" ? trend.loess_split : trend.loess_act;
+    if (data.length < 2) return [];
+    const minDays = data[0].days;
+    const maxDays = data[data.length - 1].days;
+    const slope_per_day = lin.slope_per_month / 30.44;
+    return [
+      { x: new Date(trend.ref_date).getTime() + minDays * 86400000, y: lin.intercept + slope_per_day * minDays },
+      { x: new Date(trend.ref_date).getTime() + maxDays * 86400000, y: lin.intercept + slope_per_day * maxDays },
+    ];
+  }
 
   // --- Running data ---
   const runsWithGAP = activities
@@ -47,7 +66,6 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
   }
   runSegments.sort((a, b) => a.x - b.x);
 
-  // Per-activity collapsed points
   const runActPoints: { x: number; y: number }[] = [];
   for (const a of runsWithGAP) {
     if (!a.start_time_utc || !a.gap_segments?.length) continue;
@@ -63,7 +81,6 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
     if (w > 0) runActPoints.push({ x: ts, y: (1000 / (ws / w)) / 60 });
   }
 
-  // LOESS curves from server
   const runLoessSplit = (runTrend?.loess_split || []).map((p) => ({
     x: new Date(runTrend!.ref_date).getTime() + p.days * 86400000,
     y: p.value,
@@ -72,6 +89,8 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
     x: new Date(runTrend!.ref_date).getTime() + p.days * 86400000,
     y: p.value,
   }));
+  const runLinearSplit = buildLinearLine(runTrend, "split");
+  const runLinearAct = buildLinearLine(runTrend, "activity");
 
   // --- Cycling data ---
   const ridesWithGAS = activities
@@ -110,6 +129,8 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
     x: new Date(rideTrend!.ref_date).getTime() + p.days * 86400000,
     y: p.value,
   }));
+  const rideLinearSplit = buildLinearLine(rideTrend, "split");
+  const rideLinearAct = buildLinearLine(rideTrend, "activity");
 
   const runOptions = (): any => ({
     responsive: true, maintainAspectRatio: false,
@@ -141,11 +162,17 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
         {/* Running */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
           <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Running — Pace (Grade Adjusted)</h3>
-          <p className="text-[10px] text-gray-500 mb-2">Per-point Minetti model, 35m grade window, 1km split aggregation.</p>
-          <div className="flex gap-2 mb-3 text-[10px]">
+          <p className="text-[10px] text-gray-500 mb-2">Per-point Minetti model, 35m grade window, 1km split aggregation. Stops excluded.</p>
+          <div className="flex flex-wrap gap-2 mb-3 text-[10px]">
             {(["split", "activity"] as const).map((m) => (
               <button key={m} onClick={() => setRunTrendMode(m)} className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${runTrendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"}`}>
                 {m === "split" ? "Per Split (1km)" : "Per Activity"}
+              </button>
+            ))}
+            <span className="border-l border-white/10 mx-1" />
+            {(["loess", "linear"] as const).map((t) => (
+              <button key={t} onClick={() => setRunTrendType(t)} className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${runTrendType === t ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"}`}>
+                {t === "loess" ? "LOESS" : "Linear (Reg)"}
               </button>
             ))}
           </div>
@@ -154,16 +181,18 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
               <span className="font-semibold" style={{ color: runTrend.linear_split.slope_per_month < 0 ? "#8a9e8a" : "#9e8a8a" }}>
                 {slopeLabel(runTrend, runTrendMode, true)}
               </span>
-              <span className="text-gray-500"> — LOESS trend ({runTrend.n_splits} splits / {runTrend.n_activities} runs)</span>
+              <span className="text-gray-500"> — {runTrendType === "loess" ? "LOESS" : "Linear"} trend ({runTrend.n_splits} splits / {runTrend.n_activities} runs)</span>
             </p>
           )}
           <div className="h-80">
             <Line
               data={{ datasets: [
-                { label: "1km Split", data: runSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RUN_COLOR, backgroundColor: RUN_COLOR + "44", pointRadius: 3, showLine: false, order: 3 },
-                ...(runLoessSplit.length > 0 ? [{ label: "LOESS (per-split)", data: runLoessSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1, borderDash: runTrendMode === "split" ? [] : [6, 3] }] : []),
-                ...(runLoessAct.length > 0 ? [{ label: "LOESS (per-activity)", data: runLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: runTrendMode === "activity" ? [] : [6, 3] }] : []),
-                { label: "Activity Avg", data: runActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 4 },
+                { label: "1km Split", data: runSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RUN_COLOR, backgroundColor: RUN_COLOR + "44", pointRadius: 3, showLine: false, order: 5 },
+                ...(runTrendType === "loess" && runLoessSplit.length > 0 ? [{ label: "LOESS (per-split)", data: runLoessSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
+                ...(runTrendType === "loess" && runLoessAct.length > 0 ? [{ label: "LOESS (per-activity)", data: runLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
+                ...(runTrendType === "linear" && runLinearSplit.length > 0 ? [{ label: "Linear (per-split)", data: runLinearSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
+                ...(runTrendType === "linear" && runLinearAct.length > 0 ? [{ label: "Linear (per-activity)", data: runLinearAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
+                { label: "Activity Avg", data: runActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 6 },
               ] }}
               options={runOptions()}
             />
@@ -173,11 +202,17 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
         {/* Cycling */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
           <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Cycling — Speed (Grade Adjusted)</h3>
-          <p className="text-[10px] text-gray-500 mb-2">Per-point Minetti model, 35m grade window, 5km split aggregation.</p>
-          <div className="flex gap-2 mb-3 text-[10px]">
+          <p className="text-[10px] text-gray-500 mb-2">Per-point Minetti model, 35m grade window, 5min moving-time splits. Stops excluded.</p>
+          <div className="flex flex-wrap gap-2 mb-3 text-[10px]">
             {(["split", "activity"] as const).map((m) => (
               <button key={m} onClick={() => setRideTrendMode(m)} className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${rideTrendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"}`}>
-                {m === "split" ? "Per Split (5km)" : "Per Activity"}
+                {m === "split" ? "Per Split (5min)" : "Per Activity"}
+              </button>
+            ))}
+            <span className="border-l border-white/10 mx-1" />
+            {(["loess", "linear"] as const).map((t) => (
+              <button key={t} onClick={() => setRideTrendType(t)} className={`px-2.5 py-1 rounded font-medium transition-all cursor-pointer ${rideTrendType === t ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"}`}>
+                {t === "loess" ? "LOESS" : "Linear (Reg)"}
               </button>
             ))}
           </div>
@@ -186,16 +221,18 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
               <span className="font-semibold" style={{ color: rideTrend.linear_split.slope_per_month > 0 ? "#8a9e8a" : "#9e8a8a" }}>
                 {slopeLabel(rideTrend, rideTrendMode, false)}
               </span>
-              <span className="text-gray-500"> — LOESS trend ({rideTrend.n_splits} splits / {rideTrend.n_activities} rides)</span>
+              <span className="text-gray-500"> — {rideTrendType === "loess" ? "LOESS" : "Linear"} trend ({rideTrend.n_splits} splits / {rideTrend.n_activities} rides)</span>
             </p>
           )}
           <div className="h-80">
             <Line
               data={{ datasets: [
-                { label: "5km Split", data: rideSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RIDE_COLOR, backgroundColor: RIDE_COLOR + "44", pointRadius: 3, showLine: false, order: 3 },
-                ...(rideLoessSplit.length > 0 ? [{ label: "LOESS (per-split)", data: rideLoessSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1, borderDash: rideTrendMode === "split" ? [] : [6, 3] }] : []),
-                ...(rideLoessAct.length > 0 ? [{ label: "LOESS (per-activity)", data: rideLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: rideTrendMode === "activity" ? [] : [6, 3] }] : []),
-                { label: "Activity Avg", data: rideActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 4 },
+                { label: "5min Split", data: rideSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RIDE_COLOR, backgroundColor: RIDE_COLOR + "44", pointRadius: 3, showLine: false, order: 5 },
+                ...(rideTrendType === "loess" && rideLoessSplit.length > 0 ? [{ label: "LOESS (per-split)", data: rideLoessSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
+                ...(rideTrendType === "loess" && rideLoessAct.length > 0 ? [{ label: "LOESS (per-activity)", data: rideLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
+                ...(rideTrendType === "linear" && rideLinearSplit.length > 0 ? [{ label: "Linear (per-split)", data: rideLinearSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
+                ...(rideTrendType === "linear" && rideLinearAct.length > 0 ? [{ label: "Linear (per-activity)", data: rideLinearAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
+                { label: "Activity Avg", data: rideActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 6 },
               ] }}
               options={rideOptions()}
             />

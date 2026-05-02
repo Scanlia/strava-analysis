@@ -227,6 +227,7 @@ def parse_fit(filepath):
             cadence = vals.get("cadence")
             speed = vals.get("enhanced_speed") or vals.get("speed")
             temp = vals.get("temperature")
+            moving = vals.get("moving")  # Strava app FIT includes this boolean
 
             points.append({
                 "lat": lat,
@@ -237,6 +238,7 @@ def parse_fit(filepath):
                 "cadence": int(cadence) if cadence is not None else None,
                 "temp": float(temp) if temp is not None else None,
                 "speed_ms": float(speed) if speed is not None else None,
+                "moving": bool(moving) if moving is not None else None,
             })
     except Exception as e:
         print(f"  WARNING: Failed to parse FIT {filepath}: {e}")
@@ -281,23 +283,35 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
         "grade_negative_sum": 0,
         "grade_positive_count": 0,
         "grade_negative_count": 0,
-        "raw_points": []  # simplified points for dashboard
+        "raw_points": [],  # simplified points for dashboard
+        "is_moving": [],   # boolean per segment: True = moving, False = stopped
+        "long_stops": [],  # [(start_idx, end_idx, duration_sec), ...]
     }
 
     if len(points) < 2:
         return result
+
+    # --- Stop detection speed thresholds (m/s) ---
+    threshold = {"Run": 0.5, "Ride": 1.0, "Hike": 0.3, "Swim": 0.2}.get(sport, 0.5)
+    # Hysteresis: require N consecutive seconds below threshold to trigger stop
+    STOP_T = 10  # seconds
+    RESUME_T = 3  # seconds
 
     cum_dist = 0
     prev_point = None
     prev_time = None
     speeds = []
     heart_rates = []
+    hr_seg_ids = []  # segment index for each HR value (for stop filtering)
     cadences = []
     temps = []
     grades_smooth = []
     last_elevation = None
     last_grade_distance = 0
     rolling_grades = []
+    seg_speeds = []      # per-segment GPS speed (m/s)
+    seg_dt = []          # per-segment time delta (s)
+    seg_fit_moving = []  # per-segment FIT moving flag (None if unavailable)
 
     for i, p in enumerate(points):
         cur_time = None
@@ -341,6 +355,10 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
                 d = cum_dist - result["distances"][-2] if len(result["distances"]) > 1 else 0
                 spd = d / td
                 speeds.append(spd)
+                seg_speeds.append(spd)
+                seg_dt.append(td)
+                fit_mv = p.get("moving")  # None if not a FIT file or flag absent
+                seg_fit_moving.append(fit_mv)
                 result["max_speed"] = max(result["max_speed"], spd)
                 if spd > 0.3:
                     result["moving_time"] += td
@@ -385,6 +403,7 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
         # HR
         if p["hr"] is not None:
             heart_rates.append(p["hr"])
+            hr_seg_ids.append(len(seg_speeds) - 1)  # segment index of preceding segment
             result["hr_samples"] += 1
 
         # Cadence
@@ -410,22 +429,91 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
                 "hr": p["hr"],
                 "s": round(speeds[-1], 2) if speeds else None,
                 "lat": p["lat"],
-                "lon": p["lon"]
+                "lon": p["lon"],
+                "_pi": i,  # original point index for stop-detection mapping
             })
 
         prev_point = p
         prev_time = cur_time
 
-    result["cumulative_distance"] = cum_dist
-    result["speeds"] = speeds  # Store for decoupling analysis
+    # --- Hysteresis stop detection ---
+    # Use FIT moving flag if available; otherwise GPS speed threshold + hysteresis
+    has_fit_moving = any(mv is not None for mv in seg_fit_moving)
+    is_moving = [True] * len(seg_speeds)
+    stop_state = False
+    stop_timer = 0.0
+    move_timer = 0.0
+    long_stops = []
+    current_stop_start = -1
 
-    result["avg_speed"] = sum(speeds) / len(speeds) if speeds else 0
+    for si in range(len(seg_speeds)):
+        spd = seg_speeds[si]
+        dt = seg_dt[si]
+        fit_mv = seg_fit_moving[si] if si < len(seg_fit_moving) else None
+
+        if has_fit_moving and fit_mv is not None:
+            moving_now = bool(fit_mv)
+        else:
+            if spd < threshold:
+                stop_timer += dt
+                move_timer = 0.0
+            else:
+                move_timer += dt
+                stop_timer = 0.0
+
+            if not stop_state:
+                if stop_timer >= STOP_T:
+                    stop_state = True
+                    stop_timer = 0.0
+                    current_stop_start = si
+                    move_timer = 0.0
+            else:
+                if move_timer >= RESUME_T:
+                    stop_state = False
+                    move_timer = 0.0
+                    if current_stop_start >= 0:
+                        stop_dur = sum(seg_dt[current_stop_start:si])
+                        if stop_dur > 300:
+                            long_stops.append((current_stop_start, si, round(stop_dur, 1)))
+                        current_stop_start = -1
+
+            moving_now = not stop_state
+
+        is_moving[si] = moving_now
+
+    # Flush any trailing long stop
+    if stop_state and current_stop_start >= 0:
+        stop_dur = sum(seg_dt[current_stop_start:])
+        if stop_dur > 300:
+            long_stops.append((current_stop_start, len(seg_speeds) - 1, round(stop_dur, 1)))
+
+    result["is_moving"] = is_moving
+    result["long_stops"] = long_stops
+
+    # Tag raw_points with moving flag (raw_points stored every 10th original point)
+    for rp in result["raw_points"]:
+        pi = rp.get("_pi", 0)
+        seg_idx = pi - 1
+        rp["m"] = is_moving[seg_idx] if 0 <= seg_idx < len(is_moving) else True
+
+    # Recompute moving_time from hysteresis (more accurate than threshold alone)
+    result["moving_time"] = sum(seg_dt[i] for i in range(len(seg_speeds)) if is_moving[i])
+
+    result["cumulative_distance"] = cum_dist
+    result["speeds"] = speeds  # Store full speeds for decoupling analysis
+
+    # Compute avg_speed and avg_hr over moving segments only
+    moving_speeds = [seg_speeds[i] for i in range(len(seg_speeds)) if is_moving[i]]
+    result["avg_speed"] = sum(moving_speeds) / len(moving_speeds) if moving_speeds else 0
+
     result["avg_cadence"] = round(sum(cadences) / len(cadences), 1) if cadences else 0
     result["max_cadence"] = max(cadences) if cadences else 0
     result["avg_temp"] = round(sum(temps) / len(temps), 1) if temps else 0
 
     if heart_rates:
-        result["avg_hr"] = round(sum(heart_rates) / len(heart_rates), 1)
+        # Filter HR to moving segments only
+        moving_hr = [heart_rates[k] for k in range(len(heart_rates)) if hr_seg_ids[k] < 0 or (0 <= hr_seg_ids[k] < len(is_moving) and is_moving[hr_seg_ids[k]])]
+        result["avg_hr"] = round(sum(moving_hr) / len(moving_hr), 1) if moving_hr else round(sum(heart_rates) / len(heart_rates), 1)
         result["max_hr"] = max(heart_rates)
     else:
         result["avg_hr"] = 0
@@ -439,10 +527,11 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
         except:
             pass
 
-    # HR zone distribution (using max HR from points or estimated)
+    # HR zone distribution (using max HR from points or estimated) — moving only
     max_hr = result["max_hr"] or 190  # fallback
     zones = {"Z1": 0, "Z2": 0, "Z3": 0, "Z4": 0, "Z5": 0}
-    for hr in heart_rates:
+    hr_vals = moving_hr if heart_rates else heart_rates
+    for hr in hr_vals:
         pct = (hr / max_hr) * 100 if max_hr > 0 else 0
         if pct < 60:
             zones["Z1"] += 1
@@ -472,8 +561,6 @@ def compute_gap_segments(streams, activity_type, grade_points):
 
     Reference: Minetti et al. (2002) J. Applied Physiology
     """
-    segment_length = 1000 if activity_type == "Run" else 5000  # 1km runs, 5km rides
-
     points = streams.get("raw_points", [])
     if len(points) < 10:
         return []
@@ -553,7 +640,24 @@ def compute_gap_segments(streams, activity_type, grade_points):
         else:
             gap_speeds.append(None)
 
-    # Step 5: Aggregate to 1km splits by distance-weighting
+    # Step 5: Aggregate to splits — distance-based for run (1km), moving-time-based for ride (5min)
+    movings = [p.get("m", True) for p in points]  # is_moving flag per point
+    is_ride = (activity_type == "Ride")
+    SEGMENT_DIST = 1000 if is_run else 5000   # metres for run path detection only
+    SEGMENT_TIME = 300  # seconds moving time for cycling (5 min)
+
+    # Compute time deltas between consecutive raw points
+    time_deltas = [0.0] * n
+    for i in range(1, n):
+        try:
+            t1 = datetime.fromisoformat(points[i - 1]["t"].replace("Z", "+00:00") if points[i - 1].get("t") else "")
+            t2 = datetime.fromisoformat(points[i]["t"].replace("Z", "+00:00") if points[i].get("t") else "")
+            time_deltas[i] = (t2 - t1).total_seconds()
+            if time_deltas[i] < 0:
+                time_deltas[i] = 0
+        except:
+            time_deltas[i] = 10  # fallback ~10s between raw points
+
     segments = []
     split_start = 0
     split_gap_sum = 0.0
@@ -561,16 +665,22 @@ def compute_gap_segments(streams, activity_type, grade_points):
     split_speed_sum = 0.0
     split_speed_count = 0
     split_hrs = []
+    split_dist = 0.0      # distance covered in this split (moving only)
+    split_moving_time = 0.0
     split_ele_start = eles_smooth[0]
     split_ele_end = split_ele_start
 
     for i in range(n):
         d = dists[i]
         delta = d - (dists[i - 1] if i > 0 else d)
+        is_mv = movings[i] if i < len(movings) else True
+        td = time_deltas[i]
 
-        if gap_speeds[i] is not None and delta > 0:
+        if is_mv and gap_speeds[i] is not None and delta > 0:
             split_gap_sum += gap_speeds[i] * delta
             split_weight_sum += delta
+            split_dist += delta
+            split_moving_time += td
         s = speeds_smooth[i] if speeds_smooth[i] is not None else speeds[i]
         if s is not None and s > 0.3:
             split_speed_sum += s
@@ -580,7 +690,13 @@ def compute_gap_segments(streams, activity_type, grade_points):
         if eles_smooth[i] is not None:
             split_ele_end = eles_smooth[i]
 
-        if d - dists[split_start] >= segment_length and split_weight_sum > 0:
+        should_cut = False
+        if is_ride:
+            should_cut = split_moving_time >= SEGMENT_TIME
+        else:
+            should_cut = d - dists[split_start] >= SEGMENT_DIST
+
+        if should_cut and split_weight_sum > 0:
             gap_speed = split_gap_sum / split_weight_sum
             raw_speed = split_speed_sum / split_speed_count if split_speed_count > 0 else 0
             avg_grade = grades[i] if i < n and grades[i] is not None else 0
@@ -589,6 +705,8 @@ def compute_gap_segments(streams, activity_type, grade_points):
 
             segments.append({
                 "dist_km": round(d / 1000, 2),
+                "split_dist_km": round(split_dist / 1000, 2),
+                "split_moving_time_s": round(split_moving_time, 1),
                 "grade_pct": round(avg_grade, 2),
                 "speed_ms": round(raw_speed, 2),
                 "speed_kmh": round(raw_speed * 3.6, 1),
@@ -606,29 +724,38 @@ def compute_gap_segments(streams, activity_type, grade_points):
             split_speed_sum = 0.0
             split_speed_count = 0
             split_hrs = []
+            split_dist = 0.0
+            split_moving_time = 0.0
             split_ele_start = eles_smooth[i] if eles_smooth[i] is not None else split_ele_start
 
-    # Include trailing partial split if ≥500m
-    if split_weight_sum > 0:
-        d_last = dists[-1]
-        if d_last - dists[split_start] >= 500:
-            gap_speed = split_gap_sum / split_weight_sum
-            raw_speed = split_speed_sum / split_speed_count if split_speed_count > 0 else 0
-            avg_hr = sum(split_hrs) / len(split_hrs) if split_hrs else None
-            ele_change = (split_ele_end - split_ele_start) if split_ele_start is not None and split_ele_end is not None else 0
-            tail_grade = grades[n - 1] if grades[n - 1] is not None else 0
+    # Include trailing partial split (≥500m for run, ≥150s for ride)
+    include_tail = True
+    if is_ride:
+        include_tail = split_moving_time >= 150
+    else:
+        include_tail = dists[-1] - dists[split_start] >= 500
 
-            segments.append({
-                "dist_km": round(d_last / 1000, 2),
-                "grade_pct": round(tail_grade, 2),
-                "speed_ms": round(raw_speed, 2),
-                "speed_kmh": round(raw_speed * 3.6, 1),
-                "gap_pace_min_km": round((1000 / gap_speed) / 60, 2) if is_run and gap_speed > 0 else None,
-                "gap_pace_str": format_pace(gap_speed) if is_run and gap_speed > 0 else None,
-                "gap_speed_kmh": round(gap_speed * 3.6, 1) if not is_run else None,
-                "avg_hr": round(avg_hr, 1) if avg_hr else None,
-                "ele_gain": round(max(0, ele_change), 1),
-            })
+    if split_weight_sum > 0 and include_tail:
+        d_last = dists[-1]
+        gap_speed = split_gap_sum / split_weight_sum
+        raw_speed = split_speed_sum / split_speed_count if split_speed_count > 0 else 0
+        avg_hr = sum(split_hrs) / len(split_hrs) if split_hrs else None
+        ele_change = (split_ele_end - split_ele_start) if split_ele_start is not None and split_ele_end is not None else 0
+        tail_grade = grades[n - 1] if grades[n - 1] is not None else 0
+
+        segments.append({
+            "dist_km": round(d_last / 1000, 2),
+            "split_dist_km": round(split_dist / 1000, 2),
+            "split_moving_time_s": round(split_moving_time, 1),
+            "grade_pct": round(tail_grade, 2),
+            "speed_ms": round(raw_speed, 2),
+            "speed_kmh": round(raw_speed * 3.6, 1),
+            "gap_pace_min_km": round((1000 / gap_speed) / 60, 2) if is_run and gap_speed > 0 else None,
+            "gap_pace_str": format_pace(gap_speed) if is_run and gap_speed > 0 else None,
+            "gap_speed_kmh": round(gap_speed * 3.6, 1) if not is_run else None,
+            "avg_hr": round(avg_hr, 1) if avg_hr else None,
+            "ele_gain": round(max(0, ele_change), 1),
+        })
 
     return segments
 
@@ -1103,7 +1230,6 @@ def main():
         ys_splits = np.array([v for _, v in split_points])
 
         # Per-activity collapsed: distance-weighted mean of split GAP speeds
-        seg_dist = 1000 if is_run else 5000  # standard segment distance in metres
         act_points = []
         for a in sport_acts:
             if not a.get("start_time_utc"):
@@ -1122,13 +1248,14 @@ def main():
             weighted_speed = 0.0
             for seg in a["gap_segments"]:
                 val = seg.get("gap_pace_min_km") if is_run else seg.get("gap_speed_kmh")
-                if val is not None and val > 0:
+                seg_d = seg.get("split_dist_km", 1) * 1000  # use actual split distance in metres
+                if val is not None and val > 0 and seg_d > 0:
                     if is_run:
                         gap_speed = 1000 / (val * 60)  # min/km → m/s
                     else:
                         gap_speed = val / 3.6  # km/h → m/s
-                    weighted_speed += gap_speed * seg_dist
-                    total_weight += seg_dist
+                    weighted_speed += gap_speed * seg_d
+                    total_weight += seg_d
             if total_weight > 0:
                 avg_gap_speed = weighted_speed / total_weight
                 if is_run:
@@ -1144,17 +1271,21 @@ def main():
         xs_acts = np.array([(dt - ref_dt).total_seconds() / 86400 for dt, _ in act_points])
         ys_acts = np.array([v for _, v in act_points])
 
-        # LOESS on per-split data
+        # LOESS on per-split data (evaluated on regular x-grid for smooth curves)
         try:
-            loess_split = lowess(ys_splits, xs_splits, frac=0.3, it=3, return_sorted=True)
-            loess_split_data = [{"days": float(x), "value": float(y)} for x, y in zip(loess_split[:, 0], loess_split[:, 1])]
+            loess_raw = lowess(ys_splits, xs_splits, frac=min(0.40, 10 / max(len(xs_splits), 1)), it=3, return_sorted=True)
+            x_grid = np.linspace(xs_splits.min(), xs_splits.max(), 200)
+            y_grid = np.interp(x_grid, loess_raw[:, 0], loess_raw[:, 1])
+            loess_split_data = [{"days": float(x), "value": float(y)} for x, y in zip(x_grid, y_grid)]
         except Exception:
             loess_split_data = []
 
-        # LOESS on per-activity data
+        # LOESS on per-activity data (fewer points, so larger fraction)
         try:
-            loess_act = lowess(ys_acts, xs_acts, frac=0.4, it=3, return_sorted=True)
-            loess_act_data = [{"days": float(x), "value": float(y)} for x, y in zip(loess_act[:, 0], loess_act[:, 1])]
+            loess_act = lowess(ys_acts, xs_acts, frac=min(0.45, 15 / max(len(xs_acts), 1)), it=3, return_sorted=True)
+            x_grid_a = np.linspace(xs_acts.min(), xs_acts.max(), 200)
+            y_grid_a = np.interp(x_grid_a, loess_act[:, 0], loess_act[:, 1])
+            loess_act_data = [{"days": float(x), "value": float(y)} for x, y in zip(x_grid_a, y_grid_a)]
         except Exception:
             loess_act_data = []
 

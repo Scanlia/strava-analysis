@@ -5,6 +5,8 @@ const DATA_DIR = path.join(process.cwd(), "public/data");
 
 export interface GapSegment {
   dist_km: number;
+  split_dist_km: number;
+  split_moving_time_s: number;
   grade_pct: number;
   speed_ms: number;
   speed_kmh: number;
