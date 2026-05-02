@@ -63,23 +63,46 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
 
-  const hrDatasets = ["Run", "Ride", "Hike"]
-    .filter((s) => withHR.some((a) => a.sport === s))
-    .map((s) => {
-      const sportActs = withHR.filter((a) => a.sport === s).sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
-      return {
-        label: s,
-        data: sportActs.map((a) => {
-          const d = a.start_time_utc ? new Date(a.start_time_utc).getTime() : null;
-          return d ? { x: d, y: a.avg_hr } : null;
-        }).filter(Boolean),
-        borderColor: COLORS[s],
-        backgroundColor: COLORS[s],
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        showLine: false,
-      };
-    });
+  const hrBySport: Record<string, { x: number; y: number }[]> = {};
+  for (const a of withHR) {
+    if (!hrBySport[a.sport]) hrBySport[a.sport] = [];
+    const ts = a.start_time_utc ? new Date(a.start_time_utc).getTime() : null;
+    if (ts) hrBySport[a.sport].push({ x: ts, y: a.avg_hr });
+  }
+
+  const hrDatasets = Object.entries(hrBySport).flatMap(([s, data]) => {
+    const sorted = data.sort((a, b) => a.x - b.x);
+    const datasets: any[] = [{
+      label: s,
+      data: sorted,
+      borderColor: COLORS[s] || "#888",
+      backgroundColor: COLORS[s] || "#888",
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      showLine: false,
+      order: 2,
+    }];
+    const hrReg = linearRegression(sorted.map((p, i) => ({ x: i, y: p.y })));
+    if (hrReg && sorted.length >= 2) {
+      datasets.push({
+        label: s + " Trend",
+        data: [
+          { x: sorted[0].x, y: hrReg.intercept },
+          { x: sorted[sorted.length - 1].x, y: hrReg.intercept + hrReg.slope * (sorted.length - 1) },
+        ],
+        borderColor: (COLORS[s] || "#888") + "aa",
+        backgroundColor: "transparent",
+        borderWidth: 1.5,
+        borderDash: [5, 4],
+        pointRadius: 0,
+        fill: false,
+        tension: 0,
+        showLine: true,
+        order: 1,
+      });
+    }
+    return datasets;
+  });
 
   // --- EF trend per sport with linear trendlines ---
   const efActs = activities
@@ -245,7 +268,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                 return (
                   <div key={sport}>
                     <span style={{ color: COLORS[sport] || "#888" }}>● {sport}</span>:{" "}
-                    <span className={improving ? "text-green-200 font-semibold" : "text-red-200 font-semibold"}>
+                    <span className="font-semibold" style={{ color: improving ? "#8a9e8a" : "#9e8a8a" }}>
                       {improving ? "getting fitter" : "declining"} {improving ? "✅" : "⚠️"}
                     </span>{" "}
                     <span className="text-gray-500">({Math.abs(reg!.slope).toFixed(3)} EF/{label})</span>
@@ -326,7 +349,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
           </p>
           {decoupReg && (
             <p className="text-xs mb-3">
-              <span className={isDecoupImproving ? "text-green-200 font-semibold" : "text-red-200 font-semibold"}>
+              <span className="font-semibold" style={{ color: isDecoupImproving ? "#8a9e8a" : "#9e8a8a" }}>
                 {isDecoupImproving ? "Improving endurance ✅" : "Declining endurance ⚠️"}
               </span>
               <span className="text-gray-500"> — changing by {Math.abs(decoupReg.slope).toFixed(3)}%/activity</span>
