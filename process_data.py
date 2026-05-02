@@ -491,13 +491,16 @@ def compute_gap_segments(streams, activity_type, grade_points):
     seg_ele_start = points[0].get("e")
     seg_ele_end = seg_ele_start
 
+    # Speed caps per sport to filter GPS/accelerometer noise
+    max_speed = 5.5 if activity_type == "Run" else 22.0  # m/s: ~3:00/km run, ~80km/h ride
+
     for i, pt in enumerate(points):
         d = pt.get("d", 0)
         s = pt.get("s")
         hr = pt.get("hr")
         e = pt.get("e")
 
-        if s is not None and s > 0:
+        if s is not None and 0.3 < s < max_speed:
             seg_speeds.append(s)
         if hr is not None:
             seg_hrs.append(hr)
