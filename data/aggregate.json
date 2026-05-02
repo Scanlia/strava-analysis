@@ -2,7 +2,7 @@
  "monthly": [
   {
    "month": "2020-05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -10,7 +10,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -45,7 +45,7 @@
   },
   {
    "month": "2020-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -53,7 +53,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -88,20 +88,20 @@
   },
   {
    "month": "2020-07",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 4,
     "distance_km": 17.1,
     "time_hours": 1.8,
     "elevation_m": 337.2,
     "relative_effort": 83,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
     "trimp": 0
    },
    "hike": {
@@ -131,7 +131,7 @@
   },
   {
    "month": "2020-08",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -139,7 +139,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -174,19 +174,19 @@
   },
   {
    "month": "2020-09",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 4.6,
     "time_hours": 0.4,
     "elevation_m": 502.0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -217,7 +217,7 @@
   },
   {
    "month": "2020-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -225,7 +225,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -260,7 +260,7 @@
   },
   {
    "month": "2020-12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -268,7 +268,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -303,7 +303,7 @@
   },
   {
    "month": "2021-01",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -311,7 +311,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -346,19 +346,19 @@
   },
   {
    "month": "2021-02",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 0.9,
     "time_hours": 0.1,
     "elevation_m": 5.6,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -389,7 +389,7 @@
   },
   {
    "month": "2021-03",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -397,7 +397,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -432,7 +432,7 @@
   },
   {
    "month": "2021-04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -440,7 +440,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -475,7 +475,7 @@
   },
   {
    "month": "2021-05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -483,7 +483,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -518,7 +518,7 @@
   },
   {
    "month": "2021-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -526,7 +526,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -561,7 +561,7 @@
   },
   {
    "month": "2021-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -569,7 +569,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -604,19 +604,19 @@
   },
   {
    "month": "2021-08",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 2.3,
     "time_hours": 0.3,
     "elevation_m": 16.9,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -647,19 +647,19 @@
   },
   {
    "month": "2021-09",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.1,
-    "time_hours": 0.0,
-    "elevation_m": 0.0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
     "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.1,
+    "time_hours": 0.0,
+    "elevation_m": 0.0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -690,7 +690,7 @@
   },
   {
    "month": "2021-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -698,7 +698,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -733,7 +733,7 @@
   },
   {
    "month": "2021-12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -741,7 +741,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -776,7 +776,7 @@
   },
   {
    "month": "2022-04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -784,7 +784,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -819,7 +819,7 @@
   },
   {
    "month": "2022-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -827,7 +827,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -862,7 +862,7 @@
   },
   {
    "month": "2022-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -870,7 +870,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -905,7 +905,7 @@
   },
   {
    "month": "2022-08",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -913,7 +913,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -948,7 +948,7 @@
   },
   {
    "month": "2022-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -956,7 +956,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -991,7 +991,7 @@
   },
   {
    "month": "2022-12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -999,7 +999,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1034,20 +1034,20 @@
   },
   {
    "month": "2023-01",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.6,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 25,
-    "trimp": 0
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
     "elevation_m": 0,
     "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.6,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 25,
     "trimp": 0
    },
    "hike": {
@@ -1077,7 +1077,7 @@
   },
   {
    "month": "2023-04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1085,7 +1085,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1120,7 +1120,7 @@
   },
   {
    "month": "2023-05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1128,7 +1128,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1163,7 +1163,7 @@
   },
   {
    "month": "2023-06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1171,7 +1171,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1206,7 +1206,7 @@
   },
   {
    "month": "2023-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1214,7 +1214,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1249,19 +1249,19 @@
   },
   {
    "month": "2024-01",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 8.0,
     "time_hours": 1.0,
     "elevation_m": 114.5,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1292,20 +1292,20 @@
   },
   {
    "month": "2024-02",
-   "swim": {
-    "count": 2,
-    "distance_km": 0.5,
-    "time_hours": 0.2,
-    "elevation_m": 0.0,
-    "relative_effort": 10,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 3.5,
     "time_hours": 0.4,
     "elevation_m": 19.2,
     "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 2,
+    "distance_km": 0.5,
+    "time_hours": 0.2,
+    "elevation_m": 0.0,
+    "relative_effort": 10,
     "trimp": 0
    },
    "hike": {
@@ -1335,14 +1335,6 @@
   },
   {
    "month": "2024-03",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 3,
     "distance_km": 11.9,
@@ -1350,6 +1342,14 @@
     "elevation_m": 73.1,
     "relative_effort": 49,
     "trimp": 168.5
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1378,19 +1378,19 @@
   },
   {
    "month": "2024-04",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 2.5,
     "time_hours": 0.3,
     "elevation_m": 31.0,
+    "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1421,14 +1421,6 @@
   },
   {
    "month": "2024-06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 6.1,
@@ -1436,6 +1428,14 @@
     "elevation_m": 22.6,
     "relative_effort": 18,
     "trimp": 108.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1464,7 +1464,7 @@
   },
   {
    "month": "2024-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1472,7 +1472,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1507,14 +1507,6 @@
   },
   {
    "month": "2024-08",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 3,
     "distance_km": 8.8,
@@ -1522,6 +1514,14 @@
     "elevation_m": 316.8,
     "relative_effort": 20,
     "trimp": 168.8
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1550,14 +1550,6 @@
   },
   {
    "month": "2024-09",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 3.6,
@@ -1565,6 +1557,14 @@
     "elevation_m": 84.7,
     "relative_effort": 10,
     "trimp": 73.9
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1593,14 +1593,6 @@
   },
   {
    "month": "2024-10",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 3.3,
@@ -1608,6 +1600,14 @@
     "elevation_m": 82.2,
     "relative_effort": 18,
     "trimp": 64.2
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1636,14 +1636,6 @@
   },
   {
    "month": "2024-12",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 11,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 3.8,
@@ -1651,6 +1643,14 @@
     "elevation_m": 94.8,
     "relative_effort": 10,
     "trimp": 55.8
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 11,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1679,14 +1679,6 @@
   },
   {
    "month": "2025-01",
-   "swim": {
-    "count": 3,
-    "distance_km": 1.9,
-    "time_hours": 0.6,
-    "elevation_m": 0.0,
-    "relative_effort": 8,
-    "trimp": 3.2
-   },
    "run": {
     "count": 1,
     "distance_km": 2.1,
@@ -1694,6 +1686,14 @@
     "elevation_m": 10.0,
     "relative_effort": 0,
     "trimp": 0
+   },
+   "swim": {
+    "count": 3,
+    "distance_km": 1.9,
+    "time_hours": 0.6,
+    "elevation_m": 0.0,
+    "relative_effort": 8,
+    "trimp": 3.2
    },
    "hike": {
     "count": 2,
@@ -1722,7 +1722,7 @@
   },
   {
    "month": "2025-02",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1730,7 +1730,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1765,7 +1765,7 @@
   },
   {
    "month": "2025-03",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1773,7 +1773,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1808,14 +1808,6 @@
   },
   {
    "month": "2025-05",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 1.4,
@@ -1823,6 +1815,14 @@
     "elevation_m": 36.0,
     "relative_effort": 2,
     "trimp": 25.9
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -1851,7 +1851,7 @@
   },
   {
    "month": "2025-07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1859,7 +1859,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1894,14 +1894,6 @@
   },
   {
    "month": "2025-09",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 3.2,
@@ -1909,6 +1901,14 @@
     "elevation_m": 142.3,
     "relative_effort": 10,
     "trimp": 50.7
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 1,
@@ -1937,7 +1937,7 @@
   },
   {
    "month": "2025-10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1945,7 +1945,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1980,14 +1980,6 @@
   },
   {
    "month": "2025-11",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 2,
     "distance_km": 4.1,
@@ -1995,6 +1987,14 @@
     "elevation_m": 180.6,
     "relative_effort": 51,
     "trimp": 48.3
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -2023,20 +2023,20 @@
   },
   {
    "month": "2025-12",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.1,
-    "elevation_m": 0.0,
-    "relative_effort": 1,
-    "trimp": 0
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
     "elevation_m": 0,
     "relative_effort": 0,
+    "trimp": 0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.1,
+    "elevation_m": 0.0,
+    "relative_effort": 1,
     "trimp": 0
    },
    "hike": {
@@ -2066,14 +2066,6 @@
   },
   {
    "month": "2026-01",
-   "swim": {
-    "count": 2,
-    "distance_km": 0.0,
-    "time_hours": 0.9,
-    "elevation_m": 0.0,
-    "relative_effort": 41,
-    "trimp": 0
-   },
    "run": {
     "count": 2,
     "distance_km": 10.1,
@@ -2081,6 +2073,14 @@
     "elevation_m": 291.8,
     "relative_effort": 68,
     "trimp": 98.9
+   },
+   "swim": {
+    "count": 2,
+    "distance_km": 0.0,
+    "time_hours": 0.9,
+    "elevation_m": 0.0,
+    "relative_effort": 41,
+    "trimp": 0
    },
    "hike": {
     "count": 1,
@@ -2109,14 +2109,6 @@
   },
   {
    "month": "2026-02",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "trimp": 0
-   },
    "run": {
     "count": 4,
     "distance_km": 18.3,
@@ -2124,6 +2116,14 @@
     "elevation_m": 389.4,
     "relative_effort": 94,
     "trimp": 205.1
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "trimp": 0
    },
    "hike": {
     "count": 0,
@@ -2152,14 +2152,6 @@
   },
   {
    "month": "2026-03",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "trimp": 0
-   },
    "run": {
     "count": 1,
     "distance_km": 4.0,
@@ -2167,6 +2159,14 @@
     "elevation_m": 77.0,
     "relative_effort": 12,
     "trimp": 33.0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "trimp": 0
    },
    "hike": {
     "count": 2,
@@ -2195,14 +2195,6 @@
   },
   {
    "month": "2026-04",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
-   },
    "run": {
     "count": 2,
     "distance_km": 7.0,
@@ -2210,6 +2202,14 @@
     "elevation_m": 126.2,
     "relative_effort": 45,
     "trimp": 71.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "hike": {
     "count": 3,
@@ -2240,7 +2240,7 @@
  "weekly": [
   {
    "week": "2020-W21",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2248,7 +2248,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2282,7 +2282,7 @@
   },
   {
    "week": "2020-W22",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2290,7 +2290,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2324,7 +2324,7 @@
   },
   {
    "week": "2020-W23",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2332,7 +2332,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2366,7 +2366,7 @@
   },
   {
    "week": "2020-W25",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2374,7 +2374,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2408,14 +2408,6 @@
   },
   {
    "week": "2020-W27",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.7,
@@ -2423,6 +2415,14 @@
     "elevation_m": 20.4,
     "relative_effort": 31,
     "avg_hr": 151.0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -2450,14 +2450,6 @@
   },
   {
    "week": "2020-W28",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 6.4,
@@ -2465,6 +2457,14 @@
     "elevation_m": 9.3,
     "relative_effort": 50,
     "avg_hr": 157.0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 1,
@@ -2492,14 +2492,6 @@
   },
   {
    "week": "2020-W29",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 1.4,
@@ -2507,6 +2499,14 @@
     "elevation_m": 4.5,
     "relative_effort": 2,
     "avg_hr": 129.0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -2534,19 +2534,19 @@
   },
   {
    "week": "2020-W30",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.7,
     "time_hours": 0.5,
     "elevation_m": 303.0,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -2576,7 +2576,7 @@
   },
   {
    "week": "2020-W31",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2584,7 +2584,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2618,7 +2618,7 @@
   },
   {
    "week": "2020-W33",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2626,7 +2626,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2660,7 +2660,7 @@
   },
   {
    "week": "2020-W34",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2668,7 +2668,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2702,7 +2702,7 @@
   },
   {
    "week": "2020-W35",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2710,7 +2710,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2744,7 +2744,7 @@
   },
   {
    "week": "2020-W36",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2752,7 +2752,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2786,19 +2786,19 @@
   },
   {
    "week": "2020-W37",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.6,
     "time_hours": 0.4,
     "elevation_m": 502.0,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -2828,7 +2828,7 @@
   },
   {
    "week": "2020-W38",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2836,7 +2836,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2870,7 +2870,7 @@
   },
   {
    "week": "2020-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2878,7 +2878,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2912,7 +2912,7 @@
   },
   {
    "week": "2020-W44",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2920,7 +2920,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2954,7 +2954,7 @@
   },
   {
    "week": "2020-W50",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2962,7 +2962,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2996,7 +2996,7 @@
   },
   {
    "week": "2020-W53",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3004,7 +3004,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3038,7 +3038,7 @@
   },
   {
    "week": "2021-W02",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3046,7 +3046,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3080,7 +3080,7 @@
   },
   {
    "week": "2021-W04",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3088,7 +3088,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3122,7 +3122,7 @@
   },
   {
    "week": "2021-W05",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3130,7 +3130,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3164,19 +3164,19 @@
   },
   {
    "week": "2021-W06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 0.9,
     "time_hours": 0.1,
     "elevation_m": 5.6,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -3206,7 +3206,7 @@
   },
   {
    "week": "2021-W09",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3214,7 +3214,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3248,7 +3248,7 @@
   },
   {
    "week": "2021-W10",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3256,7 +3256,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3290,7 +3290,7 @@
   },
   {
    "week": "2021-W13",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3298,7 +3298,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3332,7 +3332,7 @@
   },
   {
    "week": "2021-W14",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3340,7 +3340,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3374,7 +3374,7 @@
   },
   {
    "week": "2021-W15",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3382,7 +3382,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3416,7 +3416,7 @@
   },
   {
    "week": "2021-W16",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3424,7 +3424,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3458,7 +3458,7 @@
   },
   {
    "week": "2021-W18",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3466,7 +3466,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3500,7 +3500,7 @@
   },
   {
    "week": "2021-W25",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3508,7 +3508,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3542,7 +3542,7 @@
   },
   {
    "week": "2021-W27",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3550,7 +3550,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3584,7 +3584,7 @@
   },
   {
    "week": "2021-W31",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3592,7 +3592,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3626,19 +3626,19 @@
   },
   {
    "week": "2021-W34",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 2.3,
     "time_hours": 0.3,
     "elevation_m": 16.9,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -3668,7 +3668,7 @@
   },
   {
    "week": "2021-W35",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3676,7 +3676,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3710,14 +3710,6 @@
   },
   {
    "week": "2021-W36",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.1,
-    "time_hours": 0.0,
-    "elevation_m": 0.0,
-    "relative_effort": 0,
-    "avg_hr": 124.0
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -3725,6 +3717,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.1,
+    "time_hours": 0.0,
+    "elevation_m": 0.0,
+    "relative_effort": 0,
+    "avg_hr": 124.0
    },
    "hike": {
     "count": 0,
@@ -3752,7 +3752,7 @@
   },
   {
    "week": "2021-W37",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3760,7 +3760,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3794,7 +3794,7 @@
   },
   {
    "week": "2021-W38",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3802,7 +3802,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3836,7 +3836,7 @@
   },
   {
    "week": "2021-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3844,7 +3844,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3878,7 +3878,7 @@
   },
   {
    "week": "2021-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3886,7 +3886,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3920,7 +3920,7 @@
   },
   {
    "week": "2022-W15",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3928,7 +3928,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3962,7 +3962,7 @@
   },
   {
    "week": "2022-W22",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3970,7 +3970,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4004,7 +4004,7 @@
   },
   {
    "week": "2022-W30",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4012,7 +4012,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4046,7 +4046,7 @@
   },
   {
    "week": "2022-W32",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4054,7 +4054,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4088,7 +4088,7 @@
   },
   {
    "week": "2022-W33",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4096,7 +4096,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4130,7 +4130,7 @@
   },
   {
    "week": "2022-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4138,7 +4138,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4172,7 +4172,7 @@
   },
   {
    "week": "2022-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4180,7 +4180,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4214,7 +4214,7 @@
   },
   {
    "week": "2022-W52",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4222,7 +4222,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4256,7 +4256,7 @@
   },
   {
    "week": "2023-W01",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4264,7 +4264,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4298,14 +4298,6 @@
   },
   {
    "week": "2023-W04",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.6,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 25,
-    "avg_hr": 143.0
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -4313,6 +4305,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.6,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 25,
+    "avg_hr": 143.0
    },
    "hike": {
     "count": 0,
@@ -4340,7 +4340,7 @@
   },
   {
    "week": "2023-W14",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4348,7 +4348,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4382,7 +4382,7 @@
   },
   {
    "week": "2023-W15",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4390,7 +4390,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4424,7 +4424,7 @@
   },
   {
    "week": "2023-W16",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4432,7 +4432,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4466,7 +4466,7 @@
   },
   {
    "week": "2023-W17",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4474,7 +4474,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4508,7 +4508,7 @@
   },
   {
    "week": "2023-W18",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4516,7 +4516,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4550,7 +4550,7 @@
   },
   {
    "week": "2023-W25",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4558,7 +4558,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4592,7 +4592,7 @@
   },
   {
    "week": "2023-W26",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4600,7 +4600,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4634,7 +4634,7 @@
   },
   {
    "week": "2023-W28",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4642,7 +4642,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4676,14 +4676,6 @@
   },
   {
    "week": "2024-W05",
-   "swim": {
-    "count": 2,
-    "distance_km": 0.5,
-    "time_hours": 0.2,
-    "elevation_m": 0.0,
-    "relative_effort": 10,
-    "avg_hr": 145.0
-   },
    "run": {
     "count": 1,
     "distance_km": 8.0,
@@ -4691,6 +4683,14 @@
     "elevation_m": 114.5,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 2,
+    "distance_km": 0.5,
+    "time_hours": 0.2,
+    "elevation_m": 0.0,
+    "relative_effort": 10,
+    "avg_hr": 145.0
    },
    "hike": {
     "count": 0,
@@ -4718,19 +4718,19 @@
   },
   {
    "week": "2024-W06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 3.5,
     "time_hours": 0.4,
     "elevation_m": 19.2,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -4760,7 +4760,7 @@
   },
   {
    "week": "2024-W07",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4768,7 +4768,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4802,7 +4802,7 @@
   },
   {
    "week": "2024-W09",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4810,7 +4810,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4844,14 +4844,6 @@
   },
   {
    "week": "2024-W11",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 5.1,
@@ -4859,6 +4851,14 @@
     "elevation_m": 35.3,
     "relative_effort": 19,
     "avg_hr": 144.9
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -4886,14 +4886,6 @@
   },
   {
    "week": "2024-W12",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.1,
@@ -4901,6 +4893,14 @@
     "elevation_m": 28.2,
     "relative_effort": 13,
     "avg_hr": 131.5
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -4928,14 +4928,6 @@
   },
   {
    "week": "2024-W13",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 2.8,
@@ -4943,6 +4935,14 @@
     "elevation_m": 9.6,
     "relative_effort": 17,
     "avg_hr": 153.0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -4970,19 +4970,19 @@
   },
   {
    "week": "2024-W17",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 2.5,
     "time_hours": 0.3,
     "elevation_m": 31.0,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -5012,14 +5012,6 @@
   },
   {
    "week": "2024-W26",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 6.1,
@@ -5027,6 +5019,14 @@
     "elevation_m": 22.6,
     "relative_effort": 18,
     "avg_hr": 135.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5054,7 +5054,7 @@
   },
   {
    "week": "2024-W29",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5062,7 +5062,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5096,7 +5096,7 @@
   },
   {
    "week": "2024-W32",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5104,7 +5104,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5138,14 +5138,6 @@
   },
   {
    "week": "2024-W33",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.0,
@@ -5153,6 +5145,14 @@
     "elevation_m": 40.9,
     "relative_effort": 10,
     "avg_hr": 138.7
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5180,14 +5180,6 @@
   },
   {
    "week": "2024-W35",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 2,
     "distance_km": 4.8,
@@ -5195,6 +5187,14 @@
     "elevation_m": 275.9,
     "relative_effort": 10,
     "avg_hr": 116.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5222,14 +5222,6 @@
   },
   {
    "week": "2024-W36",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 3.6,
@@ -5237,6 +5229,14 @@
     "elevation_m": 84.7,
     "relative_effort": 10,
     "avg_hr": 137.4
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5264,7 +5264,7 @@
   },
   {
    "week": "2024-W38",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5272,7 +5272,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5306,7 +5306,7 @@
   },
   {
    "week": "2024-W42",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5314,7 +5314,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5348,14 +5348,6 @@
   },
   {
    "week": "2024-W44",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 3.3,
@@ -5363,6 +5355,14 @@
     "elevation_m": 82.2,
     "relative_effort": 18,
     "avg_hr": 148.0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5390,14 +5390,6 @@
   },
   {
    "week": "2024-W49",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 11,
-    "avg_hr": 135.2
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -5405,6 +5397,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 11,
+    "avg_hr": 135.2
    },
    "hike": {
     "count": 0,
@@ -5432,7 +5432,7 @@
   },
   {
    "week": "2024-W50",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5440,7 +5440,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5474,7 +5474,7 @@
   },
   {
    "week": "2024-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5482,7 +5482,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5516,14 +5516,6 @@
   },
   {
    "week": "2024-W52",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 3.8,
@@ -5531,6 +5523,14 @@
     "elevation_m": 94.8,
     "relative_effort": 10,
     "avg_hr": 128.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5558,7 +5558,7 @@
   },
   {
    "week": "2025-W01",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5566,7 +5566,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5600,19 +5600,19 @@
   },
   {
    "week": "2025-W02",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 2.1,
     "time_hours": 0.3,
     "elevation_m": 10.0,
+    "relative_effort": 0,
+    "avg_hr": null
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
    },
@@ -5642,14 +5642,6 @@
   },
   {
    "week": "2025-W03",
-   "swim": {
-    "count": 2,
-    "distance_km": 1.1,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 3,
-    "avg_hr": 126.3
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -5657,6 +5649,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 2,
+    "distance_km": 1.1,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 3,
+    "avg_hr": 126.3
    },
    "hike": {
     "count": 2,
@@ -5684,14 +5684,6 @@
   },
   {
    "week": "2025-W04",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.8,
-    "time_hours": 0.2,
-    "elevation_m": 0.0,
-    "relative_effort": 5,
-    "avg_hr": 130.4
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -5699,6 +5691,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.8,
+    "time_hours": 0.2,
+    "elevation_m": 0.0,
+    "relative_effort": 5,
+    "avg_hr": 130.4
    },
    "hike": {
     "count": 0,
@@ -5726,7 +5726,7 @@
   },
   {
    "week": "2025-W06",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5734,7 +5734,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5768,7 +5768,7 @@
   },
   {
    "week": "2025-W09",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5776,7 +5776,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5810,7 +5810,7 @@
   },
   {
    "week": "2025-W13",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5818,7 +5818,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5852,14 +5852,6 @@
   },
   {
    "week": "2025-W21",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 1.4,
@@ -5867,6 +5859,14 @@
     "elevation_m": 36.0,
     "relative_effort": 2,
     "avg_hr": 133.4
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -5894,7 +5894,7 @@
   },
   {
    "week": "2025-W22",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5902,7 +5902,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5936,7 +5936,7 @@
   },
   {
    "week": "2025-W28",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5944,7 +5944,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5978,7 +5978,7 @@
   },
   {
    "week": "2025-W36",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5986,7 +5986,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6020,14 +6020,6 @@
   },
   {
    "week": "2025-W37",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 3.2,
@@ -6035,6 +6027,14 @@
     "elevation_m": 142.3,
     "relative_effort": 10,
     "avg_hr": 132.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6062,7 +6062,7 @@
   },
   {
    "week": "2025-W39",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6070,7 +6070,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6104,7 +6104,7 @@
   },
   {
    "week": "2025-W40",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6112,7 +6112,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6146,7 +6146,7 @@
   },
   {
    "week": "2025-W43",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6154,7 +6154,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6188,14 +6188,6 @@
   },
   {
    "week": "2025-W45",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 0.0,
@@ -6203,6 +6195,14 @@
     "elevation_m": 0.0,
     "relative_effort": 36,
     "avg_hr": 143.8
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6230,14 +6230,6 @@
   },
   {
    "week": "2025-W46",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.1,
@@ -6245,6 +6237,14 @@
     "elevation_m": 180.6,
     "relative_effort": 15,
     "avg_hr": 144.5
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6272,7 +6272,7 @@
   },
   {
    "week": "2025-W51",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6280,7 +6280,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6314,14 +6314,6 @@
   },
   {
    "week": "2025-W52",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.1,
-    "elevation_m": 0.0,
-    "relative_effort": 1,
-    "avg_hr": 105.3
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -6329,6 +6321,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.1,
+    "elevation_m": 0.0,
+    "relative_effort": 1,
+    "avg_hr": 105.3
    },
    "hike": {
     "count": 1,
@@ -6356,14 +6356,6 @@
   },
   {
    "week": "2026-W01",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.5,
-    "elevation_m": 0.0,
-    "relative_effort": 11,
-    "avg_hr": 125.0
-   },
    "run": {
     "count": 1,
     "distance_km": 5.4,
@@ -6371,6 +6363,14 @@
     "elevation_m": 209.6,
     "relative_effort": 37,
     "avg_hr": 141.0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.5,
+    "elevation_m": 0.0,
+    "relative_effort": 11,
+    "avg_hr": 125.0
    },
    "hike": {
     "count": 0,
@@ -6398,7 +6398,7 @@
   },
   {
    "week": "2026-W03",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6406,7 +6406,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6440,14 +6440,6 @@
   },
   {
    "week": "2026-W04",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 30,
-    "avg_hr": 147.7
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -6455,6 +6447,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 30,
+    "avg_hr": 147.7
    },
    "hike": {
     "count": 0,
@@ -6482,14 +6482,6 @@
   },
   {
    "week": "2026-W05",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.7,
@@ -6497,6 +6489,14 @@
     "elevation_m": 82.2,
     "relative_effort": 31,
     "avg_hr": 154.9
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6524,14 +6524,6 @@
   },
   {
    "week": "2026-W06",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 5.1,
@@ -6539,6 +6531,14 @@
     "elevation_m": 156.6,
     "relative_effort": 13,
     "avg_hr": 136.1
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6566,14 +6566,6 @@
   },
   {
    "week": "2026-W07",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 3.0,
@@ -6581,6 +6573,14 @@
     "elevation_m": 23.4,
     "relative_effort": 14,
     "avg_hr": 143.0
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6608,14 +6608,6 @@
   },
   {
    "week": "2026-W08",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "avg_hr": 127.3
-   },
    "run": {
     "count": 2,
     "distance_km": 10.1,
@@ -6623,6 +6615,14 @@
     "elevation_m": 209.4,
     "relative_effort": 67,
     "avg_hr": 149.8
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "avg_hr": 127.3
    },
    "hike": {
     "count": 0,
@@ -6650,14 +6650,6 @@
   },
   {
    "week": "2026-W10",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 4.0,
@@ -6665,6 +6657,14 @@
     "elevation_m": 77.0,
     "relative_effort": 12,
     "avg_hr": 132.9
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 0,
@@ -6692,14 +6692,6 @@
   },
   {
    "week": "2026-W11",
-   "swim": {
-    "count": 1,
-    "distance_km": 0.0,
-    "time_hours": 0.3,
-    "elevation_m": 0.0,
-    "relative_effort": 7,
-    "avg_hr": 127.3
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
@@ -6707,6 +6699,14 @@
     "elevation_m": 0,
     "relative_effort": 0,
     "avg_hr": null
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.0,
+    "time_hours": 0.3,
+    "elevation_m": 0.0,
+    "relative_effort": 7,
+    "avg_hr": 127.3
    },
    "hike": {
     "count": 0,
@@ -6734,7 +6734,7 @@
   },
   {
    "week": "2026-W12",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6742,7 +6742,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6776,7 +6776,7 @@
   },
   {
    "week": "2026-W13",
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6784,7 +6784,7 @@
     "relative_effort": 0,
     "avg_hr": null
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6818,14 +6818,6 @@
   },
   {
    "week": "2026-W17",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 1.7,
@@ -6833,6 +6825,14 @@
     "elevation_m": 63.6,
     "relative_effort": 5,
     "avg_hr": 134.3
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 2,
@@ -6860,14 +6860,6 @@
   },
   {
    "week": "2026-W18",
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "avg_hr": null
-   },
    "run": {
     "count": 1,
     "distance_km": 5.2,
@@ -6875,6 +6867,14 @@
     "elevation_m": 62.6,
     "relative_effort": 40,
     "avg_hr": 152.5
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "avg_hr": null
    },
    "hike": {
     "count": 1,
@@ -6904,19 +6904,19 @@
  "yearly": [
   {
    "year": 2020,
-   "swim": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0
-   },
    "run": {
     "count": 5,
     "distance_km": 21.8,
     "time_hours": 2.3,
     "elevation_m": 839.2,
     "relative_effort": 83
+   },
+   "swim": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0
    },
    "hike": {
     "count": 5,
@@ -6935,18 +6935,18 @@
   },
   {
    "year": 2021,
-   "swim": {
-    "count": 1,
-    "distance_km": 0.1,
-    "time_hours": 0.0,
-    "elevation_m": 0.0,
-    "relative_effort": 0
-   },
    "run": {
     "count": 2,
     "distance_km": 3.2,
     "time_hours": 0.4,
     "elevation_m": 22.5,
+    "relative_effort": 0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.1,
+    "time_hours": 0.0,
+    "elevation_m": 0.0,
     "relative_effort": 0
    },
    "hike": {
@@ -6966,14 +6966,14 @@
   },
   {
    "year": 2022,
-   "swim": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
     "elevation_m": 0,
     "relative_effort": 0
    },
-   "run": {
+   "swim": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -6997,19 +6997,19 @@
   },
   {
    "year": 2023,
-   "swim": {
-    "count": 1,
-    "distance_km": 0.6,
-    "time_hours": 0.4,
-    "elevation_m": 0.0,
-    "relative_effort": 25
-   },
    "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
     "elevation_m": 0,
     "relative_effort": 0
+   },
+   "swim": {
+    "count": 1,
+    "distance_km": 0.6,
+    "time_hours": 0.4,
+    "elevation_m": 0.0,
+    "relative_effort": 25
    },
    "hike": {
     "count": 1,
@@ -7028,19 +7028,19 @@
   },
   {
    "year": 2024,
-   "swim": {
-    "count": 3,
-    "distance_km": 1.4,
-    "time_hours": 0.5,
-    "elevation_m": 0.0,
-    "relative_effort": 21
-   },
    "run": {
     "count": 13,
     "distance_km": 51.5,
     "time_hours": 6.3,
     "elevation_m": 838.9,
     "relative_effort": 125
+   },
+   "swim": {
+    "count": 3,
+    "distance_km": 1.4,
+    "time_hours": 0.5,
+    "elevation_m": 0.0,
+    "relative_effort": 21
    },
    "hike": {
     "count": 1,
@@ -7059,19 +7059,19 @@
   },
   {
    "year": 2025,
-   "swim": {
-    "count": 4,
-    "distance_km": 1.9,
-    "time_hours": 0.7,
-    "elevation_m": 0.0,
-    "relative_effort": 9
-   },
    "run": {
     "count": 5,
     "distance_km": 10.7,
     "time_hours": 2.1,
     "elevation_m": 368.9,
     "relative_effort": 63
+   },
+   "swim": {
+    "count": 4,
+    "distance_km": 1.9,
+    "time_hours": 0.7,
+    "elevation_m": 0.0,
+    "relative_effort": 9
    },
    "hike": {
     "count": 5,
@@ -7090,19 +7090,19 @@
   },
   {
    "year": 2026,
-   "swim": {
-    "count": 4,
-    "distance_km": 0.0,
-    "time_hours": 1.5,
-    "elevation_m": 0.0,
-    "relative_effort": 55
-   },
    "run": {
     "count": 9,
     "distance_km": 39.4,
     "time_hours": 5.0,
     "elevation_m": 884.4,
     "relative_effort": 219
+   },
+   "swim": {
+    "count": 4,
+    "distance_km": 0.0,
+    "time_hours": 1.5,
+    "elevation_m": 0.0,
+    "relative_effort": 55
    },
    "hike": {
     "count": 6,
@@ -7121,6 +7121,15 @@
   }
  ],
  "best_efforts": {
+  "run": {
+   "longest_distance_km": 8.0,
+   "longest_name": "City",
+   "most_elevation_m": 502.0,
+   "most_elev_name": "Evening Run",
+   "highest_max_hr": 189,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "Evening Run"
+  },
   "swim": {
    "longest_distance_km": 0.9,
    "longest_name": "Lunch Swim",
@@ -7129,15 +7138,6 @@
    "highest_max_hr": 176,
    "best_avg_speed_kmh": 4.0,
    "best_speed_name": "MSAC Swim"
-  },
-  "run": {
-   "longest_distance_km": 8.0,
-   "longest_name": "City",
-   "most_elevation_m": 502.0,
-   "most_elev_name": "Evening Run",
-   "highest_max_hr": 189,
-   "best_avg_speed_kmh": 0.0,
-   "best_speed_name": "Painful Afternoon Run"
   },
   "hike": {
    "longest_distance_km": 83.1,

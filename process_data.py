@@ -245,7 +245,7 @@ def parse_fit(filepath):
 
 
 # --- Compute time-series metrics from points ---
-def compute_stream_metrics(points, is_tcx=False):
+def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
     """Compute detailed per-second metrics from track points."""
     result = {
         "times": [],
@@ -334,8 +334,10 @@ def compute_stream_metrics(points, is_tcx=False):
 
         result["distances"].append(cum_dist)
 
-        # Speed - prefer pre-computed speed from FIT files, fall back to GPS-derived
-        if p.get("speed_ms") is not None and p["speed_ms"] > 0:
+        # Speed: prefer device speed for cycling (power meter/wheel sensor),
+        # but use GPS-derived speed for running (WHOOP accelerometer overestimates)
+        use_device_speed = is_fit and sport != "Run"
+        if use_device_speed and p.get("speed_ms") is not None and p["speed_ms"] > 0:
             spd = p["speed_ms"]
             speeds.append(spd)
             result["max_speed"] = max(result["max_speed"], spd)
@@ -786,7 +788,7 @@ def main():
                 is_fit = True
 
         # Compute stream metrics
-        streams = compute_stream_metrics(points, is_tcx)
+        streams = compute_stream_metrics(points, is_tcx, is_fit, sport)
 
         # Parse UTC from CSV start time as fallback
         csv_start_time = parse_csv_date_utc(act.get("Activity Date", "").strip())
