@@ -4,6 +4,8 @@ import VolumeCharts from "@/components/VolumeCharts";
 import HRCharts from "@/components/HRCharts";
 import GAPCharts from "@/components/GAPCharts";
 import CTLChart from "@/components/CTLChart";
+import SpeedDurationChart from "@/components/SpeedDurationChart";
+import CalendarHeatmap from "@/components/CalendarHeatmap";
 import BestEfforts from "@/components/BestEfforts";
 import GearCharts from "@/components/GearCharts";
 import ActivityTable from "@/components/ActivityTable";
@@ -36,6 +38,11 @@ export default function Dashboard() {
         <SummaryCards summary={summary} activities={activities.length} />
 
         <section>
+          <h2 className="text-xl font-bold mb-5">Activity Calendar</h2>
+          <CalendarHeatmap activities={activities} />
+        </section>
+
+        <section>
           <h2 className="text-xl font-bold mb-5">Training Volume</h2>
           <VolumeCharts monthly={aggregate.monthly} weekly={aggregate.weekly} yearly={aggregate.yearly} />
         </section>
@@ -53,6 +60,11 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Training Load (CTL / ATL / TSB)</h2>
           <CTLChart aggregate={aggregate} />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-5">Speed-Duration Curve (Critical Pace / Power)</h2>
+          <SpeedDurationChart aggregate={aggregate} />
         </section>
 
         <section>

@@ -104,9 +104,31 @@ export interface Aggregate {
   gap_trends: Record<string, GapTrends>;
   sport_max_hr: Record<string, number>;
   ctl_atl_tsb: { date: string; ctl: number; atl: number; tsb: number }[];
+  speed_duration: Record<string, SpeedDuration>;
   sport_counts: Record<string, number>;
   total_activities: number;
   date_range: { first: string | null; last: string | null };
+}
+
+export interface SpeedDuration {
+  targets: string[];
+  best_ever: Record<string, BestEffortEntry>;
+  by_year: Record<string, Record<string, BestEffortEntry[]>>;
+}
+
+export interface BestEffortEntry {
+  activity_id: string;
+  activity_name: string;
+  date: string;
+  speed: {
+    target: number;
+    unit: string;
+    distance_m?: number;
+    time_s?: number;
+    speed_ms: number;
+    pace_min_km: number | null;
+    speed_kmh: number;
+  };
 }
 
 export interface GapTrends {

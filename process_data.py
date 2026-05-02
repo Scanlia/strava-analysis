@@ -1032,6 +1032,141 @@ def theil_sen_ci(x, y, alpha=0.05):
     return 0
 
 
+# --- Best-effort extraction ---
+def compute_best_efforts(streams, sport):
+    """Find best (fastest) sustained effort for each canonical distance/time target.
+    Uses sliding window over moving-only cumulative arrays with binary search.
+    """
+    is_mv = streams.get("is_moving", [])
+    distances = streams.get("distances", [])
+    times = streams.get("times", [])
+    speeds = streams.get("speeds", [])
+
+    if len(distances) < 20 or len(is_mv) < 20:
+        return {}
+
+    # Build cumulative moving distance and time arrays
+    cum_dist = []
+    cum_time = []
+    cd = 0.0; ct = 0.0
+    for i in range(len(is_mv)):
+        if i < len(is_mv) and is_mv[i]:
+            # Segment i connects point i to i+1
+            if i + 1 < len(distances) and distances[i] is not None and distances[i + 1] is not None:
+                d = distances[i + 1] - distances[i]
+            else:
+                d = 0
+            try:
+                if i < len(times) and i + 1 < len(times) and times[i] and times[i + 1]:
+                    t1 = datetime.fromisoformat(str(times[i]).replace("Z", "+00:00"))
+                    t2 = datetime.fromisoformat(str(times[i + 1]).replace("Z", "+00:00"))
+                    dt = (t2 - t1).total_seconds()
+                else:
+                    dt = 1
+            except:
+                dt = 1
+            if d > 0 and dt > 0 and dt < 60:  # Skip gaps > 60s (likely GPS dropout)
+                cd += d; ct += dt
+                cum_dist.append(cd)
+                cum_time.append(ct)
+
+    if len(cum_dist) < 10:
+        return {}
+
+    # Target durations/distances per sport
+    if sport == "Run":
+        targets = [(30, "s"), (60, "s"), (120, "s"), (300, "s"), (600, "s"),
+                   (1200, "s"), (1800, "s"), (2700, "s"), (3600, "s"),
+                   (1000, "m"), (5000, "m"), (10000, "m"), (21097, "m")]
+    elif sport == "Ride":
+        targets = [(60, "s"), (120, "s"), (300, "s"), (600, "s"), (1200, "s"),
+                   (1800, "s"), (2700, "s"), (3600, "s"), (5400, "s"), (7200, "s")]
+    elif sport == "Swim":
+        targets = [(30, "s"), (60, "s"), (120, "s"), (300, "s"), (600, "s"),
+                   (100, "m"), (400, "m"), (1500, "m")]
+    else:  # Hike
+        targets = [(600, "s"), (1800, "s"), (3600, "s"), (7200, "s"), (14400, "s")]
+
+    results = {}
+    n = len(cum_dist)
+    # Speed caps per sport to reject GPS artifacts
+    speed_cap = {"Run": 7.0, "Ride": 22.0, "Swim": 3.0, "Hike": 3.0}.get(sport, 22.0)
+
+    for target, unit in targets:
+        # Skip targets that are too short relative to data resolution (~10s per point)
+        if unit == "s" and target < 30:
+            continue
+
+        best_speed = 0
+        best_start = 0
+        best_end = 0
+        min_points = max(5, target // 10)  # at least 5 data points per window
+
+        if unit == "m":
+            # Distance target: find min time over that distance
+            best_time = float("inf")
+            for i in range(n):
+                d_start = cum_dist[i]
+                # Binary search for end where cum_dist >= d_start + target
+                lo, hi = i, n - 1
+                while lo < hi:
+                    mid = (lo + hi) // 2
+                    if cum_dist[mid] - d_start >= target:
+                        hi = mid
+                    else:
+                        lo = mid + 1
+                j = lo
+                if j < n and cum_dist[j] - d_start >= target:
+                    t = cum_time[j] - cum_time[i]
+                    if t < best_time and t > 0:
+                        best_time = t
+                        best_start = i
+                        best_end = j
+            if best_time < float("inf"):
+                best_speed = target / best_time
+                if best_speed > speed_cap or (best_end - best_start) < min_points:
+                    continue  # GPS artifact or too few data points
+                results[f"{target}m"] = {
+                    "target": target, "unit": "m",
+                    "time_s": round(best_time, 1),
+                    "speed_ms": round(best_speed, 2),
+                    "pace_min_km": round((1000 / best_speed) / 60, 2) if sport in ("Run", "Swim") else None,
+                    "speed_kmh": round(best_speed * 3.6, 1),
+                }
+        else:
+            # Time target: find max distance over that duration
+            best_dist = 0
+            for i in range(n):
+                t_start = cum_time[i]
+                lo, hi = i, n - 1
+                while lo < hi:
+                    mid = (lo + hi) // 2
+                    if cum_time[mid] - t_start >= target:
+                        hi = mid
+                    else:
+                        lo = mid + 1
+                j = lo
+                if j < n and cum_time[j] - t_start >= target:
+                    d = cum_dist[j] - cum_dist[i]
+                    if d > best_dist:
+                        best_dist = d
+                        best_start = i
+                        best_end = j
+            if best_dist > 0:
+                best_speed = best_dist / target
+                if best_speed > speed_cap or (best_end - best_start) < min_points:
+                    continue  # GPS artifact or too few data points
+                results[f"{target}s"] = {
+                    "target": target, "unit": "s",
+                    "distance_m": round(best_dist, 1),
+                    "speed_ms": round(best_speed, 2),
+                    "pace_min_km": round((1000 / best_speed) / 60, 2) if sport in ("Run", "Swim") else None,
+                    "speed_kmh": round(best_speed * 3.6, 1),
+                }
+
+    return results
+
+
 # --- Main processing ---
 def main():
     print("Loading activities CSV...")
@@ -1179,6 +1314,10 @@ def main():
         # Derived metrics
         derived = compute_derived_metrics(act, streams)
         act_data.update(derived)
+
+        # Best-effort computation per activity
+        if sport in ("Run", "Ride", "Swim", "Hike") and not is_manual and not is_indoor:
+            act_data["best_efforts"] = compute_best_efforts(streams, sport)
 
         all_activities.append(act_data)
         by_sport[sport].append(act_data)
@@ -1576,6 +1715,62 @@ def main():
     else:
         ctl_atl_tsb = []
 
+    # --- Phase 3.1: Speed-Duration curve aggregation ---
+    # Compile best-effort results across all activities per sport/year
+    speed_duration = {}
+    for sport_name in ["Run", "Ride", "Swim", "Hike"]:
+        sport_acts = [a for a in all_activities if a["sport"] == sport_name and a.get("best_efforts")]
+        if not sport_acts:
+            continue
+
+        # Collect all targets seen
+        all_targets = set()
+        for a in sport_acts:
+            for key in a["best_efforts"]:
+                all_targets.add(key)
+
+        # Best-ever for each target
+        best_ever = {}
+        by_year = defaultdict(lambda: defaultdict(list))
+        for target_key in all_targets:
+            best = None
+            for a in sport_acts:
+                be = a["best_efforts"].get(target_key)
+                if not be:
+                    continue
+                # Store by year
+                st = a.get("start_time_utc", "")
+                try:
+                    yr = datetime.fromisoformat(st.replace("Z", "+00:00") if "Z" in str(st) else str(st)).year
+                except:
+                    continue
+                speed = be.get("speed_ms", 0)
+                if speed > 0:
+                    by_year[target_key][yr].append({
+                        "activity_id": a["id"],
+                        "activity_name": a["name"],
+                        "date": st,
+                        "speed_ms": speed,
+                        "speed": be,
+                    })
+                # Check if this is the best-ever
+                if best is None:
+                    best = {"activity_id": a["id"], "activity_name": a["name"], "date": st, "speed": be}
+                else:
+                    cur_best = best["speed"].get("speed_ms", 0)
+                    if speed > cur_best:
+                        best = {"activity_id": a["id"], "activity_name": a["name"], "date": st, "speed": be}
+            if best:
+                best_ever[target_key] = best
+
+        # Sort targets numerically
+        sorted_targets = sorted(all_targets, key=lambda x: int(x.replace("m", "").replace("s", "")))
+        speed_duration[sport_name] = {
+            "targets": sorted_targets,
+            "best_ever": best_ever,
+            "by_year": {str(yr): {k: v for k, v in t.items()} for yr, t in by_year.items()},
+        }
+
     # Write output JSON files
     print("\nWriting output files...")
 
@@ -1598,6 +1793,7 @@ def main():
         "gap_trends": gap_trends,
         "sport_max_hr": sport_max_hr,
         "ctl_atl_tsb": ctl_atl_tsb,
+        "speed_duration": speed_duration,
         "sport_counts": {s: len(acts) for s, acts in by_sport.items()},
         "total_activities": len(all_activities),
         "date_range": {
