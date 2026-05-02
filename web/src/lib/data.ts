@@ -97,9 +97,20 @@ export interface Aggregate {
   yearly: YearlyEntry[];
   best_efforts: Record<string, BestEffort>;
   gear: GearEntry[];
+  gap_trends: Record<string, GapTrends>;
   sport_counts: Record<string, number>;
   total_activities: number;
   date_range: { first: string | null; last: string | null };
+}
+
+export interface GapTrends {
+  ref_date: string;
+  loess_split: { days: number; value: number }[];
+  loess_act: { days: number; value: number }[];
+  linear_split: { slope_per_month: number; intercept: number };
+  linear_act: { slope_per_month: number; intercept: number };
+  n_splits: number;
+  n_activities: number;
 }
 
 export interface BestEffort {

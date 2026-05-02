@@ -46,7 +46,7 @@ export default function Dashboard() {
 
         <section>
           <h2 className="text-xl font-bold mb-5">Grade Adjusted Pace &amp; Speed</h2>
-          <GAPCharts activities={activities} />
+          <GAPCharts activities={activities} trends={aggregate.gap_trends || {}} />
         </section>
 
         <section>
