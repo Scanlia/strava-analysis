@@ -53,9 +53,12 @@ function trendLine(slope: number, intercept: number, x1: number, x2: number) {
 }
 
 type TrendMode = "linear" | "ewma";
+type SegmentMode = "activity" | "segments";
 
 export default function GAPCharts({ activities }: { activities: Activity[] }) {
   const [trendMode, setTrendMode] = useState<TrendMode>("linear");
+  const [runSegmentMode, setRunSegmentMode] = useState<SegmentMode>("activity");
+  const [rideSegmentMode, setRideSegmentMode] = useState<SegmentMode>("activity");
   // --- Running GAP ---
   const runsWithGAP = activities
     .filter((a) => a.sport === "Run" && (a.gap_avg_pace_min_per_km ?? 0) > 0 && a.start_time_utc)
@@ -76,6 +79,20 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
     x: runPoints[i]?.x ?? runPoints[0]?.x,
     y: p.y,
   }));
+
+  // Segment-level GAP data for running (1km splits)
+  const runSegments: { x: number; y: number; grade: number }[] = [];
+  for (const a of runsWithGAP) {
+    if (a.gap_segments && a.start_time_utc) {
+      const ts = new Date(a.start_time_utc).getTime();
+      for (const seg of a.gap_segments) {
+        if (seg.gap_pace_min_km != null) {
+          runSegments.push({ x: ts, y: seg.gap_pace_min_km, grade: seg.grade_pct });
+        }
+      }
+    }
+  }
+  runSegments.sort((a, b) => a.x - b.x);
 
   const isRunImproving = runReg ? runReg.slope < 0 : false;
 
@@ -100,7 +117,57 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
     y: p.y,
   }));
 
+  // Segment-level GAS data for cycling (3km splits)
+  const rideSegments: { x: number; y: number; grade: number }[] = [];
+  for (const a of ridesWithGAS) {
+    if (a.gap_segments && a.start_time_utc) {
+      const ts = new Date(a.start_time_utc).getTime();
+      for (const seg of a.gap_segments) {
+        if (seg.gap_speed_kmh != null) {
+          rideSegments.push({ x: ts, y: seg.gap_speed_kmh, grade: seg.grade_pct });
+        }
+      }
+    }
+  }
+  rideSegments.sort((a, b) => a.x - b.x);
+
   const isRideImproving = rideReg ? rideReg.slope > 0 : false;
+
+  const runChartOptions = (mode: SegmentMode) => ({
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 14, font: { size: 11 } } },
+      tooltip: { callbacks: { label: (ctx: any) => {
+        if (mode === "segments") {
+          const g = runSegments[ctx.dataIndex]?.grade ?? 0;
+          return `GAP: ${(ctx.parsed.y ?? 0).toFixed(2)} min/km (grade: ${g > 0 ? "+" : ""}${g.toFixed(1)}%)`;
+        }
+        return `${ctx.dataset.label}: ${(ctx.parsed.y ?? 0).toFixed(2)} min/km`;
+      }}},
+    },
+    scales: {
+      x: { type: "time" as const, time: { unit: "month" as const, tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 15, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+      y: { reverse: true, title: { display: true, text: "min/km (faster ↑)", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+    },
+  });
+
+  const rideChartOptions = (mode: SegmentMode) => ({
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 14, font: { size: 11 } } },
+      tooltip: { callbacks: { label: (ctx: any) => {
+        if (mode === "segments") {
+          const g = rideSegments[ctx.dataIndex]?.grade ?? 0;
+          return `GAS: ${(ctx.parsed.y ?? 0).toFixed(1)} km/h (grade: ${g > 0 ? "+" : ""}${g.toFixed(1)}%)`;
+        }
+        return `${ctx.dataset.label}: ${(ctx.parsed.y ?? 0).toFixed(1)} km/h`;
+      }}},
+    },
+    scales: {
+      x: { type: "time" as const, time: { unit: "month" as const, tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 15, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+      y: { title: { display: true, text: "km/h — higher = faster", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+    },
+  });
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -111,19 +178,29 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
             Running — Grade Adjusted Pace vs Raw Pace
           </h3>
           <div className="flex gap-1">
+            <div className="flex gap-1 mr-2 border-r border-white/10 pr-2">
+              {(["activity", "segments"] as const).map((m) => (
+                <button key={m} onClick={() => setRunSegmentMode(m)}
+                  className={`px-2 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+                    runSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
+                  }`}>
+                  {m === "activity" ? "Per Activity" : "Per 1km"}
+                </button>
+              ))}
+            </div>
             {(["linear", "ewma"] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => setTrendMode(m)}
+              <button key={m} onClick={() => setTrendMode(m)}
                 className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
                   trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
-                }`}
-              >
+                }`}>
                 {m === "linear" ? "Linear" : "EWMA"}
               </button>
             ))}
           </div>
         </div>
+        <p className="text-[10px] text-gray-500 mb-2">
+          Grade-adjusted using Minetti metabolic model (k=0.033 uphill, k=0.017 downhill). GAP = pace × (1 + k·grade%).
+        </p>
         {runReg && (
           <p className="text-xs mb-3">
             <span className="font-semibold" style={{ color: isRunImproving ? "#8a9e8a" : "#9e8a8a" }}>
@@ -133,71 +210,95 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
           </p>
         )}
         <div className="h-80">
-          <Line
-            data={{
-              datasets: [
-                {
-                  label: "GAP (Grade Adjusted)",
-                  data: runPoints as any,
-                  borderColor: RUN_COLOR,
-                  backgroundColor: RUN_COLOR + "30",
-                  tension: 0,
-                  pointRadius: 5,
-                  showLine: false,
-                  order: 1,
-                },
-                ...(trendMode === "linear" && runTrendline.length > 0
-                  ? [{
-                      label: "Linear Trend",
-                      data: runTrendline as any,
-                      borderColor: RUN_COLOR + "cc",
-                      backgroundColor: "transparent",
-                      borderWidth: 2.5,
-                      borderDash: [6, 3],
-                      pointRadius: 0,
-                      fill: false,
-                      tension: 0,
-                      order: 2,
-                    }]
-                  : []),
-                ...(trendMode === "ewma" && runEWMA.length > 0
-                  ? [{
-                      label: "EWMA Trend",
-                      data: runEWMA as any,
-                      borderColor: RUN_COLOR + "cc",
-                      backgroundColor: "transparent",
-                      borderWidth: 2.5,
-                      pointRadius: 0,
-                      fill: false,
-                      tension: 0,
-                      order: 2,
-                    }]
-                  : []),
-                {
-                  label: "Raw Pace",
-                  data: runsWithGAP.map((a) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.avg_pace_min_per_km ?? null })) as any,
-                  borderColor: RUN_COLOR + "50",
-                  backgroundColor: "transparent",
-                  borderDash: [3, 3],
-                  tension: 0,
-                  pointRadius: 2,
-                  showLine: false,
-                  order: 3,
-                },
-              ],
-            }}
-            options={{
-              responsive: true, maintainAspectRatio: false,
-              plugins: {
-                legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 14, font: { size: 11 } } },
-                tooltip: { callbacks: { label: (ctx: any) => `${ctx.dataset.label}: ${(ctx.parsed.y ?? 0).toFixed(2)} min/km` } },
-              },
-              scales: {
-                x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 15, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
-                y: { reverse: true, title: { display: true, text: "min/km (faster ↑)", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
-              },
-            }}
-          />
+          {runSegmentMode === "activity" ? (
+            <Line
+              data={{
+                datasets: [
+                  {
+                    label: "GAP (Grade Adjusted)",
+                    data: runPoints as any,
+                    borderColor: RUN_COLOR,
+                    backgroundColor: RUN_COLOR + "30",
+                    tension: 0,
+                    pointRadius: 5,
+                    showLine: false,
+                    order: 1,
+                  },
+                  ...(trendMode === "linear" && runTrendline.length > 0
+                    ? [{
+                        label: "Linear Trend",
+                        data: runTrendline as any,
+                        borderColor: RUN_COLOR + "cc",
+                        backgroundColor: "transparent",
+                        borderWidth: 2.5,
+                        borderDash: [6, 3],
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0,
+                        order: 2,
+                      }]
+                    : []),
+                  ...(trendMode === "ewma" && runEWMA.length > 0
+                    ? [{
+                        label: "EWMA Trend",
+                        data: runEWMA as any,
+                        borderColor: RUN_COLOR + "cc",
+                        backgroundColor: "transparent",
+                        borderWidth: 2.5,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0,
+                        order: 2,
+                      }]
+                    : []),
+                  {
+                    label: "Raw Pace",
+                    data: runsWithGAP.map((a) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.avg_pace_min_per_km ?? null })) as any,
+                    borderColor: RUN_COLOR + "50",
+                    backgroundColor: "transparent",
+                    borderDash: [3, 3],
+                    tension: 0,
+                    pointRadius: 2,
+                    showLine: false,
+                    order: 3,
+                  },
+                ],
+              }}
+              options={runChartOptions(runSegmentMode)}
+            />
+          ) : (
+            <Line
+              data={{
+                datasets: [
+                  {
+                    label: "1km Segment GAP",
+                    data: runSegments as any,
+                    borderColor: RUN_COLOR,
+                    backgroundColor: RUN_COLOR + "66",
+                    tension: 0,
+                    pointRadius: 4,
+                    showLine: false,
+                    order: 2,
+                  },
+                  ...(trendMode === "linear" && runTrendline.length > 0
+                    ? [{
+                        label: "Linear Trend",
+                        data: runTrendline as any,
+                        borderColor: "#f59e0b",
+                        backgroundColor: "transparent",
+                        borderWidth: 2,
+                        borderDash: [6, 3],
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0,
+                        order: 1,
+                      }]
+                    : []),
+                ],
+              }}
+              options={runChartOptions(runSegmentMode)}
+            />
+          )}
         </div>
       </div>
 
@@ -208,20 +309,30 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
             Cycling — Grade Adjusted Speed vs Raw Speed
           </h3>
           <div className="flex gap-1">
+            <div className="flex gap-1 mr-2 border-r border-white/10 pr-2">
+              {(["activity", "segments"] as const).map((m) => (
+                <button key={m} onClick={() => setRideSegmentMode(m)}
+                  className={`px-2 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+                    rideSegmentMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
+                  }`}>
+                  {m === "activity" ? "Per Activity" : "Per 3km"}
+                </button>
+              ))}
+            </div>
             {(["linear", "ewma"] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => setTrendMode(m)}
+              <button key={m} onClick={() => setTrendMode(m)}
                 className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
                   trendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
-                }`}
-              >
+                }`}>
                 {m === "linear" ? "Linear" : "EWMA"}
               </button>
             ))}
           </div>
         </div>
-        {rideReg && (
+        <p className="text-[10px] text-gray-500 mb-2">
+          Grade-adjusted using gravitational model. GAS = speed × (1 + 0.033·grade%) for uphill.
+        </p>
+        {rideReg && rideSegmentMode === "activity" && (
           <p className="text-xs mb-3">
             <span className="font-semibold" style={{ color: isRideImproving ? "#8a9e8a" : "#9e8a8a" }}>
               {isRideImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
@@ -230,71 +341,95 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
           </p>
         )}
         <div className="h-80">
-          <Line
-            data={{
-              datasets: [
-                {
-                  label: "Grade Adj. Speed",
-                  data: ridePoints as any,
-                  borderColor: RIDE_COLOR,
-                  backgroundColor: RIDE_COLOR + "30",
-                  tension: 0,
-                  pointRadius: 5,
-                  showLine: false,
-                  order: 1,
-                },
-                ...(trendMode === "linear" && rideTrendline.length > 0
-                  ? [{
-                      label: "Linear Trend",
-                      data: rideTrendline as any,
-                      borderColor: RIDE_COLOR + "cc",
-                      backgroundColor: "transparent",
-                      borderWidth: 2.5,
-                      borderDash: [6, 3],
-                      pointRadius: 0,
-                      fill: false,
-                      tension: 0,
-                      order: 2,
-                    }]
-                  : []),
-                ...(trendMode === "ewma" && rideEWMA.length > 0
-                  ? [{
-                      label: "EWMA Trend",
-                      data: rideEWMA as any,
-                      borderColor: RIDE_COLOR + "cc",
-                      backgroundColor: "transparent",
-                      borderWidth: 2.5,
-                      pointRadius: 0,
-                      fill: false,
-                      tension: 0,
-                      order: 2,
-                    }]
-                  : []),
-                {
-                  label: "Raw Speed",
-                  data: ridesWithGAS.map((a) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.avg_speed_kmh ?? null })) as any,
-                  borderColor: RIDE_COLOR + "50",
-                  backgroundColor: "transparent",
-                  borderDash: [3, 3],
-                  tension: 0,
-                  pointRadius: 2,
-                  showLine: false,
-                  order: 3,
-                },
-              ],
-            }}
-            options={{
-              responsive: true, maintainAspectRatio: false,
-              plugins: {
-                legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 14, font: { size: 11 } } },
-                tooltip: { callbacks: { label: (ctx: any) => `${ctx.dataset.label}: ${(ctx.parsed.y ?? 0).toFixed(1)} km/h` } },
-              },
-              scales: {
-                x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 15, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
-                y: { title: { display: true, text: "km/h — higher = faster", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
-              },
-            }}
-          />
+          {rideSegmentMode === "activity" ? (
+            <Line
+              data={{
+                datasets: [
+                  {
+                    label: "Grade Adj. Speed",
+                    data: ridePoints as any,
+                    borderColor: RIDE_COLOR,
+                    backgroundColor: RIDE_COLOR + "30",
+                    tension: 0,
+                    pointRadius: 5,
+                    showLine: false,
+                    order: 1,
+                  },
+                  ...(trendMode === "linear" && rideTrendline.length > 0
+                    ? [{
+                        label: "Linear Trend",
+                        data: rideTrendline as any,
+                        borderColor: RIDE_COLOR + "cc",
+                        backgroundColor: "transparent",
+                        borderWidth: 2.5,
+                        borderDash: [6, 3],
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0,
+                        order: 2,
+                      }]
+                    : []),
+                  ...(trendMode === "ewma" && rideEWMA.length > 0
+                    ? [{
+                        label: "EWMA Trend",
+                        data: rideEWMA as any,
+                        borderColor: RIDE_COLOR + "cc",
+                        backgroundColor: "transparent",
+                        borderWidth: 2.5,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0,
+                        order: 2,
+                      }]
+                    : []),
+                  {
+                    label: "Raw Speed",
+                    data: ridesWithGAS.map((a) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.avg_speed_kmh ?? null })) as any,
+                    borderColor: RIDE_COLOR + "50",
+                    backgroundColor: "transparent",
+                    borderDash: [3, 3],
+                    tension: 0,
+                    pointRadius: 2,
+                    showLine: false,
+                    order: 3,
+                  },
+                ],
+              }}
+              options={rideChartOptions(rideSegmentMode)}
+            />
+          ) : (
+            <Line
+              data={{
+                datasets: [
+                  {
+                    label: "3km Segment GAS",
+                    data: rideSegments as any,
+                    borderColor: RIDE_COLOR,
+                    backgroundColor: RIDE_COLOR + "66",
+                    tension: 0,
+                    pointRadius: 4,
+                    showLine: false,
+                    order: 2,
+                  },
+                  ...(trendMode === "linear" && rideTrendline.length > 0
+                    ? [{
+                        label: "Linear Trend",
+                        data: rideTrendline as any,
+                        borderColor: "#f59e0b",
+                        backgroundColor: "transparent",
+                        borderWidth: 2,
+                        borderDash: [6, 3],
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0,
+                        order: 1,
+                      }]
+                    : []),
+                ],
+              }}
+              options={rideChartOptions(rideSegmentMode)}
+            />
+          )}
         </div>
       </div>
 

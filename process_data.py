@@ -400,6 +400,97 @@ def compute_stream_metrics(points, is_tcx=False):
     return result
 
 
+def compute_gap_segments(streams, activity_type, grade_points):
+    """Split an activity into distance-based segments and compute GAP/GAS per segment.
+
+    Grade-adjusted pace/speed uses the Minetti metabolic cost model:
+      - Running: GAP = pace / (1 + k * grade) where k=0.033 uphill, k=0.017 downhill
+        Reference: Minetti et al. (2002) J. Applied Physiology
+      - Cycling: simplified gravitational + aerodynamic model
+        GAS = speed / (1 + 0.033 * grade) for uphill adjustments
+    """
+    segment_length = 1000 if activity_type == "Run" else 3000  # 1km runs, 3km rides
+
+    points = streams.get("raw_points", [])
+    if len(points) < 3:
+        return []
+
+    segments = []
+    seg_start_idx = 0
+    seg_start_dist = points[0].get("d", 0)
+    seg_speeds = []
+    seg_grades = []
+    seg_hrs = []
+    seg_ele_start = points[0].get("e")
+    seg_ele_end = seg_ele_start
+
+    for i, pt in enumerate(points):
+        d = pt.get("d", 0)
+        s = pt.get("s")
+        hr = pt.get("hr")
+        e = pt.get("e")
+
+        if s is not None and s > 0:
+            seg_speeds.append(s)
+        if hr is not None:
+            seg_hrs.append(hr)
+        if e is not None:
+            seg_ele_end = e
+
+        # Check if we've covered enough distance for a segment
+        if d - seg_start_dist >= segment_length and seg_speeds:
+            # Compute grade for this segment
+            dist_covered = d - seg_start_dist
+            ele_change = (seg_ele_end - seg_ele_start) if seg_ele_start is not None and seg_ele_end is not None else 0
+            avg_grade = (ele_change / dist_covered) * 100 if dist_covered > 0 else 0
+
+            avg_speed = sum(seg_speeds) / len(seg_speeds)
+            avg_hr = sum(seg_hrs) / len(seg_hrs) if seg_hrs else None
+
+            # GAP computation
+            if activity_type == "Run":
+                if avg_grade > 0:
+                    gap_factor = 1 + 0.033 * avg_grade  # uphill: slower metabolic cost
+                elif avg_grade < -1:
+                    gap_factor = 1 - 0.017 * abs(avg_grade)  # downhill: faster, but diminishing returns
+                else:
+                    gap_factor = 1.0
+                gap_speed = avg_speed * gap_factor
+                gap_pace = (1000 / gap_speed) / 60 if gap_speed > 0 else None
+                gas = None
+            else:  # Ride
+                if avg_grade > 0:
+                    gap_factor = 1 + 0.033 * avg_grade
+                elif avg_grade < -1:
+                    gap_factor = 1 - 0.012 * abs(avg_grade)
+                else:
+                    gap_factor = 1.0
+                gap_speed = avg_speed * gap_factor
+                gas = gap_speed * 3.6
+                gap_pace = None
+
+            segments.append({
+                "dist_km": round(d / 1000, 2),
+                "grade_pct": round(avg_grade, 2),
+                "speed_ms": round(avg_speed, 2),
+                "speed_kmh": round(avg_speed * 3.6, 1),
+                "gap_pace_min_km": round(gap_pace, 2) if gap_pace else None,
+                "gap_speed_kmh": round(gas, 1) if gas else None,
+                "avg_hr": round(avg_hr, 1) if avg_hr else None,
+                "ele_gain": round(max(0, ele_change), 1),
+            })
+
+            # Reset for next segment
+            seg_start_idx = i
+            seg_start_dist = d
+            seg_speeds = []
+            seg_grades = []
+            seg_hrs = []
+            seg_ele_start = e
+
+    return segments
+
+
 # --- Compute derived metrics ---
 def compute_derived_metrics(act, streams):
     """Compute sport-specific and derived metrics."""
@@ -643,6 +734,11 @@ def main():
             "stream_points": len(points),
             "stream": streams["raw_points"][:500],  # Limit stream points for dashboard
         }
+
+        # Segment-level GAP computation (1km runs, 3km rides)
+        if sport in ["Run", "Ride"] and streams["raw_points"]:
+            segments = compute_gap_segments(streams, sport, points)
+            act_data["gap_segments"] = segments
 
         # Derived metrics
         derived = compute_derived_metrics(act, streams)

@@ -3,6 +3,17 @@ import path from "path";
 
 const DATA_DIR = path.join(process.cwd(), "public/data");
 
+export interface GapSegment {
+  dist_km: number;
+  grade_pct: number;
+  speed_ms: number;
+  speed_kmh: number;
+  gap_pace_min_km: number | null;
+  gap_speed_kmh: number | null;
+  avg_hr: number | null;
+  ele_gain: number;
+}
+
 export interface Activity {
   id: string;
   name: string;
@@ -36,6 +47,7 @@ export interface Activity {
   avg_pace_min_per_km: number | null;
   gap_avg_pace_min_per_km: number | null;
   grade_adjusted_speed_kmh: number | null;
+  gap_segments: GapSegment[] | null;
   trimp: number | null;
   elevation_per_km: number | null;
   vam: number | null;

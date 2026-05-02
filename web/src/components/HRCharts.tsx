@@ -228,7 +228,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                     tooltip: { callbacks: { label: (ctx: any) => `HR: ${ctx.parsed.y ?? 0} bpm` } },
                   },
                   scales: {
-                    x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 20, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+                    x: { type: "time" as const, time: { unit: "month" as const, tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 20, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                     y: { title: { display: true, text: "bpm", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
@@ -288,7 +288,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                     tooltip: { callbacks: { label: (ctx: any) => `EF: ${(ctx.parsed.y ?? 0).toFixed(2)}` } },
                   },
                   scales: {
-                    x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 20, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+                    x: { type: "time" as const, time: { unit: "month" as const, tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 20, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                     y: { title: { display: true, text: "Efficiency Factor", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
