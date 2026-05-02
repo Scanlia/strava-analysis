@@ -71,7 +71,8 @@ export default function VolumeCharts({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Distance by Sport (km)</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Distance by Sport</h3>
+          <p className="text-xs text-gray-500 mb-3">Stacked km per {view === "monthly" ? "month" : view === "weekly" ? "week" : "year"}.</p>
           <div className="h-80">
             <Bar
               data={{
@@ -91,7 +92,8 @@ export default function VolumeCharts({
           </div>
         </div>
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Time by Sport (hours)</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Time by Sport</h3>
+          <p className="text-xs text-gray-500 mb-3">Stacked hours per {view === "monthly" ? "month" : view === "weekly" ? "week" : "year"}.</p>
           <div className="h-80">
             <Bar
               data={{
@@ -114,7 +116,8 @@ export default function VolumeCharts({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Elevation Gain (m)</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Elevation Gain</h3>
+          <p className="text-xs text-gray-500 mb-3">Stacked metres per {view === "monthly" ? "month" : view === "weekly" ? "week" : "year"}.</p>
           <div className="h-80">
             <Bar
               data={{
@@ -134,7 +137,8 @@ export default function VolumeCharts({
           </div>
         </div>
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Relative Effort</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Relative Effort</h3>
+          <p className="text-xs text-gray-500 mb-3">Strava Suffer Score — HR-based effort per {view === "monthly" ? "month" : view === "weekly" ? "week" : "year"}.</p>
           <div className="h-80">
             <Line
               data={{

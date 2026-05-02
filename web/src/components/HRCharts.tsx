@@ -2,16 +2,8 @@
 
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  PointElement,
-  ArcElement,
-  TimeScale,
+  CategoryScale, LinearScale, BarElement, LineElement,
+  Title, Tooltip, Legend, PointElement, ArcElement, TimeScale,
 } from "chart.js";
 import "chartjs-adapter-luxon";
 import { Bar, Doughnut, Line, Scatter } from "react-chartjs-2";
@@ -27,8 +19,29 @@ function fmtDate(iso: string | null): string {
   return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
+function linearRegression(data: { x: number; y: number }[]): { slope: number; intercept: number; r2: number } | null {
+  if (data.length < 2) return null;
+  const n = data.length;
+  let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
+  for (const p of data) {
+    sumX += p.x;
+    sumY += p.y;
+    sumXY += p.x * p.y;
+    sumX2 += p.x * p.x;
+    sumY2 += p.y * p.y;
+  }
+  const denom = n * sumX2 - sumX * sumX;
+  if (denom === 0) return null;
+  const slope = (n * sumXY - sumX * sumY) / denom;
+  const intercept = (sumY - slope * sumX) / n;
+  const rNum = n * sumXY - sumX * sumY;
+  const rDen = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+  const r2 = rDen !== 0 ? (rNum / rDen) ** 2 : 0;
+  return { slope, intercept, r2 };
+}
+
 export default function HRCharts({ activities }: { activities: Activity[] }) {
-  // --- HR scatter (time scale for proper ordering) ---
+  // --- HR scatter ---
   const withHR = activities
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
@@ -41,7 +54,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
         label: s,
         data: sportActs.map((a) => {
           const d = a.start_time_utc ? new Date(a.start_time_utc).getTime() : null;
-          return d ? { x: d, y: a.avg_hr, name: a.name, date: fmtDate(a.start_time_utc) } : null;
+          return d ? { x: d, y: a.avg_hr } : null;
         }).filter(Boolean),
         borderColor: COLORS[s],
         backgroundColor: COLORS[s],
@@ -51,7 +64,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
       };
     });
 
-  // --- EF trend per sport with proper line ---
+  // --- EF trend per sport with linear trendlines ---
   const efActs = activities
     .filter((a) => (a.efficiency_factor ?? 0) > 0 && a.start_time_utc)
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
@@ -63,16 +76,48 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
     if (ts) efBySport[a.sport].push({ x: ts, y: a.efficiency_factor! });
   }
 
-  const efDatasets = Object.entries(efBySport).map(([sport, data]) => ({
-    label: sport + " EF",
-    data: data.sort((a, b) => a.x - b.x),
-    borderColor: COLORS[sport] || "#8888a0",
-    backgroundColor: (COLORS[sport] || "#8888a0") + "30",
-    tension: 0.3,
-    pointRadius: 4,
-    showLine: true,
-    fill: false,
-  }));
+  // Compute trendlines per sport
+  const efRegressions: Record<string, { slope: number; intercept: number } | null> = {};
+  for (const [sport, data] of Object.entries(efBySport)) {
+    const sorted = data.sort((a, b) => a.x - b.x);
+    const reg = linearRegression(sorted.map((p, i) => ({ x: i, y: p.y })));
+    efRegressions[sport] = reg;
+  }
+
+  const efDatasets = Object.entries(efBySport).flatMap(([sport, data]) => {
+    const sorted = data.sort((a, b) => a.x - b.x);
+    const datasets: any[] = [{
+      label: sport + " EF",
+      data: sorted,
+      borderColor: COLORS[sport] || "#8888a0",
+      backgroundColor: (COLORS[sport] || "#8888a0") + "30",
+      tension: 0.3,
+      pointRadius: 4,
+      showLine: true,
+      fill: false,
+      order: 1,
+    }];
+    const reg = efRegressions[sport];
+    if (reg && sorted.length >= 2) {
+      const isImproving = reg.slope > 0; // higher EF = better
+      datasets.push({
+        label: sport + " Trend",
+        data: [
+          { x: sorted[0].x, y: reg.intercept },
+          { x: sorted[sorted.length - 1].x, y: reg.intercept + reg.slope * (sorted.length - 1) },
+        ],
+        borderColor: isImproving ? "#4ade80" : "#f87171",
+        backgroundColor: "transparent",
+        borderWidth: 2.5,
+        borderDash: [6, 3],
+        pointRadius: 0,
+        fill: false,
+        tension: 0,
+        order: 2,
+      });
+    }
+    return datasets;
+  });
 
   // --- HR zones ---
   const zones: Record<string, number> = { Z1: 0, Z2: 0, Z3: 0, Z4: 0, Z5: 0 };
@@ -86,10 +131,15 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
 
   const decouplingLabels = decouplingActs.map((a) =>
-    `${a.sport === 'Run' ? '🏃' : a.sport === 'Ride' ? '🚴' : a.sport === 'Hike' ? '🥾' : '🏊'} ${a.name.slice(0, 18)} (${fmtDate(a.start_time_utc)})`
+    `${a.sport === "Run" ? "🏃" : a.sport === "Ride" ? "🚴" : a.sport === "Hike" ? "🥾" : "🏊"} ${a.name.slice(0, 18)} (${fmtDate(a.start_time_utc)})`
   );
   const decouplingValues = decouplingActs.map((a) => a.aerobic_decoupling_pct ?? 0);
-  const decouplingColors = decouplingValues.map((v) => (v > 5 ? "#ff6b6b" : "#4ecdc4"));
+  const decouplingColors = decouplingValues.map((v) => (v > 5 ? "#f87171" : "#4ade80"));
+
+  // Decoupling trendline
+  const decoupPoints = decouplingActs.map((a, i) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.aerobic_decoupling_pct! }));
+  const decoupReg = linearRegression(decoupPoints.map((p, i) => ({ x: i, y: p.y })));
+  const isDecoupImproving = decoupReg ? decoupReg.slope < 0 : false; // lower = fitter
 
   // --- TRIMP ---
   const trimpActs = activities
@@ -100,27 +150,23 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        {/* HR Scatter */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Average HR by Activity</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Average HR by Activity</h3>
+          <p className="text-xs text-gray-400 mb-3">Per-activity average heart rate. Lower HR at same pace = improved fitness.</p>
           <div className="h-80">
             {hrDatasets.length > 0 ? (
               <Scatter
                 data={{ datasets: hrDatasets }}
                 options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
+                  responsive: true, maintainAspectRatio: false,
                   plugins: {
-                    legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 16 } },
+                    legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 16, font: { size: 11 } } },
                     tooltip: { callbacks: { label: (ctx: any) => `HR: ${ctx.parsed.y ?? 0} bpm` } },
                   },
                   scales: {
-                    x: {
-                      type: "time",
-                      time: { unit: "month", tooltipFormat: "MMM d, yyyy" },
-                      ticks: { color: "#8888a0", maxTicksLimit: 20 },
-                      grid: { color: "#2a2a3a55" },
-                    },
-                    y: { title: { display: true, text: "bpm", color: "#8888a0" }, ticks: { color: "#8888a0" }, grid: { color: "#2a2a3a55" } },
+                    x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 20, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+                    y: { title: { display: true, text: "bpm", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
               />
@@ -129,27 +175,37 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
             )}
           </div>
         </div>
+
+        {/* EF Trend */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Efficiency Factor Trend (pace/HR)</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Efficiency Factor Trend</h3>
+          <p className="text-xs text-gray-400 mb-3">
+            EF = speed ÷ HR. Higher EF = more speed per heartbeat = fitter.
+            {Object.entries(efRegressions).filter(([, r]) => r).map(([sport, reg]) => {
+              const improving = reg!.slope > 0;
+              return (
+                <span key={sport} className="ml-3">
+                  <span style={{ color: COLORS[sport] }}>{sport}</span>:{" "}
+                  <span className={improving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                    {improving ? "↑" : "↓"} {Math.abs(reg!.slope).toFixed(3)}/run
+                  </span>
+                </span>
+              );
+            })}
+          </p>
           <div className="h-80">
             {efDatasets.length > 0 ? (
               <Line
                 data={{ datasets: efDatasets }}
                 options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
+                  responsive: true, maintainAspectRatio: false,
                   plugins: {
-                    legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 16 } },
+                    legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 14, font: { size: 10 } } },
                     tooltip: { callbacks: { label: (ctx: any) => `EF: ${(ctx.parsed.y ?? 0).toFixed(2)}` } },
                   },
                   scales: {
-                    x: {
-                      type: "time",
-                      time: { unit: "month", tooltipFormat: "MMM d, yyyy" },
-                      ticks: { color: "#8888a0", maxTicksLimit: 20 },
-                      grid: { color: "#2a2a3a55" },
-                    },
-                    y: { title: { display: true, text: "Efficiency Factor", color: "#8888a0" }, ticks: { color: "#8888a0" }, grid: { color: "#2a2a3a55" } },
+                    x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 20, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+                    y: { title: { display: true, text: "Efficiency Factor", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
               />
@@ -161,32 +217,43 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* HR Zones */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">HR Zone Distribution</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">HR Zone Distribution</h3>
+          <p className="text-xs text-gray-400 mb-3">Total time-in-zone across all activities with HR data.</p>
           <div className="h-72">
             <Doughnut
               data={{
                 labels: ["Z1 Recovery", "Z2 Endurance", "Z3 Tempo", "Z4 Threshold", "Z5 Max"],
-                datasets: [
-                  {
-                    data: [zones.Z1 || 0, zones.Z2 || 0, zones.Z3 || 0, zones.Z4 || 0, zones.Z5 || 0],
-                    backgroundColor: ZONE_COLORS,
-                    borderColor: "#141420",
-                  },
-                ],
+                datasets: [{
+                  data: [zones.Z1 || 0, zones.Z2 || 0, zones.Z3 || 0, zones.Z4 || 0, zones.Z5 || 0],
+                  backgroundColor: ZONE_COLORS,
+                  borderColor: "#141420",
+                }],
               }}
               options={{
-                responsive: true,
-                maintainAspectRatio: false,
+                responsive: true, maintainAspectRatio: false,
                 plugins: {
-                  legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 8, font: { size: 10 } } },
+                  legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 10, font: { size: 10 } } },
                 },
               }}
             />
           </div>
         </div>
+
+        {/* Aerobic Decoupling */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Aerobic Decoupling (lower = fitter)</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Aerobic Decoupling</h3>
+          <p className="text-xs text-gray-400 mb-3">
+            Pace/HR drift — first half vs second half. Lower % = better endurance.
+            {decoupReg && (
+              <span className="ml-2">
+                Trend: <span className={isDecoupImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                  {isDecoupImproving ? "↑" : "↓"} improving
+                </span> ({Math.abs(decoupReg.slope).toFixed(3)}%/activity)
+              </span>
+            )}
+          </p>
           <div className="h-72">
             {decouplingActs.length > 0 ? (
               <Bar
@@ -195,15 +262,14 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                   datasets: [{ data: decouplingValues, backgroundColor: decouplingColors, borderRadius: 4 }],
                 }}
                 options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
+                  responsive: true, maintainAspectRatio: false,
                   plugins: {
                     legend: { display: false },
                     tooltip: { callbacks: { label: (ctx) => `Decoupling: ${(ctx.parsed.y ?? 0).toFixed(2)}%` } },
                   },
                   scales: {
-                    x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 12, font: { size: 9 } }, grid: { color: "#2a2a3a55" } },
-                    y: { title: { display: true, text: "%", color: "#8888a0" }, ticks: { color: "#8888a0" }, grid: { color: "#2a2a3a55" } },
+                    x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 10, font: { size: 9 } }, grid: { color: "#2a2a3a55" } },
+                    y: { title: { display: true, text: "%", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
               />
@@ -212,31 +278,33 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
             )}
           </div>
         </div>
+
+        {/* TRIMP */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-4">Training Load (TRIMP)</h3>
+          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Training Load (TRIMP)</h3>
+          <p className="text-xs text-gray-400 mb-3">
+            Training Impulse — HR-based training load score. Accounts for duration × intensity. Higher = harder session.
+          </p>
           <div className="h-72">
             {trimpActs.length > 0 ? (
               <Bar
                 data={{
                   labels: trimpLabels,
-                  datasets: [
-                    {
-                      data: trimpActs.map((a) => a.trimp ?? 0),
-                      backgroundColor: trimpActs.map((a) => COLORS[a.sport] || "#8888a0"),
-                      borderRadius: 3,
-                    },
-                  ],
+                  datasets: [{
+                    data: trimpActs.map((a) => a.trimp ?? 0),
+                    backgroundColor: trimpActs.map((a) => COLORS[a.sport] || "#8888a0"),
+                    borderRadius: 3,
+                  }],
                 }}
                 options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
+                  responsive: true, maintainAspectRatio: false,
                   plugins: {
                     legend: { display: false },
                     tooltip: { callbacks: { label: (ctx) => `TRIMP: ${(ctx.parsed.y ?? 0).toFixed(1)}` } },
                   },
                   scales: {
-                    x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 12, font: { size: 9 } }, grid: { color: "#2a2a3a55" } },
-                    y: { ticks: { color: "#8888a0" }, grid: { color: "#2a2a3a55" } },
+                    x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 10, font: { size: 9 } }, grid: { color: "#2a2a3a55" } },
+                    y: { ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
               />
