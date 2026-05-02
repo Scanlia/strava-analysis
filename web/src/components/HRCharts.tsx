@@ -245,7 +245,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                 return (
                   <div key={sport}>
                     <span style={{ color: COLORS[sport] || "#888" }}>● {sport}</span>:{" "}
-                    <span className={improving ? "text-green-400/25 font-semibold" : "text-red-400/25 font-semibold"}>
+                    <span className={improving ? "text-green-200 font-semibold" : "text-red-200 font-semibold"}>
                       {improving ? "getting fitter" : "declining"} {improving ? "✅" : "⚠️"}
                     </span>{" "}
                     <span className="text-gray-500">({Math.abs(reg!.slope).toFixed(3)} EF/{label})</span>
@@ -326,7 +326,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
           </p>
           {decoupReg && (
             <p className="text-xs mb-3">
-              <span className={isDecoupImproving ? "text-green-400/25 font-semibold" : "text-red-400/25 font-semibold"}>
+              <span className={isDecoupImproving ? "text-green-200 font-semibold" : "text-red-200 font-semibold"}>
                 {isDecoupImproving ? "Improving endurance ✅" : "Declining endurance ⚠️"}
               </span>
               <span className="text-gray-500"> — changing by {Math.abs(decoupReg.slope).toFixed(3)}%/activity</span>

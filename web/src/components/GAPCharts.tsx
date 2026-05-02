@@ -126,7 +126,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
         </div>
         {runReg && (
           <p className="text-xs mb-3">
-            <span className={isRunImproving ? "text-green-400/25 font-semibold" : "text-red-400/25 font-semibold"}>
+            <span className={isRunImproving ? "text-green-200 font-semibold" : "text-red-200 font-semibold"}>
               {isRunImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
             </span>
             <span className="text-gray-500"> — GAP changing by {Math.abs(runReg.slope).toFixed(3)} min/km per run</span>
@@ -223,7 +223,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
         </div>
         {rideReg && (
           <p className="text-xs mb-3">
-            <span className={isRideImproving ? "text-green-400/25 font-semibold" : "text-red-400/25 font-semibold"}>
+            <span className={isRideImproving ? "text-green-200 font-semibold" : "text-red-200 font-semibold"}>
               {isRideImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
             </span>
             <span className="text-gray-500"> — GAS changing by {Math.abs(rideReg.slope).toFixed(3)} km/h per ride</span>
