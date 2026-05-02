@@ -38,6 +38,29 @@ ZONE_RANGES = {
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
+def parse_csv_date_utc(date_str):
+    """Parse the Strava CSV date string (assumed local time) and return UTC ISO string."""
+    if not date_str:
+        return None
+    try:
+        # Format: "Apr 29, 2026, 5:31:44 PM"
+        dt = datetime.strptime(date_str, "%b %d, %Y, %I:%M:%S %p")
+        # Assume it's local time (guess based on activities being in Australia)
+        # Try common Australian timezones
+        for tz_offset in [10, 11, 8, 9.5]:  # AEST, AEDT, AWST, ACST
+            try:
+                tz = timezone(timedelta(hours=tz_offset))
+                dt_tz = dt.replace(tzinfo=tz)
+                return dt_tz.isoformat()
+            except:
+                continue
+        # Fallback: treat as UTC
+        dt_utc = dt.replace(tzinfo=timezone.utc)
+        return dt_utc.isoformat()
+    except (ValueError, TypeError):
+        return None
+
+
 # --- Haversine distance calculation ---
 def haversine(lat1, lon1, lat2, lon2):
     R = 6371000  # Earth radius in meters
@@ -510,25 +533,38 @@ def main():
 
         print(f"[{i+1}/{len(activities)}] Processing {sport}: {name} (ID: {aid})")
 
-        # Find the activity file
+        # Find the activity file - try by filename first, then by activity ID
         filepath = None
-        for ext in [".gpx", ".gpx.gz", ".tcx", ".tcx.gz", ".fit"]:
-            candidate = os.path.join(ACTIVITIES_DIR, f"{aid}{ext}")
-            if os.path.exists(candidate):
-                filepath = candidate
+        csv_filename = filename.replace("activities/", "") if filename else ""
+        extensions = [".gpx", ".gpx.gz", ".tcx", ".tcx.gz", ".fit", ".fit.gz"]
+        for base in [csv_filename, aid] if csv_filename else [aid]:
+            for ext in extensions:
+                # Try with extension appended
+                candidate = os.path.join(ACTIVITIES_DIR, base if "." in os.path.splitext(base)[1] else base + ext)
+                if os.path.exists(candidate):
+                    filepath = candidate
+                    break
+            if filepath:
                 break
 
         is_tcx = False
         points = []
         if filepath:
-            if filepath.endswith(".gpx") or filepath.endswith(".gpx.gz"):
+            ext_lower = filepath.lower()
+            if ext_lower.endswith(".gpx") or ext_lower.endswith(".gpx.gz"):
                 points = parse_gpx(filepath)
-            elif filepath.endswith(".tcx") or filepath.endswith(".tcx.gz"):
+            elif ext_lower.endswith(".tcx") or ext_lower.endswith(".tcx.gz"):
                 points = parse_tcx(filepath)
                 is_tcx = True
+            elif ext_lower.endswith(".fit") or ext_lower.endswith(".fit.gz"):
+                # FIT binary files - skip parsing but mark as found
+                pass
 
         # Compute stream metrics
         streams = compute_stream_metrics(points, is_tcx)
+
+        # Parse UTC from CSV start time as fallback
+        csv_start_time = parse_csv_date_utc(act.get("Activity Date", "").strip())
 
         # Parse CSV numeric fields
         def safe_float(val, default=None):
@@ -554,10 +590,10 @@ def main():
             "description": description,
             "sport": sport,
             "start_time_local": act.get("Activity Date", "").strip(),
-            "start_time_utc": streams["start_time"],
-            "elapsed_time_sec": safe_float(act.get("Elapsed Time", "0"), 0) or streams["elapsed_time"],
-            "moving_time_sec": safe_float(act.get("Moving Time", "0"), 0) or streams["moving_time"],
-            "distance_m": streams["cumulative_distance"],
+            "start_time_utc": streams["start_time"] or csv_start_time,
+            "elapsed_time_sec": safe_float(act.get("Elapsed Time", "0"), 0) or streams["elapsed_time"] or 0,
+            "moving_time_sec": safe_float(act.get("Moving Time", "0"), 0) or streams["moving_time"] or 0,
+            "distance_m": streams["cumulative_distance"] or safe_float(act.get("Distance", "0"), 0),
             "csv_distance_m": safe_float(act.get("Distance", "0"), 0),
             "max_speed": streams["max_speed"] or safe_float(act.get("Max Speed", "0")),
             "avg_speed": streams["avg_speed"] or safe_float(act.get("Average Speed", "0")),
