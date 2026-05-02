@@ -41,7 +41,7 @@ function linearRegression(data: { x: number; y: number }[]): { slope: number; in
   return { slope, intercept, r2 };
 }
 
-function ewma(points: { x: number; y: number }[], alpha: number = 0.05): { x: number; y: number }[] {
+function ewma(points: { x: number; y: number }[], alpha: number = 0.02): { x: number; y: number }[] {
   if (points.length === 0) return [];
   const result: { x: number; y: number }[] = [{ x: points[0].x, y: points[0].y }];
   for (let i = 1; i < points.length; i++) {

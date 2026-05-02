@@ -26,7 +26,7 @@ function linearRegression(data: { x: number; y: number }[]): { slope: number; in
   return { slope, intercept, r2: rDen !== 0 ? (rNum / rDen) ** 2 : 0 };
 }
 
-function ewma(points: { x: number; y: number }[], alpha = 0.05): { x: number; y: number }[] {
+function ewma(points: { x: number; y: number }[], alpha = 0.02): { x: number; y: number }[] {
   if (!points.length) return [];
   const result = [{ x: points[0].x, y: points[0].y }];
   for (let i = 1; i < points.length; i++) result.push({ x: points[i].x, y: alpha * points[i].y + (1 - alpha) * result[i - 1].y });
