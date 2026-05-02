@@ -41,7 +41,7 @@ function linearRegression(data: { x: number; y: number }[]): { slope: number; in
   return { slope, intercept, r2 };
 }
 
-function ewma(points: { x: number; y: number }[], alpha: number = 0.3): { x: number; y: number }[] {
+function ewma(points: { x: number; y: number }[], alpha: number = 0.15): { x: number; y: number }[] {
   if (points.length === 0) return [];
   const result: { x: number; y: number }[] = [{ x: points[0].x, y: points[0].y }];
   for (let i = 1; i < points.length; i++) {
@@ -57,6 +57,7 @@ type TrendMode = "linear" | "ewma";
 
 export default function HRCharts({ activities }: { activities: Activity[] }) {
   const [efTrendMode, setEfTrendMode] = useState<TrendMode>("linear");
+  const [decTrendMode, setDecTrendMode] = useState<TrendMode>("linear");
   // --- HR scatter ---
   const withHR = activities
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
@@ -166,9 +167,13 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
   const decouplingColors = decouplingValues.map((v) => (v > 5 ? "#f87171" : "#4ade80"));
 
   // Decoupling trendline
-  const decoupPoints = decouplingActs.map((a, i) => ({ x: new Date(a.start_time_utc!).getTime(), y: a.aerobic_decoupling_pct! }));
-  const decoupReg = linearRegression(decoupPoints.map((p, i) => ({ x: i, y: p.y })));
-  const isDecoupImproving = decoupReg ? decoupReg.slope < 0 : false; // lower = fitter
+  const decoupYValues = decouplingActs.map((a) => a.aerobic_decoupling_pct ?? 0);
+  const decoupReg = linearRegression(decoupYValues.map((y, i) => ({ x: i, y })));
+  const isDecoupImproving = decoupReg ? decoupReg.slope < 0 : false;
+  const decoupTrendLine = decoupReg && decoupYValues.length >= 2
+    ? [decoupReg.intercept, decoupReg.intercept + decoupReg.slope * (decoupYValues.length - 1)]
+    : [];
+  const decoupEWMALine = ewma(decoupYValues.map((y, i) => ({ x: i, y }))).map((p) => p.y);
 
   // --- TRIMP ---
   const trimpActs = activities
@@ -293,7 +298,22 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
 
         {/* Aerobic Decoupling */}
         <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
-          <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Aerobic Decoupling</h3>
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">Aerobic Decoupling</h3>
+            <div className="flex gap-1">
+              {(["linear", "ewma"] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => setDecTrendMode(m)}
+                  className={`px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+                    decTrendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+                  }`}
+                >
+                  {m === "linear" ? "Linear" : "EWMA"}
+                </button>
+              ))}
+            </div>
+          </div>
           <p className="text-xs text-gray-400 mb-3">
             Pace/HR drift — first half vs second half. Lower % = better endurance.
           </p>
@@ -310,13 +330,21 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
               <Bar
                 data={{
                   labels: decouplingLabels,
-                  datasets: [{ data: decouplingValues, backgroundColor: decouplingColors, borderRadius: 4 }],
+                  datasets: [
+                    { type: "bar" as const, data: decouplingValues, backgroundColor: decouplingColors, borderRadius: 4, order: 2 } as any,
+                    ...(decTrendMode === "linear" && decoupTrendLine.length > 0
+                      ? [{ type: "line" as const, label: "Trend", data: decoupTrendLine, borderColor: "#f59e0b", backgroundColor: "transparent", borderWidth: 2, borderDash: [6, 3], pointRadius: 0, fill: false, tension: 0, order: 1 } as any]
+                      : []),
+                    ...(decTrendMode === "ewma" && decoupEWMALine.length > 0
+                      ? [{ type: "line" as const, label: "EWMA", data: decoupEWMALine, borderColor: "#f59e0b", backgroundColor: "transparent", borderWidth: 2, pointRadius: 0, fill: false, tension: 0, order: 1 } as any]
+                      : []),
+                  ],
                 }}
                 options={{
                   responsive: true, maintainAspectRatio: false,
                   plugins: {
                     legend: { display: false },
-                    tooltip: { callbacks: { label: (ctx) => `Decoupling: ${(ctx.parsed.y ?? 0).toFixed(2)}%` } },
+                    tooltip: { callbacks: { label: (ctx: any) => `Decoupling: ${(ctx.parsed.y ?? 0).toFixed(2)}%` } },
                   },
                   scales: {
                     x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 10, font: { size: 9 } }, grid: { color: "#2a2a3a55" } },
