@@ -6,6 +6,8 @@ import json
 import gzip
 import math
 import os
+import io
+import fitparse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
@@ -185,6 +187,63 @@ def parse_tcx(filepath):
     return points
 
 
+# --- FIT file parsing ---
+SEMICIRCLE_TO_DEG = 180.0 / (2**31)
+
+
+def parse_fit(filepath):
+    """Parse a FIT binary file returning list of track points with time, lat, lon, ele, hr, cadence, speed."""
+    points = []
+    try:
+        if filepath.endswith(".gz"):
+            f = gzip.open(filepath, "rb")
+            fit = fitparse.FitFile(f)
+        else:
+            fit = fitparse.FitFile(filepath)
+
+        for rec in fit:
+            if rec.name != "record":
+                continue
+            vals = {}
+            for field in rec.fields:
+                try:
+                    vals[field.name] = rec.get_value(field.name)
+                except Exception:
+                    pass
+
+            ts = vals.get("timestamp")
+            if ts is None:
+                continue
+
+            lat = vals.get("position_lat")
+            lon = vals.get("position_long")
+            if lat is not None:
+                lat = lat * SEMICIRCLE_TO_DEG
+            if lon is not None:
+                lon = lon * SEMICIRCLE_TO_DEG
+
+            ele = vals.get("enhanced_altitude") or vals.get("altitude")
+            hr = vals.get("heart_rate")
+            cadence = vals.get("cadence")
+            speed = vals.get("enhanced_speed") or vals.get("speed")
+            temp = vals.get("temperature")
+
+            points.append({
+                "lat": lat,
+                "lon": lon,
+                "ele": float(ele) if ele is not None else None,
+                "time": ts.isoformat() if isinstance(ts, datetime) else str(ts),
+                "hr": int(hr) if hr is not None else None,
+                "cadence": int(cadence) if cadence is not None else None,
+                "temp": float(temp) if temp is not None else None,
+                "speed_ms": float(speed) if speed is not None else None,
+            })
+    except Exception as e:
+        print(f"  WARNING: Failed to parse FIT {filepath}: {e}")
+        return []
+    return points
+
+
 # --- Compute time-series metrics from points ---
 def compute_stream_metrics(points, is_tcx=False):
     """Compute detailed per-second metrics from track points."""
@@ -275,15 +334,23 @@ def compute_stream_metrics(points, is_tcx=False):
 
         result["distances"].append(cum_dist)
 
-        # Speed
-        if prev_point and cur_time and prev_time:
+        # Speed - prefer pre-computed speed from FIT files, fall back to GPS-derived
+        if p.get("speed_ms") is not None and p["speed_ms"] > 0:
+            spd = p["speed_ms"]
+            speeds.append(spd)
+            result["max_speed"] = max(result["max_speed"], spd)
+            if prev_point and cur_time and prev_time:
+                td = (cur_time - prev_time).total_seconds()
+                if td > 0 and spd > 0.3:
+                    result["moving_time"] += td
+        elif prev_point and cur_time and prev_time:
             td = (cur_time - prev_time).total_seconds()
             if td > 0:
                 d = cum_dist - result["distances"][-2] if len(result["distances"]) > 1 else 0
                 spd = d / td
                 speeds.append(spd)
                 result["max_speed"] = max(result["max_speed"], spd)
-                if spd > 0.3:  # Moving threshold ~1 km/h
+                if spd > 0.3:
                     result["moving_time"] += td
 
         # Elevation gain/loss
@@ -702,6 +769,7 @@ def main():
                 break
 
         is_tcx = False
+        is_fit = False
         points = []
         if filepath:
             ext_lower = filepath.lower()
@@ -711,8 +779,8 @@ def main():
                 points = parse_tcx(filepath)
                 is_tcx = True
             elif ext_lower.endswith(".fit") or ext_lower.endswith(".fit.gz"):
-                # FIT binary files - skip parsing but mark as found
-                pass
+                points = parse_fit(filepath)
+                is_fit = True
 
         # Compute stream metrics
         streams = compute_stream_metrics(points, is_tcx)
