@@ -1515,16 +1515,6 @@
     "gap_speed_kmh": null,
     "avg_hr": null,
     "ele_gain": 0
-   },
-   {
-    "dist_km": 2.25,
-    "grade_pct": -0.05,
-    "speed_ms": 2.29,
-    "speed_kmh": 8.3,
-    "gap_pace_min_km": 7.27,
-    "gap_speed_kmh": null,
-    "avg_hr": null,
-    "ele_gain": 0
    }
   ],
   "elevation_per_km": 7.5,
@@ -12574,16 +12564,6 @@
     "gap_speed_kmh": null,
     "avg_hr": null,
     "ele_gain": 3.9
-   },
-   {
-    "dist_km": 2.44,
-    "grade_pct": -0.93,
-    "speed_ms": 2.51,
-    "speed_kmh": 9.0,
-    "gap_pace_min_km": 6.64,
-    "gap_speed_kmh": null,
-    "avg_hr": null,
-    "ele_gain": 0
    }
   ],
   "elevation_per_km": 12.6,
@@ -24275,16 +24255,6 @@
     "gap_speed_kmh": null,
     "avg_hr": 154.0,
     "ele_gain": 0
-   },
-   {
-    "dist_km": 3.34,
-    "grade_pct": 0.06,
-    "speed_ms": 2.29,
-    "speed_kmh": 8.2,
-    "gap_pace_min_km": 7.26,
-    "gap_speed_kmh": null,
-    "avg_hr": 154.7,
-    "ele_gain": 0.2
    }
   ],
   "aerobic_decoupling_pct": 1.02,
@@ -27689,16 +27659,6 @@
     "gap_pace_min_km": 6.79,
     "gap_speed_kmh": null,
     "avg_hr": 130.4,
-    "ele_gain": 0
-   },
-   {
-    "dist_km": 1.37,
-    "grade_pct": 0.0,
-    "speed_ms": 1.96,
-    "speed_kmh": 7.1,
-    "gap_pace_min_km": 8.48,
-    "gap_speed_kmh": null,
-    "avg_hr": 133.8,
     "ele_gain": 0
    }
   ],

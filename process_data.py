@@ -489,12 +489,14 @@ def compute_gap_segments(streams, activity_type, grade_points):
             seg_hrs = []
             seg_ele_start = e
 
-    # Include trailing partial segment if it has meaningful distance (>200m)
+    # Include trailing partial segment if it has meaningful distance
+    # Runs: ≥500m (half a km), Rides: ≥1000m (third of a segment) to avoid grade bias
+    min_tail = 500 if activity_type == "Run" else 1000
     last_pt = points[-1] if points else None
     if last_pt and seg_speeds:
         d = last_pt.get("d", 0)
         dist_covered = d - seg_start_dist
-        if dist_covered >= 200:  # At least 200m to be meaningful
+        if dist_covered >= min_tail:
             ele_change = (seg_ele_end - seg_ele_start) if seg_ele_start is not None and seg_ele_end is not None else 0
             avg_grade = (ele_change / dist_covered) * 100 if dist_covered > 0 else 0
             avg_speed = sum(seg_speeds) / len(seg_speeds)
