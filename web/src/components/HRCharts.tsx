@@ -179,7 +179,8 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
   const trimpActs = activities
     .filter((a) => (a.trimp ?? 0) > 0 && a.start_time_utc)
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
-  const trimpLabels = trimpActs.map((a) => fmtDate(a.start_time_utc));
+  const trimpLabels = trimpActs.map((a) => `${a.name.slice(0, 18)} (${fmtDate(a.start_time_utc)})`);
+  const trimpNames = trimpActs.map((a) => a.name);
 
   return (
     <div>
@@ -379,7 +380,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                   responsive: true, maintainAspectRatio: false,
                   plugins: {
                     legend: { display: false },
-                    tooltip: { callbacks: { label: (ctx) => `TRIMP: ${(ctx.parsed.y ?? 0).toFixed(1)}` } },
+                    tooltip: { callbacks: { label: (ctx: any) => `${trimpNames[ctx.dataIndex] || "—"}: TRIMP ${(ctx.parsed.y ?? 0).toFixed(1)}` } },
                   },
                   scales: {
                     x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 10, font: { size: 9 } }, grid: { color: "#2a2a3a55" } },

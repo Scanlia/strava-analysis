@@ -20,12 +20,12 @@ body {
 
 @keyframes gradient-shift {
   0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .animated-gradient {
   background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #96ceb4, #ff6b6b, #4ecdc4, #96ceb4);
-  background-size: 300% 100%;
+  background-size: 200% 100%;
   animation: gradient-shift 8s linear infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
