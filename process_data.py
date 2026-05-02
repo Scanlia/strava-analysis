@@ -358,6 +358,7 @@ def compute_stream_metrics(points, is_tcx=False):
         prev_time = cur_time
 
     result["cumulative_distance"] = cum_dist
+    result["speeds"] = speeds  # Store for decoupling analysis
 
     result["avg_speed"] = sum(speeds) / len(speeds) if speeds else 0
     result["avg_cadence"] = round(sum(cadences) / len(cadences), 1) if cadences else 0
@@ -449,6 +450,22 @@ def compute_derived_metrics(act, streams):
         d["avg_pace_min_per_km"] = round(pace_per_km, 2)
         if streams["max_speed"] > 0:
             d["max_pace_min_per_km"] = round((1000 / streams["max_speed"]) / 60, 2)
+
+    # Grade Adjusted Pace (GAP) for running and Grade Adjusted Speed for cycling
+    avg_pos_g = streams["grade_positive_sum"] / streams["grade_positive_count"] if streams["grade_positive_count"] > 0 else 0
+    avg_neg_g = streams["grade_negative_sum"] / streams["grade_negative_count"] if streams["grade_negative_count"] > 0 else 0
+
+    if streams["avg_speed"] and streams["avg_speed"] > 0:
+        # GAP factor: uphill makes you slower (negative grade = faster)
+        gap_factor = 1 - 0.033 * avg_pos_g + 0.017 * abs(avg_neg_g)
+        if act.get("Activity Type") in ["Run"]:
+            gap_speed = streams["avg_speed"] / max(gap_factor, 0.3)
+            d["gap_avg_pace_min_per_km"] = round((1000 / gap_speed) / 60, 2)
+            d["gap_correction_pct"] = round((1 - gap_factor) * 100, 2)
+        if act.get("Activity Type") in ["Ride"]:
+            # Grade adjusted speed for cycling
+            gap_speed = streams["avg_speed"] / max(gap_factor, 0.3)
+            d["grade_adjusted_speed_kmh"] = round(gap_speed * 3.6, 1)
 
     # Splits for running (per km)
     if streams["distances"] and len(streams["distances"]) > 2 and act.get("Activity Type") in ["Run", "Walk"]:

@@ -540,7 +540,9 @@
   "vam": 56.0,
   "moving_time_pct": 83.5,
   "avg_pace_min_per_km": 6.91,
-  "max_pace_min_per_km": 2.26
+  "max_pace_min_per_km": 2.26,
+  "gap_avg_pace_min_per_km": 6.91,
+  "gap_correction_pct": 0.0
  },
  {
   "id": "5843222517",
@@ -1486,6 +1488,8 @@
   "moving_time_pct": 91.8,
   "avg_pace_min_per_km": 8.75,
   "max_pace_min_per_km": 3.0,
+  "gap_avg_pace_min_per_km": 8.75,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -5129,6 +5133,8 @@
   "moving_time_pct": 91.6,
   "avg_pace_min_per_km": 8.89,
   "max_pace_min_per_km": 1.57,
+  "gap_avg_pace_min_per_km": 8.89,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -6519,6 +6525,8 @@
   "moving_time_pct": 96.4,
   "avg_pace_min_per_km": 7.98,
   "max_pace_min_per_km": 1.82,
+  "gap_avg_pace_min_per_km": 7.98,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -8562,12 +8570,17 @@
     "lon": 145.021947
    }
   ],
+  "aerobic_decoupling_pct": 4.23,
+  "ef_first_half": 1.633,
+  "ef_second_half": 1.564,
   "efficiency_factor": 15.98,
   "elevation_per_km": 7.0,
   "vam": 59.1,
   "moving_time_pct": 97.8,
   "avg_pace_min_per_km": 7.2,
   "max_pace_min_per_km": 2.62,
+  "gap_avg_pace_min_per_km": 7.2,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -10905,12 +10918,17 @@
     "lon": 145.022516
    }
   ],
+  "aerobic_decoupling_pct": 40.07,
+  "ef_first_half": 1.545,
+  "ef_second_half": 0.926,
   "efficiency_factor": 12.45,
   "elevation_per_km": 6.9,
   "vam": 56.1,
   "moving_time_pct": 72.1,
   "avg_pace_min_per_km": 10.18,
   "max_pace_min_per_km": 0.49,
+  "gap_avg_pace_min_per_km": 10.18,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -12289,6 +12307,8 @@
   "moving_time_pct": 87.0,
   "avg_pace_min_per_km": 9.45,
   "max_pace_min_per_km": 0.31,
+  "gap_avg_pace_min_per_km": 9.45,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -14991,12 +15011,17 @@
     "lon": 144.958852
    }
   ],
+  "aerobic_decoupling_pct": 12.25,
+  "ef_first_half": 1.632,
+  "ef_second_half": 1.432,
   "efficiency_factor": 15.39,
   "elevation_per_km": 3.7,
   "vam": 28.1,
   "moving_time_pct": 98.3,
   "avg_pace_min_per_km": 8.02,
   "max_pace_min_per_km": 1.73,
+  "gap_avg_pace_min_per_km": 8.02,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -16774,12 +16799,17 @@
     "lon": 144.997377
    }
   ],
+  "aerobic_decoupling_pct": 8.04,
+  "ef_first_half": 1.614,
+  "ef_second_half": 1.485,
   "efficiency_factor": 15.49,
   "elevation_per_km": 10.2,
   "vam": 80.9,
   "moving_time_pct": 97.7,
   "avg_pace_min_per_km": 7.76,
   "max_pace_min_per_km": 2.58,
+  "gap_avg_pace_min_per_km": 7.76,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -17294,12 +17324,17 @@
     "lon": 144.99861
    }
   ],
+  "aerobic_decoupling_pct": 40.91,
+  "ef_first_half": 2.115,
+  "ef_second_half": 1.25,
   "efficiency_factor": 16.26,
   "elevation_per_km": 57.5,
   "vam": 538.2,
   "moving_time_pct": 37.5,
   "avg_pace_min_per_km": 9.85,
   "max_pace_min_per_km": 0.4,
+  "gap_avg_pace_min_per_km": 9.85,
+  "gap_correction_pct": 0.0,
   "trimp": 8.6
  },
  {
@@ -19834,12 +19869,17 @@
     "lon": 144.9734
    }
   ],
+  "aerobic_decoupling_pct": 12.99,
+  "ef_first_half": 1.442,
+  "ef_second_half": 1.255,
   "efficiency_factor": 13.64,
   "elevation_per_km": 56.9,
   "vam": 445.5,
   "moving_time_pct": 79.6,
   "avg_pace_min_per_km": 9.54,
   "max_pace_min_per_km": 1.94,
+  "gap_avg_pace_min_per_km": 9.54,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -22008,12 +22048,17 @@
     "lon": null
    }
   ],
+  "aerobic_decoupling_pct": -18.55,
+  "ef_first_half": 1.203,
+  "ef_second_half": 1.426,
   "efficiency_factor": 13.16,
   "elevation_per_km": 23.7,
   "vam": 203.1,
   "moving_time_pct": 72.4,
   "avg_pace_min_per_km": 9.22,
   "max_pace_min_per_km": 2.19,
+  "gap_avg_pace_min_per_km": 9.22,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -23716,12 +23761,17 @@
     "lon": 144.99724
    }
   ],
+  "aerobic_decoupling_pct": 1.02,
+  "ef_first_half": 1.425,
+  "ef_second_half": 1.411,
   "efficiency_factor": 14.17,
   "elevation_per_km": 24.6,
   "vam": 224.2,
   "moving_time_pct": 81.4,
   "avg_pace_min_per_km": 7.95,
   "max_pace_min_per_km": 0.56,
+  "gap_avg_pace_min_per_km": 7.95,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -26234,12 +26284,17 @@
     "lon": 144.99666
    }
   ],
+  "aerobic_decoupling_pct": 2.01,
+  "ef_first_half": 1.26,
+  "ef_second_half": 1.235,
   "efficiency_factor": 12.64,
   "elevation_per_km": 25.2,
   "vam": 186.9,
   "moving_time_pct": 76.2,
   "avg_pace_min_per_km": 10.29,
   "max_pace_min_per_km": 1.93,
+  "gap_avg_pace_min_per_km": 10.29,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -27057,12 +27112,17 @@
     "lon": 144.99301
    }
   ],
+  "aerobic_decoupling_pct": 27.54,
+  "ef_first_half": 1.734,
+  "ef_second_half": 1.257,
   "efficiency_factor": 14.82,
   "elevation_per_km": 26.2,
   "vam": 235.6,
   "moving_time_pct": 78.8,
   "avg_pace_min_per_km": 8.43,
   "max_pace_min_per_km": 0.29,
+  "gap_avg_pace_min_per_km": 8.43,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -28976,12 +29036,17 @@
     "lon": null
    }
   ],
+  "aerobic_decoupling_pct": -35.05,
+  "ef_first_half": 1.126,
+  "ef_second_half": 1.52,
   "efficiency_factor": 13.18,
   "elevation_per_km": 44.5,
   "vam": 383.2,
   "moving_time_pct": 64.6,
   "avg_pace_min_per_km": 9.57,
   "max_pace_min_per_km": 1.02,
+  "gap_avg_pace_min_per_km": 9.57,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,
@@ -31185,12 +31250,17 @@
     "lon": 144.9853863
    }
   ],
+  "aerobic_decoupling_pct": 28.7,
+  "ef_first_half": 1.848,
+  "ef_second_half": 1.318,
   "efficiency_factor": 15.77,
   "elevation_per_km": 21.3,
   "vam": 185.2,
   "moving_time_pct": 95.8,
   "avg_pace_min_per_km": 6.99,
   "max_pace_min_per_km": 2.66,
+  "gap_avg_pace_min_per_km": 6.99,
+  "gap_correction_pct": 0.0,
   "splits_km": [
    {
     "km": 1,

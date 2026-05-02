@@ -2,7 +2,7 @@
  "monthly": [
   {
    "month": "2020-05",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -26,7 +26,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -45,7 +45,7 @@
   },
   {
    "month": "2020-06",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -69,7 +69,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -88,12 +88,12 @@
   },
   {
    "month": "2020-07",
-   "hike": {
-    "count": 2,
-    "distance_km": 25.3,
-    "time_hours": 8.3,
-    "elevation_m": 1825.1,
-    "relative_effort": 0,
+   "run": {
+    "count": 4,
+    "distance_km": 17.1,
+    "time_hours": 1.8,
+    "elevation_m": 52.2,
+    "relative_effort": 83,
     "trimp": 0
    },
    "ride": {
@@ -112,12 +112,12 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 4,
-    "distance_km": 17.1,
-    "time_hours": 1.8,
-    "elevation_m": 52.2,
-    "relative_effort": 83,
+   "hike": {
+    "count": 2,
+    "distance_km": 25.3,
+    "time_hours": 8.3,
+    "elevation_m": 1825.1,
+    "relative_effort": 0,
     "trimp": 0
    },
    "total": {
@@ -131,7 +131,7 @@
   },
   {
    "month": "2020-08",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -155,7 +155,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -174,11 +174,11 @@
   },
   {
    "month": "2020-09",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.6,
+    "time_hours": 0.4,
+    "elevation_m": 22.2,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -198,11 +198,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.6,
-    "time_hours": 0.4,
-    "elevation_m": 22.2,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -217,7 +217,7 @@
   },
   {
    "month": "2020-10",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -241,7 +241,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -260,11 +260,11 @@
   },
   {
    "month": "2020-12",
-   "hike": {
-    "count": 3,
-    "distance_km": 77.5,
-    "time_hours": 19.5,
-    "elevation_m": 3047.8,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -284,11 +284,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "hike": {
+    "count": 3,
+    "distance_km": 77.5,
+    "time_hours": 19.5,
+    "elevation_m": 3047.8,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -303,7 +303,7 @@
   },
   {
    "month": "2021-01",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -327,7 +327,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -346,11 +346,11 @@
   },
   {
    "month": "2021-02",
-   "hike": {
+   "run": {
     "count": 1,
-    "distance_km": 17.1,
-    "time_hours": 4.4,
-    "elevation_m": 404.4,
+    "distance_km": 0.9,
+    "time_hours": 0.1,
+    "elevation_m": 5.6,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -370,11 +370,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.1,
-    "elevation_m": 5.6,
+    "distance_km": 17.1,
+    "time_hours": 4.4,
+    "elevation_m": 404.4,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -389,11 +389,11 @@
   },
   {
    "month": "2021-03",
-   "hike": {
-    "count": 2,
-    "distance_km": 8.3,
-    "time_hours": 2.3,
-    "elevation_m": 587.5,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -413,11 +413,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "hike": {
+    "count": 2,
+    "distance_km": 8.3,
+    "time_hours": 2.3,
+    "elevation_m": 587.5,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -432,11 +432,11 @@
   },
   {
    "month": "2021-04",
-   "hike": {
-    "count": 1,
-    "distance_km": 28.5,
-    "time_hours": 6.6,
-    "elevation_m": 716.5,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -456,11 +456,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "hike": {
+    "count": 1,
+    "distance_km": 28.5,
+    "time_hours": 6.6,
+    "elevation_m": 716.5,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -475,7 +475,7 @@
   },
   {
    "month": "2021-05",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -499,7 +499,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -518,7 +518,7 @@
   },
   {
    "month": "2021-06",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -542,7 +542,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -561,7 +561,7 @@
   },
   {
    "month": "2021-07",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -585,7 +585,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -604,11 +604,11 @@
   },
   {
    "month": "2021-08",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3,
+    "elevation_m": 16.9,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -628,11 +628,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.3,
-    "time_hours": 0.3,
-    "elevation_m": 16.9,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -647,7 +647,7 @@
   },
   {
    "month": "2021-09",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -671,7 +671,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -690,7 +690,7 @@
   },
   {
    "month": "2021-10",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -714,7 +714,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -733,11 +733,11 @@
   },
   {
    "month": "2021-12",
-   "hike": {
-    "count": 1,
-    "distance_km": 43.9,
-    "time_hours": 10.0,
-    "elevation_m": 1278.4,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -757,11 +757,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "hike": {
+    "count": 1,
+    "distance_km": 43.9,
+    "time_hours": 10.0,
+    "elevation_m": 1278.4,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -776,7 +776,7 @@
   },
   {
    "month": "2022-04",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -800,7 +800,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -819,7 +819,7 @@
   },
   {
    "month": "2022-06",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -843,7 +843,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -862,7 +862,7 @@
   },
   {
    "month": "2022-07",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -886,7 +886,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -905,7 +905,7 @@
   },
   {
    "month": "2022-08",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -929,7 +929,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -948,7 +948,7 @@
   },
   {
    "month": "2022-10",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -972,7 +972,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -991,7 +991,7 @@
   },
   {
    "month": "2022-12",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1015,7 +1015,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1034,11 +1034,11 @@
   },
   {
    "month": "2023-01",
-   "hike": {
-    "count": 1,
-    "distance_km": 9.6,
-    "time_hours": 2.3,
-    "elevation_m": 291.2,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1058,11 +1058,11 @@
     "relative_effort": 25,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "hike": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
+    "elevation_m": 291.2,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1077,7 +1077,7 @@
   },
   {
    "month": "2023-04",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1101,7 +1101,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1120,7 +1120,7 @@
   },
   {
    "month": "2023-05",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1144,7 +1144,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1163,7 +1163,7 @@
   },
   {
    "month": "2023-06",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1187,7 +1187,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1206,7 +1206,7 @@
   },
   {
    "month": "2023-07",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1230,7 +1230,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1249,11 +1249,11 @@
   },
   {
    "month": "2024-01",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
+    "elevation_m": 114.5,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1273,11 +1273,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 8.0,
-    "time_hours": 1.0,
-    "elevation_m": 114.5,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1292,11 +1292,11 @@
   },
   {
    "month": "2024-02",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 3.5,
+    "time_hours": 0.4,
+    "elevation_m": 19.2,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1316,11 +1316,11 @@
     "relative_effort": 10,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.5,
-    "time_hours": 0.4,
-    "elevation_m": 19.2,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1335,13 +1335,13 @@
   },
   {
    "month": "2024-03",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 3,
+    "distance_km": 11.9,
+    "time_hours": 1.3,
+    "elevation_m": 73.1,
+    "relative_effort": 49,
+    "trimp": 168.5
    },
    "ride": {
     "count": 2,
@@ -1359,13 +1359,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 3,
-    "distance_km": 11.9,
-    "time_hours": 1.3,
-    "elevation_m": 73.1,
-    "relative_effort": 49,
-    "trimp": 168.5
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 5,
@@ -1378,11 +1378,11 @@
   },
   {
    "month": "2024-04",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
+    "elevation_m": 31.0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1402,11 +1402,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.5,
-    "time_hours": 0.3,
-    "elevation_m": 31.0,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1421,13 +1421,13 @@
   },
   {
    "month": "2024-06",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "elevation_m": 22.6,
+    "relative_effort": 18,
+    "trimp": 108.1
    },
    "ride": {
     "count": 0,
@@ -1445,13 +1445,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 6.1,
-    "time_hours": 0.7,
-    "elevation_m": 22.6,
-    "relative_effort": 18,
-    "trimp": 108.1
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 1,
@@ -1464,11 +1464,11 @@
   },
   {
    "month": "2024-07",
-   "hike": {
-    "count": 1,
-    "distance_km": 3.4,
-    "time_hours": 0.8,
-    "elevation_m": 267.1,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1488,11 +1488,11 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
+   "hike": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
+    "elevation_m": 267.1,
     "relative_effort": 0,
     "trimp": 0
    },
@@ -1507,13 +1507,13 @@
   },
   {
    "month": "2024-08",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 3,
+    "distance_km": 8.8,
+    "time_hours": 1.1,
+    "elevation_m": 316.8,
+    "relative_effort": 20,
+    "trimp": 168.8
    },
    "ride": {
     "count": 1,
@@ -1531,13 +1531,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 3,
-    "distance_km": 8.8,
-    "time_hours": 1.1,
-    "elevation_m": 316.8,
-    "relative_effort": 20,
-    "trimp": 168.8
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -1550,13 +1550,13 @@
   },
   {
    "month": "2024-09",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 3.6,
+    "time_hours": 0.5,
+    "elevation_m": 84.7,
+    "relative_effort": 10,
+    "trimp": 73.9
    },
    "ride": {
     "count": 1,
@@ -1574,13 +1574,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.6,
-    "time_hours": 0.5,
-    "elevation_m": 84.7,
-    "relative_effort": 10,
-    "trimp": 73.9
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 2,
@@ -1593,13 +1593,13 @@
   },
   {
    "month": "2024-10",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 3.3,
+    "time_hours": 0.4,
+    "elevation_m": 82.2,
+    "relative_effort": 18,
+    "trimp": 64.2
    },
    "ride": {
     "count": 1,
@@ -1617,13 +1617,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.3,
-    "time_hours": 0.4,
-    "elevation_m": 82.2,
-    "relative_effort": 18,
-    "trimp": 64.2
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 2,
@@ -1636,13 +1636,13 @@
   },
   {
    "month": "2024-12",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 3.8,
+    "time_hours": 0.6,
+    "elevation_m": 94.8,
+    "relative_effort": 10,
+    "trimp": 55.8
    },
    "ride": {
     "count": 2,
@@ -1660,13 +1660,13 @@
     "relative_effort": 11,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.8,
-    "time_hours": 0.6,
-    "elevation_m": 94.8,
-    "relative_effort": 10,
-    "trimp": 55.8
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -1679,13 +1679,13 @@
   },
   {
    "month": "2025-01",
-   "hike": {
-    "count": 2,
-    "distance_km": 16.7,
-    "time_hours": 3.0,
-    "elevation_m": 579.4,
-    "relative_effort": 40,
-    "trimp": 313.6
+   "run": {
+    "count": 1,
+    "distance_km": 2.1,
+    "time_hours": 0.3,
+    "elevation_m": 10.0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "ride": {
     "count": 6,
@@ -1703,13 +1703,13 @@
     "relative_effort": 8,
     "trimp": 3.2
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.1,
-    "time_hours": 0.3,
-    "elevation_m": 10.0,
-    "relative_effort": 0,
-    "trimp": 0
+   "hike": {
+    "count": 2,
+    "distance_km": 16.7,
+    "time_hours": 3.0,
+    "elevation_m": 579.4,
+    "relative_effort": 40,
+    "trimp": 313.6
    },
    "total": {
     "count": 12,
@@ -1722,7 +1722,7 @@
   },
   {
    "month": "2025-02",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1746,7 +1746,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1765,7 +1765,7 @@
   },
   {
    "month": "2025-03",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1789,7 +1789,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1808,13 +1808,13 @@
   },
   {
    "month": "2025-05",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 1,
+    "distance_km": 1.4,
+    "time_hours": 0.2,
+    "elevation_m": 36.0,
+    "relative_effort": 2,
+    "trimp": 25.9
    },
    "ride": {
     "count": 2,
@@ -1832,13 +1832,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.4,
-    "time_hours": 0.2,
-    "elevation_m": 36.0,
-    "relative_effort": 2,
-    "trimp": 25.9
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 3,
@@ -1851,7 +1851,7 @@
   },
   {
    "month": "2025-07",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1875,7 +1875,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1894,13 +1894,13 @@
   },
   {
    "month": "2025-09",
-   "hike": {
+   "run": {
     "count": 1,
-    "distance_km": 9.5,
-    "time_hours": 2.2,
-    "elevation_m": 246.7,
-    "relative_effort": 0,
-    "trimp": 0
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "elevation_m": 142.3,
+    "relative_effort": 10,
+    "trimp": 50.7
    },
    "ride": {
     "count": 2,
@@ -1918,13 +1918,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 1,
-    "distance_km": 3.2,
-    "time_hours": 0.4,
-    "elevation_m": 142.3,
-    "relative_effort": 10,
-    "trimp": 50.7
+    "distance_km": 9.5,
+    "time_hours": 2.2,
+    "elevation_m": 246.7,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 4,
@@ -1937,7 +1937,7 @@
   },
   {
    "month": "2025-10",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1961,7 +1961,7 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -1980,12 +1980,12 @@
   },
   {
    "month": "2025-11",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
+   "run": {
+    "count": 2,
+    "distance_km": 4.1,
+    "time_hours": 1.3,
+    "elevation_m": 0.0,
+    "relative_effort": 51,
     "trimp": 0
    },
    "ride": {
@@ -2004,12 +2004,12 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 4.1,
-    "time_hours": 1.3,
-    "elevation_m": 0.0,
-    "relative_effort": 51,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
     "trimp": 0
    },
    "total": {
@@ -2023,12 +2023,12 @@
   },
   {
    "month": "2025-12",
-   "hike": {
-    "count": 2,
-    "distance_km": 2.5,
-    "time_hours": 4.2,
-    "elevation_m": 118.3,
-    "relative_effort": 33,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
     "trimp": 0
    },
    "ride": {
@@ -2047,12 +2047,12 @@
     "relative_effort": 1,
     "trimp": 0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
+   "hike": {
+    "count": 2,
+    "distance_km": 2.5,
+    "time_hours": 4.2,
+    "elevation_m": 118.3,
+    "relative_effort": 33,
     "trimp": 0
    },
    "total": {
@@ -2066,12 +2066,12 @@
   },
   {
    "month": "2026-01",
-   "hike": {
-    "count": 1,
-    "distance_km": 9.5,
-    "time_hours": 2.9,
-    "elevation_m": 402.6,
-    "relative_effort": 27,
+   "run": {
+    "count": 2,
+    "distance_km": 10.1,
+    "time_hours": 1.5,
+    "elevation_m": 122.4,
+    "relative_effort": 68,
     "trimp": 0
    },
    "ride": {
@@ -2090,12 +2090,12 @@
     "relative_effort": 41,
     "trimp": 0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 10.1,
-    "time_hours": 1.5,
-    "elevation_m": 122.4,
-    "relative_effort": 68,
+   "hike": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.9,
+    "elevation_m": 402.6,
+    "relative_effort": 27,
     "trimp": 0
    },
    "total": {
@@ -2109,13 +2109,13 @@
   },
   {
    "month": "2026-02",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0,
-    "relative_effort": 0,
-    "trimp": 0
+   "run": {
+    "count": 4,
+    "distance_km": 18.3,
+    "time_hours": 2.1,
+    "elevation_m": 121.4,
+    "relative_effort": 94,
+    "trimp": 82.3
    },
    "ride": {
     "count": 5,
@@ -2133,13 +2133,13 @@
     "relative_effort": 7,
     "trimp": 0
    },
-   "run": {
-    "count": 4,
-    "distance_km": 18.3,
-    "time_hours": 2.1,
-    "elevation_m": 121.4,
-    "relative_effort": 94,
-    "trimp": 82.3
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0,
+    "relative_effort": 0,
+    "trimp": 0
    },
    "total": {
     "count": 10,
@@ -2152,12 +2152,12 @@
   },
   {
    "month": "2026-03",
-   "hike": {
-    "count": 2,
-    "distance_km": 112.8,
-    "time_hours": 31.8,
-    "elevation_m": 4095.9,
-    "relative_effort": 0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "elevation_m": 29.7,
+    "relative_effort": 12,
     "trimp": 0
    },
    "ride": {
@@ -2176,12 +2176,12 @@
     "relative_effort": 7,
     "trimp": 0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.0,
-    "time_hours": 0.5,
-    "elevation_m": 29.7,
-    "relative_effort": 12,
+   "hike": {
+    "count": 2,
+    "distance_km": 112.8,
+    "time_hours": 31.8,
+    "elevation_m": 4095.9,
+    "relative_effort": 0,
     "trimp": 0
    },
    "total": {
@@ -2195,13 +2195,13 @@
   },
   {
    "month": "2026-04",
-   "hike": {
-    "count": 3,
-    "distance_km": 56.8,
-    "time_hours": 15.2,
-    "elevation_m": 4709.3,
-    "relative_effort": 52,
-    "trimp": 346.3
+   "run": {
+    "count": 2,
+    "distance_km": 7.0,
+    "time_hours": 0.9,
+    "elevation_m": 64.5,
+    "relative_effort": 45,
+    "trimp": 0
    },
    "ride": {
     "count": 0,
@@ -2219,13 +2219,13 @@
     "relative_effort": 0,
     "trimp": 0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 7.0,
-    "time_hours": 0.9,
-    "elevation_m": 64.5,
-    "relative_effort": 45,
-    "trimp": 0
+   "hike": {
+    "count": 3,
+    "distance_km": 56.8,
+    "time_hours": 15.2,
+    "elevation_m": 4709.3,
+    "relative_effort": 52,
+    "trimp": 346.3
    },
    "total": {
     "count": 5,
@@ -2240,7 +2240,7 @@
  "weekly": [
   {
    "week": "2020-W21",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2258,7 +2258,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2272,7 +2272,7 @@
   },
   {
    "week": "2020-W22",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2290,7 +2290,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2304,7 +2304,7 @@
   },
   {
    "week": "2020-W23",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2322,7 +2322,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2336,7 +2336,7 @@
   },
   {
    "week": "2020-W25",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2354,7 +2354,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2368,11 +2368,11 @@
   },
   {
    "week": "2020-W27",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.7,
+    "time_hours": 0.5,
+    "avg_hr": 151.0
    },
    "ride": {
     "count": 0,
@@ -2386,11 +2386,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.7,
-    "time_hours": 0.5,
-    "avg_hr": 151.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -2400,11 +2400,11 @@
   },
   {
    "week": "2020-W28",
-   "hike": {
+   "run": {
     "count": 1,
-    "distance_km": 8.7,
-    "time_hours": 2.7,
-    "avg_hr": null
+    "distance_km": 6.4,
+    "time_hours": 0.7,
+    "avg_hr": 157.0
    },
    "ride": {
     "count": 2,
@@ -2418,11 +2418,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 1,
-    "distance_km": 6.4,
-    "time_hours": 0.7,
-    "avg_hr": 157.0
+    "distance_km": 8.7,
+    "time_hours": 2.7,
+    "avg_hr": null
    },
    "total": {
     "count": 4,
@@ -2432,11 +2432,11 @@
   },
   {
    "week": "2020-W29",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 1.4,
+    "time_hours": 0.2,
+    "avg_hr": 129.0
    },
    "ride": {
     "count": 1,
@@ -2450,11 +2450,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.4,
-    "time_hours": 0.2,
-    "avg_hr": 129.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -2464,10 +2464,10 @@
   },
   {
    "week": "2020-W30",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.7,
+    "time_hours": 0.5,
     "avg_hr": null
    },
    "ride": {
@@ -2482,10 +2482,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.7,
-    "time_hours": 0.5,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -2496,10 +2496,10 @@
   },
   {
    "week": "2020-W31",
-   "hike": {
-    "count": 1,
-    "distance_km": 16.5,
-    "time_hours": 5.7,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -2514,10 +2514,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 16.5,
+    "time_hours": 5.7,
     "avg_hr": null
    },
    "total": {
@@ -2528,7 +2528,7 @@
   },
   {
    "week": "2020-W33",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2546,7 +2546,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2560,7 +2560,7 @@
   },
   {
    "week": "2020-W34",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2578,7 +2578,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2592,7 +2592,7 @@
   },
   {
    "week": "2020-W35",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2610,7 +2610,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2624,7 +2624,7 @@
   },
   {
    "week": "2020-W36",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2642,7 +2642,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2656,10 +2656,10 @@
   },
   {
    "week": "2020-W37",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 4.6,
+    "time_hours": 0.4,
     "avg_hr": null
    },
    "ride": {
@@ -2674,10 +2674,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.6,
-    "time_hours": 0.4,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -2688,7 +2688,7 @@
   },
   {
    "week": "2020-W38",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2706,7 +2706,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2720,7 +2720,7 @@
   },
   {
    "week": "2020-W40",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2738,7 +2738,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2752,7 +2752,7 @@
   },
   {
    "week": "2020-W44",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2770,7 +2770,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2784,10 +2784,10 @@
   },
   {
    "week": "2020-W50",
-   "hike": {
-    "count": 3,
-    "distance_km": 77.5,
-    "time_hours": 19.5,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -2802,10 +2802,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 3,
+    "distance_km": 77.5,
+    "time_hours": 19.5,
     "avg_hr": null
    },
    "total": {
@@ -2816,7 +2816,7 @@
   },
   {
    "week": "2020-W53",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2834,7 +2834,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2848,7 +2848,7 @@
   },
   {
    "week": "2021-W02",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2866,7 +2866,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2880,7 +2880,7 @@
   },
   {
    "week": "2021-W04",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2898,7 +2898,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -2912,10 +2912,10 @@
   },
   {
    "week": "2021-W05",
-   "hike": {
-    "count": 1,
-    "distance_km": 17.1,
-    "time_hours": 4.4,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -2930,10 +2930,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 17.1,
+    "time_hours": 4.4,
     "avg_hr": null
    },
    "total": {
@@ -2944,10 +2944,10 @@
   },
   {
    "week": "2021-W06",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 0.9,
+    "time_hours": 0.1,
     "avg_hr": null
    },
    "ride": {
@@ -2962,10 +2962,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 0.9,
-    "time_hours": 0.1,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -2976,10 +2976,10 @@
   },
   {
    "week": "2021-W09",
-   "hike": {
-    "count": 1,
-    "distance_km": 5.1,
-    "time_hours": 1.4,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -2994,10 +2994,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 1.4,
     "avg_hr": null
    },
    "total": {
@@ -3008,10 +3008,10 @@
   },
   {
    "week": "2021-W10",
-   "hike": {
-    "count": 1,
-    "distance_km": 3.2,
-    "time_hours": 0.9,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -3026,10 +3026,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 3.2,
+    "time_hours": 0.9,
     "avg_hr": null
    },
    "total": {
@@ -3040,7 +3040,7 @@
   },
   {
    "week": "2021-W13",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3058,7 +3058,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3072,7 +3072,7 @@
   },
   {
    "week": "2021-W14",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3090,7 +3090,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3104,10 +3104,10 @@
   },
   {
    "week": "2021-W15",
-   "hike": {
-    "count": 1,
-    "distance_km": 28.5,
-    "time_hours": 6.6,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -3122,10 +3122,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 28.5,
+    "time_hours": 6.6,
     "avg_hr": null
    },
    "total": {
@@ -3136,7 +3136,7 @@
   },
   {
    "week": "2021-W16",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3154,7 +3154,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3168,7 +3168,7 @@
   },
   {
    "week": "2021-W18",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3186,7 +3186,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3200,7 +3200,7 @@
   },
   {
    "week": "2021-W25",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3218,7 +3218,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3232,7 +3232,7 @@
   },
   {
    "week": "2021-W27",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3250,7 +3250,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3264,7 +3264,7 @@
   },
   {
    "week": "2021-W31",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3282,7 +3282,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3296,10 +3296,10 @@
   },
   {
    "week": "2021-W34",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.3,
+    "time_hours": 0.3,
     "avg_hr": null
    },
    "ride": {
@@ -3314,10 +3314,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.3,
-    "time_hours": 0.3,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -3328,7 +3328,7 @@
   },
   {
    "week": "2021-W35",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3346,7 +3346,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3360,7 +3360,7 @@
   },
   {
    "week": "2021-W36",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3378,7 +3378,7 @@
     "time_hours": 0.0,
     "avg_hr": 124.0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3392,7 +3392,7 @@
   },
   {
    "week": "2021-W37",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3410,7 +3410,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3424,7 +3424,7 @@
   },
   {
    "week": "2021-W38",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3442,7 +3442,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3456,7 +3456,7 @@
   },
   {
    "week": "2021-W40",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3474,7 +3474,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3488,10 +3488,10 @@
   },
   {
    "week": "2021-W51",
-   "hike": {
-    "count": 1,
-    "distance_km": 43.9,
-    "time_hours": 10.0,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -3506,10 +3506,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 43.9,
+    "time_hours": 10.0,
     "avg_hr": null
    },
    "total": {
@@ -3520,7 +3520,7 @@
   },
   {
    "week": "2022-W15",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3538,7 +3538,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3552,7 +3552,7 @@
   },
   {
    "week": "2022-W22",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3570,7 +3570,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3584,7 +3584,7 @@
   },
   {
    "week": "2022-W30",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3602,7 +3602,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3616,7 +3616,7 @@
   },
   {
    "week": "2022-W32",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3634,7 +3634,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3648,7 +3648,7 @@
   },
   {
    "week": "2022-W33",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3666,7 +3666,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3680,7 +3680,7 @@
   },
   {
    "week": "2022-W40",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3698,7 +3698,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3712,7 +3712,7 @@
   },
   {
    "week": "2022-W51",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3730,7 +3730,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3744,7 +3744,7 @@
   },
   {
    "week": "2022-W52",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3762,7 +3762,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3776,10 +3776,10 @@
   },
   {
    "week": "2023-W01",
-   "hike": {
-    "count": 1,
-    "distance_km": 9.6,
-    "time_hours": 2.3,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -3794,10 +3794,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
     "avg_hr": null
    },
    "total": {
@@ -3808,7 +3808,7 @@
   },
   {
    "week": "2023-W04",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3826,7 +3826,7 @@
     "time_hours": 0.4,
     "avg_hr": 143.0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3840,7 +3840,7 @@
   },
   {
    "week": "2023-W14",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3858,7 +3858,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3872,7 +3872,7 @@
   },
   {
    "week": "2023-W15",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3890,7 +3890,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3904,7 +3904,7 @@
   },
   {
    "week": "2023-W16",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3922,7 +3922,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3936,7 +3936,7 @@
   },
   {
    "week": "2023-W17",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3954,7 +3954,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3968,7 +3968,7 @@
   },
   {
    "week": "2023-W18",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -3986,7 +3986,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4000,7 +4000,7 @@
   },
   {
    "week": "2023-W25",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4018,7 +4018,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4032,7 +4032,7 @@
   },
   {
    "week": "2023-W26",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4050,7 +4050,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4064,7 +4064,7 @@
   },
   {
    "week": "2023-W28",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4082,7 +4082,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4096,10 +4096,10 @@
   },
   {
    "week": "2024-W05",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 8.0,
+    "time_hours": 1.0,
     "avg_hr": null
    },
    "ride": {
@@ -4114,10 +4114,10 @@
     "time_hours": 0.2,
     "avg_hr": 145.0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 8.0,
-    "time_hours": 1.0,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -4128,10 +4128,10 @@
   },
   {
    "week": "2024-W06",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 3.5,
+    "time_hours": 0.4,
     "avg_hr": null
    },
    "ride": {
@@ -4146,10 +4146,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.5,
-    "time_hours": 0.4,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -4160,7 +4160,7 @@
   },
   {
    "week": "2024-W07",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4178,7 +4178,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4192,7 +4192,7 @@
   },
   {
    "week": "2024-W09",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4210,7 +4210,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4224,11 +4224,11 @@
   },
   {
    "week": "2024-W11",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 0.6,
+    "avg_hr": 144.9
    },
    "ride": {
     "count": 1,
@@ -4242,11 +4242,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 5.1,
-    "time_hours": 0.6,
-    "avg_hr": 144.9
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -4256,11 +4256,11 @@
   },
   {
    "week": "2024-W12",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.1,
+    "time_hours": 0.5,
+    "avg_hr": 131.5
    },
    "ride": {
     "count": 0,
@@ -4274,11 +4274,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.1,
-    "time_hours": 0.5,
-    "avg_hr": 131.5
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4288,11 +4288,11 @@
   },
   {
    "week": "2024-W13",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 2.8,
+    "time_hours": 0.3,
+    "avg_hr": 153.0
    },
    "ride": {
     "count": 0,
@@ -4306,11 +4306,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.8,
-    "time_hours": 0.3,
-    "avg_hr": 153.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4320,10 +4320,10 @@
   },
   {
    "week": "2024-W17",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.3,
     "avg_hr": null
    },
    "ride": {
@@ -4338,10 +4338,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.5,
-    "time_hours": 0.3,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -4352,11 +4352,11 @@
   },
   {
    "week": "2024-W26",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 6.1,
+    "time_hours": 0.7,
+    "avg_hr": 135.1
    },
    "ride": {
     "count": 0,
@@ -4370,11 +4370,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 6.1,
-    "time_hours": 0.7,
-    "avg_hr": 135.1
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4384,10 +4384,10 @@
   },
   {
    "week": "2024-W29",
-   "hike": {
-    "count": 1,
-    "distance_km": 3.4,
-    "time_hours": 0.8,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -4402,10 +4402,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
     "avg_hr": null
    },
    "total": {
@@ -4416,7 +4416,7 @@
   },
   {
    "week": "2024-W32",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4434,7 +4434,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4448,11 +4448,11 @@
   },
   {
    "week": "2024-W33",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "avg_hr": 138.7
    },
    "ride": {
     "count": 0,
@@ -4466,11 +4466,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.0,
-    "time_hours": 0.5,
-    "avg_hr": 138.7
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4480,11 +4480,11 @@
   },
   {
    "week": "2024-W35",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 2,
+    "distance_km": 4.8,
+    "time_hours": 0.7,
+    "avg_hr": 116.1
    },
    "ride": {
     "count": 0,
@@ -4498,11 +4498,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 2,
-    "distance_km": 4.8,
-    "time_hours": 0.7,
-    "avg_hr": 116.1
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -4512,11 +4512,11 @@
   },
   {
    "week": "2024-W36",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.6,
+    "time_hours": 0.5,
+    "avg_hr": 137.4
    },
    "ride": {
     "count": 0,
@@ -4530,11 +4530,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.6,
-    "time_hours": 0.5,
-    "avg_hr": 137.4
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4544,7 +4544,7 @@
   },
   {
    "week": "2024-W38",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4562,7 +4562,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4576,7 +4576,7 @@
   },
   {
    "week": "2024-W42",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4594,7 +4594,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4608,11 +4608,11 @@
   },
   {
    "week": "2024-W44",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.3,
+    "time_hours": 0.4,
+    "avg_hr": 148.0
    },
    "ride": {
     "count": 0,
@@ -4626,11 +4626,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.3,
-    "time_hours": 0.4,
-    "avg_hr": 148.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4640,7 +4640,7 @@
   },
   {
    "week": "2024-W49",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4658,7 +4658,7 @@
     "time_hours": 0.3,
     "avg_hr": 135.2
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4672,7 +4672,7 @@
   },
   {
    "week": "2024-W50",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4690,7 +4690,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4704,7 +4704,7 @@
   },
   {
    "week": "2024-W51",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4722,7 +4722,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4736,11 +4736,11 @@
   },
   {
    "week": "2024-W52",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.8,
+    "time_hours": 0.6,
+    "avg_hr": 128.1
    },
    "ride": {
     "count": 0,
@@ -4754,11 +4754,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.8,
-    "time_hours": 0.6,
-    "avg_hr": 128.1
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -4768,7 +4768,7 @@
   },
   {
    "week": "2025-W01",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4786,7 +4786,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4800,10 +4800,10 @@
   },
   {
    "week": "2025-W02",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "run": {
+    "count": 1,
+    "distance_km": 2.1,
+    "time_hours": 0.3,
     "avg_hr": null
    },
    "ride": {
@@ -4818,10 +4818,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 2.1,
-    "time_hours": 0.3,
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "total": {
@@ -4832,11 +4832,11 @@
   },
   {
    "week": "2025-W03",
-   "hike": {
-    "count": 2,
-    "distance_km": 16.7,
-    "time_hours": 3.0,
-    "avg_hr": 121.6
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "ride": {
     "count": 0,
@@ -4850,11 +4850,11 @@
     "time_hours": 0.4,
     "avg_hr": 126.3
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "hike": {
+    "count": 2,
+    "distance_km": 16.7,
+    "time_hours": 3.0,
+    "avg_hr": 121.6
    },
    "total": {
     "count": 4,
@@ -4864,7 +4864,7 @@
   },
   {
    "week": "2025-W04",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4882,7 +4882,7 @@
     "time_hours": 0.2,
     "avg_hr": 130.4
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4896,7 +4896,7 @@
   },
   {
    "week": "2025-W06",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4914,7 +4914,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4928,7 +4928,7 @@
   },
   {
    "week": "2025-W09",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4946,7 +4946,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4960,7 +4960,7 @@
   },
   {
    "week": "2025-W13",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4978,7 +4978,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -4992,11 +4992,11 @@
   },
   {
    "week": "2025-W21",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 1.4,
+    "time_hours": 0.2,
+    "avg_hr": 133.4
    },
    "ride": {
     "count": 0,
@@ -5010,11 +5010,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.4,
-    "time_hours": 0.2,
-    "avg_hr": 133.4
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5024,7 +5024,7 @@
   },
   {
    "week": "2025-W22",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5042,7 +5042,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5056,7 +5056,7 @@
   },
   {
    "week": "2025-W28",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5074,7 +5074,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5088,7 +5088,7 @@
   },
   {
    "week": "2025-W36",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5106,7 +5106,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5120,11 +5120,11 @@
   },
   {
    "week": "2025-W37",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "avg_hr": 132.1
    },
    "ride": {
     "count": 0,
@@ -5138,11 +5138,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.2,
-    "time_hours": 0.4,
-    "avg_hr": 132.1
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5152,10 +5152,10 @@
   },
   {
    "week": "2025-W39",
-   "hike": {
-    "count": 1,
-    "distance_km": 9.5,
-    "time_hours": 2.2,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -5170,10 +5170,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.2,
     "avg_hr": null
    },
    "total": {
@@ -5184,7 +5184,7 @@
   },
   {
    "week": "2025-W40",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5202,7 +5202,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5216,7 +5216,7 @@
   },
   {
    "week": "2025-W43",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5234,7 +5234,7 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5248,11 +5248,11 @@
   },
   {
    "week": "2025-W45",
-   "hike": {
-    "count": 0,
+   "run": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+    "time_hours": 0.8,
+    "avg_hr": 144.0
    },
    "ride": {
     "count": 0,
@@ -5266,11 +5266,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
+   "hike": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 0.8,
-    "avg_hr": 144.0
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5280,11 +5280,11 @@
   },
   {
    "week": "2025-W46",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.1,
+    "time_hours": 0.5,
+    "avg_hr": 146.0
    },
    "ride": {
     "count": 0,
@@ -5298,11 +5298,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.1,
-    "time_hours": 0.5,
-    "avg_hr": 146.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5312,11 +5312,11 @@
   },
   {
    "week": "2025-W51",
-   "hike": {
-    "count": 1,
-    "distance_km": 2.5,
-    "time_hours": 0.9,
-    "avg_hr": 102.0
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "ride": {
     "count": 2,
@@ -5330,11 +5330,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "hike": {
+    "count": 1,
+    "distance_km": 2.5,
+    "time_hours": 0.9,
+    "avg_hr": 102.0
    },
    "total": {
     "count": 3,
@@ -5344,11 +5344,11 @@
   },
   {
    "week": "2025-W52",
-   "hike": {
-    "count": 1,
+   "run": {
+    "count": 0,
     "distance_km": 0.0,
-    "time_hours": 3.2,
-    "avg_hr": 98.0
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "ride": {
     "count": 1,
@@ -5362,11 +5362,11 @@
     "time_hours": 0.1,
     "avg_hr": 105.0
    },
-   "run": {
-    "count": 0,
+   "hike": {
+    "count": 1,
     "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+    "time_hours": 3.2,
+    "avg_hr": 98.0
    },
    "total": {
     "count": 3,
@@ -5376,11 +5376,11 @@
   },
   {
    "week": "2026-W01",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 5.4,
+    "time_hours": 0.9,
+    "avg_hr": 146.0
    },
    "ride": {
     "count": 1,
@@ -5394,11 +5394,11 @@
     "time_hours": 0.5,
     "avg_hr": 125.0
    },
-   "run": {
-    "count": 1,
-    "distance_km": 5.4,
-    "time_hours": 0.9,
-    "avg_hr": 146.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 3,
@@ -5408,11 +5408,11 @@
   },
   {
    "week": "2026-W03",
-   "hike": {
-    "count": 1,
-    "distance_km": 9.5,
-    "time_hours": 2.9,
-    "avg_hr": 107.0
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "ride": {
     "count": 0,
@@ -5426,11 +5426,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "hike": {
+    "count": 1,
+    "distance_km": 9.5,
+    "time_hours": 2.9,
+    "avg_hr": 107.0
    },
    "total": {
     "count": 1,
@@ -5440,7 +5440,7 @@
   },
   {
    "week": "2026-W04",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5458,7 +5458,7 @@
     "time_hours": 0.4,
     "avg_hr": 148.0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5472,11 +5472,11 @@
   },
   {
    "week": "2026-W05",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.7,
+    "time_hours": 0.6,
+    "avg_hr": 155.0
    },
    "ride": {
     "count": 1,
@@ -5490,11 +5490,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.7,
-    "time_hours": 0.6,
-    "avg_hr": 155.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -5504,11 +5504,11 @@
   },
   {
    "week": "2026-W06",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 5.1,
+    "time_hours": 0.6,
+    "avg_hr": 140.0
    },
    "ride": {
     "count": 1,
@@ -5522,11 +5522,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 5.1,
-    "time_hours": 0.6,
-    "avg_hr": 140.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 2,
@@ -5536,11 +5536,11 @@
   },
   {
    "week": "2026-W07",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 3.0,
+    "time_hours": 0.4,
+    "avg_hr": 145.0
    },
    "ride": {
     "count": 2,
@@ -5554,11 +5554,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 3.0,
-    "time_hours": 0.4,
-    "avg_hr": 145.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 3,
@@ -5568,11 +5568,11 @@
   },
   {
    "week": "2026-W08",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 2,
+    "distance_km": 10.1,
+    "time_hours": 1.2,
+    "avg_hr": 151.1
    },
    "ride": {
     "count": 2,
@@ -5586,11 +5586,11 @@
     "time_hours": 0.3,
     "avg_hr": 127.0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 10.1,
-    "time_hours": 1.2,
-    "avg_hr": 151.1
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 5,
@@ -5600,11 +5600,11 @@
   },
   {
    "week": "2026-W10",
-   "hike": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "avg_hr": null
+   "run": {
+    "count": 1,
+    "distance_km": 4.0,
+    "time_hours": 0.5,
+    "avg_hr": 139.0
    },
    "ride": {
     "count": 0,
@@ -5618,11 +5618,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 4.0,
-    "time_hours": 0.5,
-    "avg_hr": 139.0
+   "hike": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "avg_hr": null
    },
    "total": {
     "count": 1,
@@ -5632,7 +5632,7 @@
   },
   {
    "week": "2026-W11",
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5650,7 +5650,7 @@
     "time_hours": 0.3,
     "avg_hr": 127.0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5664,10 +5664,10 @@
   },
   {
    "week": "2026-W12",
-   "hike": {
-    "count": 1,
-    "distance_km": 29.7,
-    "time_hours": 7.5,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -5682,10 +5682,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 29.7,
+    "time_hours": 7.5,
     "avg_hr": null
    },
    "total": {
@@ -5696,10 +5696,10 @@
   },
   {
    "week": "2026-W13",
-   "hike": {
-    "count": 1,
-    "distance_km": 83.1,
-    "time_hours": 24.3,
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
     "avg_hr": null
    },
    "ride": {
@@ -5714,10 +5714,10 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
+   "hike": {
+    "count": 1,
+    "distance_km": 83.1,
+    "time_hours": 24.3,
     "avg_hr": null
    },
    "total": {
@@ -5728,11 +5728,11 @@
   },
   {
    "week": "2026-W17",
-   "hike": {
-    "count": 2,
-    "distance_km": 50.8,
-    "time_hours": 13.4,
-    "avg_hr": 97.7
+   "run": {
+    "count": 1,
+    "distance_km": 1.7,
+    "time_hours": 0.3,
+    "avg_hr": 135.0
    },
    "ride": {
     "count": 0,
@@ -5746,11 +5746,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
-    "count": 1,
-    "distance_km": 1.7,
-    "time_hours": 0.3,
-    "avg_hr": 135.0
+   "hike": {
+    "count": 2,
+    "distance_km": 50.8,
+    "time_hours": 13.4,
+    "avg_hr": 97.7
    },
    "total": {
     "count": 3,
@@ -5760,11 +5760,11 @@
   },
   {
    "week": "2026-W18",
-   "hike": {
+   "run": {
     "count": 1,
-    "distance_km": 6.0,
-    "time_hours": 1.8,
-    "avg_hr": 113.6
+    "distance_km": 5.2,
+    "time_hours": 0.6,
+    "avg_hr": 156.0
    },
    "ride": {
     "count": 0,
@@ -5778,11 +5778,11 @@
     "time_hours": 0.0,
     "avg_hr": null
    },
-   "run": {
+   "hike": {
     "count": 1,
-    "distance_km": 5.2,
-    "time_hours": 0.6,
-    "avg_hr": 156.0
+    "distance_km": 6.0,
+    "time_hours": 1.8,
+    "avg_hr": 113.6
    },
    "total": {
     "count": 2,
@@ -5794,11 +5794,11 @@
  "yearly": [
   {
    "year": 2020,
-   "hike": {
+   "run": {
     "count": 5,
-    "distance_km": 102.8,
-    "time_hours": 27.8,
-    "elevation_m": 4872.9
+    "distance_km": 21.8,
+    "time_hours": 2.3,
+    "elevation_m": 74.4
    },
    "ride": {
     "count": 21,
@@ -5812,20 +5812,20 @@
     "time_hours": 0.0,
     "elevation_m": 0
    },
-   "run": {
+   "hike": {
     "count": 5,
-    "distance_km": 21.8,
-    "time_hours": 2.3,
-    "elevation_m": 74.4
+    "distance_km": 102.8,
+    "time_hours": 27.8,
+    "elevation_m": 4872.9
    }
   },
   {
    "year": 2021,
-   "hike": {
-    "count": 5,
-    "distance_km": 97.8,
-    "time_hours": 23.3,
-    "elevation_m": 2986.8
+   "run": {
+    "count": 2,
+    "distance_km": 3.2,
+    "time_hours": 0.4,
+    "elevation_m": 22.5
    },
    "ride": {
     "count": 57,
@@ -5839,16 +5839,16 @@
     "time_hours": 0.0,
     "elevation_m": 0.0
    },
-   "run": {
-    "count": 2,
-    "distance_km": 3.2,
-    "time_hours": 0.4,
-    "elevation_m": 22.5
+   "hike": {
+    "count": 5,
+    "distance_km": 97.8,
+    "time_hours": 23.3,
+    "elevation_m": 2986.8
    }
   },
   {
    "year": 2022,
-   "hike": {
+   "run": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5866,7 +5866,7 @@
     "time_hours": 0.0,
     "elevation_m": 0
    },
-   "run": {
+   "hike": {
     "count": 0,
     "distance_km": 0.0,
     "time_hours": 0.0,
@@ -5875,11 +5875,11 @@
   },
   {
    "year": 2023,
-   "hike": {
-    "count": 1,
-    "distance_km": 9.6,
-    "time_hours": 2.3,
-    "elevation_m": 291.2
+   "run": {
+    "count": 0,
+    "distance_km": 0.0,
+    "time_hours": 0.0,
+    "elevation_m": 0
    },
    "ride": {
     "count": 17,
@@ -5893,20 +5893,20 @@
     "time_hours": 0.4,
     "elevation_m": 0.0
    },
-   "run": {
-    "count": 0,
-    "distance_km": 0.0,
-    "time_hours": 0.0,
-    "elevation_m": 0
+   "hike": {
+    "count": 1,
+    "distance_km": 9.6,
+    "time_hours": 2.3,
+    "elevation_m": 291.2
    }
   },
   {
    "year": 2024,
-   "hike": {
-    "count": 1,
-    "distance_km": 3.4,
-    "time_hours": 0.8,
-    "elevation_m": 267.1
+   "run": {
+    "count": 13,
+    "distance_km": 51.5,
+    "time_hours": 6.3,
+    "elevation_m": 838.9
    },
    "ride": {
     "count": 11,
@@ -5920,20 +5920,20 @@
     "time_hours": 0.5,
     "elevation_m": 0.0
    },
-   "run": {
-    "count": 13,
-    "distance_km": 51.5,
-    "time_hours": 6.3,
-    "elevation_m": 838.9
+   "hike": {
+    "count": 1,
+    "distance_km": 3.4,
+    "time_hours": 0.8,
+    "elevation_m": 267.1
    }
   },
   {
    "year": 2025,
-   "hike": {
+   "run": {
     "count": 5,
-    "distance_km": 28.7,
-    "time_hours": 9.4,
-    "elevation_m": 944.4
+    "distance_km": 10.7,
+    "time_hours": 2.1,
+    "elevation_m": 188.3
    },
    "ride": {
     "count": 23,
@@ -5947,20 +5947,20 @@
     "time_hours": 0.7,
     "elevation_m": 0.0
    },
-   "run": {
+   "hike": {
     "count": 5,
-    "distance_km": 10.7,
-    "time_hours": 2.1,
-    "elevation_m": 188.3
+    "distance_km": 28.7,
+    "time_hours": 9.4,
+    "elevation_m": 944.4
    }
   },
   {
    "year": 2026,
-   "hike": {
-    "count": 6,
-    "distance_km": 179.2,
-    "time_hours": 50.0,
-    "elevation_m": 9207.8
+   "run": {
+    "count": 9,
+    "distance_km": 39.4,
+    "time_hours": 5.0,
+    "elevation_m": 338.0
    },
    "ride": {
     "count": 7,
@@ -5974,23 +5974,23 @@
     "time_hours": 1.5,
     "elevation_m": 0.0
    },
-   "run": {
-    "count": 9,
-    "distance_km": 39.4,
-    "time_hours": 5.0,
-    "elevation_m": 338.0
+   "hike": {
+    "count": 6,
+    "distance_km": 179.2,
+    "time_hours": 50.0,
+    "elevation_m": 9207.8
    }
   }
  ],
  "best_efforts": {
-  "hike": {
-   "longest_distance_km": 83.1,
-   "longest_name": "Torres del Paine W Trek",
-   "most_elevation_m": 3419.4,
-   "most_elev_name": "Salkantay Trek",
-   "highest_max_hr": 172,
-   "best_avg_speed_kmh": 4.9,
-   "best_speed_name": "Lunch Hike"
+  "run": {
+   "longest_distance_km": 8.0,
+   "longest_name": "City",
+   "most_elevation_m": 234.8,
+   "most_elev_name": "Morning Run",
+   "highest_max_hr": 189,
+   "best_avg_speed_kmh": 0.0,
+   "best_speed_name": "Evening Run"
   },
   "ride": {
    "longest_distance_km": 42.1,
@@ -6010,14 +6010,14 @@
    "best_avg_speed_kmh": 4.0,
    "best_speed_name": "MSAC Swim"
   },
-  "run": {
-   "longest_distance_km": 8.0,
-   "longest_name": "City",
-   "most_elevation_m": 234.8,
-   "most_elev_name": "Morning Run",
-   "highest_max_hr": 189,
-   "best_avg_speed_kmh": 0.0,
-   "best_speed_name": "Evening Run"
+  "hike": {
+   "longest_distance_km": 83.1,
+   "longest_name": "Torres del Paine W Trek",
+   "most_elevation_m": 3419.4,
+   "most_elev_name": "Salkantay Trek",
+   "highest_max_hr": 172,
+   "best_avg_speed_kmh": 4.9,
+   "best_speed_name": "Lunch Hike"
   }
  },
  "gear": [

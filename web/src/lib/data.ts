@@ -34,6 +34,8 @@ export interface Activity {
   efficiency_factor: number | null;
   aerobic_decoupling_pct: number | null;
   avg_pace_min_per_km: number | null;
+  gap_avg_pace_min_per_km: number | null;
+  grade_adjusted_speed_kmh: number | null;
   trimp: number | null;
   elevation_per_km: number | null;
   vam: number | null;

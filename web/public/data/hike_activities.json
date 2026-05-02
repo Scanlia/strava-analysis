@@ -56801,6 +56801,9 @@
     "lon": 153.27248
    }
   ],
+  "aerobic_decoupling_pct": -0.35,
+  "ef_first_half": 1.105,
+  "ef_second_half": 1.109,
   "efficiency_factor": 11.11,
   "elevation_per_km": 34.6,
   "vam": 250.9,
@@ -61357,6 +61360,9 @@
     "lon": 153.27248
    }
   ],
+  "aerobic_decoupling_pct": -0.35,
+  "ef_first_half": 1.105,
+  "ef_second_half": 1.109,
   "efficiency_factor": 11.11,
   "elevation_per_km": 34.6,
   "vam": 250.9,
@@ -84255,6 +84261,9 @@
     "lon": -72.552676
    }
   ],
+  "aerobic_decoupling_pct": 11.5,
+  "ef_first_half": 0.866,
+  "ef_second_half": 0.767,
   "efficiency_factor": 8.17,
   "elevation_per_km": 28.0,
   "vam": 124.8,
@@ -88811,6 +88820,9 @@
     "lon": -72.542915
    }
   ],
+  "aerobic_decoupling_pct": 48.93,
+  "ef_first_half": 0.538,
+  "ef_second_half": 0.275,
   "efficiency_factor": 4.24,
   "elevation_per_km": 154.6,
   "vam": 2489.9,

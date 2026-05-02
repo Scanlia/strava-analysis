@@ -2,6 +2,7 @@ import { getAggregate, getAllActivities, getSummary } from "@/lib/data";
 import SummaryCards from "@/components/SummaryCards";
 import VolumeCharts from "@/components/VolumeCharts";
 import HRCharts from "@/components/HRCharts";
+import GAPCharts from "@/components/GAPCharts";
 import BestEfforts from "@/components/BestEfforts";
 import GearCharts from "@/components/GearCharts";
 import ActivityTable from "@/components/ActivityTable";
@@ -45,6 +46,12 @@ export default function Dashboard() {
         <section>
           <h2 className="text-lg font-bold mb-4">Heart Rate Analysis</h2>
           <HRCharts activities={activities} />
+        </section>
+
+        {/* Grade Adjusted Pace / Speed */}
+        <section>
+          <h2 className="text-lg font-bold mb-4">Grade Adjusted Performance</h2>
+          <GAPCharts activities={activities} />
         </section>
 
         {/* Best Efforts */}
