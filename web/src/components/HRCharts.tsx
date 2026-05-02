@@ -41,7 +41,7 @@ function linearRegression(data: { x: number; y: number }[]): { slope: number; in
   return { slope, intercept, r2 };
 }
 
-function ewma(points: { x: number; y: number }[], alpha: number = 0.15): { x: number; y: number }[] {
+function ewma(points: { x: number; y: number }[], alpha: number = 0.05): { x: number; y: number }[] {
   if (points.length === 0) return [];
   const result: { x: number; y: number }[] = [{ x: points[0].x, y: points[0].y }];
   for (let i = 1; i < points.length; i++) {
@@ -170,8 +170,13 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
   const decoupYValues = decouplingActs.map((a) => a.aerobic_decoupling_pct ?? 0);
   const decoupReg = linearRegression(decoupYValues.map((y, i) => ({ x: i, y })));
   const isDecoupImproving = decoupReg ? decoupReg.slope < 0 : false;
-  const decoupTrendLine = decoupReg && decoupYValues.length >= 2
-    ? [decoupReg.intercept, decoupReg.intercept + decoupReg.slope * (decoupYValues.length - 1)]
+  const decoupTrendLine: (number | null)[] = decoupReg && decoupYValues.length >= 2
+    ? (() => {
+        const arr: (number | null)[] = new Array(decoupYValues.length).fill(null);
+        arr[0] = decoupReg.intercept;
+        arr[arr.length - 1] = decoupReg.intercept + decoupReg.slope * (arr.length - 1);
+        return arr;
+      })()
     : [];
   const decoupEWMALine = ewma(decoupYValues.map((y, i) => ({ x: i, y }))).map((p) => p.y);
 
@@ -240,7 +245,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                 return (
                   <div key={sport}>
                     <span style={{ color: COLORS[sport] || "#888" }}>● {sport}</span>:{" "}
-                    <span className={improving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                    <span className={improving ? "text-green-400/25 font-semibold" : "text-red-400/25 font-semibold"}>
                       {improving ? "getting fitter" : "declining"} {improving ? "✅" : "⚠️"}
                     </span>{" "}
                     <span className="text-gray-500">({Math.abs(reg!.slope).toFixed(3)} EF/{label})</span>
@@ -316,11 +321,12 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
             </div>
           </div>
           <p className="text-xs text-gray-400 mb-3">
-            Pace/HR drift — first half vs second half. Lower % = better endurance.
+            Pace/HR drift — first half vs second half. Lower % = better endurance. 
+            Positive % = efficiency dropped in 2nd half (faded). Negative % = got stronger as you went.
           </p>
           {decoupReg && (
             <p className="text-xs mb-3">
-              <span className={isDecoupImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+              <span className={isDecoupImproving ? "text-green-400/25 font-semibold" : "text-red-400/25 font-semibold"}>
                 {isDecoupImproving ? "Improving endurance ✅" : "Declining endurance ⚠️"}
               </span>
               <span className="text-gray-500"> — changing by {Math.abs(decoupReg.slope).toFixed(3)}%/activity</span>
