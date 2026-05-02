@@ -20,11 +20,13 @@ function slopeLabel(trends: GapTrends | undefined, mode: TrendMode, isRun: boole
   const lin = mode === "split" ? trends.linear_split : trends.linear_act;
   if (!lin || !lin.slope_per_month) return "";
   const val = Math.abs(lin.slope_per_month);
+  const ci = lin.ci_95 ? Math.abs(lin.ci_95) : 0;
   const unit = isRun ? "min/km" : "km/h";
   const improving = isRun ? lin.slope_per_month < 0 : lin.slope_per_month > 0;
   const dir = improving ? "improving" : "declining";
   const emoji = improving ? "\u2705" : "\u26a0\ufe0f";
-  return `${dir} ${emoji} — ${val.toFixed(3)} ${unit}/month`;
+  const ciStr = ci > 0 ? ` \u00b1 ${ci.toFixed(3)}` : "";
+  return `${dir} ${emoji} — ${val.toFixed(3)}${ciStr} ${unit}/month`;
 }
 
 export default function GAPCharts({ activities, trends }: { activities: Activity[]; trends: Record<string, GapTrends> }) {
@@ -187,12 +189,13 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
           <div className="h-80">
             <Line
               data={{ datasets: [
-                { label: "1km Split", data: runSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RUN_COLOR, backgroundColor: RUN_COLOR + "44", pointRadius: 3, showLine: false, order: 5 },
-                ...(runTrendType === "loess" && runLoessSplit.length > 0 ? [{ label: "LOESS (per-split)", data: runLoessSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
-                ...(runTrendType === "loess" && runLoessAct.length > 0 ? [{ label: "LOESS (per-activity)", data: runLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
-                ...(runTrendType === "linear" && runLinearSplit.length > 0 ? [{ label: "Linear (per-split)", data: runLinearSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
-                ...(runTrendType === "linear" && runLinearAct.length > 0 ? [{ label: "Linear (per-activity)", data: runLinearAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
-                { label: "Activity Avg", data: runActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 6 },
+                ...(runTrendMode === "split" ? [{ label: "1km Split", data: runSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RUN_COLOR, backgroundColor: RUN_COLOR + "44", pointRadius: 3, showLine: false, order: 4 }] : []),
+                ...(runTrendMode === "activity" ? [{ label: "Activity Avg", data: runActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 4 }] : []),
+                // Trend lines — solid for selected mode, dashed for other
+                ...(runTrendType === "loess" && runLoessSplit.length > 0 ? [{ label: "Split Trend", data: runLoessSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1, borderDash: runTrendMode === "split" ? [] : [6, 3] }] : []),
+                ...(runTrendType === "loess" && runLoessAct.length > 0 ? [{ label: "Activity Trend", data: runLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: runTrendMode === "activity" ? [] : [6, 3] }] : []),
+                ...(runTrendType === "linear" && runLinearSplit.length > 0 ? [{ label: "Split Trend", data: runLinearSplit as any, borderColor: RUN_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1, borderDash: runTrendMode === "split" ? [] : [6, 3] }] : []),
+                ...(runTrendType === "linear" && runLinearAct.length > 0 ? [{ label: "Activity Trend", data: runLinearAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: runTrendMode === "activity" ? [] : [6, 3] }] : []),
               ] }}
               options={runOptions()}
             />
@@ -227,12 +230,12 @@ export default function GAPCharts({ activities, trends }: { activities: Activity
           <div className="h-80">
             <Line
               data={{ datasets: [
-                { label: "5min Split", data: rideSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RIDE_COLOR, backgroundColor: RIDE_COLOR + "44", pointRadius: 3, showLine: false, order: 5 },
-                ...(rideTrendType === "loess" && rideLoessSplit.length > 0 ? [{ label: "LOESS (per-split)", data: rideLoessSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
-                ...(rideTrendType === "loess" && rideLoessAct.length > 0 ? [{ label: "LOESS (per-activity)", data: rideLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
-                ...(rideTrendType === "linear" && rideLinearSplit.length > 0 ? [{ label: "Linear (per-split)", data: rideLinearSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1 }] : []),
-                ...(rideTrendType === "linear" && rideLinearAct.length > 0 ? [{ label: "Linear (per-activity)", data: rideLinearAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: [4, 4] }] : []),
-                { label: "Activity Avg", data: rideActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 6 },
+                ...(rideTrendMode === "split" ? [{ label: "5min Split", data: rideSegments.map((s) => ({ x: s.x, y: s.y })) as any, borderColor: RIDE_COLOR, backgroundColor: RIDE_COLOR + "44", pointRadius: 3, showLine: false, order: 4 }] : []),
+                ...(rideTrendMode === "activity" ? [{ label: "Activity Avg", data: rideActPoints as any, borderColor: "#f59e0b", backgroundColor: "#f59e0b44", pointRadius: 5, showLine: false, order: 4 }] : []),
+                ...(rideTrendType === "loess" && rideLoessSplit.length > 0 ? [{ label: "Split Trend", data: rideLoessSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1, borderDash: rideTrendMode === "split" ? [] : [6, 3] }] : []),
+                ...(rideTrendType === "loess" && rideLoessAct.length > 0 ? [{ label: "Activity Trend", data: rideLoessAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: rideTrendMode === "activity" ? [] : [6, 3] }] : []),
+                ...(rideTrendType === "linear" && rideLinearSplit.length > 0 ? [{ label: "Split Trend", data: rideLinearSplit as any, borderColor: RIDE_COLOR, borderWidth: 2.5, pointRadius: 0, tension: 0, order: 1, borderDash: rideTrendMode === "split" ? [] : [6, 3] }] : []),
+                ...(rideTrendType === "linear" && rideLinearAct.length > 0 ? [{ label: "Activity Trend", data: rideLinearAct as any, borderColor: "#f59e0b", borderWidth: 2.5, pointRadius: 0, tension: 0, order: 2, borderDash: rideTrendMode === "activity" ? [] : [6, 3] }] : []),
               ] }}
               options={rideOptions()}
             />

@@ -5547,6 +5547,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 110.9,
   "vam": 298.4,
   "moving_time_pct": 16.0,
@@ -11101,6 +11103,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 51.9,
   "vam": 122.6,
   "moving_time_pct": 23.8,
@@ -16655,6 +16659,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 54.7,
   "vam": 158.0,
   "moving_time_pct": 60.7,
@@ -22209,6 +22215,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 29.6,
   "vam": 107.0,
   "moving_time_pct": 77.6,
@@ -27763,6 +27771,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 39.7,
   "vam": 156.5,
   "moving_time_pct": 18.4,
@@ -33317,6 +33327,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 23.6,
   "vam": 85.0,
   "moving_time_pct": 74.4,
@@ -38024,6 +38036,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 26.7,
   "vam": 93.8,
   "moving_time_pct": 70.0,
@@ -43369,6 +43383,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 142.2,
   "vam": 419.7,
   "moving_time_pct": 54.2,
@@ -48923,6 +48939,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 25.2,
   "vam": 98.1,
   "moving_time_pct": 24.5,
@@ -54477,6 +54495,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 29.1,
   "vam": 115.1,
   "moving_time_pct": 23.2,
@@ -60031,6 +60051,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 30.5,
   "vam": 104.1,
   "moving_time_pct": 56.4,
@@ -63715,6 +63737,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 77.7,
   "vam": 302.9,
   "moving_time_pct": 92.7,
@@ -63741,7 +63765,7 @@
   "elevation_low_m": 679.9,
   "elevation_high_m": 803.1,
   "max_hr": 155,
-  "avg_hr": 122.7,
+  "avg_hr": 121.6,
   "calories": 840.0,
   "relative_effort": 20,
   "gear": null,
@@ -63758,11 +63782,11 @@
   "end_lat": -28.218796,
   "end_lon": 153.27303,
   "hr_zones": {
-   "Z1": 194,
-   "Z2": 631,
-   "Z3": 1958,
-   "Z4": 1402,
-   "Z5": 847
+   "Z1": 400,
+   "Z2": 1219,
+   "Z3": 1759,
+   "Z4": 1252,
+   "Z5": 1237
   },
   "hr_samples": 5867,
   "has_hr": true,
@@ -69269,16 +69293,15 @@
     "m": true
    }
   ],
-  "aerobic_decoupling_pct": -0.35,
-  "ef_first_half": 1.105,
-  "ef_second_half": 1.109,
+  "is_manual": false,
+  "is_indoor": false,
   "efficiency_factor": 11.55,
   "elevation_per_km": 34.6,
   "vam": 194.6,
   "moving_time_pct": 86.3,
   "avg_pace_min_per_km": 11.76,
   "max_pace_min_per_km": 0.04,
-  "trimp": 206.9
+  "trimp": 149.6
  },
  {
   "id": "13394699917",
@@ -69300,7 +69323,7 @@
   "elevation_low_m": 679.9,
   "elevation_high_m": 803.1,
   "max_hr": 155,
-  "avg_hr": 122.7,
+  "avg_hr": 121.6,
   "calories": 840.0,
   "relative_effort": 20,
   "gear": null,
@@ -69317,11 +69340,11 @@
   "end_lat": -28.218796,
   "end_lon": 153.27303,
   "hr_zones": {
-   "Z1": 194,
-   "Z2": 631,
-   "Z3": 1958,
-   "Z4": 1402,
-   "Z5": 847
+   "Z1": 400,
+   "Z2": 1219,
+   "Z3": 1759,
+   "Z4": 1252,
+   "Z5": 1237
   },
   "hr_samples": 5867,
   "has_hr": true,
@@ -74828,16 +74851,15 @@
     "m": true
    }
   ],
-  "aerobic_decoupling_pct": -0.35,
-  "ef_first_half": 1.105,
-  "ef_second_half": 1.109,
+  "is_manual": false,
+  "is_indoor": false,
   "efficiency_factor": 11.55,
   "elevation_per_km": 34.6,
   "vam": 194.6,
   "moving_time_pct": 86.3,
   "avg_pace_min_per_km": 11.76,
   "max_pace_min_per_km": 0.04,
-  "trimp": 206.9
+  "trimp": 149.6
  },
  {
   "id": "15959882770",
@@ -80387,6 +80409,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 26.1,
   "vam": 99.8,
   "moving_time_pct": 78.6,
@@ -80413,7 +80437,7 @@
   "elevation_low_m": 1887.4,
   "elevation_high_m": 1950.9,
   "max_hr": 149,
-  "avg_hr": 77.5,
+  "avg_hr": 98.9,
   "calories": 156.0,
   "relative_effort": 8,
   "gear": null,
@@ -80430,11 +80454,11 @@
   "end_lat": 22.352609261870384,
   "end_lon": 103.77475798130035,
   "hr_zones": {
-   "Z1": 21,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 3059,
+   "Z2": 1020,
+   "Z3": 359,
+   "Z4": 53,
+   "Z5": 158
   },
   "hr_samples": 4649,
   "has_hr": true,
@@ -85556,9 +85580,8 @@
     "m": false
    }
   ],
-  "aerobic_decoupling_pct": 13.09,
-  "ef_first_half": 0.593,
-  "ef_second_half": 0.515,
+  "is_manual": false,
+  "is_indoor": false,
   "efficiency_factor": 6.05,
   "elevation_per_km": 87.0,
   "vam": 37885.7,
@@ -85603,11 +85626,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 9,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 7917,
+   "Z2": 2074,
+   "Z3": 735,
+   "Z4": 445,
+   "Z5": 376
   },
   "hr_samples": 11547,
   "has_hr": true,
@@ -91114,6 +91137,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "moving_time_pct": 0.1
  },
  {
@@ -91136,7 +91161,7 @@
   "elevation_low_m": 776.9,
   "elevation_high_m": 938.0,
   "max_hr": 155,
-  "avg_hr": 96.2,
+  "avg_hr": 102.8,
   "calories": 548.0,
   "relative_effort": 27,
   "gear": null,
@@ -91153,11 +91178,11 @@
   "end_lat": -28.230759920552373,
   "end_lon": 153.13500691205263,
   "hr_zones": {
-   "Z1": 99,
-   "Z2": 119,
-   "Z3": 20,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 6582,
+   "Z2": 5902,
+   "Z3": 2268,
+   "Z4": 573,
+   "Z5": 167
   },
   "hr_samples": 15492,
   "has_hr": true,
@@ -96664,16 +96689,15 @@
     "m": false
    }
   ],
-  "aerobic_decoupling_pct": -26.33,
-  "ef_first_half": 0.523,
-  "ef_second_half": 0.66,
+  "is_manual": false,
+  "is_indoor": false,
   "efficiency_factor": 7.97,
   "elevation_per_km": 475.3,
   "vam": 68221.5,
   "moving_time_pct": 1.5,
   "avg_pace_min_per_km": 21.73,
   "max_pace_min_per_km": 0.84,
-  "trimp": 5.2
+  "trimp": 2.6
  },
  {
   "id": "17795588610",
@@ -102223,6 +102247,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 37.9,
   "vam": 135.5,
   "moving_time_pct": 84.0,
@@ -107777,6 +107803,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 35.7,
   "vam": 123.0,
   "moving_time_pct": 23.5,
@@ -113331,6 +113359,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "elevation_per_km": 90.3,
   "vam": 320.1,
   "moving_time_pct": 22.2,
@@ -113357,7 +113387,7 @@
   "elevation_low_m": 1791.0,
   "elevation_high_m": 2073.1,
   "max_hr": 137,
-  "avg_hr": 100.9,
+  "avg_hr": 97.7,
   "calories": 1040.0,
   "relative_effort": 24,
   "gear": "Keen Targhee",
@@ -113374,11 +113404,11 @@
   "end_lat": -13.15497,
   "end_lon": -72.523964,
   "hr_zones": {
-   "Z1": 1469,
-   "Z2": 1833,
-   "Z3": 6666,
-   "Z4": 2242,
-   "Z5": 323
+   "Z1": 8808,
+   "Z2": 5849,
+   "Z3": 1221,
+   "Z4": 329,
+   "Z5": 39
   },
   "hr_samples": 16246,
   "has_hr": true,
@@ -118885,16 +118915,15 @@
     "m": true
    }
   ],
-  "aerobic_decoupling_pct": 11.5,
-  "ef_first_half": 0.866,
-  "ef_second_half": 0.767,
+  "is_manual": false,
+  "is_indoor": false,
   "efficiency_factor": 9.93,
   "elevation_per_km": 28.0,
   "vam": 104.1,
   "moving_time_pct": 77.1,
   "avg_pace_min_per_km": 16.64,
   "max_pace_min_per_km": 2.17,
-  "trimp": 405.0
+  "trimp": 240.6
  },
  {
   "id": "18280091432",
@@ -118915,8 +118944,8 @@
   "elevation_loss_m": 555.3000000000018,
   "elevation_low_m": 1981.4,
   "elevation_high_m": 2485.5,
-  "max_hr": 172,
-  "avg_hr": 101.5,
+  "max_hr": 159,
+  "avg_hr": 113.5,
   "calories": 524.0,
   "relative_effort": 28,
   "gear": "Keen Targhee",
@@ -118933,11 +118962,11 @@
   "end_lat": -13.165679,
   "end_lon": -72.543197,
   "hr_zones": {
-   "Z1": 10,
-   "Z2": 32,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 5070,
+   "Z2": 2454,
+   "Z3": 956,
+   "Z4": 965,
+   "Z5": 3008
   },
   "hr_samples": 12453,
   "has_hr": true,
@@ -124444,9 +124473,8 @@
     "m": false
    }
   ],
-  "aerobic_decoupling_pct": 48.93,
-  "ef_first_half": 0.538,
-  "ef_second_half": 0.275,
+  "is_manual": false,
+  "is_indoor": false,
   "efficiency_factor": 5.81,
   "elevation_per_km": 154.6,
   "vam": 81439.0,

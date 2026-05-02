@@ -39,7 +39,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "8469016304",
@@ -81,7 +83,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "10746226436",
@@ -123,7 +127,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "10691616242",
@@ -165,7 +171,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "13044186351",
@@ -187,7 +195,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 164,
-  "avg_hr": 82.4,
+  "avg_hr": 135.2,
   "calories": null,
   "relative_effort": 11,
   "gear": null,
@@ -204,11 +212,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 9,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 39,
+   "Z2": 68,
+   "Z3": 208,
+   "Z4": 504,
+   "Z5": 258
   },
   "hr_samples": 1077,
   "has_hr": true,
@@ -1447,9 +1455,8 @@
     "m": true
    }
   ],
-  "aerobic_decoupling_pct": 27.26,
-  "ef_first_half": 0.728,
-  "ef_second_half": 0.529,
+  "is_manual": false,
+  "is_indoor": true,
   "elevation_per_km": 0.0,
   "moving_time_pct": 0.8
  },
@@ -2546,6 +2553,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "elevation_per_km": 0.0,
   "moving_time_pct": 2.3,
   "avg_pace_min_per_km": 34.67,
@@ -2571,7 +2580,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 152,
-  "avg_hr": 75.8,
+  "avg_hr": 126.3,
   "calories": null,
   "relative_effort": 3,
   "gear": null,
@@ -2588,11 +2597,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 13,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 64,
+   "Z2": 36,
+   "Z3": 78,
+   "Z4": 89,
+   "Z5": 95
   },
   "hr_samples": 362,
   "has_hr": true,
@@ -3050,15 +3059,14 @@
     "m": true
    }
   ],
-  "aerobic_decoupling_pct": 9.93,
-  "ef_first_half": 0.588,
-  "ef_second_half": 0.53,
+  "is_manual": false,
+  "is_indoor": true,
   "efficiency_factor": 1.35,
   "elevation_per_km": 0.0,
   "moving_time_pct": 21.8,
   "avg_pace_min_per_km": 162.5,
   "max_pace_min_per_km": 1.19,
-  "trimp": 1.0
+  "trimp": 0.3
  },
  {
   "id": "13412056376",
@@ -3080,7 +3088,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 155,
-  "avg_hr": 90.4,
+  "avg_hr": 130.4,
   "calories": null,
   "relative_effort": 5,
   "gear": null,
@@ -3097,11 +3105,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 5,
-   "Z2": 2,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 35,
+   "Z2": 87,
+   "Z3": 230,
+   "Z4": 373,
+   "Z5": 41
   },
   "hr_samples": 766,
   "has_hr": true,
@@ -3988,9 +3996,8 @@
     "m": true
    }
   ],
-  "aerobic_decoupling_pct": -37.69,
-  "ef_first_half": 0.715,
-  "ef_second_half": 0.985,
+  "is_manual": false,
+  "is_indoor": true,
   "elevation_per_km": 0.0,
   "moving_time_pct": 1.2
  },
@@ -4014,7 +4021,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 121,
-  "avg_hr": 92.5,
+  "avg_hr": 105.3,
   "calories": 17.0,
   "relative_effort": 1,
   "gear": null,
@@ -4031,9 +4038,9 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 0,
-   "Z3": 10,
+   "Z1": 271,
+   "Z2": 167,
+   "Z3": 3,
    "Z4": 0,
    "Z5": 0
   },
@@ -4537,6 +4544,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "moving_time_pct": 2.0
  },
  {
@@ -4559,7 +4568,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 156,
-  "avg_hr": 122.6,
+  "avg_hr": 125.0,
   "calories": 195.0,
   "relative_effort": 11,
   "gear": null,
@@ -4576,11 +4585,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 0,
-   "Z3": 10,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 268,
+   "Z2": 408,
+   "Z3": 402,
+   "Z4": 433,
+   "Z5": 199
   },
   "hr_samples": 1710,
   "has_hr": true,
@@ -6479,6 +6488,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "moving_time_pct": 0.5
  },
  {
@@ -6500,8 +6511,8 @@
   "elevation_loss_m": 0.0,
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
-  "max_hr": 176,
-  "avg_hr": 91.9,
+  "max_hr": 172,
+  "avg_hr": 147.7,
   "calories": 247.0,
   "relative_effort": 30,
   "gear": null,
@@ -6518,11 +6529,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 9,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 69,
+   "Z2": 8,
+   "Z3": 10,
+   "Z4": 290,
+   "Z5": 1024
   },
   "hr_samples": 1401,
   "has_hr": true,
@@ -8080,6 +8091,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "moving_time_pct": 0.6
  },
  {
@@ -8102,7 +8115,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 161,
-  "avg_hr": 121.4,
+  "avg_hr": 127.3,
   "calories": 133.0,
   "relative_effort": 7,
   "gear": null,
@@ -8119,11 +8132,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 0,
-   "Z3": 9,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 30,
+   "Z2": 330,
+   "Z3": 531,
+   "Z4": 111,
+   "Z5": 189
   },
   "hr_samples": 1191,
   "has_hr": true,
@@ -9450,6 +9463,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "moving_time_pct": 0.8
  },
  {
@@ -9472,7 +9487,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 150,
-  "avg_hr": 105.2,
+  "avg_hr": 127.3,
   "calories": 134.0,
   "relative_effort": 7,
   "gear": null,
@@ -9489,11 +9504,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 6,
-   "Z3": 4,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 20,
+   "Z2": 272,
+   "Z3": 523,
+   "Z4": 401,
+   "Z5": 44
   },
   "hr_samples": 1260,
   "has_hr": true,
@@ -10897,6 +10912,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "moving_time_pct": 0.7
  }
 ]

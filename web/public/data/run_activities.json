@@ -39,7 +39,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "3736044281",
@@ -81,7 +83,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "3775077238",
@@ -123,7 +127,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "4033778700",
@@ -3638,6 +3644,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [],
   "vam": 136350.0,
   "moving_time_pct": 0.4
@@ -6715,6 +6723,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [],
   "vam": 225900.0,
   "moving_time_pct": 0.4
@@ -7108,6 +7118,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 0.93,
@@ -8268,6 +8280,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -12735,6 +12749,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.02,
@@ -14517,6 +14533,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -14626,11 +14644,11 @@
   "end_lat": -37.906547,
   "end_lon": 145.022023,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 70,
-   "Z3": 443,
-   "Z4": 1066,
-   "Z5": 605
+   "Z1": 38,
+   "Z2": 168,
+   "Z3": 521,
+   "Z4": 912,
+   "Z5": 545
   },
   "hr_samples": 2184,
   "has_hr": true,
@@ -17046,6 +17064,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.0,
@@ -17113,9 +17133,6 @@
     "ele_gain": 3.4
    }
   ],
-  "aerobic_decoupling_pct": 4.23,
-  "ef_first_half": 1.633,
-  "ef_second_half": 1.564,
   "efficiency_factor": 15.98,
   "elevation_per_km": 7.0,
   "vam": 57.8,
@@ -17161,7 +17178,7 @@
     "elev_gain": 9.8
    }
   ],
-  "trimp": 102.8
+  "trimp": 84.7
  },
  {
   "id": "10983365935",
@@ -17183,7 +17200,7 @@
   "elevation_low_m": 22.3,
   "elevation_high_m": 34.2,
   "max_hr": 168,
-  "avg_hr": 137.7,
+  "avg_hr": 131.5,
   "calories": 319.0,
   "relative_effort": 13,
   "gear": null,
@@ -17200,11 +17217,11 @@
   "end_lat": -37.906616,
   "end_lon": 145.022513,
   "hr_zones": {
-   "Z1": 13,
-   "Z2": 343,
-   "Z3": 263,
-   "Z4": 746,
-   "Z5": 435
+   "Z1": 780,
+   "Z2": 360,
+   "Z3": 309,
+   "Z4": 622,
+   "Z5": 422
   },
   "hr_samples": 2493,
   "has_hr": true,
@@ -19961,6 +19978,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.02,
@@ -20015,9 +20034,6 @@
     "ele_gain": 0.4
    }
   ],
-  "aerobic_decoupling_pct": 40.07,
-  "ef_first_half": 1.545,
-  "ef_second_half": 0.926,
   "efficiency_factor": 16.06,
   "elevation_per_km": 6.9,
   "vam": 56.0,
@@ -20056,7 +20072,7 @@
     "elev_gain": 4.3
    }
   ],
-  "trimp": 76.5
+  "trimp": 59.9
  },
  {
   "id": "11052648834",
@@ -20098,7 +20114,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": false,
+  "is_indoor": true
  },
  {
   "id": "11271463796",
@@ -21677,6 +21695,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -21766,11 +21786,11 @@
   "end_lat": -37.829837,
   "end_lon": 144.95886,
   "hr_zones": {
-   "Z1": 50,
-   "Z2": 788,
-   "Z3": 600,
-   "Z4": 1070,
-   "Z5": 401
+   "Z1": 585,
+   "Z2": 441,
+   "Z3": 643,
+   "Z4": 789,
+   "Z5": 467
   },
   "hr_samples": 2925,
   "has_hr": true,
@@ -25000,6 +25020,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.02,
@@ -25080,9 +25102,9 @@
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": 12.25,
-  "ef_first_half": 1.632,
-  "ef_second_half": 1.432,
+  "aerobic_decoupling_pct": 17.71,
+  "ef_first_half": 0.0169,
+  "ef_second_half": 0.0139,
   "efficiency_factor": 15.45,
   "elevation_per_km": 3.7,
   "vam": 27.7,
@@ -25135,7 +25157,7 @@
     "elev_gain": 3.7
    }
   ],
-  "trimp": 109.4
+  "trimp": 81.7
  },
  {
   "id": "12126256299",
@@ -25157,7 +25179,7 @@
   "elevation_low_m": 21.5,
   "elevation_high_m": 34.4,
   "max_hr": 162,
-  "avg_hr": 138.8,
+  "avg_hr": 138.7,
   "calories": 290.0,
   "relative_effort": 10,
   "gear": null,
@@ -25174,11 +25196,11 @@
   "end_lat": -37.854049,
   "end_lon": 144.997377,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 34,
-   "Z3": 393,
-   "Z4": 800,
-   "Z5": 629
+   "Z1": 41,
+   "Z2": 322,
+   "Z3": 500,
+   "Z4": 859,
+   "Z5": 141
   },
   "hr_samples": 1863,
   "has_hr": true,
@@ -27242,6 +27264,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.03,
@@ -27296,9 +27320,6 @@
     "ele_gain": 2.4
    }
   ],
-  "aerobic_decoupling_pct": 8.04,
-  "ef_first_half": 1.614,
-  "ef_second_half": 1.485,
   "efficiency_factor": 15.53,
   "elevation_per_km": 10.2,
   "vam": 79.4,
@@ -27330,7 +27351,7 @@
     "elev_gain": 8.8
    }
   ],
-  "trimp": 87.8
+  "trimp": 71.9
  },
  {
   "id": "12260283422",
@@ -27352,7 +27373,7 @@
   "elevation_low_m": 26.1,
   "elevation_high_m": 29.3,
   "max_hr": 143,
-  "avg_hr": 106.2,
+  "avg_hr": 104.1,
   "calories": 68.0,
   "relative_effort": 0,
   "gear": null,
@@ -27369,11 +27390,11 @@
   "end_lat": -37.852627,
   "end_lon": 144.99863,
   "hr_zones": {
-   "Z1": 73,
-   "Z2": 85,
-   "Z3": 97,
-   "Z4": 49,
-   "Z5": 65
+   "Z1": 295,
+   "Z2": 43,
+   "Z3": 53,
+   "Z4": 18,
+   "Z5": 0
   },
   "hr_samples": 409,
   "has_hr": true,
@@ -27919,6 +27940,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 0.71,
@@ -27934,9 +27957,6 @@
     "ele_gain": 1.0
    }
   ],
-  "aerobic_decoupling_pct": 40.91,
-  "ef_first_half": 2.115,
-  "ef_second_half": 1.25,
   "efficiency_factor": 14.82,
   "elevation_per_km": 57.5,
   "vam": 392.6,
@@ -27945,7 +27965,7 @@
   "max_pace_min_per_km": 0.4,
   "gap_avg_pace_min_per_km": 10.59,
   "gap_correction_pct": 0.0,
-  "trimp": 12.4
+  "trimp": 7.8
  },
  {
   "id": "12277557075",
@@ -27967,7 +27987,7 @@
   "elevation_low_m": 9.2,
   "elevation_high_m": 32.8,
   "max_hr": 161,
-  "avg_hr": 128.2,
+  "avg_hr": 128.1,
   "calories": 307.0,
   "relative_effort": 10,
   "gear": null,
@@ -27984,11 +28004,11 @@
   "end_lat": -37.8341,
   "end_lon": 144.97345,
   "hr_zones": {
-   "Z1": 43,
-   "Z2": 328,
-   "Z3": 855,
-   "Z4": 530,
-   "Z5": 551
+   "Z1": 629,
+   "Z2": 591,
+   "Z3": 384,
+   "Z4": 499,
+   "Z5": 214
   },
   "hr_samples": 2317,
   "has_hr": true,
@@ -31031,6 +31051,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -31085,9 +31107,6 @@
     "ele_gain": 3.1
    }
   ],
-  "aerobic_decoupling_pct": 12.99,
-  "ef_first_half": 1.442,
-  "ef_second_half": 1.255,
   "efficiency_factor": 13.66,
   "elevation_per_km": 56.9,
   "vam": 358.1,
@@ -31126,7 +31145,7 @@
     "elev_gain": 61.1
    }
   ],
-  "trimp": 92.5
+  "trimp": 68.6
  },
  {
   "id": "12311538909",
@@ -31148,7 +31167,7 @@
   "elevation_low_m": 22.3,
   "elevation_high_m": 37.9,
   "max_hr": 158,
-  "avg_hr": 138.1,
+  "avg_hr": 137.4,
   "calories": 327.0,
   "relative_effort": 10,
   "gear": null,
@@ -31165,11 +31184,11 @@
   "end_lat": -37.853928,
   "end_lon": 144.99721,
   "hr_zones": {
-   "Z1": 9,
-   "Z2": 91,
-   "Z3": 203,
-   "Z4": 800,
-   "Z5": 682
+   "Z1": 168,
+   "Z2": 226,
+   "Z3": 624,
+   "Z4": 682,
+   "Z5": 213
   },
   "hr_samples": 1913,
   "has_hr": true,
@@ -33728,6 +33747,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -33782,9 +33803,6 @@
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": -18.55,
-  "ef_first_half": 1.203,
-  "ef_second_half": 1.426,
   "efficiency_factor": 13.82,
   "elevation_per_km": 23.7,
   "vam": 164.2,
@@ -33816,7 +33834,7 @@
     "elev_gain": 15.1
    }
   ],
-  "trimp": 92.7
+  "trimp": 77.4
  },
  {
   "id": "12771047914",
@@ -33838,7 +33856,7 @@
   "elevation_low_m": 21.6,
   "elevation_high_m": 34.4,
   "max_hr": 171,
-  "avg_hr": 149.1,
+  "avg_hr": 148.0,
   "calories": 280.0,
   "relative_effort": 18,
   "gear": null,
@@ -33855,11 +33873,11 @@
   "end_lat": -37.85409,
   "end_lon": 144.99724,
   "hr_zones": {
-   "Z1": 10,
-   "Z2": 14,
-   "Z3": 41,
-   "Z4": 656,
-   "Z5": 436
+   "Z1": 49,
+   "Z2": 18,
+   "Z3": 95,
+   "Z4": 598,
+   "Z5": 444
   },
   "hr_samples": 1204,
   "has_hr": true,
@@ -35857,6 +35875,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -35898,9 +35918,6 @@
     "ele_gain": 1.3
    }
   ],
-  "aerobic_decoupling_pct": 1.02,
-  "ef_first_half": 1.425,
-  "ef_second_half": 1.411,
   "efficiency_factor": 14.28,
   "elevation_per_km": 24.6,
   "vam": 191.0,
@@ -35932,7 +35949,7 @@
     "elev_gain": 25.2
    }
   ],
-  "trimp": 76.9
+  "trimp": 65.2
  },
  {
   "id": "13204643764",
@@ -35954,7 +35971,7 @@
   "elevation_low_m": 22.8,
   "elevation_high_m": 34.2,
   "max_hr": 178,
-  "avg_hr": 129.1,
+  "avg_hr": 128.1,
   "calories": 292.0,
   "relative_effort": 10,
   "gear": null,
@@ -35971,11 +35988,11 @@
   "end_lat": -37.853912,
   "end_lon": 144.99667,
   "hr_zones": {
-   "Z1": 45,
-   "Z2": 1129,
-   "Z3": 306,
-   "Z4": 685,
-   "Z5": 55
+   "Z1": 694,
+   "Z2": 597,
+   "Z3": 178,
+   "Z4": 657,
+   "Z5": 169
   },
   "hr_samples": 2295,
   "has_hr": true,
@@ -38963,6 +38980,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.02,
@@ -39017,9 +39036,6 @@
     "ele_gain": 2.6
    }
   ],
-  "aerobic_decoupling_pct": 2.01,
-  "ef_first_half": 1.26,
-  "ef_second_half": 1.235,
   "efficiency_factor": 12.89,
   "elevation_per_km": 25.2,
   "vam": 151.8,
@@ -39051,7 +39067,7 @@
     "elev_gain": 23.1
    }
   ],
-  "trimp": 70.0
+  "trimp": 48.6
  },
  {
   "id": "13314322084",
@@ -39093,7 +39109,9 @@
   "hr_samples": 0,
   "has_hr": false,
   "stream_points": 0,
-  "stream": []
+  "stream": [],
+  "is_manual": true,
+  "is_indoor": false
  },
  {
   "id": "14585944093",
@@ -39115,7 +39133,7 @@
   "elevation_low_m": 20.4,
   "elevation_high_m": 28.9,
   "max_hr": 156,
-  "avg_hr": 134.7,
+  "avg_hr": 133.4,
   "calories": 77.0,
   "relative_effort": 2,
   "gear": null,
@@ -39132,11 +39150,11 @@
   "end_lat": -37.847218,
   "end_lon": 144.99303,
   "hr_zones": {
-   "Z1": 10,
-   "Z2": 1,
-   "Z3": 62,
-   "Z4": 298,
-   "Z5": 198
+   "Z1": 37,
+   "Z2": 102,
+   "Z3": 255,
+   "Z4": 203,
+   "Z5": 16
   },
   "hr_samples": 613,
   "has_hr": true,
@@ -40001,6 +40019,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -40016,9 +40036,6 @@
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": 27.54,
-  "ef_first_half": 1.734,
-  "ef_second_half": 1.257,
   "efficiency_factor": 14.79,
   "elevation_per_km": 26.2,
   "vam": 200.3,
@@ -40036,7 +40053,7 @@
     "elev_gain": 24.9
    }
   ],
-  "trimp": 31.3
+  "trimp": 25.6
  },
  {
   "id": "15803607460",
@@ -40058,7 +40075,7 @@
   "elevation_low_m": 6.9,
   "elevation_high_m": 33.9,
   "max_hr": 168,
-  "avg_hr": 135.5,
+  "avg_hr": 132.1,
   "calories": 260.0,
   "relative_effort": 10,
   "gear": null,
@@ -40075,11 +40092,11 @@
   "end_lat": -37.86259,
   "end_lon": 144.9726,
   "hr_zones": {
-   "Z1": 13,
-   "Z2": 215,
-   "Z3": 526,
-   "Z4": 357,
-   "Z5": 332
+   "Z1": 288,
+   "Z2": 389,
+   "Z3": 504,
+   "Z4": 233,
+   "Z5": 299
   },
   "hr_samples": 1713,
   "has_hr": true,
@@ -42352,6 +42369,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.01,
@@ -42393,9 +42412,6 @@
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": -35.05,
-  "ef_first_half": 1.126,
-  "ef_second_half": 1.52,
   "efficiency_factor": 14.73,
   "elevation_per_km": 44.5,
   "vam": 329.1,
@@ -42427,7 +42443,7 @@
     "elev_gain": 30.0
    }
   ],
-  "trimp": 63.0
+  "trimp": 48.4
  },
  {
   "id": "16361057231",
@@ -42449,7 +42465,7 @@
   "elevation_low_m": 0.0,
   "elevation_high_m": 0.0,
   "max_hr": 183,
-  "avg_hr": 94.3,
+  "avg_hr": 143.8,
   "calories": 506.0,
   "relative_effort": 36,
   "gear": null,
@@ -42466,11 +42482,11 @@
   "end_lat": null,
   "end_lon": null,
   "hr_zones": {
-   "Z1": 9,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 468,
+   "Z2": 46,
+   "Z3": 138,
+   "Z4": 1013,
+   "Z5": 1206
   },
   "hr_samples": 2871,
   "has_hr": true,
@@ -45645,6 +45661,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": true,
   "gap_segments": [],
   "moving_time_pct": 0.3
  },
@@ -45668,7 +45686,7 @@
   "elevation_low_m": 5.5,
   "elevation_high_m": 7.0,
   "max_hr": 159,
-  "avg_hr": 143.5,
+  "avg_hr": 144.5,
   "calories": 326.0,
   "relative_effort": 15,
   "gear": null,
@@ -45685,11 +45703,11 @@
   "end_lat": -37.87458250299096,
   "end_lon": 144.9768632557243,
   "hr_zones": {
-   "Z1": 24,
-   "Z2": 40,
-   "Z3": 8,
-   "Z4": 72,
-   "Z5": 505
+   "Z1": 93,
+   "Z2": 44,
+   "Z3": 152,
+   "Z4": 1371,
+   "Z5": 204
   },
   "hr_samples": 1864,
   "has_hr": true,
@@ -47753,6 +47771,8 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.0,
@@ -47781,9 +47801,6 @@
     "ele_gain": 1.0
    }
   ],
-  "aerobic_decoupling_pct": 9.98,
-  "ef_first_half": 1.597,
-  "ef_second_half": 1.437,
   "efficiency_factor": 16.55,
   "elevation_per_km": 44.2,
   "vam": 1001.8,
@@ -47822,7 +47839,7 @@
     "elev_gain": 50.4
    }
   ],
-  "trimp": 35.3
+  "trimp": 30.8
  },
  {
   "id": "16908983259",
@@ -47843,8 +47860,8 @@
   "elevation_loss_m": 211.20000000000005,
   "elevation_low_m": -2.0,
   "elevation_high_m": 94.5,
-  "max_hr": 189,
-  "avg_hr": 92.9,
+  "max_hr": 184,
+  "avg_hr": 141.0,
   "calories": 737.0,
   "relative_effort": 37,
   "gear": null,
@@ -47861,11 +47878,11 @@
   "end_lat": 7.882162621244788,
   "end_lon": 98.27226938679814,
   "hr_zones": {
-   "Z1": 10,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 488,
+   "Z2": 502,
+   "Z3": 1004,
+   "Z4": 1136,
+   "Z5": 1312
   },
   "hr_samples": 4442,
   "has_hr": true,
@@ -52767,10 +52784,9 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [],
-  "aerobic_decoupling_pct": 5.45,
-  "ef_first_half": 0.89,
-  "ef_second_half": 0.841,
   "efficiency_factor": 0.51,
   "elevation_per_km": 38.7,
   "vam": 83840.0,
@@ -52836,8 +52852,8 @@
   "elevation_loss_m": 82.5999999999998,
   "elevation_low_m": 5.6,
   "elevation_high_m": 18.2,
-  "max_hr": 185,
-  "avg_hr": 147.7,
+  "max_hr": 184,
+  "avg_hr": 154.9,
   "calories": 433.0,
   "relative_effort": 31,
   "gear": null,
@@ -52854,11 +52870,11 @@
   "end_lat": -37.87570324726403,
   "end_lon": 144.98972562141716,
   "hr_zones": {
-   "Z1": 19,
-   "Z2": 27,
-   "Z3": 542,
-   "Z4": 414,
-   "Z5": 77
+   "Z1": 20,
+   "Z2": 73,
+   "Z3": 174,
+   "Z4": 876,
+   "Z5": 997
   },
   "hr_samples": 2140,
   "has_hr": true,
@@ -55230,6 +55246,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.0,
@@ -55256,24 +55274,8 @@
     "gap_speed_kmh": null,
     "avg_hr": 146.8,
     "ele_gain": 0
-   },
-   {
-    "dist_km": 3.05,
-    "split_dist_km": 0.12,
-    "split_moving_time_s": 80.0,
-    "grade_pct": 0.38,
-    "speed_ms": 3.74,
-    "speed_kmh": 13.5,
-    "gap_pace_min_km": 8.21,
-    "gap_pace_str": "8:12",
-    "gap_speed_kmh": null,
-    "avg_hr": 153.9,
-    "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": 21.56,
-  "ef_first_half": 1.596,
-  "ef_second_half": 1.252,
   "efficiency_factor": 15.84,
   "elevation_per_km": 17.5,
   "vam": 274.3,
@@ -55312,7 +55314,7 @@
     "elev_gain": 13.6
    }
   ],
-  "trimp": 42.6
+  "trimp": 33.4
  },
  {
   "id": "17280861516",
@@ -55334,7 +55336,7 @@
   "elevation_low_m": 6.3,
   "elevation_high_m": 13.8,
   "max_hr": 164,
-  "avg_hr": 76.0,
+  "avg_hr": 136.1,
   "calories": 359.0,
   "relative_effort": 13,
   "gear": null,
@@ -55351,11 +55353,11 @@
   "end_lat": -37.85063037648797,
   "end_lon": 144.97904104180634,
   "hr_zones": {
-   "Z1": 9,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 230,
+   "Z2": 136,
+   "Z3": 953,
+   "Z4": 951,
+   "Z5": 196
   },
   "hr_samples": 2466,
   "has_hr": true,
@@ -58079,10 +58081,9 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [],
-  "aerobic_decoupling_pct": 12.87,
-  "ef_first_half": 1.64,
-  "ef_second_half": 1.429,
   "efficiency_factor": 1.02,
   "elevation_per_km": 30.5,
   "vam": 62640.0,
@@ -58166,11 +58167,11 @@
   "end_lat": -37.84051761031151,
   "end_lon": 144.98619164340198,
   "hr_zones": {
-   "Z1": 25,
-   "Z2": 170,
-   "Z3": 66,
-   "Z4": 365,
-   "Z5": 811
+   "Z1": 191,
+   "Z2": 45,
+   "Z3": 151,
+   "Z4": 618,
+   "Z5": 432
   },
   "hr_samples": 1437,
   "has_hr": true,
@@ -59761,6 +59762,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.0,
@@ -59776,35 +59779,32 @@
     "ele_gain": 0
    },
    {
-    "dist_km": 2.02,
-    "split_dist_km": 0.21,
-    "split_moving_time_s": 80.0,
+    "dist_km": 2.14,
+    "split_dist_km": 0.26,
+    "split_moving_time_s": 100.0,
     "grade_pct": 0.0,
-    "speed_ms": 2.26,
-    "speed_kmh": 8.1,
-    "gap_pace_min_km": 8.35,
-    "gap_pace_str": "8:21",
+    "speed_ms": 2.41,
+    "speed_kmh": 8.7,
+    "gap_pace_min_km": 7.62,
+    "gap_pace_str": "7:37",
     "gap_speed_kmh": null,
-    "avg_hr": 150.7,
+    "avg_hr": 151.2,
     "ele_gain": 1.2
    },
    {
-    "dist_km": 3.02,
-    "split_dist_km": 0.32,
-    "split_moving_time_s": 150.0,
+    "dist_km": 3.03,
+    "split_dist_km": 0.27,
+    "split_moving_time_s": 130.0,
     "grade_pct": 0.0,
-    "speed_ms": 4.61,
-    "speed_kmh": 16.6,
-    "gap_pace_min_km": 3.65,
-    "gap_pace_str": "3:39",
+    "speed_ms": 4.86,
+    "speed_kmh": 17.5,
+    "gap_pace_min_km": 3.44,
+    "gap_pace_str": "3:26",
     "gap_speed_kmh": null,
-    "avg_hr": 142.0,
+    "avg_hr": 138.3,
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": 2.51,
-  "ef_first_half": 1.497,
-  "ef_second_half": 1.459,
   "efficiency_factor": 14.78,
   "elevation_per_km": 7.7,
   "vam": 58.7,
@@ -59836,7 +59836,7 @@
     "elev_gain": 11.4
    }
   ],
-  "trimp": 70.1
+  "trimp": 58.5
  },
  {
   "id": "17438372527",
@@ -59858,7 +59858,7 @@
   "elevation_low_m": 8.3,
   "elevation_high_m": 10.7,
   "max_hr": 173,
-  "avg_hr": 65.1,
+  "avg_hr": 148.4,
   "calories": 429.0,
   "relative_effort": 29,
   "gear": null,
@@ -59875,11 +59875,11 @@
   "end_lat": -37.8535093087703,
   "end_lon": 144.97808030806482,
   "hr_zones": {
-   "Z1": 10,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 121,
+   "Z2": 22,
+   "Z3": 97,
+   "Z4": 1196,
+   "Z5": 848
   },
   "hr_samples": 2284,
   "has_hr": true,
@@ -62405,10 +62405,9 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [],
-  "aerobic_decoupling_pct": 15.17,
-  "ef_first_half": 1.673,
-  "ef_second_half": 1.42,
   "efficiency_factor": 1.2,
   "elevation_per_km": 20.2,
   "vam": 42160.0,
@@ -62474,8 +62473,8 @@
   "elevation_loss_m": 107.821,
   "elevation_low_m": 3.9,
   "elevation_high_m": 9.7,
-  "max_hr": 187,
-  "avg_hr": 151.4,
+  "max_hr": 184.0,
+  "avg_hr": 151.2,
   "calories": 428.0,
   "relative_effort": 38,
   "gear": null,
@@ -62492,11 +62491,11 @@
   "end_lat": -37.8889927,
   "end_lon": 144.9853865,
   "hr_zones": {
-   "Z1": 0,
-   "Z2": 202,
-   "Z3": 263,
-   "Z4": 407,
-   "Z5": 247
+   "Z1": 1,
+   "Z2": 174,
+   "Z3": 249,
+   "Z4": 93,
+   "Z5": 613
   },
   "hr_samples": 1130,
   "has_hr": true,
@@ -64747,6 +64746,8 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
     "dist_km": 1.02,
@@ -64814,9 +64815,6 @@
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": 28.7,
-  "ef_first_half": 1.848,
-  "ef_second_half": 1.318,
   "efficiency_factor": 15.99,
   "elevation_per_km": 21.3,
   "vam": 185.9,
@@ -64855,7 +64853,7 @@
     "elev_gain": 17.6
    }
   ],
-  "trimp": 82.3
+  "trimp": 65.9
  },
  {
   "id": "17572530771",
@@ -64877,7 +64875,7 @@
   "elevation_low_m": 22.0,
   "elevation_high_m": 33.9,
   "max_hr": 165,
-  "avg_hr": 86.3,
+  "avg_hr": 132.9,
   "calories": 282.0,
   "relative_effort": 12,
   "gear": null,
@@ -64894,11 +64892,11 @@
   "end_lat": -37.85386671312153,
   "end_lon": 144.99683557078242,
   "hr_zones": {
-   "Z1": 21,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 465,
+   "Z2": 269,
+   "Z3": 408,
+   "Z4": 768,
+   "Z5": 254
   },
   "hr_samples": 2164,
   "has_hr": true,
@@ -67292,24 +67290,9 @@
     "m": false
    }
   ],
-  "gap_segments": [
-   {
-    "dist_km": 1.01,
-    "split_dist_km": 0.02,
-    "split_moving_time_s": 20.0,
-    "grade_pct": -1.41,
-    "speed_ms": 3.78,
-    "speed_kmh": 13.6,
-    "gap_pace_min_km": 52.08,
-    "gap_pace_str": "52:04",
-    "gap_speed_kmh": null,
-    "avg_hr": 126.5,
-    "ele_gain": 0
-   }
-  ],
-  "aerobic_decoupling_pct": 28.58,
-  "ef_first_half": 1.63,
-  "ef_second_half": 1.164,
+  "is_manual": false,
+  "is_indoor": false,
+  "gap_segments": [],
   "efficiency_factor": 9.31,
   "elevation_per_km": 19.1,
   "vam": 13200.0,
@@ -67369,7 +67352,7 @@
   "elevation_low_m": 3371.8,
   "elevation_high_m": 3427.4,
   "max_hr": 171,
-  "avg_hr": 100.2,
+  "avg_hr": 134.8,
   "calories": 122.0,
   "relative_effort": 5,
   "gear": null,
@@ -67386,11 +67369,11 @@
   "end_lat": -13.518131012097001,
   "end_lon": -71.98356768116355,
   "hr_zones": {
-   "Z1": 23,
-   "Z2": 0,
-   "Z3": 0,
-   "Z4": 0,
-   "Z5": 0
+   "Z1": 76,
+   "Z2": 166,
+   "Z3": 354,
+   "Z4": 331,
+   "Z5": 54
   },
   "hr_samples": 981,
   "has_hr": true,
@@ -68486,10 +68469,9 @@
     "m": false
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [],
-  "aerobic_decoupling_pct": 26.94,
-  "ef_first_half": 1.513,
-  "ef_second_half": 1.105,
   "efficiency_factor": 5.81,
   "elevation_per_km": 36.9,
   "vam": 10407.3,
@@ -68528,7 +68510,7 @@
   "elevation_low_m": 9.7,
   "elevation_high_m": 79.0,
   "max_hr": 180,
-  "avg_hr": 160.0,
+  "avg_hr": 152.5,
   "calories": 533.0,
   "relative_effort": 40,
   "gear": null,
@@ -68545,11 +68527,11 @@
   "end_lat": -12.166357766836882,
   "end_lon": -77.02960356138647,
   "hr_zones": {
-   "Z1": 9,
-   "Z2": 0,
-   "Z3": 83,
-   "Z4": 296,
-   "Z5": 462
+   "Z1": 60,
+   "Z2": 138,
+   "Z3": 399,
+   "Z4": 671,
+   "Z5": 1430
   },
   "hr_samples": 2698,
   "has_hr": true,
@@ -71526,50 +71508,36 @@
     "m": true
    }
   ],
+  "is_manual": false,
+  "is_indoor": false,
   "gap_segments": [
    {
-    "dist_km": 3.63,
-    "split_dist_km": 0.03,
-    "split_moving_time_s": 10.0,
+    "dist_km": 4.49,
+    "split_dist_km": 0.26,
+    "split_moving_time_s": 120.0,
     "grade_pct": 0.0,
-    "speed_ms": 4.3,
-    "speed_kmh": 15.5,
-    "gap_pace_min_km": 3.1,
-    "gap_pace_str": "3:05",
+    "speed_ms": 4.22,
+    "speed_kmh": 15.2,
+    "gap_pace_min_km": 4.22,
+    "gap_pace_str": "4:13",
     "gap_speed_kmh": null,
-    "avg_hr": 149.0,
+    "avg_hr": 152.2,
     "ele_gain": 0
-   },
-   {
-    "dist_km": 4.64,
-    "split_dist_km": 0.34,
-    "split_moving_time_s": 170.0,
-    "grade_pct": 0.25,
-    "speed_ms": 2.83,
-    "speed_kmh": 10.2,
-    "gap_pace_min_km": 5.49,
-    "gap_pace_str": "5:29",
-    "gap_speed_kmh": null,
-    "avg_hr": 164.4,
-    "ele_gain": 1.8
    },
    {
     "dist_km": 5.23,
-    "split_dist_km": 0.3,
-    "split_moving_time_s": 160.0,
+    "split_dist_km": 0.41,
+    "split_moving_time_s": 220.0,
     "grade_pct": -0.47,
-    "speed_ms": 3.39,
-    "speed_kmh": 12.2,
-    "gap_pace_min_km": 4.63,
-    "gap_pace_str": "4:37",
+    "speed_ms": 2.82,
+    "speed_kmh": 10.2,
+    "gap_pace_min_km": 5.47,
+    "gap_pace_str": "5:27",
     "gap_speed_kmh": null,
-    "avg_hr": 155.2,
+    "avg_hr": 155.1,
     "ele_gain": 0
    }
   ],
-  "aerobic_decoupling_pct": 3.63,
-  "ef_first_half": 1.297,
-  "ef_second_half": 1.25,
   "efficiency_factor": 11.89,
   "elevation_per_km": 12.0,
   "vam": 265.4,
@@ -71615,6 +71583,6 @@
     "elev_gain": 16.4
    }
   ],
-  "trimp": 44.4
+  "trimp": 38.9
  }
 ]

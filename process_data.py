@@ -501,6 +501,7 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
 
     result["cumulative_distance"] = cum_dist
     result["speeds"] = speeds  # Store full speeds for decoupling analysis
+    result["_seg_dt"] = seg_dt  # time deltas for moving-filtered analysis
 
     # Compute avg_speed and avg_hr over moving segments only
     moving_speeds = [seg_speeds[i] for i in range(len(seg_speeds)) if is_moving[i]]
@@ -546,6 +547,79 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
     result["hr_zones"] = zones
 
     return result
+
+
+# --- HR cleaning ---
+def clean_hr(hr_values, observed_max_hr):
+    """Clean HR stream: cap, rate-of-change filter, trim zeros, sport ceiling."""
+    if not hr_values:
+        return hr_values, 0
+
+    n = len(hr_values)
+    cleaned = [min(max(h, 30), 220) for h in hr_values]  # Hard cap
+
+    # Rate-of-change: HR can't jump >20 bpm between consecutive reads
+    for i in range(1, n):
+        if abs(cleaned[i] - cleaned[i - 1]) > 20:
+            cleaned[i] = cleaned[i - 1]
+
+    # Sport-specific ceiling
+    if observed_max_hr:
+        cleaned = [min(h, observed_max_hr + 5) for h in cleaned]
+
+    # Trim leading/trailing values below 30 (sensor dropout)
+    start = 0
+    while start < n and cleaned[start] < 30:
+        start += 1
+    end = n
+    while end > start and cleaned[end - 1] < 30:
+        end -= 1
+
+    cleaned = cleaned[start:end]
+    dropped = n - len(cleaned)
+    return cleaned, dropped
+
+
+# --- Per-sport HR max calibration ---
+def compute_sport_max_hr(all_activities, sport, n_months=18):
+    """99th percentile of cleaned HR across recent activities for the sport."""
+    import numpy as np
+    cutoff = datetime.now(timezone.utc) - timedelta(days=n_months * 30)
+    all_hr = []
+    for a in all_activities:
+        if a.get("sport") != sport:
+            continue
+        st = a.get("start_time_utc")
+        if not st:
+            continue
+        try:
+            dt_str = str(st).replace("Z", "+00:00")
+            if "+" in dt_str or dt_str.count("-") > 2:
+                dt = datetime.fromisoformat(dt_str)
+            else:
+                dt = datetime.fromisoformat(dt_str).replace(tzinfo=timezone.utc)
+        except:
+            continue
+        if dt < cutoff:
+            continue
+        hrs = a.get("_raw_hr_values", [])
+        if hrs:
+            all_hr.extend(hrs)
+    if len(all_hr) < 50:
+        return None
+    return float(np.percentile(all_hr, 99))
+
+
+def compute_karvonen_zones(max_hr, resting_hr=50):
+    """5-zone Karvonen model. Returns list of (zone_name, low%, high%, low_bpm, high_bpm)."""
+    hrr = max_hr - resting_hr
+    return [
+        ("Z1 Recovery",     50, 60, int(resting_hr + 0.50 * hrr), int(resting_hr + 0.60 * hrr)),
+        ("Z2 Endurance",    60, 70, int(resting_hr + 0.60 * hrr), int(resting_hr + 0.70 * hrr)),
+        ("Z3 Tempo",        70, 80, int(resting_hr + 0.70 * hrr), int(resting_hr + 0.80 * hrr)),
+        ("Z4 Threshold",    80, 90, int(resting_hr + 0.80 * hrr), int(resting_hr + 0.90 * hrr)),
+        ("Z5 VO2max",       90, 100, int(resting_hr + 0.90 * hrr), int(resting_hr + 1.00 * hrr)),
+    ]
 
 
 def compute_gap_segments(streams, activity_type, grade_points):
@@ -645,6 +719,8 @@ def compute_gap_segments(streams, activity_type, grade_points):
     is_ride = (activity_type == "Ride")
     SEGMENT_DIST = 1000 if is_run else 5000   # metres for run path detection only
     SEGMENT_TIME = 300  # seconds moving time for cycling (5 min)
+    MIN_MOVING_DIST = 250  # metres minimum moving distance for a valid split
+    MIN_MOVING_TIME = 150  # seconds minimum moving time for a valid cycling split
 
     # Compute time deltas between consecutive raw points
     time_deltas = [0.0] * n
@@ -692,9 +768,9 @@ def compute_gap_segments(streams, activity_type, grade_points):
 
         should_cut = False
         if is_ride:
-            should_cut = split_moving_time >= SEGMENT_TIME
+            should_cut = split_moving_time >= SEGMENT_TIME and split_dist >= MIN_MOVING_DIST
         else:
-            should_cut = d - dists[split_start] >= SEGMENT_DIST
+            should_cut = d - dists[split_start] >= SEGMENT_DIST and split_dist >= MIN_MOVING_DIST
 
         if should_cut and split_weight_sum > 0:
             gap_speed = split_gap_sum / split_weight_sum
@@ -728,12 +804,12 @@ def compute_gap_segments(streams, activity_type, grade_points):
             split_moving_time = 0.0
             split_ele_start = eles_smooth[i] if eles_smooth[i] is not None else split_ele_start
 
-    # Include trailing partial split (≥500m for run, ≥150s for ride)
-    include_tail = True
+    # Include trailing partial split
+    include_tail = False
     if is_ride:
-        include_tail = split_moving_time >= 150
+        include_tail = split_moving_time >= MIN_MOVING_TIME and split_dist >= MIN_MOVING_DIST
     else:
-        include_tail = dists[-1] - dists[split_start] >= 500
+        include_tail = dists[-1] - dists[split_start] >= 500 and split_dist >= MIN_MOVING_DIST
 
     if split_weight_sum > 0 and include_tail:
         d_last = dists[-1]
@@ -776,27 +852,47 @@ def compute_derived_metrics(act, streams):
     d = {}
 
     # Aerobic decoupling (pace/HR drift first half vs second half)
-    if streams["hr_samples"] > 10 and len(streams["speeds"]) > 10:
-        mid = len(streams["speeds"]) // 2
+    # Trim warmup, filter to moving-only, split by moving time
+    if streams.get("is_moving") and len(streams["is_moving"]) > 10 and streams["hr_samples"] > 10:
+        is_mv = streams["is_moving"]
+        seg_dt_arr = streams.get("_seg_dt", [])
         speeds = streams["speeds"]
         hrs = streams["heartrates"]
-        first_half_speeds = speeds[:mid]
-        second_half_speeds = speeds[mid:]
-        first_half_hrs = [h for h in hrs[:mid] if h]
-        second_half_hrs = [h for h in hrs[mid:] if h]
-        if first_half_speeds and second_half_speeds and first_half_hrs and second_half_hrs:
-            avg_speed_1 = sum(first_half_speeds) / len(first_half_speeds)
-            avg_speed_2 = sum(second_half_speeds) / len(second_half_speeds)
-            avg_hr_1 = sum(first_half_hrs) / len(first_half_hrs)
-            avg_hr_2 = sum(second_half_hrs) / len(second_half_hrs)
-            if avg_speed_1 > 0 and avg_hr_1 > 0:
-                # EF = speed / HR. Decoupling = (EF1 - EF2) / EF1 * 100
-                ef1 = avg_speed_1 / avg_hr_1
-                ef2 = avg_speed_2 / avg_hr_2 if avg_hr_2 > 0 else ef1
-                decoupling = ((ef1 - ef2) / ef1 * 100) if ef1 > 0 else 0
-                d["aerobic_decoupling_pct"] = round(decoupling, 2)
-                d["ef_first_half"] = round(ef1 * 100, 3)
-                d["ef_second_half"] = round(ef2 * 100, 3)
+
+        if seg_dt_arr and len(seg_dt_arr) == len(is_mv) and len(speeds) == len(is_mv):
+            mv_speeds = [speeds[i] for i in range(len(speeds)) if is_mv[i]]
+            mv_dt = [seg_dt_arr[i] for i in range(len(seg_dt_arr)) if is_mv[i]]
+
+            cum_t = 0; start_idx = 0
+            while start_idx < len(mv_dt) and cum_t < 10 * 60:
+                cum_t += mv_dt[start_idx]; start_idx += 1
+            cum_t = 0; end_idx = len(mv_dt)
+            for j in range(len(mv_dt) - 1, -1, -1):
+                cum_t += mv_dt[j]
+                if cum_t >= 2 * 60: end_idx = j; break
+
+            if start_idx < end_idx and sum(mv_dt[start_idx:end_idx]) >= 30 * 60:
+                core_speeds = mv_speeds[start_idx:end_idx]
+                mv_hrs = [hrs[idx + 1] for idx in range(start_idx, end_idx) if idx + 1 < len(hrs) and hrs[idx + 1] is not None]
+
+                if len(core_speeds) > 5 and len(mv_hrs) > 5:
+                    mid = len(core_speeds) // 2
+                    s1 = core_speeds[:mid]; s2 = core_speeds[mid:]
+                    h1 = mv_hrs[:mid] if len(mv_hrs) > mid else mv_hrs
+                    h2 = mv_hrs[mid:] if len(mv_hrs) > mid else mv_hrs
+                    if s1 and s2 and h1 and h2:
+                        avg_s1 = sum(s1) / len(s1); avg_s2 = sum(s2) / len(s2)
+                        avg_h1 = sum(h1) / len(h1); avg_h2 = sum(h2) / len(h2)
+                        if avg_s1 > 0 and avg_h1 > 0:
+                            ef1 = avg_s1 / avg_h1
+                            ef2 = avg_s2 / avg_h2 if avg_h2 > 0 else ef1
+                            decoupling = ((ef1 - ef2) / ef1 * 100) if ef1 > 0 else 0
+                            long_stops = streams.get("long_stops", [])
+                            max_stop = max([s[2] for s in long_stops], default=0)
+                            if max_stop <= 5 * 60:
+                                d["aerobic_decoupling_pct"] = round(decoupling, 2)
+                                d["ef_first_half"] = round(ef1, 4)
+                                d["ef_second_half"] = round(ef2, 4)
 
     # Efficiency Factor (overall)
     if streams["avg_speed"] and streams["avg_hr"]:
@@ -880,15 +976,60 @@ def compute_derived_metrics(act, streams):
             d["splits_km"] = splits
 
     # Estimated TRIMP (Banister) - time in minutes * avg_hr_pct * intensity factor
+    # TRIMP (Banister) — sex-adjusted weighting using heart-rate reserve
     if streams["avg_hr"] and streams["moving_time"] > 60:
         max_hr = streams["max_hr"] or 190
-        hr_pct = streams["avg_hr"] / max_hr
-        # Intensity factor scaling (exponential relationship)
-        intensity = 0.64 * math.exp(1.92 * hr_pct)
-        trimp = streams["moving_time"] / 60 * hr_pct * intensity
-        d["trimp"] = round(trimp, 1)
+        resting_hr = 50  # default; overridden by per-sport calibration below
+        if max_hr > resting_hr:
+            hr_ratio = (streams["avg_hr"] - resting_hr) / (max_hr - resting_hr)
+            hr_ratio = max(0, min(1, hr_ratio))
+            # Sex-adjusted: male default
+            a, b = (0.64, 1.92)  # (0.86, 1.67) for female
+            weighting = a * math.exp(b * hr_ratio)
+            trimp = streams["moving_time"] / 60 * hr_ratio * weighting
+            d["trimp"] = round(trimp, 1)
 
     return d
+
+
+# --- Theil-Sen estimator (robust to outliers) ---
+import numpy as np
+
+def theil_sen_slope(x, y):
+    """Theil-Sen slope estimate: median of all pairwise slopes."""
+    n = len(x)
+    if n < 2:
+        return 0, float(np.median(y))
+    slopes = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            if x[j] != x[i]:
+                slopes.append((y[j] - y[i]) / (x[j] - x[i]))
+    if not slopes:
+        return 0, float(np.median(y))
+    slope = float(np.median(slopes))
+    intercept = float(np.median(y - slope * x))
+    return slope, intercept
+
+
+def theil_sen_ci(x, y, alpha=0.05):
+    """95% confidence interval half-width for Theil-Sen slope."""
+    n = len(x)
+    slopes = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            if x[j] != x[i]:
+                slopes.append((y[j] - y[i]) / (x[j] - x[i]))
+    if len(slopes) < 20:
+        return 0
+    slopes.sort()
+    z = 1.96  # 95% CI
+    se = np.sqrt(n * (n - 1) * (2 * n + 5) / 18)
+    lower = max(0, int((len(slopes) - z * se) / 2))
+    upper = min(len(slopes) - 1, int((len(slopes) + z * se) / 2))
+    if lower < len(slopes) and upper < len(slopes):
+        return (slopes[upper] - slopes[lower]) / 2
+    return 0
 
 
 # --- Main processing ---
@@ -937,16 +1078,28 @@ def main():
         is_tcx = False
         is_fit = False
         points = []
+        is_manual = True
+        is_indoor = sport in ("Virtual Ride", "Virtual Run")
+
         if filepath:
             ext_lower = filepath.lower()
             if ext_lower.endswith(".gpx") or ext_lower.endswith(".gpx.gz"):
                 points = parse_gpx(filepath)
+                is_manual = False
             elif ext_lower.endswith(".tcx") or ext_lower.endswith(".tcx.gz"):
                 points = parse_tcx(filepath)
                 is_tcx = True
+                is_manual = False
             elif ext_lower.endswith(".fit") or ext_lower.endswith(".fit.gz"):
                 points = parse_fit(filepath)
                 is_fit = True
+                is_manual = False
+
+        # Detect indoor: no valid GPS coords in any point
+        if not is_indoor and not is_manual:
+            has_gps = any(p.get("lat") is not None and p.get("lon") is not None for p in points)
+            if not has_gps:
+                is_indoor = True
 
         # Compute stream metrics
         streams = compute_stream_metrics(points, is_tcx, is_fit, sport)
@@ -1013,6 +1166,9 @@ def main():
             "has_hr": streams["hr_samples"] > 0,
             "stream_points": len(points),
             "stream": streams["raw_points"][:500],  # Limit stream points for dashboard
+            "is_manual": is_manual,
+            "is_indoor": is_indoor,
+            "_raw_hr_values": [p.get("hr") for p in points if p.get("hr") is not None],  # raw for recalibration
         }
 
         # Segment-level GAP computation (1km runs, 3km rides)
@@ -1035,6 +1191,48 @@ def main():
         by_sport[sport].sort(key=lambda x: x.get("start_time_utc") or "")
 
     all_activities.sort(key=lambda x: x.get("start_time_utc") or "")
+
+    # --- Phase 0.2-0.3: Per-sport HR max calibration & zone recalculation ---
+    sport_max_hr = {}
+    for sport_name in ["Run", "Ride", "Hike", "Swim"]:
+        mx = compute_sport_max_hr(all_activities, sport_name)
+        if mx:
+            sport_max_hr[sport_name] = round(mx, 1)
+
+    if sport_max_hr:
+        for act in all_activities:
+            sport = act["sport"]
+            raw_hr = act.pop("_raw_hr_values", [])
+            mx = sport_max_hr.get(sport)
+            if mx and raw_hr:
+                cleaned, dropped = clean_hr(raw_hr, mx)
+                if len(cleaned) > 10:
+                    zones = {"Z1": 0, "Z2": 0, "Z3": 0, "Z4": 0, "Z5": 0}
+                    resting_hr = 50
+                    hrr = mx - resting_hr
+                    bounds = [
+                        (resting_hr + 0.50 * hrr, 0),
+                        (resting_hr + 0.60 * hrr, 1),
+                        (resting_hr + 0.70 * hrr, 2),
+                        (resting_hr + 0.80 * hrr, 3),
+                        (resting_hr + 0.90 * hrr, 4),
+                    ]
+                    for h in cleaned:
+                        zi = 4
+                        for b, zi_cand in bounds:
+                            if h < b:
+                                zi = zi_cand
+                                break
+                        zones[f"Z{zi+1}"] += 1
+                    act["hr_zones"] = zones
+                    act["hr_samples"] = len(cleaned)
+                    act["has_hr"] = len(cleaned) > 10
+                    # Update avg_hr from cleaned data
+                    act["avg_hr"] = round(sum(cleaned) / len(cleaned), 1)
+                    act["max_hr"] = max(cleaned)
+            act.pop("_raw_hr_values", None)  # clean up from output
+
+    print(f"  HR calibration complete. Sport max HR: {sport_max_hr}")
 
     # --- Compute aggregate metrics ---
     monthly_data = defaultdict(lambda: defaultdict(lambda: {"count": 0, "distance": 0, "time": 0, "elevation": 0, "effort": 0, "trimp": 0}))
@@ -1289,19 +1487,21 @@ def main():
         except Exception:
             loess_act_data = []
 
-        # Linear regression on per-split
-        if len(xs_splits) > 1:
-            slope_split, intercept_split = np.polyfit(xs_splits, ys_splits, 1)
+        # Linear regression on per-split (Theil-Sen for robustness)
+        if len(xs_splits) > 2:
+            slope_split, intercept_split = theil_sen_slope(xs_splits, ys_splits)
             slope_per_month = slope_split * 30.44
+            ci_split = theil_sen_ci(xs_splits, ys_splits)
         else:
-            slope_split, intercept_split, slope_per_month = 0, 0, 0
+            slope_split, intercept_split, slope_per_month, ci_split = 0, 0, 0, 0
 
-        # Linear regression on per-activity
-        if len(xs_acts) > 1:
-            slope_act, intercept_act = np.polyfit(xs_acts, ys_acts, 1)
+        # Linear regression on per-activity (Theil-Sen)
+        if len(xs_acts) > 2:
+            slope_act, intercept_act = theil_sen_slope(xs_acts, ys_acts)
             slope_act_per_month = slope_act * 30.44
+            ci_act = theil_sen_ci(xs_acts, ys_acts)
         else:
-            slope_act, intercept_act, slope_act_per_month = 0, 0, 0
+            slope_act, intercept_act, slope_act_per_month, ci_act = 0, 0, 0, 0
 
         gap_trends[sport_key] = {
             "ref_date": ref_dt.isoformat(),
@@ -1310,14 +1510,71 @@ def main():
             "linear_split": {
                 "slope_per_month": round(slope_per_month, 4),
                 "intercept": round(float(intercept_split), 4),
+                "ci_95": round(float(ci_split), 4),
             },
             "linear_act": {
                 "slope_per_month": round(slope_act_per_month, 4),
                 "intercept": round(float(intercept_act), 4),
+                "ci_95": round(float(ci_act), 4),
             },
             "n_splits": len(split_points),
             "n_activities": len(act_points),
         }
+
+    # --- Phase 2.1: CTL / ATL / TSB from daily TRIMP ---
+    # Aggregate TRIMP per calendar day
+    daily_trimp = defaultdict(float)
+    for a in all_activities:
+        st = a.get("start_time_utc")
+        trimp_val = a.get("trimp", 0) or 0
+        if st and trimp_val > 0:
+            try:
+                dt_str = st
+                if dt_str.endswith("Z"):
+                    day = datetime.fromisoformat(dt_str.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+                else:
+                    day = datetime.fromisoformat(dt_str).strftime("%Y-%m-%d")
+                daily_trimp[day] += trimp_val
+            except:
+                pass
+
+    if daily_trimp:
+        days = sorted(daily_trimp.keys())
+        first_day = days[0]
+        last_day = days[-1]
+        all_days = []
+        d = datetime.fromisoformat(first_day)
+        end_d = datetime.fromisoformat(last_day)
+        while d <= end_d:
+            all_days.append(d.strftime("%Y-%m-%d"))
+            d += timedelta(days=1)
+
+        # Seed from average of first 28 days
+        seed_days = all_days[:28]
+        seed_trimp = [daily_trimp.get(day, 0) for day in seed_days]
+        seed_avg = sum(seed_trimp) / max(1, len(seed_trimp))
+        ctl = seed_avg
+        atl = seed_avg
+
+        ctl_atl_tsb = []
+        ctla = 1 - math.exp(-1 / 42)  # CTL time constant = 42 days
+        atla = 1 - math.exp(-1 / 7)   # ATL time constant = 7 days
+        display_from = 28  # Don't show first 28 days
+
+        for i, day in enumerate(all_days):
+            t = daily_trimp.get(day, 0)
+            ctl = ctl + ctla * (t - ctl)
+            atl = atl + atla * (t - atl)
+            tsb = ctl - atl
+            if i >= display_from:
+                ctl_atl_tsb.append({
+                    "date": day,
+                    "ctl": round(ctl, 1),
+                    "atl": round(atl, 1),
+                    "tsb": round(tsb, 1),
+                })
+    else:
+        ctl_atl_tsb = []
 
     # Write output JSON files
     print("\nWriting output files...")
@@ -1339,6 +1596,8 @@ def main():
         "best_efforts": best_efforts,
         "gear": gear_list,
         "gap_trends": gap_trends,
+        "sport_max_hr": sport_max_hr,
+        "ctl_atl_tsb": ctl_atl_tsb,
         "sport_counts": {s: len(acts) for s, acts in by_sport.items()},
         "total_activities": len(all_activities),
         "date_range": {

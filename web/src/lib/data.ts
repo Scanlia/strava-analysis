@@ -56,6 +56,8 @@ export interface Activity {
   vam: number | null;
   splits_km: { km: number; time_sec: number; pace_min_per_km: number; avg_hr: number | null; elev_gain: number }[] | null;
   stream_points: number;
+  is_manual?: boolean;
+  is_indoor?: boolean;
 }
 
 export interface MonthlyEntry {
@@ -100,6 +102,8 @@ export interface Aggregate {
   best_efforts: Record<string, BestEffort>;
   gear: GearEntry[];
   gap_trends: Record<string, GapTrends>;
+  sport_max_hr: Record<string, number>;
+  ctl_atl_tsb: { date: string; ctl: number; atl: number; tsb: number }[];
   sport_counts: Record<string, number>;
   total_activities: number;
   date_range: { first: string | null; last: string | null };
@@ -109,8 +113,8 @@ export interface GapTrends {
   ref_date: string;
   loess_split: { days: number; value: number }[];
   loess_act: { days: number; value: number }[];
-  linear_split: { slope_per_month: number; intercept: number };
-  linear_act: { slope_per_month: number; intercept: number };
+  linear_split: { slope_per_month: number; intercept: number; ci_95?: number };
+  linear_act: { slope_per_month: number; intercept: number; ci_95?: number };
   n_splits: number;
   n_activities: number;
 }

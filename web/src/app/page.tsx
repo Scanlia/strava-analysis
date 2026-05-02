@@ -3,6 +3,7 @@ import SummaryCards from "@/components/SummaryCards";
 import VolumeCharts from "@/components/VolumeCharts";
 import HRCharts from "@/components/HRCharts";
 import GAPCharts from "@/components/GAPCharts";
+import CTLChart from "@/components/CTLChart";
 import BestEfforts from "@/components/BestEfforts";
 import GearCharts from "@/components/GearCharts";
 import ActivityTable from "@/components/ActivityTable";
@@ -47,6 +48,11 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Grade Adjusted Pace &amp; Speed</h2>
           <GAPCharts activities={activities} trends={aggregate.gap_trends || {}} />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-5">Training Load (CTL / ATL / TSB)</h2>
+          <CTLChart aggregate={aggregate} />
         </section>
 
         <section>
