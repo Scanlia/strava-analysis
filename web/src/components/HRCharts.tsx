@@ -181,18 +181,24 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
           <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Efficiency Factor Trend</h3>
           <p className="text-xs text-gray-400 mb-3">
             EF = speed ÷ HR. Higher EF = more speed per heartbeat = fitter.
-            {Object.entries(efRegressions).filter(([, r]) => r).map(([sport, reg]) => {
-              const improving = reg!.slope > 0;
-              return (
-                <span key={sport} className="ml-3">
-                  <span style={{ color: COLORS[sport] }}>{sport}</span>:{" "}
-                  <span className={improving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
-                    {improving ? "↑" : "↓"} {Math.abs(reg!.slope).toFixed(3)}/run
-                  </span>
-                </span>
-              );
-            })}
           </p>
+          {Object.entries(efRegressions).filter(([, r]) => r).length > 0 && (
+            <div className="text-xs text-gray-400 mb-3 space-y-0.5">
+              {Object.entries(efRegressions).filter(([, r]) => r).map(([sport, reg]) => {
+                const improving = reg!.slope > 0;
+                const label = sport === "Run" ? "per run" : sport === "Ride" ? "per ride" : sport === "Hike" ? "per hike" : "per swim";
+                return (
+                  <div key={sport}>
+                    <span style={{ color: COLORS[sport] || "#888" }}>● {sport}</span>:{" "}
+                    <span className={improving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                      {improving ? "getting fitter" : "declining"} {improving ? "✅" : "⚠️"}
+                    </span>{" "}
+                    <span className="text-gray-500">({Math.abs(reg!.slope).toFixed(3)} EF/{label})</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
           <div className="h-80">
             {efDatasets.length > 0 ? (
               <Line
@@ -246,14 +252,15 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
           <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Aerobic Decoupling</h3>
           <p className="text-xs text-gray-400 mb-3">
             Pace/HR drift — first half vs second half. Lower % = better endurance.
-            {decoupReg && (
-              <span className="ml-2">
-                Trend: <span className={isDecoupImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
-                  {isDecoupImproving ? "↑" : "↓"} improving
-                </span> ({Math.abs(decoupReg.slope).toFixed(3)}%/activity)
-              </span>
-            )}
           </p>
+          {decoupReg && (
+            <p className="text-xs mb-3">
+              <span className={isDecoupImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+                {isDecoupImproving ? "Improving endurance ✅" : "Declining endurance ⚠️"}
+              </span>
+              <span className="text-gray-500"> — changing by {Math.abs(decoupReg.slope).toFixed(3)}%/activity</span>
+            </p>
+          )}
           <div className="h-72">
             {decouplingActs.length > 0 ? (
               <Bar

@@ -56,7 +56,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
     y: p.y,
   })) : [];
 
-  const isRunImproving = runReg ? runReg.slope < 0 : false; // negative slope = pace getting lower = improving
+  const isRunImproving = runReg ? runReg.slope < 0 : false; // negative slope in data = lower pace = faster = improving
 
   // --- Cycling Grade Adjusted Speed ---
   const ridesWithGAS = activities
@@ -84,11 +84,11 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
           Running — Grade Adjusted Pace vs Raw Pace
         </h3>
         {runReg && (
-          <p className="text-xs text-gray-400 mb-3">
-            Trend: <span className={isRunImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
-              {isRunImproving ? "↑" : "↓"} improving
-            </span> — GAP changing by {Math.abs(runReg.slope).toFixed(3)} min/km per run
-            {runReg.slope < 0 ? " (getting faster)" : " (getting slower)"}
+          <p className="text-xs mb-3">
+            <span className={isRunImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+              {isRunImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
+            </span>
+            <span className="text-gray-500"> — GAP changing by {Math.abs(runReg.slope).toFixed(3)} min/km per run</span>
           </p>
         )}
         <div className="h-80">
@@ -140,7 +140,7 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
               },
               scales: {
                 x: { type: "time", time: { unit: "month", tooltipFormat: "MMM d, yyyy" }, ticks: { color: "#8888a0", maxTicksLimit: 15, font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
-                y: { title: { display: true, text: "min/km — lower = faster", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
+                y: { reverse: true, title: { display: true, text: "min/km (faster ↑)", color: "#8888a0", font: { size: 11 } }, ticks: { color: "#8888a0", font: { size: 11 } }, grid: { color: "#2a2a3a55" } },
               },
             }}
           />
@@ -153,11 +153,11 @@ export default function GAPCharts({ activities }: { activities: Activity[] }) {
           Cycling — Grade Adjusted Speed vs Raw Speed
         </h3>
         {rideReg && (
-          <p className="text-xs text-gray-400 mb-3">
-            Trend: <span className={isRideImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
-              {isRideImproving ? "↑" : "↓"} improving
-            </span> — GAS changing by {Math.abs(rideReg.slope).toFixed(3)} km/h per ride
-            {rideReg.slope > 0 ? " (getting faster)" : " (getting slower)"}
+          <p className="text-xs mb-3">
+            <span className={isRideImproving ? "text-green-400 font-semibold" : "text-red-400 font-semibold"}>
+              {isRideImproving ? "Getting faster ✅" : "Getting slower ⚠️"}
+            </span>
+            <span className="text-gray-500"> — GAS changing by {Math.abs(rideReg.slope).toFixed(3)} km/h per ride</span>
           </p>
         )}
         <div className="h-80">

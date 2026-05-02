@@ -20,7 +20,7 @@ export default function Dashboard() {
       <header className="sticky top-0 z-50 bg-[#141420]/90 backdrop-blur-xl border-b border-[#2a2a3a]">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-400 via-teal-400 to-green-400 bg-clip-text text-transparent">
+            <h1 className="text-xl md:text-2xl font-bold animated-gradient">
               Strava Multisport Analysis
             </h1>
             <p className="text-sm text-gray-400">Run · Ride · Swim · Hike — Comprehensive fitness tracking</p>
