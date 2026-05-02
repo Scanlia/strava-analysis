@@ -11,11 +11,13 @@ import {
   Legend,
   PointElement,
   ArcElement,
+  TimeScale,
 } from "chart.js";
+import "chartjs-adapter-luxon";
 import { Bar, Doughnut, Line, Scatter } from "react-chartjs-2";
 import type { Activity } from "@/lib/data";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, TimeScale, Title, Tooltip, Legend);
 
 const COLORS: Record<string, string> = { Run: "#ff6b6b", Ride: "#4ecdc4", Hike: "#96ceb4", Swim: "#45b7d1" };
 const ZONE_COLORS = ["#96ceb4", "#4ecdc4", "#ffe66d", "#ff6b6b", "#ff3333"];
@@ -26,12 +28,10 @@ function fmtDate(iso: string | null): string {
 }
 
 export default function HRCharts({ activities }: { activities: Activity[] }) {
-  // --- HR scatter ---
+  // --- HR scatter (time scale for proper ordering) ---
   const withHR = activities
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
-
-  const allDates: string[] = [...new Set(withHR.map((a) => fmtDate(a.start_time_utc)))];
 
   const hrDatasets = ["Run", "Ride", "Hike"]
     .filter((s) => withHR.some((a) => a.sport === s))
@@ -39,7 +39,10 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
       const sportActs = withHR.filter((a) => a.sport === s).sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
       return {
         label: s,
-        data: sportActs.map((a) => ({ x: fmtDate(a.start_time_utc), y: a.avg_hr })),
+        data: sportActs.map((a) => {
+          const d = a.start_time_utc ? new Date(a.start_time_utc).getTime() : null;
+          return d ? { x: d, y: a.avg_hr, name: a.name, date: fmtDate(a.start_time_utc) } : null;
+        }).filter(Boolean),
         borderColor: COLORS[s],
         backgroundColor: COLORS[s],
         pointRadius: 5,
@@ -53,15 +56,16 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
     .filter((a) => (a.efficiency_factor ?? 0) > 0 && a.start_time_utc)
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
 
-  const efBySport: Record<string, { x: string; y: number }[]> = {};
+  const efBySport: Record<string, { x: number; y: number }[]> = {};
   for (const a of efActs) {
     if (!efBySport[a.sport]) efBySport[a.sport] = [];
-    efBySport[a.sport].push({ x: fmtDate(a.start_time_utc), y: a.efficiency_factor! });
+    const ts = a.start_time_utc ? new Date(a.start_time_utc).getTime() : null;
+    if (ts) efBySport[a.sport].push({ x: ts, y: a.efficiency_factor! });
   }
 
   const efDatasets = Object.entries(efBySport).map(([sport, data]) => ({
     label: sport + " EF",
-    data,
+    data: data.sort((a, b) => a.x - b.x),
     borderColor: COLORS[sport] || "#8888a0",
     backgroundColor: (COLORS[sport] || "#8888a0") + "30",
     tension: 0.3,
@@ -82,7 +86,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
     .sort((a, b) => (a.start_time_utc ?? "").localeCompare(b.start_time_utc ?? ""));
 
   const decouplingLabels = decouplingActs.map((a) =>
-    `${a.name} (${fmtDate(a.start_time_utc)})`.slice(0, 30)
+    `${a.sport === 'Run' ? '🏃' : a.sport === 'Ride' ? '🚴' : a.sport === 'Hike' ? '🥾' : '🏊'} ${a.name.slice(0, 18)} (${fmtDate(a.start_time_utc)})`
   );
   const decouplingValues = decouplingActs.map((a) => a.aerobic_decoupling_pct ?? 0);
   const decouplingColors = decouplingValues.map((v) => (v > 5 ? "#ff6b6b" : "#4ecdc4"));
@@ -107,10 +111,15 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                   maintainAspectRatio: false,
                   plugins: {
                     legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 16 } },
-                    tooltip: { callbacks: { label: (ctx) => `HR: ${ctx.parsed.y ?? 0} bpm` } },
+                    tooltip: { callbacks: { label: (ctx: any) => `HR: ${ctx.parsed.y ?? 0} bpm` } },
                   },
                   scales: {
-                    x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, grid: { color: "#2a2a3a55" } },
+                    x: {
+                      type: "time",
+                      time: { unit: "month", tooltipFormat: "MMM d, yyyy" },
+                      ticks: { color: "#8888a0", maxTicksLimit: 20 },
+                      grid: { color: "#2a2a3a55" },
+                    },
                     y: { title: { display: true, text: "bpm", color: "#8888a0" }, ticks: { color: "#8888a0" }, grid: { color: "#2a2a3a55" } },
                   },
                 }}
@@ -131,10 +140,15 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                   maintainAspectRatio: false,
                   plugins: {
                     legend: { position: "bottom" as const, labels: { color: "#e0e0ea", usePointStyle: true, padding: 16 } },
-                    tooltip: { callbacks: { label: (ctx) => `EF: ${(ctx.parsed.y ?? 0).toFixed(2)}` } },
+                    tooltip: { callbacks: { label: (ctx: any) => `EF: ${(ctx.parsed.y ?? 0).toFixed(2)}` } },
                   },
                   scales: {
-                    x: { ticks: { color: "#8888a0", maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, grid: { color: "#2a2a3a55" } },
+                    x: {
+                      type: "time",
+                      time: { unit: "month", tooltipFormat: "MMM d, yyyy" },
+                      ticks: { color: "#8888a0", maxTicksLimit: 20 },
+                      grid: { color: "#2a2a3a55" },
+                    },
                     y: { title: { display: true, text: "Efficiency Factor", color: "#8888a0" }, ticks: { color: "#8888a0" }, grid: { color: "#2a2a3a55" } },
                   },
                 }}

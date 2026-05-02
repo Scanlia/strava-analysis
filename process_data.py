@@ -662,7 +662,7 @@ def main():
 
     # --- Compute aggregate metrics ---
     monthly_data = defaultdict(lambda: defaultdict(lambda: {"count": 0, "distance": 0, "time": 0, "elevation": 0, "effort": 0, "trimp": 0}))
-    weekly_data = defaultdict(lambda: defaultdict(lambda: {"count": 0, "distance": 0, "time": 0, "hr": []}))
+    weekly_data = defaultdict(lambda: defaultdict(lambda: {"count": 0, "distance": 0, "time": 0, "elevation": 0, "effort": 0, "hr": []}))
 
     for act in all_activities:
         sport = act["sport"]
@@ -689,6 +689,8 @@ def main():
         wd[sport]["count"] += 1
         wd[sport]["distance"] += act["distance_m"]
         wd[sport]["time"] += act["moving_time_sec"]
+        wd[sport]["elevation"] += act["elevation_gain_m"]
+        wd[sport]["effort"] += act.get("relative_effort", 0) or 0
         if act["avg_hr"]:
             wd[sport]["hr"].append(act["avg_hr"])
 
@@ -731,17 +733,21 @@ def main():
                 "count": wds["count"],
                 "distance_km": round(wds["distance"] / 1000, 1),
                 "time_hours": round(wds["time"] / 3600, 1),
+                "elevation_m": round(wds["elevation"], 1),
+                "relative_effort": round(wds["effort"], 1),
                 "avg_hr": avg_hr,
             }
         entry["total"] = {
             "count": sum(entry[s]["count"] for s in sport_keys if s in entry),
             "distance_km": round(sum(entry[s]["distance_km"] for s in sport_keys if s in entry), 1),
             "time_hours": round(sum(entry[s]["time_hours"] for s in sport_keys if s in entry), 1),
+            "elevation_m": round(sum(entry[s]["elevation_m"] for s in sport_keys if s in entry), 1),
+            "relative_effort": round(sum(entry[s]["relative_effort"] for s in sport_keys if s in entry), 1),
         }
         weekly_list.append(entry)
 
     # Yearly totals
-    yearly_data = defaultdict(lambda: defaultdict(lambda: {"count": 0, "distance": 0, "time": 0, "elevation": 0}))
+    yearly_data = defaultdict(lambda: defaultdict(lambda: {"count": 0, "distance": 0, "time": 0, "elevation": 0, "effort": 0}))
     for act in all_activities:
         if act.get("start_time_utc"):
             try:
@@ -751,6 +757,7 @@ def main():
                 yearly_data[yr][sport]["distance"] += act["distance_m"]
                 yearly_data[yr][sport]["time"] += act["moving_time_sec"]
                 yearly_data[yr][sport]["elevation"] += act["elevation_gain_m"]
+                yearly_data[yr][sport]["effort"] += act.get("relative_effort", 0) or 0
             except:
                 pass
 
@@ -764,6 +771,7 @@ def main():
                 "distance_km": round(yearly_data[yr][sport]["distance"] / 1000, 1),
                 "time_hours": round(yearly_data[yr][sport]["time"] / 3600, 1),
                 "elevation_m": round(yearly_data[yr][sport]["elevation"], 1),
+                "relative_effort": round(yearly_data[yr][sport]["effort"], 1),
             }
         yearly_list.append(entry)
 

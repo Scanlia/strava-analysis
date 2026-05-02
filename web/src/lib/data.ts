@@ -54,11 +54,11 @@ export interface MonthlyEntry {
 
 export interface WeeklyEntry {
   week: string;
-  run: { count: number; distance_km: number; time_hours: number; avg_hr: number | null };
-  ride: { count: number; distance_km: number; time_hours: number; avg_hr: number | null };
-  hike: { count: number; distance_km: number; time_hours: number; avg_hr: number | null };
-  swim: { count: number; distance_km: number; time_hours: number; avg_hr: number | null };
-  total: { count: number; distance_km: number; time_hours: number };
+  run: SportVolume & { avg_hr: number | null };
+  ride: SportVolume & { avg_hr: number | null };
+  hike: SportVolume & { avg_hr: number | null };
+  swim: SportVolume & { avg_hr: number | null };
+  total: { count: number; distance_km: number; time_hours: number; elevation_m: number; relative_effort: number };
 }
 
 export interface YearlyEntry {
