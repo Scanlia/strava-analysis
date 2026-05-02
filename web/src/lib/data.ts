@@ -9,6 +9,7 @@ export interface GapSegment {
   speed_ms: number;
   speed_kmh: number;
   gap_pace_min_km: number | null;
+  gap_pace_str: string | null;
   gap_speed_kmh: number | null;
   avg_hr: number | null;
   ele_gain: number;

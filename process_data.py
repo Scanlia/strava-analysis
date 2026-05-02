@@ -334,18 +334,8 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
 
         result["distances"].append(cum_dist)
 
-        # Speed: prefer device speed for cycling (power meter/wheel sensor),
-        # but use GPS-derived speed for running (WHOOP accelerometer overestimates)
-        use_device_speed = is_fit and sport != "Run"
-        if use_device_speed and p.get("speed_ms") is not None and p["speed_ms"] > 0:
-            spd = p["speed_ms"]
-            speeds.append(spd)
-            result["max_speed"] = max(result["max_speed"], spd)
-            if prev_point and cur_time and prev_time:
-                td = (cur_time - prev_time).total_seconds()
-                if td > 0 and spd > 0.3:
-                    result["moving_time"] += td
-        elif prev_point and cur_time and prev_time:
+        # Speed: always use GPS-derived (position delta) for consistency
+        if prev_point and cur_time and prev_time:
             td = (cur_time - prev_time).total_seconds()
             if td > 0:
                 d = cum_dist - result["distances"][-2] if len(result["distances"]) > 1 else 0
@@ -470,143 +460,187 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
 
 
 def compute_gap_segments(streams, activity_type, grade_points):
-    """Split an activity into distance-based segments and compute GAP/GAS per segment.
+    """Compute grade-adjusted pace/speed at per-point level, then aggregate to 1km splits.
 
-    Grade-adjusted pace/speed uses the Minetti metabolic cost model:
-      - Running: GAP = pace / (1 + k * grade) where k=0.033 uphill, k=0.017 downhill
-        Reference: Minetti et al. (2002) J. Applied Physiology
-      - Cycling: simplified gravitational + aerodynamic model
-        GAS = speed / (1 + 0.033 * grade) for uphill adjustments
+    Algorithm:
+      1. Smooth elevation with a rolling-median over 15-point window (~15s at 1Hz)
+      2. Compute grade per point using ±25m horizontal window (50m total)
+      3. Clamp grade to [-25%, +25%] to reject residual noise
+      4. Apply Minetti GAP multiplier per point: gap_speed = actual_speed * factor(grade)
+      5. Aggregate to 1km splits by distance-weighted average of gap_speed
+      6. Convert to pace (mm:ss) at the end
+
+    Reference: Minetti et al. (2002) J. Applied Physiology
     """
-    segment_length = 2000 if activity_type == "Run" else 5000  # 2km runs, 5km rides
+    segment_length = 1000  # 1km splits for both run and ride
 
     points = streams.get("raw_points", [])
-    if len(points) < 3:
+    if len(points) < 10:
         return []
 
+    n = len(points)
+
+    # Step 1: Extract arrays (distance, elevation, speed, HR) with valid data
+    dists = [p.get("d", 0) for p in points]
+    eles = [p.get("e") for p in points]
+    speeds = [p.get("s") for p in points]
+    hrs = [p.get("hr") for p in points]
+
+    # Step 1a: Smooth elevation with rolling median (window=15 points)
+    def rolling_median(values, window):
+        result = [None] * len(values)
+        valid = [(i, v) for i, v in enumerate(values) if v is not None]
+        half = window // 2
+        for idx in range(len(values)):
+            start = max(0, idx - half)
+            end = min(len(values), idx + half + 1)
+            win = [values[j] for j in range(start, end) if values[j] is not None]
+            if win:
+                win.sort()
+                result[idx] = win[len(win) // 2]
+        return result
+
+    eles_smooth = rolling_median(eles, 15)
+    speeds_smooth = rolling_median(speeds, 15)  # Also smooth GPS speed to remove spikes
+
+    # Step 2: Compute grade per point using ±35m horizontal window
+    grades = [None] * n
+    for i in range(n):
+        if eles_smooth[i] is None:
+            continue
+        d_cur = dists[i]
+        # Find point ~35m before
+        j_before = i
+        while j_before > 0 and d_cur - dists[j_before] < 35:
+            j_before -= 1
+        # Find point ~35m after
+        j_after = i
+        while j_after < n - 1 and dists[j_after] - d_cur < 35:
+            j_after += 1
+        # Compute grade
+        ele_before = eles_smooth[j_before]
+        ele_after = eles_smooth[j_after]
+        h_dist = dists[j_after] - dists[j_before]
+        if h_dist > 5 and ele_before is not None and ele_after is not None:
+            grade_pct = ((ele_after - ele_before) / h_dist) * 100
+            # Step 3: Clamp to ±25%
+            grades[i] = max(-25.0, min(25.0, grade_pct))
+
+    # Step 4: Apply Minetti multiplier per point
+    def minetti_factor(grade_pct, is_run):
+        if is_run:
+            if grade_pct > 1.0:
+                return 1.0 + 0.033 * grade_pct
+            elif grade_pct < -2.0:
+                return 1.0 - 0.017 * abs(grade_pct)
+            else:
+                return 1.0
+        else:
+            if grade_pct > 0:
+                return 1.0 + 0.033 * grade_pct
+            elif grade_pct < -1.0:
+                return 1.0 - 0.012 * abs(grade_pct)
+            else:
+                return 1.0
+
+    is_run = (activity_type == "Run")
+    gap_speeds = []
+    for i in range(n):
+        s = speeds_smooth[i] if speeds_smooth[i] is not None else speeds[i]
+        if s is not None and s > 0.3 and grades[i] is not None:
+            factor = minetti_factor(grades[i], is_run)
+            gap_speeds.append(s * factor)
+        else:
+            gap_speeds.append(None)
+
+    # Step 5: Aggregate to 1km splits by distance-weighting
     segments = []
-    seg_start_idx = 0
-    seg_start_dist = points[0].get("d", 0)
-    seg_speeds = []
-    seg_grades = []
-    seg_hrs = []
-    seg_ele_start = points[0].get("e")
-    seg_ele_end = seg_ele_start
+    split_start = 0
+    split_gap_sum = 0.0
+    split_weight_sum = 0.0
+    split_speed_sum = 0.0
+    split_speed_count = 0
+    split_hrs = []
+    split_ele_start = eles_smooth[0]
+    split_ele_end = split_ele_start
 
-    # Speed caps per sport to filter GPS/accelerometer noise
-    max_speed = 4.5 if activity_type == "Run" else 22.0  # m/s: ~3:42/km run, ~80km/h ride
+    for i in range(n):
+        d = dists[i]
+        delta = d - (dists[i - 1] if i > 0 else d)
 
-    for i, pt in enumerate(points):
-        d = pt.get("d", 0)
-        s = pt.get("s")
-        hr = pt.get("hr")
-        e = pt.get("e")
+        if gap_speeds[i] is not None and delta > 0:
+            split_gap_sum += gap_speeds[i] * delta
+            split_weight_sum += delta
+        s = speeds_smooth[i] if speeds_smooth[i] is not None else speeds[i]
+        if s is not None and s > 0.3:
+            split_speed_sum += s
+            split_speed_count += 1
+        if hrs[i] is not None:
+            split_hrs.append(hrs[i])
+        if eles_smooth[i] is not None:
+            split_ele_end = eles_smooth[i]
 
-        if s is not None and 0.3 < s < max_speed:
-            seg_speeds.append(s)
-        if hr is not None:
-            seg_hrs.append(hr)
-        if e is not None:
-            seg_ele_end = e
-
-        # Check if we've covered enough distance for a segment
-        dist_covered = d - seg_start_dist
-        if dist_covered >= segment_length and seg_speeds:
-            # Compute grade for this segment
-            dist_covered = d - seg_start_dist
-            ele_change = (seg_ele_end - seg_ele_start) if seg_ele_start is not None and seg_ele_end is not None else 0
-            avg_grade = (ele_change / dist_covered) * 100 if dist_covered > 0 else 0
-
-            avg_speed = sum(seg_speeds) / len(seg_speeds)
-            avg_hr = sum(seg_hrs) / len(seg_hrs) if seg_hrs else None
-
-            # GAP computation
-            if activity_type == "Run":
-                if avg_grade > 0:
-                    gap_factor = 1 + 0.033 * avg_grade  # uphill: slower metabolic cost
-                elif avg_grade < -1:
-                    gap_factor = 1 - 0.017 * abs(avg_grade)  # downhill: faster, but diminishing returns
-                else:
-                    gap_factor = 1.0
-                gap_speed = avg_speed * gap_factor
-                gap_pace = (1000 / gap_speed) / 60 if gap_speed > 0 else None
-                gas = None
-            else:  # Ride
-                if avg_grade > 0:
-                    gap_factor = 1 + 0.033 * avg_grade
-                elif avg_grade < -1:
-                    gap_factor = 1 - 0.012 * abs(avg_grade)
-                else:
-                    gap_factor = 1.0
-                gap_speed = avg_speed * gap_factor
-                gas = gap_speed * 3.6
-                gap_pace = None
+        if d - dists[split_start] >= segment_length and split_weight_sum > 0:
+            gap_speed = split_gap_sum / split_weight_sum
+            raw_speed = split_speed_sum / split_speed_count if split_speed_count > 0 else 0
+            avg_grade = grades[i] if i < n and grades[i] is not None else 0
+            avg_hr = sum(split_hrs) / len(split_hrs) if split_hrs else None
+            ele_change = (split_ele_end - split_ele_start) if split_ele_start is not None and split_ele_end is not None else 0
 
             segments.append({
                 "dist_km": round(d / 1000, 2),
                 "grade_pct": round(avg_grade, 2),
-                "speed_ms": round(avg_speed, 2),
-                "speed_kmh": round(avg_speed * 3.6, 1),
-                "gap_pace_min_km": round(gap_pace, 2) if gap_pace else None,
-                "gap_speed_kmh": round(gas, 1) if gas else None,
+                "speed_ms": round(raw_speed, 2),
+                "speed_kmh": round(raw_speed * 3.6, 1),
+                "gap_pace_min_km": round((1000 / gap_speed) / 60, 2) if is_run and gap_speed > 0 else None,
+                "gap_pace_str": format_pace(gap_speed) if is_run and gap_speed > 0 else None,
+                "gap_speed_kmh": round(gap_speed * 3.6, 1) if not is_run else None,
                 "avg_hr": round(avg_hr, 1) if avg_hr else None,
                 "ele_gain": round(max(0, ele_change), 1),
             })
 
-            # Reset for next segment
-            seg_start_idx = i
-            seg_start_dist = d
-            seg_speeds = []
-            seg_grades = []
-            seg_hrs = []
-            seg_ele_start = e
+            # Reset
+            split_start = i
+            split_gap_sum = 0.0
+            split_weight_sum = 0.0
+            split_speed_sum = 0.0
+            split_speed_count = 0
+            split_hrs = []
+            split_ele_start = eles_smooth[i] if eles_smooth[i] is not None else split_ele_start
 
-    # Include trailing partial segment if it has meaningful distance
-    # Runs: ≥1000m (half a segment), Rides: ≥2000m to avoid grade bias
-    min_tail = 1000 if activity_type == "Run" else 2000
-    last_pt = points[-1] if points else None
-    if last_pt and seg_speeds:
-        d = last_pt.get("d", 0)
-        dist_covered = d - seg_start_dist
-        if dist_covered >= min_tail:
-            ele_change = (seg_ele_end - seg_ele_start) if seg_ele_start is not None and seg_ele_end is not None else 0
-            avg_grade = (ele_change / dist_covered) * 100 if dist_covered > 0 else 0
-            avg_speed = sum(seg_speeds) / len(seg_speeds)
-            avg_hr = sum(seg_hrs) / len(seg_hrs) if seg_hrs else None
-
-            if activity_type == "Run":
-                if avg_grade > 0:
-                    gap_factor = 1 + 0.033 * avg_grade
-                elif avg_grade < -1:
-                    gap_factor = 1 - 0.017 * abs(avg_grade)
-                else:
-                    gap_factor = 1.0
-                gap_speed = avg_speed * gap_factor
-                gap_pace = (1000 / gap_speed) / 60 if gap_speed > 0 else None
-                gas = None
-            else:
-                if avg_grade > 0:
-                    gap_factor = 1 + 0.033 * avg_grade
-                elif avg_grade < -1:
-                    gap_factor = 1 - 0.012 * abs(avg_grade)
-                else:
-                    gap_factor = 1.0
-                gap_speed = avg_speed * gap_factor
-                gas = gap_speed * 3.6
-                gap_pace = None
+    # Include trailing partial split if ≥500m
+    if split_weight_sum > 0:
+        d_last = dists[-1]
+        if d_last - dists[split_start] >= 500:
+            gap_speed = split_gap_sum / split_weight_sum
+            raw_speed = split_speed_sum / split_speed_count if split_speed_count > 0 else 0
+            avg_hr = sum(split_hrs) / len(split_hrs) if split_hrs else None
+            ele_change = (split_ele_end - split_ele_start) if split_ele_start is not None and split_ele_end is not None else 0
+            tail_grade = grades[n - 1] if grades[n - 1] is not None else 0
 
             segments.append({
-                "dist_km": round(d / 1000, 2),
-                "grade_pct": round(avg_grade, 2),
-                "speed_ms": round(avg_speed, 2),
-                "speed_kmh": round(avg_speed * 3.6, 1),
-                "gap_pace_min_km": round(gap_pace, 2) if gap_pace else None,
-                "gap_speed_kmh": round(gas, 1) if gas else None,
+                "dist_km": round(d_last / 1000, 2),
+                "grade_pct": round(tail_grade, 2),
+                "speed_ms": round(raw_speed, 2),
+                "speed_kmh": round(raw_speed * 3.6, 1),
+                "gap_pace_min_km": round((1000 / gap_speed) / 60, 2) if is_run and gap_speed > 0 else None,
+                "gap_pace_str": format_pace(gap_speed) if is_run and gap_speed > 0 else None,
+                "gap_speed_kmh": round(gap_speed * 3.6, 1) if not is_run else None,
                 "avg_hr": round(avg_hr, 1) if avg_hr else None,
                 "ele_gain": round(max(0, ele_change), 1),
             })
 
     return segments
+
+
+def format_pace(gap_speed_ms):
+    """Format pace as m:ss per km from speed in m/s."""
+    if not gap_speed_ms or gap_speed_ms <= 0:
+        return None
+    secs_per_km = 1000 / gap_speed_ms
+    mins = int(secs_per_km // 60)
+    secs = int(secs_per_km % 60)
+    return f"{mins}:{secs:02d}"
 
 
 # --- Compute derived metrics ---
