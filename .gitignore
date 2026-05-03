@@ -6,4 +6,7 @@ __pycache__/
 
 # Generated heatmap files (large)
 data/heatmap/h3_*.geojson
+data/heatmap_points.json
 web/public/data/heatmap/h3_*.geojson
+data/tiles/
+web/public/data/tiles/

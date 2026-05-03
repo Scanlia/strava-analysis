@@ -10,9 +10,14 @@ import io
 import shutil
 import fitparse
 import h3
+import numpy as np
+from scipy.ndimage import gaussian_filter
+from PIL import Image
+import mercantile
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 # --- Configuration ---
 EXPORT_DIR = "strava_export"
@@ -1794,6 +1799,346 @@ def build_h3_heatmap(tracks_raw):
     return index
 
 
+def generate_heatmap_tiles(tracks_raw, output_dir=None):
+    """V3 heatmap: pre-generate raster PNG tiles at zooms 0-16.
+
+    Uses Gaussian kernel density per pixel, colour LUT, and Web Mercator
+    tile output. Produces 'all' and per-sport tile sets.
+
+    Two-pass pipeline:
+      Pass 1: compute per-zoom 99th percentile of non-zero density
+      Pass 2: render tiles with normalisation to that percentile
+    """
+    if not tracks_raw:
+        print("  No GPS tracks for tile generation")
+        return
+
+    tile_dir = output_dir or os.path.join(OUTPUT_DIR, "tiles")
+    os.makedirs(tile_dir, exist_ok=True)
+
+    # --- Densify and prepare point cloud ---
+    print("  Densifying tracks to 5m spacing...")
+    all_points = []  # [{lng, lat, sport, year}]
+
+    for track in tracks_raw:
+        coords = track["coords"]
+        if len(coords) < 2:
+            continue
+        dense = densify_track(coords, max_spacing=5)
+        sport = track["sport"]
+        year = track.get("year", 0)
+        for lng, lat in dense:
+            all_points.append({"lng": lng, "lat": lat, "sport": sport, "year": year})
+
+    if not all_points:
+        print("  No points after densification")
+        return
+
+    print(f"  {len(all_points):,} densified points across {len(tracks_raw)} activities")
+
+    # Web Mercator: metres per pixel at equator at zoom Z
+    def metres_per_pixel(zoom):
+        return 156543.03392 / (2 ** zoom)
+
+    # Kernel sigma in pixels for a given zoom, targeting 30m real-world width
+    def kernel_sigma(zoom, target_m=30):
+        mpp = metres_per_pixel(zoom)
+        return max(target_m / mpp, 0.5)
+
+    # Project lng/lat to tile pixel coordinates
+    def lnglat_to_pixel(lng, lat, zoom, tile_x, tile_y):
+        """Returns (px, py) within the 256x256 tile, or None if outside."""
+        # mercantile uses TMS (Y flipped from XYZ)
+        # We use TMS internally for simplicity, then flip when saving
+        tile_bounds = mercantile.bounds(tile_x, tile_y, zoom)
+        # mercantile.bounds returns LngLatBbox(west, south, east, north)
+        min_lng, min_lat = tile_bounds.west, tile_bounds.south
+        max_lng, max_lat = tile_bounds.east, tile_bounds.north
+        # Check if point is within bounds (allow slight overflow for buffer)
+        frac_x = (lng - min_lng) / (max_lng - min_lng) if max_lng != min_lng else 0.5
+        frac_y = (max_lat - lat) / (max_lat - min_lat) if max_lat != min_lat else 0.5
+        # mercantile TMS: y increases northward (lat increases)
+        # Our frac_y flips so pixel_y=0 at top (north) -> standard image coords
+        px = frac_x * 256.0
+        py = (1.0 - frac_y) * 256.0  # flip for image coords (y=0 at top)
+        return px, py
+
+    # Colour LUT: normalised density 0..1 -> RGBA
+    def build_colour_lut():
+        lut = np.zeros((256, 4), dtype=np.uint8)
+        stops = [
+            (0.00, (0, 0, 0, 0)),
+            (0.02, (10, 30, 100, 40)),
+            (0.10, (26, 83, 235, 120)),
+            (0.30, (6, 182, 212, 180)),
+            (0.55, (253, 224, 71, 220)),
+            (0.80, (249, 115, 22, 240)),
+            (1.00, (220, 30, 0, 255)),
+        ]
+        for i in range(256):
+            v = i / 255.0
+            # find bracketing stops
+            lo, hi = 0, len(stops) - 1
+            for j in range(len(stops)):
+                if stops[j][0] <= v:
+                    lo = j
+                if stops[len(stops) - 1 - j][0] >= v:
+                    hi = len(stops) - 1 - j
+            if lo == hi:
+                r, g, b, a = stops[lo][1]
+            else:
+                t = (v - stops[lo][0]) / (stops[hi][0] - stops[lo][0])
+                r = int(stops[lo][1][0] + t * (stops[hi][1][0] - stops[lo][1][0]))
+                g = int(stops[lo][1][1] + t * (stops[hi][1][1] - stops[lo][1][1]))
+                b = int(stops[lo][1][2] + t * (stops[hi][1][2] - stops[lo][1][2]))
+                a = int(stops[lo][1][3] + t * (stops[hi][1][3] - stops[lo][1][3]))
+            lut[i] = [r, g, b, a]
+        return lut
+
+    COLOUR_LUT = build_colour_lut()
+
+    def apply_lut(density_norm):
+        """Apply colour LUT to normalised density array. Returns RGBA uint8 array."""
+        indices = np.clip(density_norm * 255, 0, 255).astype(np.uint8)
+        return COLOUR_LUT[indices]
+
+    # --- Find relevant tiles per zoom ---
+    def tiles_for_points(points, zoom):
+        """Return set of (x, y, z) tiles containing any of the given points."""
+        tiles = set()
+        for pt in points:
+            t = mercantile.tile(pt["lng"], pt["lat"], zoom)
+            # Include neighbour tiles for kernel spillover
+            for dx in range(-3, 4):
+                for dy in range(-3, 4):
+                    tiles.add((t.x + dx, t.y + dy, zoom))
+        return tiles
+
+    # --- Render a single tile ---
+    def render_tile(points_for_zoom, zoom, tx, ty, sigma, norm_factor):
+        """Render one 256x256 tile. Returns RGBA bytes or None if empty."""
+        counts = np.zeros((256, 256), dtype=np.float32)
+
+        # Filter points to those within this tile + generous buffer
+        tile_bounds = mercantile.bounds(tx, ty, zoom)
+        # Buffer in degrees (rough, generous for kernel)
+        mpp = metres_per_pixel(zoom)
+        buffer_deg = (sigma * 4 * mpp) / 111000.0
+        min_lng = tile_bounds.west - buffer_deg
+        max_lng = tile_bounds.east + buffer_deg
+        min_lat = tile_bounds.south - buffer_deg
+        max_lat = tile_bounds.north + buffer_deg
+
+        in_range = [
+            p for p in points_for_zoom
+            if min_lng <= p["lng"] <= max_lng and min_lat <= p["lat"] <= max_lat
+        ]
+        if not in_range:
+            return None
+
+        # Project to pixel coords and splat
+        for p in in_range:
+            px, py = lnglat_to_pixel(p["lng"], p["lat"], zoom, tx, ty)
+            # Splat into nearest cell, with some anti-aliasing at borders
+            ix, iy = int(px), int(py)
+            if 0 <= ix < 256 and 0 <= iy < 256:
+                # Simple sub-pixel splat for near-zero sigma
+                fx, fy = px - ix, py - iy
+                # Distribute weight to 4 surrounding pixels
+                w00 = (1 - fx) * (1 - fy)
+                w10 = fx * (1 - fy)
+                w01 = (1 - fx) * fy
+                w11 = fx * fy
+                if 0 <= ix < 256 and 0 <= iy < 256:
+                    counts[iy, ix] += w00
+                if ix + 1 < 256 and 0 <= iy < 256:
+                    counts[iy, ix + 1] += w10
+                if 0 <= ix < 256 and iy + 1 < 256:
+                    counts[iy + 1, ix] += w01
+                if ix + 1 < 256 and iy + 1 < 256:
+                    counts[iy + 1, ix + 1] += w11
+
+        # Apply Gaussian kernel
+        if sigma > 0.5:
+            density = gaussian_filter(counts, sigma=sigma, mode="constant", cval=0.0)
+        else:
+            density = counts
+
+        # Normalise
+        if norm_factor > 0:
+            density_norm = np.clip(density / norm_factor, 0.0, 1.0)
+        else:
+            density_norm = np.clip(density, 0.0, 1.0)
+
+        # Check if tile has any visible content
+        if density_norm.max() < 0.005:
+            return None
+
+        # Apply colour LUT
+        rgba = apply_lut(density_norm)
+
+        # Encode as PNG
+        img = Image.fromarray(rgba, "RGBA")
+        from io import BytesIO
+        buf = BytesIO()
+        img.save(buf, format="PNG", optimize=True)
+        return buf.getvalue()
+
+    # --- Group points by sport for per-sport tiles ---
+    sports = ["Run", "Ride", "Swim", "Hike"]
+    points_by_sport = {}
+    for s in sports:
+        pts = [p for p in all_points if p["sport"] == s]
+        if pts:
+            points_by_sport[s] = pts
+
+    # --- Two-pass: first compute percentiles, then render ---
+    ZOOM_MIN, ZOOM_MAX = 2, 16
+
+    # First pass: compute max density per zoom for normalisation
+    print("  Pass 1: computing density percentiles per zoom...")
+    p99_per_zoom_all = {}
+    p99_per_zoom_sport = {s: {} for s in points_by_sport}
+
+    for zoom in range(ZOOM_MIN, ZOOM_MAX + 1):
+        # Sample a subset of tiles for percentile estimation (every 5th tile)
+        sigma = kernel_sigma(zoom)
+        tiles_all = list(tiles_for_points(all_points, zoom))
+        sample = tiles_all[::max(1, len(tiles_all) // 500 + 1)]
+
+        densities = []
+        for tx, ty, z in sample[:500]:
+            density = np.zeros((256, 256), dtype=np.float32)
+            bounds = mercantile.bounds(tx, ty, zoom)
+            mpp = metres_per_pixel(zoom)
+            bdeg = (sigma * 4 * mpp) / 111000.0
+            in_range = [
+                p for p in all_points
+                if bounds.west - bdeg <= p["lng"] <= bounds.east + bdeg
+                and bounds.south - bdeg <= p["lat"] <= bounds.north + bdeg
+            ]
+            for p in in_range:
+                px, py = lnglat_to_pixel(p["lng"], p["lat"], zoom, tx, ty)
+                ix, iy = int(px), int(py)
+                if 0 <= ix < 256 and 0 <= iy < 256:
+                    fx = px - ix
+                    fy = py - iy
+                    if 0 <= ix < 256 and 0 <= iy < 256:
+                        density[iy, ix] += (1 - fx) * (1 - fy)
+                    if ix + 1 < 256 and 0 <= iy < 256:
+                        density[iy, ix + 1] += fx * (1 - fy)
+                    if 0 <= ix < 256 and iy + 1 < 256:
+                        density[iy + 1, ix] += (1 - fx) * fy
+                    if ix + 1 < 256 and iy + 1 < 256:
+                        density[iy + 1, ix + 1] += fx * fy
+            if sigma > 0.5:
+                density = gaussian_filter(density, sigma=sigma, mode="constant", cval=0.0)
+            non_zero = density[density > 0]
+            if len(non_zero) > 0:
+                densities.append(float(np.percentile(non_zero, 99)))
+
+        if densities:
+            p99_per_zoom_all[zoom] = float(np.median(densities))
+        else:
+            p99_per_zoom_all[zoom] = 1.0
+
+        # Per-sport
+        for s, pts in points_by_sport.items():
+            s_tiles = list(tiles_for_points(pts, zoom))
+            s_sample = s_tiles[::max(1, len(s_tiles) // 200 + 1)]
+            s_densities = []
+            for tx, ty, z in s_sample[:200]:
+                d = np.zeros((256, 256), dtype=np.float32)
+                bounds = mercantile.bounds(tx, ty, zoom)
+                bdeg = (sigma * 4 * mpp) / 111000.0
+                in_r = [
+                    p for p in pts
+                    if bounds.west - bdeg <= p["lng"] <= bounds.east + bdeg
+                    and bounds.south - bdeg <= p["lat"] <= bounds.north + bdeg
+                ]
+                for p in in_r:
+                    px, py = lnglat_to_pixel(p["lng"], p["lat"], zoom, tx, ty)
+                    ix, iy = int(px), int(py)
+                    if 0 <= ix < 256 and 0 <= iy < 256:
+                        fx, fy = px - ix, py - iy
+                        if 0 <= ix < 256 and 0 <= iy < 256:
+                            d[iy, ix] += (1 - fx) * (1 - fy)
+                if sigma > 0.5:
+                    d = gaussian_filter(d, sigma=sigma, mode="constant", cval=0.0)
+                nz = d[d > 0]
+                if len(nz) > 0:
+                    s_densities.append(float(np.percentile(nz, 99)))
+            p99_per_zoom_sport[s][zoom] = float(np.median(s_densities)) if s_densities else 1.0
+
+    print("  Percentiles computed.")
+
+    # Second pass: render tiles
+    print("  Pass 2: rendering tiles...")
+
+    def render_set(name, points, p99_dict, base_dir):
+        """Render all tiles for one dataset (all or per-sport)."""
+        set_dir = os.path.join(base_dir, name)
+        total_tiles = 0
+        for zoom in range(ZOOM_MIN, ZOOM_MAX + 1):
+            sigma = kernel_sigma(zoom)
+            norm_factor = p99_dict.get(zoom, 1.0)
+            tiles = sorted(tiles_for_points(points, zoom))
+
+            if not tiles:
+                continue
+
+            zoom_dir = os.path.join(set_dir, str(zoom))
+            os.makedirs(zoom_dir, exist_ok=True)
+
+            rendered = 0
+            for tx, ty, z in tiles:
+                x_dir = os.path.join(zoom_dir, str(tx))
+                os.makedirs(x_dir, exist_ok=True)
+                filepath = os.path.join(x_dir, f"{ty}.png")
+
+                if os.path.exists(filepath):
+                    rendered += 1
+                    continue
+
+                png_data = render_tile(points, zoom, tx, ty, sigma, norm_factor)
+                if png_data:
+                    with open(filepath, "wb") as f:
+                        f.write(png_data)
+                    rendered += 1
+
+            total_tiles += rendered
+            if rendered > 0:
+                print(f"    {name} zoom {zoom}: {rendered} tiles (p99={norm_factor:.1f})")
+
+        return total_tiles
+
+    # Render "all" tile set
+    print("  Rendering all-activities tile set...")
+    total_all = render_set("all", all_points, p99_per_zoom_all, tile_dir)
+    print(f"  All: {total_all} tiles total")
+
+    # Render per-sport tile sets
+    for s, pts in points_by_sport.items():
+        sport_key = s.lower()
+        print(f"  Rendering {sport_key} tile set...")
+        total_s = render_set(f"sport/{sport_key}", pts, p99_per_zoom_sport[s], tile_dir)
+        print(f"  {sport_key}: {total_s} tiles total")
+
+    # Write manifest
+    manifest = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "activity_count": len(tracks_raw),
+        "point_count": len(all_points),
+        "zoom_range": [ZOOM_MIN, ZOOM_MAX],
+        "percentiles_all": {str(k): round(v, 2) for k, v in p99_per_zoom_all.items()},
+    }
+    with open(os.path.join(tile_dir, "manifest.json"), "w") as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  V3 raster tiles written to {tile_dir}/")
+    return tile_dir
+
+
 def build_geojson_tracks(tracks_raw):
     """Build GeoJSON track files from accumulated raw track data.
 
@@ -2490,6 +2835,22 @@ def main():
     # Build H3 V2 heatmap files
     print("\nBuilding H3 V2 heatmap...")
     build_h3_heatmap(tracks_raw)
+
+    # Save densified point cloud for V3 tile generation (separate script)
+    print("\nPreparing V3 point cloud...")
+    all_pts = []
+    for track in tracks_raw:
+        coords = track["coords"]
+        if len(coords) < 2:
+            continue
+        dense = densify_track(coords, max_spacing=5)
+        for lng, lat in dense:
+            all_pts.append([lng, lat, track["sport"], track["year"]])
+    if all_pts:
+        pts_path = os.path.join(OUTPUT_DIR, "heatmap_points.json")
+        with open(pts_path, "w") as f:
+            json.dump(all_pts, f, separators=(",", ":"))
+        print(f"  Saved {len(all_pts):,} densified points to {pts_path}")
 
     # Sort by date
     for sport in by_sport:
