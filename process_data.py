@@ -864,14 +864,14 @@ def compute_derived_metrics(act, streams):
             mv_dt = [seg_dt_arr[i] for i in range(len(seg_dt_arr)) if is_mv[i]]
 
             cum_t = 0; start_idx = 0
-            while start_idx < len(mv_dt) and cum_t < 10 * 60:
+            while start_idx < len(mv_dt) and cum_t < 5 * 60:
                 cum_t += mv_dt[start_idx]; start_idx += 1
             cum_t = 0; end_idx = len(mv_dt)
             for j in range(len(mv_dt) - 1, -1, -1):
                 cum_t += mv_dt[j]
-                if cum_t >= 2 * 60: end_idx = j; break
+                if cum_t >= 1 * 60: end_idx = j; break
 
-            if start_idx < end_idx and sum(mv_dt[start_idx:end_idx]) >= 30 * 60:
+            if start_idx < end_idx and sum(mv_dt[start_idx:end_idx]) >= 20 * 60:
                 core_speeds = mv_speeds[start_idx:end_idx]
                 mv_hrs = [hrs[idx + 1] for idx in range(start_idx, end_idx) if idx + 1 < len(hrs) and hrs[idx + 1] is not None]
 
@@ -889,7 +889,7 @@ def compute_derived_metrics(act, streams):
                             decoupling = ((ef1 - ef2) / ef1 * 100) if ef1 > 0 else 0
                             long_stops = streams.get("long_stops", [])
                             max_stop = max([s[2] for s in long_stops], default=0)
-                            if max_stop <= 5 * 60:
+                            if max_stop <= 15 * 60:
                                 d["aerobic_decoupling_pct"] = round(decoupling, 2)
                                 d["ef_first_half"] = round(ef1, 4)
                                 d["ef_second_half"] = round(ef2, 4)
@@ -1664,7 +1664,7 @@ def main():
 
         # LOESS on per-split data (evaluated on regular x-grid for smooth curves)
         try:
-            loess_raw = lowess(ys_splits, xs_splits, frac=min(0.40, 10 / max(len(xs_splits), 1)), it=3, return_sorted=True)
+            loess_raw = lowess(ys_splits, xs_splits, frac=max(0.50, 30 / max(len(xs_splits), 1)), it=3, return_sorted=True)
             x_grid = np.linspace(xs_splits.min(), xs_splits.max(), 200)
             y_grid = np.interp(x_grid, loess_raw[:, 0], loess_raw[:, 1])
             loess_split_data = [{"days": float(x), "value": float(y)} for x, y in zip(x_grid, y_grid)]
@@ -1673,7 +1673,7 @@ def main():
 
         # LOESS on per-activity data (fewer points, so larger fraction)
         try:
-            loess_act = lowess(ys_acts, xs_acts, frac=min(0.45, 15 / max(len(xs_acts), 1)), it=3, return_sorted=True)
+            loess_act = lowess(ys_acts, xs_acts, frac=max(0.55, 20 / max(len(xs_acts), 1)), it=3, return_sorted=True)
             x_grid_a = np.linspace(xs_acts.min(), xs_acts.max(), 200)
             y_grid_a = np.interp(x_grid_a, loess_act[:, 0], loess_act[:, 1])
             loess_act_data = [{"days": float(x), "value": float(y)} for x, y in zip(x_grid_a, y_grid_a)]

@@ -53,11 +53,11 @@ function ewma(points: { x: number; y: number }[], alpha: number = 0.02): { x: nu
   return result;
 }
 
-type TrendMode = "linear" | "ewma";
+type TrendMode = "linear" | "loess";
 
 export default function HRCharts({ activities }: { activities: Activity[] }) {
-  const [efTrendMode, setEfTrendMode] = useState<TrendMode>("linear");
-  const [decTrendMode, setDecTrendMode] = useState<TrendMode>("ewma");
+  const [efTrendMode, setEfTrendMode] = useState<TrendMode>("loess");
+  const [decTrendMode, setDecTrendMode] = useState<TrendMode>("loess");
   // --- HR scatter ---
   const withHR = activities
     .filter((a) => a.has_hr && a.avg_hr > 0 && a.start_time_utc)
@@ -154,11 +154,11 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
         tension: 0,
         order: 2,
       });
-    } else if (efTrendMode === "ewma" && sorted.length >= 2) {
+    } else if (efTrendMode === "loess" && sorted.length >= 2) {
       const e = ewma(sorted.map((p, i) => ({ x: i, y: p.y })));
       const eData = e.map((p, i) => ({ x: sorted[i]?.x ?? sorted[0].x, y: p.y }));
       datasets.push({
-        label: sport + " EWMA",
+        label: sport + " LOESS",
         data: eData,
         borderColor: (COLORS[sport] || "#8888a0") + "cc",
         backgroundColor: "transparent",
@@ -244,7 +244,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
           <div className="flex items-center justify-between mb-1">
             <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">Efficiency Factor Trend</h3>
             <div className="flex gap-1">
-              {(["linear", "ewma"] as const).map((m) => (
+              {(["linear", "loess"] as const).map((m) => (
                 <button
                   key={m}
                   onClick={() => setEfTrendMode(m)}
@@ -252,7 +252,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                     efTrendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
                   }`}
                 >
-                  {m === "linear" ? "Linear" : "EWMA"}
+                  {m === "linear" ? "Linear" : "LOESS"}
                 </button>
               ))}
             </div>
@@ -330,7 +330,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
           <div className="flex items-center justify-between mb-1">
             <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold">Aerobic Decoupling</h3>
             <div className="flex gap-1">
-              {(["linear", "ewma"] as const).map((m) => (
+              {(["linear", "loess"] as const).map((m) => (
                 <button
                   key={m}
                   onClick={() => setDecTrendMode(m)}
@@ -338,7 +338,7 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                     decTrendMode === m ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
                   }`}
                 >
-                  {m === "linear" ? "Linear" : "EWMA"}
+                  {m === "linear" ? "Linear" : "LOESS"}
                 </button>
               ))}
             </div>
@@ -363,10 +363,10 @@ export default function HRCharts({ activities }: { activities: Activity[] }) {
                   datasets: [
                     { type: "bar" as const, data: decouplingValues, backgroundColor: decouplingColors, borderRadius: 4, order: 2 } as any,
                     ...(decTrendMode === "linear" && decoupTrendLine.length > 0
-                      ? [{ type: "line" as const, label: "Trend", data: decoupTrendLine, borderColor: "#f59e0b", backgroundColor: "transparent", borderWidth: 2, borderDash: [6, 3], pointRadius: 0, fill: false, tension: 0, order: 1 } as any]
+                      ? [{ type: "line" as const, label: "Trend", data: decoupTrendLine, borderColor: "#f59e0b", backgroundColor: "transparent", borderWidth: 2, borderDash: [6, 3], pointRadius: 0, fill: false, tension: 0, order: 1 }]
                       : []),
-                    ...(decTrendMode === "ewma" && decoupEWMALine.length > 0
-                      ? [{ type: "line" as const, label: "EWMA", data: decoupEWMALine, borderColor: "#f59e0b", backgroundColor: "transparent", borderWidth: 2, pointRadius: 0, fill: false, tension: 0, order: 1 } as any]
+                    ...(decTrendMode === "loess" && decoupEWMALine.length > 0
+                      ? [{ type: "line" as const, label: "LOESS", data: decoupEWMALine, borderColor: "#f59e0b", backgroundColor: "transparent", borderWidth: 2, pointRadius: 0, fill: false, tension: 0, order: 1 }]
                       : []),
                   ],
                 }}
