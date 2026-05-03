@@ -1354,7 +1354,7 @@ def main():
             "hr_samples": streams["hr_samples"],
             "has_hr": streams["hr_samples"] > 0,
             "stream_points": len(points),
-            "stream": streams["raw_points"][:500],  # Limit stream points for dashboard
+            "stream": streams["raw_points"][:1500],  # More points for heatmap quality
             "is_manual": is_manual,
             "is_indoor": is_indoor,
             "_raw_hr_values": [p.get("hr") for p in points if p.get("hr") is not None],  # raw for recalibration

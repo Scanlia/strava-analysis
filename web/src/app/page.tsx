@@ -45,8 +45,11 @@ export default function Dashboard() {
         <SummaryCards summary={summary} activities={activities.length} />
 
         <section>
-          <h2 className="text-xl font-bold mb-5">Activity Calendar</h2>
-          <CalendarHeatmap activities={activities} />
+          <h2 className="text-xl font-bold mb-5">Activity Calendar &amp; Patterns</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2"><CalendarHeatmap activities={activities} /></div>
+            <div className="lg:col-span-1"><DOWHourHeatmap aggregate={aggregate} /></div>
+          </div>
         </section>
 
         <section>
@@ -72,11 +75,6 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Year-over-Year Comparison</h2>
           <YearOverYearChart activities={activities} />
-        </section>
-
-        <section>
-          <h2 className="text-xl font-bold mb-5">Training Patterns</h2>
-          <DOWHourHeatmap aggregate={aggregate} />
         </section>
 
         <section>

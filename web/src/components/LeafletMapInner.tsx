@@ -1,15 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Polyline, useMap } from "react-leaflet";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Activity } from "@/lib/data";
-
-interface StreamPoint {
-  lat: number;
-  lon: number;
-}
 
 const COLORS: Record<string, string> = {
   Run: "#ff6b6b",
@@ -18,21 +13,104 @@ const COLORS: Record<string, string> = {
   Swim: "#38bdf8",
 };
 
-const OPACITIES: Record<string, number> = {
-  Run: 0.12,
-  Ride: 0.08,
-  Hike: 0.1,
-  Swim: 0.1,
-};
+const SPORT_ALPHA: Record<string, number> = { Run: 0.06, Ride: 0.04, Hike: 0.07, Swim: 0.08 };
 
-function FitToBounds({ positions }: { positions: [number, number][] }) {
+function HeatmapLayer({ activities, visibleSports }: { activities: Activity[]; visibleSports: Record<string, boolean> }) {
   const map = useMap();
-  useEffect(() => {
-    if (positions.length > 0) {
-      const bounds = L.latLngBounds(positions);
-      map.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 });
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const frameRef = useRef<number>(0);
+
+  const draw = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const size = map.getSize();
+    canvas.width = size.x;
+    canvas.height = size.y;
+    canvas.style.width = size.x + "px";
+    canvas.style.height = size.y + "px";
+
+    ctx.clearRect(0, 0, size.x, size.y);
+    ctx.globalCompositeOperation = "lighter";
+
+    const zoom = map.getZoom();
+    // Point radius scales with zoom — tiny dots when zoomed out, larger when zoomed in
+    const baseRadius = Math.max(0.3, 6 - zoom * 0.35);
+
+    for (const a of activities) {
+      if (!visibleSports[a.sport]) continue;
+      const color = COLORS[a.sport] || "#888";
+      const alpha = SPORT_ALPHA[a.sport] || 0.05;
+      const stream = a.stream || [];
+      if (stream.length < 2) continue;
+
+      // Parse hex to RGB for additive blending
+      const r = parseInt(color.slice(1, 3), 16);
+      const g = parseInt(color.slice(3, 5), 16);
+      const b = parseInt(color.slice(5, 7), 16);
+      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+
+      for (const p of stream) {
+        if (!p.lat || !p.lon) continue;
+        const px = map.latLngToContainerPoint([p.lat, p.lon]);
+        ctx.beginPath();
+        ctx.arc(px.x, px.y, baseRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
-  }, [positions, map]);
+  }, [activities, visibleSports, map]);
+
+  useEffect(() => {
+    // Create canvas overlay
+    const CanvasLayer = L.Layer.extend({
+      onAdd: function () {
+        const pane = map.getPanes().overlayPane;
+        const canvas = document.createElement("canvas");
+        canvas.style.position = "absolute";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.pointerEvents = "none";
+        canvas.style.zIndex = "400";
+        pane.appendChild(canvas);
+        canvasRef.current = canvas;
+        draw();
+      },
+      onRemove: function () {
+        if (canvasRef.current) {
+          canvasRef.current.remove();
+          canvasRef.current = null;
+        }
+      },
+      _update: function () {
+        if (frameRef.current) cancelAnimationFrame(frameRef.current);
+        frameRef.current = requestAnimationFrame(() => draw());
+      },
+    });
+
+    const layer = new CanvasLayer();
+    map.addLayer(layer);
+
+    // Redraw on move/zoom
+    map.on("moveend", () => layer._update());
+    map.on("zoomend", () => layer._update());
+
+    return () => {
+      map.removeLayer(layer);
+      map.off("moveend");
+      map.off("zoomend");
+    };
+  }, [map, draw]);
+
+  // Redraw when filters change
+  useEffect(() => {
+    if (canvasRef.current) {
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      frameRef.current = requestAnimationFrame(() => draw());
+    }
+  }, [visibleSports, draw]);
+
   return null;
 }
 
@@ -42,31 +120,10 @@ export default function LeafletMapInner({ activities }: { activities: Activity[]
   });
 
   const filteredActivities = activities.filter((a) =>
-    !a.is_manual && !a.is_indoor && a.stream && a.stream.length > 0 && visibleSports[a.sport]
+    !a.is_manual && !a.is_indoor && a.stream && a.stream.length > 0
   );
 
-  const allPositions: [number, number][] = [];
-  const polylines = filteredActivities.map((a) => {
-    const positions: [number, number][] = [];
-    for (const p of (a.stream || [])) {
-      if (p.lat && p.lon) {
-        positions.push([p.lat, p.lon]);
-        allPositions.push([p.lat, p.lon]);
-      }
-    }
-    if (positions.length < 2) return null;
-    return (
-      <Polyline
-        key={a.id}
-        positions={positions}
-        pathOptions={{
-          color: COLORS[a.sport] || "#888",
-          weight: 2,
-          opacity: OPACITIES[a.sport] || 0.1,
-        }}
-      />
-    );
-  });
+  const pointCount = filteredActivities.reduce((s, a) => s + (a.stream?.length || 0), 0);
 
   return (
     <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
@@ -84,24 +141,24 @@ export default function LeafletMapInner({ activities }: { activities: Activity[]
           </label>
         ))}
         <span className="text-[10px] text-gray-500 ml-2">
-          {filteredActivities.length} activities
+          {filteredActivities.length} activities · {pointCount.toLocaleString()} pts
         </span>
       </div>
       {filteredActivities.length > 0 ? (
-        <div className="h-[500px] rounded-lg overflow-hidden">
+        <div className="h-[500px] rounded-lg overflow-hidden relative">
           <MapContainer
             center={[-27.5, 153]}
             zoom={5}
-            style={{ height: "100%", width: "100%", background: "#1a1a2e" }}
+            style={{ height: "100%", width: "100%", background: "#0a0a1a" }}
             zoomControl={true}
             scrollWheelZoom={true}
+            attributionControl={true}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {polylines}
-            <FitToBounds positions={allPositions} />
+            <HeatmapLayer activities={filteredActivities} visibleSports={visibleSports} />
           </MapContainer>
         </div>
       ) : (

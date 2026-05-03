@@ -30,7 +30,8 @@ export default function ActivityTable({ activities }: { activities: Activity[] }
   const [filter, setFilter] = useState("All");
   const [page, setPage] = useState(0);
 
-  const filtered = filter === "All" ? activities : activities.filter((a) => a.sport === filter);
+  const filtered = (filter === "All" ? activities : activities.filter((a) => a.sport === filter))
+    .sort((a, b) => (b.start_time_utc ?? "").localeCompare(a.start_time_utc ?? ""));
   const totalPages = Math.ceil(filtered.length / PER_PAGE);
   const currentPage = Math.min(page, Math.max(0, totalPages - 1));
   const pageActs = filtered.slice(currentPage * PER_PAGE, (currentPage + 1) * PER_PAGE);
