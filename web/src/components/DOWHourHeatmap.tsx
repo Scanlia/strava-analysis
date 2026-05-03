@@ -15,16 +15,16 @@ interface CellData {
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const HOURS = Array.from({ length: 24 }, (_, i) => i);
 
-const CELL_W = 24;
-const CELL_H = 16;
-const GAP = 1;
+const CELL_W = 16;
+const CELL_H = 14;
+const GAP = 2;
 const CELL_TOTAL_W = CELL_W + GAP;
 const CELL_TOTAL_H = CELL_H + GAP;
 
-const LEFT = 40;
-const TOP = 20;
+const LEFT = 34;
+const TOP = 22;
 const RIGHT = 8;
-const BOTTOM = 30;
+const BOTTOM = 28;
 const GRID_W = 24 * CELL_TOTAL_W;
 const GRID_H = 7 * CELL_TOTAL_H;
 const SVG_W = LEFT + GRID_W + RIGHT;
@@ -230,13 +230,13 @@ export default function DOWHourHeatmap({ aggregate }: Props) {
           No day-of-week/hour data available
         </div>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="w-full">
           <svg
-            width={SVG_W}
-            height={SVG_H}
-            className="min-w-[420px]"
+            viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+            className="w-full h-auto"
             role="img"
             aria-label="Day-of-week hour heatmap"
+            preserveAspectRatio="xMidYMid meet"
           >
             {HOUR_LABELS.map((h) => {
               const col = h;
