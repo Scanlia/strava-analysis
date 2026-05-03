@@ -3649,6 +3649,18 @@
   "gap_segments": [],
   "vam": 136350.0,
   "moving_time_pct": 0.4,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km",
+    "Long stops > 5 min"
+   ],
+   "distance_km": 0.0,
+   "moving_time_min": 31.3,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {}
  },
  {
@@ -6729,6 +6741,18 @@
   "gap_segments": [],
   "vam": 225900.0,
   "moving_time_pct": 0.4,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km",
+    "Long stops > 5 min"
+   ],
+   "distance_km": 0.0,
+   "moving_time_min": 34.5,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {}
  },
  {
@@ -7144,6 +7168,18 @@
   "max_pace_min_per_km": 2.26,
   "gap_avg_pace_min_per_km": 6.21,
   "gap_correction_pct": 0.0,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km",
+    "Moving time < 20 min"
+   ],
+   "distance_km": 0.93,
+   "moving_time_min": 7.0,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -8369,6 +8405,17 @@
     "elev_gain": 6.8
    }
   ],
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km"
+   ],
+   "distance_km": 2.25,
+   "moving_time_min": 20.9,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -13008,8 +13055,24 @@
     "elev_gain": 19.0
    }
   ],
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 8.03,
+   "moving_time_min": 73.5,
+   "distance_band": "medium",
+   "is_negative_split": false,
+   "split_delta_seconds": -44.4,
+   "split_delta_pct": -8.3,
+   "pace_first_half": 534.3,
+   "pace_second_half": 578.7,
+   "raw_split_delta_seconds": -52.6,
+   "raw_split_delta_pct": -9.9,
+   "raw_pace_first_half": 532.9,
+   "raw_pace_second_half": 585.5
+  },
   "is_negative_split": false,
-  "neg_split_pct": -26.9,
+  "neg_split_pct": -8.3,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -14784,8 +14847,24 @@
     "elev_gain": 5.1
    }
   ],
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 3.49,
+   "moving_time_min": 32.1,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -197.4,
+   "split_delta_pct": -20.0,
+   "pace_first_half": 495.1,
+   "pace_second_half": 692.5,
+   "raw_split_delta_seconds": -204.0,
+   "raw_split_delta_pct": -41.4,
+   "raw_pace_first_half": 493.2,
+   "raw_pace_second_half": 697.1
+  },
   "is_negative_split": false,
-  "neg_split_pct": -67.9,
+  "neg_split_pct": -20.0,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -17420,8 +17499,24 @@
    }
   ],
   "trimp": 84.7,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 5.07,
+   "moving_time_min": 36.6,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -34.2,
+   "split_delta_pct": -8.3,
+   "pace_first_half": 412.7,
+   "pace_second_half": 446.9,
+   "raw_split_delta_seconds": -30.8,
+   "raw_split_delta_pct": -7.4,
+   "raw_pace_first_half": 416.6,
+   "raw_pace_second_half": 447.4
+  },
   "is_negative_split": false,
-  "neg_split_pct": -1.6,
+  "neg_split_pct": -8.3,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -20393,8 +20488,17 @@
    }
   ],
   "trimp": 59.9,
-  "is_negative_split": false,
-  "neg_split_pct": -88.7,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Long stops > 5 min"
+   ],
+   "distance_km": 4.09,
+   "moving_time_min": 41.8,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -22128,6 +22232,17 @@
     "elev_gain": 20.4
    }
   ],
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km"
+   ],
+   "distance_km": 2.44,
+   "moving_time_min": 23.1,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -25596,8 +25711,24 @@
    }
   ],
   "trimp": 81.7,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 6.1,
+   "moving_time_min": 49.1,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -118.6,
+   "split_delta_pct": -20.0,
+   "pace_first_half": 435.5,
+   "pace_second_half": 554.0,
+   "raw_split_delta_seconds": -122.8,
+   "raw_split_delta_pct": -28.3,
+   "raw_pace_first_half": 434.4,
+   "raw_pace_second_half": 557.2
+  },
   "is_negative_split": false,
-  "neg_split_pct": -31.1,
+  "neg_split_pct": -20.0,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -27877,8 +28008,24 @@
    }
   ],
   "trimp": 71.9,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 4.0,
+   "moving_time_min": 30.8,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -28.4,
+   "split_delta_pct": -6.3,
+   "pace_first_half": 448.2,
+   "pace_second_half": 476.6,
+   "raw_split_delta_seconds": -29.8,
+   "raw_split_delta_pct": -6.6,
+   "raw_pace_first_half": 450.3,
+   "raw_pace_second_half": 480.1
+  },
   "is_negative_split": false,
-  "neg_split_pct": -3.5,
+  "neg_split_pct": -6.3,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -28559,6 +28706,18 @@
   "gap_avg_pace_min_per_km": 10.59,
   "gap_correction_pct": 0.0,
   "trimp": 7.8,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km",
+    "Moving time < 20 min"
+   ],
+   "distance_km": 0.71,
+   "moving_time_min": 12.1,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -31768,8 +31927,24 @@
    }
   ],
   "trimp": 68.6,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 4.12,
+   "moving_time_min": 39.7,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -111.3,
+   "split_delta_pct": -20.0,
+   "pace_first_half": 545.2,
+   "pace_second_half": 656.5,
+   "raw_split_delta_seconds": -117.4,
+   "raw_split_delta_pct": -21.6,
+   "raw_pace_first_half": 544.2,
+   "raw_pace_second_half": 661.6
+  },
   "is_negative_split": false,
-  "neg_split_pct": -19.9,
+  "neg_split_pct": -20.0,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -34520,6 +34695,24 @@
    }
   ],
   "trimp": 77.4,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 3.58,
+   "moving_time_min": 34.5,
+   "distance_band": "short",
+   "is_negative_split": true,
+   "split_delta_seconds": 60.8,
+   "split_delta_pct": 10.9,
+   "pace_first_half": 558.6,
+   "pace_second_half": 497.8,
+   "raw_split_delta_seconds": 74.8,
+   "raw_split_delta_pct": 13.1,
+   "raw_pace_first_half": 570.5,
+   "raw_pace_second_half": 495.7
+  },
+  "is_negative_split": true,
+  "neg_split_pct": 10.9,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -36693,6 +36886,24 @@
    }
   ],
   "trimp": 65.2,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 3.34,
+   "moving_time_min": 26.9,
+   "distance_band": "short",
+   "is_negative_split": true,
+   "split_delta_seconds": 26.5,
+   "split_delta_pct": 5.3,
+   "pace_first_half": 497.9,
+   "pace_second_half": 471.5,
+   "raw_split_delta_seconds": 29.9,
+   "raw_split_delta_pct": 5.9,
+   "raw_pace_first_half": 502.9,
+   "raw_pace_second_half": 473.0
+  },
+  "is_negative_split": true,
+  "neg_split_pct": 5.3,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -39864,8 +40075,24 @@
    }
   ],
   "trimp": 48.6,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 3.75,
+   "moving_time_min": 39.9,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -144.1,
+   "split_delta_pct": -20.0,
+   "pace_first_half": 534.6,
+   "pace_second_half": 678.7,
+   "raw_split_delta_seconds": -144.4,
+   "raw_split_delta_pct": -26.8,
+   "raw_pace_first_half": 538.9,
+   "raw_pace_second_half": 683.3
+  },
   "is_negative_split": false,
-  "neg_split_pct": -37.7,
+  "neg_split_pct": -20.0,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -40910,6 +41137,18 @@
    }
   ],
   "trimp": 25.6,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km",
+    "Moving time < 20 min"
+   ],
+   "distance_km": 1.37,
+   "moving_time_min": 11.6,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -43342,6 +43581,24 @@
    }
   ],
   "trimp": 48.4,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 3.2,
+   "moving_time_min": 34.4,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -157.5,
+   "split_delta_pct": -20.0,
+   "pace_first_half": 496.7,
+   "pace_second_half": 654.2,
+   "raw_split_delta_seconds": -155.6,
+   "raw_split_delta_pct": -31.3,
+   "raw_pace_first_half": 496.4,
+   "raw_pace_second_half": 652.0
+  },
+  "is_negative_split": false,
+  "neg_split_pct": -20.0,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -48788,6 +49045,19 @@
    }
   ],
   "trimp": 30.8,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Distance < 3 km",
+    "Moving time < 20 min",
+    "Long stops > 5 min"
+   ],
+   "distance_km": 1.54,
+   "moving_time_min": 10.7,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -56306,6 +56576,17 @@
    }
   ],
   "trimp": 33.4,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Long stops > 5 min"
+   ],
+   "distance_km": 4.69,
+   "moving_time_min": 35.6,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -60871,8 +61152,24 @@
    }
   ],
   "trimp": 58.5,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 3.03,
+   "moving_time_min": 23.8,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -51.2,
+   "split_delta_pct": -11.7,
+   "pace_first_half": 439.5,
+   "pace_second_half": 490.7,
+   "raw_split_delta_seconds": -54.8,
+   "raw_split_delta_pct": -12.5,
+   "raw_pace_first_half": 439.5,
+   "raw_pace_second_half": 494.3
+  },
   "is_negative_split": false,
-  "neg_split_pct": -2.8,
+  "neg_split_pct": -11.7,
   "best_efforts": {
    "60s": {
     "target": 60,
@@ -65936,8 +66233,24 @@
    }
   ],
   "trimp": 65.9,
+  "neg_split": {
+   "qualifies": true,
+   "reasons": [],
+   "distance_km": 4.88,
+   "moving_time_min": 35.1,
+   "distance_band": "short",
+   "is_negative_split": false,
+   "split_delta_seconds": -35.0,
+   "split_delta_pct": -8.2,
+   "pace_first_half": 428.2,
+   "pace_second_half": 463.2,
+   "raw_split_delta_seconds": -34.2,
+   "raw_split_delta_pct": -8.0,
+   "raw_pace_first_half": 429.1,
+   "raw_pace_second_half": 463.2
+  },
   "is_negative_split": false,
-  "neg_split_pct": -17.2,
+  "neg_split_pct": -8.2,
   "best_efforts": {
    "30s": {
     "target": 30,
@@ -72736,6 +73049,17 @@
    }
   ],
   "trimp": 38.9,
+  "neg_split": {
+   "qualifies": false,
+   "reasons": [
+    "Long stops > 5 min"
+   ],
+   "distance_km": 5.23,
+   "moving_time_min": 44.8,
+   "distance_band": "short"
+  },
+  "is_negative_split": null,
+  "neg_split_pct": null,
   "best_efforts": {
    "30s": {
     "target": 30,

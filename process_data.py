@@ -840,6 +840,243 @@ def compute_gap_segments(streams, activity_type, grade_points):
     return segments
 
 
+def _compute_point_gap_factors(raw_points):
+    """Compute Minetti GAP factor per raw point (same algorithm as compute_gap_segments).
+
+    Returns list of (grade_pct, minetti_factor) tuples; None where no valid grade.
+    """
+    n = len(raw_points)
+    dists = [p.get("d", 0) for p in raw_points]
+    eles = [p.get("e") for p in raw_points]
+
+    def rolling_median(values, window):
+        result = [None] * len(values)
+        half = window // 2
+        for idx in range(len(values)):
+            start = max(0, idx - half)
+            end = min(len(values), idx + half + 1)
+            win = [values[j] for j in range(start, end) if values[j] is not None]
+            if win:
+                win.sort()
+                result[idx] = win[len(win) // 2]
+        return result
+
+    eles_smooth = rolling_median(eles, 15)
+
+    grades = [None] * n
+    for i in range(n):
+        if eles_smooth[i] is None:
+            continue
+        d_cur = dists[i]
+        j_before = i
+        while j_before > 0 and d_cur - dists[j_before] < 35:
+            j_before -= 1
+        j_after = i
+        while j_after < n - 1 and dists[j_after] - d_cur < 35:
+            j_after += 1
+        ele_before = eles_smooth[j_before]
+        ele_after = eles_smooth[j_after]
+        h_dist = dists[j_after] - dists[j_before]
+        if h_dist > 5 and ele_before is not None and ele_after is not None:
+            grade_pct = ((ele_after - ele_before) / h_dist) * 100
+            grades[i] = max(-25.0, min(25.0, grade_pct))
+
+    def minetti_factor(grade_pct):
+        if grade_pct > 1.0:
+            return 1.0 + 0.033 * grade_pct
+        elif grade_pct < -2.0:
+            return 1.0 - 0.017 * abs(grade_pct)
+        else:
+            return 1.0
+
+    return [(grades[i], minetti_factor(grades[i]) if grades[i] is not None else None) for i in range(n)]
+
+
+def compute_negative_split(streams, act):
+    """Compute negative split metrics for a single running activity.
+
+    Uses moving-only raw points, trims first 5 min warmup, finds midpoint
+    by distance (with interpolation), and computes pace delta for each half
+    in both raw and GAP-adjusted forms.
+
+    Returns a dict or None if insufficient data.
+    """
+    raw_points = streams.get("raw_points", [])
+    if len(raw_points) < 20:
+        return None
+
+    # Filter to moving points with valid distance/time
+    moving = [p for p in raw_points if p.get("m", True) and p.get("t") and p.get("d") is not None and p.get("d") >= 0]
+    if len(moving) < 20:
+        return None
+
+    n = len(moving)
+    # Compute time deltas between consecutive moving raw points
+    time_deltas = [0.0] * n
+    total_moving_time = 0.0
+    for i in range(1, n):
+        try:
+            t1 = datetime.fromisoformat(moving[i - 1]["t"].replace("Z", "+00:00"))
+            t2 = datetime.fromisoformat(moving[i]["t"].replace("Z", "+00:00"))
+            dt = (t2 - t1).total_seconds()
+            if 0 < dt < 3600:
+                time_deltas[i] = dt
+                total_moving_time += dt
+        except Exception:
+            pass
+
+    total_distance = moving[-1]["d"]  # cumulative at end of activity
+    start_distance = moving[0]["d"]
+
+    # --- Qualifying criteria ---
+    reasons = []
+    if total_distance - start_distance < 3000:
+        reasons.append("Distance < 3 km")
+    if total_moving_time < 20 * 60:
+        reasons.append("Moving time < 20 min")
+
+    # Long stops > 5 min
+    long_stops = streams.get("long_stops", [])
+    if any(s[2] > 300 for s in long_stops):
+        reasons.append("Long stops > 5 min")
+
+    # Net elevation change > 100m
+    eles = [p.get("e") for p in moving if p.get("e") is not None]
+    if len(eles) >= 2:
+        net_elevation = eles[-1] - eles[0]
+        if abs(net_elevation) > 100:
+            reasons.append("Net elevation change > 100m")
+
+    # Workout type check
+    if act:
+        wt = (act.get("Workout Type") or "").lower()
+        if "interval" in wt or "race" in wt:
+            reasons.append("Interval/race workout type")
+
+    total_distance_km = (total_distance - start_distance) / 1000
+    if total_distance_km < 8:
+        distance_band = "short"
+    elif total_distance_km <= 15:
+        distance_band = "medium"
+    else:
+        distance_band = "long"
+
+    result = {
+        "qualifies": len(reasons) == 0,
+        "reasons": reasons,
+        "distance_km": round(total_distance_km, 2),
+        "moving_time_min": round(total_moving_time / 60, 1),
+        "distance_band": distance_band,
+    }
+
+    if not result["qualifies"]:
+        return result
+
+    # --- Trim first 5 minutes of moving time ---
+    warmup_time = 5 * 60
+    cum_time = 0.0
+    warmup_end = 0
+    for i in range(n):
+        cum_time += time_deltas[i]
+        if cum_time >= warmup_time:
+            warmup_end = i
+            break
+
+    trimmed = moving[warmup_end:]
+    trimmed_td = time_deltas[warmup_end:] if warmup_end <= n else []
+    if len(trimmed) < 10:
+        result["qualifies"] = False
+        result["reasons"] = reasons + ["Insufficient data after warmup trim"]
+        return result
+
+    # --- Find midpoint by distance (interpolated) ---
+    trimmed_distance = trimmed[-1]["d"] - trimmed[0]["d"]
+    mid_distance = trimmed[0]["d"] + trimmed_distance / 2
+
+    mid_idx = len(trimmed) - 2
+    mid_frac = 1.0
+    for i in range(1, len(trimmed)):
+        if trimmed[i]["d"] >= mid_distance:
+            mid_idx = i - 1
+            prev_d = trimmed[mid_idx]["d"]
+            curr_d = trimmed[i]["d"]
+            mid_frac = (mid_distance - prev_d) / (curr_d - prev_d) if curr_d > prev_d else 0.0
+            break
+
+    # --- Compute raw pace per half ---
+    first_d = mid_distance - trimmed[0]["d"]
+    second_d = trimmed[-1]["d"] - mid_distance
+
+    first_time = sum(trimmed_td[i] for i in range(1, mid_idx + 1))
+    first_time += mid_frac * (trimmed_td[mid_idx + 1] if mid_idx + 1 < len(trimmed_td) else 0)
+
+    second_time = (1 - mid_frac) * (trimmed_td[mid_idx + 1] if mid_idx + 1 < len(trimmed_td) else 0)
+    for i in range(mid_idx + 2, min(len(trimmed), len(trimmed_td))):
+        second_time += trimmed_td[i]
+
+    if first_d <= 0 or second_d <= 0 or first_time <= 0 or second_time <= 0:
+        result["qualifies"] = False
+        result["reasons"] = reasons + ["Invalid split dimensions"]
+        return result
+
+    raw_pace_first = first_time / (first_d / 1000)
+    raw_pace_second = second_time / (second_d / 1000)
+    raw_delta = raw_pace_first - raw_pace_second
+    raw_delta_pct = (raw_delta / raw_pace_first) * 100 if raw_pace_first > 0 else 0
+
+    # --- GAP-adjusted paces ---
+    gap_factors = _compute_point_gap_factors(trimmed)
+
+    first_gap_dist = 0.0
+    for i in range(mid_idx):
+        seg_d = trimmed[i + 1]["d"] - trimmed[i]["d"]
+        f = gap_factors[i][1] if i < len(gap_factors) and gap_factors[i][1] is not None else None
+        if seg_d > 0 and f is not None:
+            first_gap_dist += seg_d * f
+
+    if mid_idx < len(trimmed) - 1:
+        seg_d = trimmed[mid_idx + 1]["d"] - trimmed[mid_idx]["d"]
+        f = gap_factors[mid_idx][1] if mid_idx < len(gap_factors) and gap_factors[mid_idx][1] is not None else None
+        if seg_d > 0 and mid_frac > 0 and f is not None:
+            first_gap_dist += seg_d * mid_frac * f
+
+    second_gap_dist = 0.0
+    if mid_idx < len(trimmed) - 1:
+        seg_d = trimmed[mid_idx + 1]["d"] - trimmed[mid_idx]["d"]
+        f = gap_factors[mid_idx][1] if mid_idx < len(gap_factors) and gap_factors[mid_idx][1] is not None else None
+        if seg_d > 0 and f is not None:
+            second_gap_dist += seg_d * (1 - mid_frac) * f
+
+    for i in range(mid_idx + 1, len(trimmed) - 1):
+        seg_d = trimmed[i + 1]["d"] - trimmed[i]["d"]
+        f = gap_factors[i][1] if i < len(gap_factors) and gap_factors[i][1] is not None else None
+        if seg_d > 0 and f is not None:
+            second_gap_dist += seg_d * f
+
+    gap_pace_first = first_time / (first_gap_dist / 1000) if first_gap_dist > 0 else raw_pace_first
+    gap_pace_second = second_time / (second_gap_dist / 1000) if second_gap_dist > 0 else raw_pace_second
+
+    gap_delta = gap_pace_first - gap_pace_second
+    gap_delta_pct = (gap_delta / gap_pace_first) * 100 if gap_pace_first > 0 else 0
+
+    # Clamp displayed delta to ±20% for bar chart axis stability
+    clamped_delta = max(-20.0, min(20.0, gap_delta_pct))
+
+    result.update({
+        "is_negative_split": gap_delta > 0,
+        "split_delta_seconds": round(gap_delta, 1),
+        "split_delta_pct": round(clamped_delta, 1),
+        "pace_first_half": round(gap_pace_first, 1),
+        "pace_second_half": round(gap_pace_second, 1),
+        "raw_split_delta_seconds": round(raw_delta, 1),
+        "raw_split_delta_pct": round(raw_delta_pct, 1),
+        "raw_pace_first_half": round(raw_pace_first, 1),
+        "raw_pace_second_half": round(raw_pace_second, 1),
+    })
+
+    return result
+
+
 def format_pace(gap_speed_ms):
     """Format pace as m:ss per km from speed in m/s."""
     if not gap_speed_ms or gap_speed_ms <= 0:
@@ -995,27 +1232,14 @@ def compute_derived_metrics(act, streams):
 
     # --- Sport-specific metrics ---
 
-    # Running: negative split rate
-    if act.get("Activity Type") in ["Run"] and streams.get("is_moving"):
-        is_mv = streams["is_moving"]
-        dists = streams["distances"]
-        total_moving_dist = sum(dists[i + 1] - dists[i] for i in range(len(is_mv)) if is_mv[i] and i + 1 < len(dists) and dists[i] is not None and dists[i + 1] is not None)
-        if total_moving_dist > 3000:
-            mid_dist = total_moving_dist / 2
-            cd = 0; mid_idx = 0
-            for i in range(len(is_mv)):
-                if is_mv[i] and i + 1 < len(dists) and dists[i] is not None and dists[i + 1] is not None:
-                    cd += dists[i + 1] - dists[i]
-                if cd >= mid_dist:
-                    mid_idx = i
-                    break
-            if mid_idx > 0:
-                seg_dt = streams.get("_seg_dt", [])
-                first_half_time = sum(seg_dt[i] for i in range(min(mid_idx, len(seg_dt))) if i < len(is_mv) and is_mv[i])
-                second_half_time = sum(seg_dt[i] for i in range(mid_idx, len(seg_dt))) if seg_dt else 0
-                if first_half_time > 0 and second_half_time > 0:
-                    d["is_negative_split"] = second_half_time < first_half_time
-                    d["neg_split_pct"] = round(((first_half_time - second_half_time) / first_half_time) * 100, 1)
+    # Running: negative split rate (detailed)
+    if act.get("Activity Type") in ["Run"]:
+        ns = compute_negative_split(streams, act)
+        if ns:
+            d["neg_split"] = ns
+            # Legacy fields for backward compatibility
+            d["is_negative_split"] = ns.get("is_negative_split")
+            d["neg_split_pct"] = ns.get("split_delta_pct")
 
     # Hiking: Naismith ratio (use CSV/Strava elevation — more reliable than GPS)
     if act.get("Activity Type") in ["Hike"] and streams["cumulative_distance"] > 0:
@@ -1211,6 +1435,106 @@ def compute_best_efforts(streams, sport):
                 }
 
     return results
+
+
+def compute_neg_split_summary(all_activities):
+    """Compute aggregate negative split statistics for running activities.
+
+    Returns a dict with rolling rates, per-distance breakdown, and LOESS trend,
+    or None if fewer than 3 qualifying runs exist.
+    """
+    # Collect qualifying runs sorted by date
+    runs = []
+    for a in all_activities:
+        ns = a.get("neg_split")
+        if ns and ns.get("qualifies"):
+            st = a.get("start_time_utc")
+            if st:
+                runs.append({"date": st, "neg_split": ns, "id": a.get("id", ""), "name": a.get("name", ""), "distance_km": ns.get("distance_km", 0)})
+
+    if len(runs) < 3:
+        return None
+
+    runs.sort(key=lambda x: x["date"])
+
+    # Rolling negative split rates (10-run and 30-run)
+    rolling_10 = []
+    rolling_30 = []
+    for i in range(len(runs)):
+        if i >= 9:
+            count = sum(1 for r in runs[max(0, i - 9):i + 1] if r["neg_split"].get("is_negative_split"))
+            rate = count / min(10, i + 1) * 100
+            rolling_10.append({"date": runs[i]["date"], "rate": round(rate, 1)})
+
+        if i >= 29:
+            count = sum(1 for r in runs[max(0, i - 29):i + 1] if r["neg_split"].get("is_negative_split"))
+            rate = count / min(30, i + 1) * 100
+            rolling_30.append({"date": runs[i]["date"], "rate": round(rate, 1)})
+
+    # Per-distance band breakdown
+    bands = {"short": [], "medium": [], "long": []}
+    for r in runs:
+        band = r["neg_split"].get("distance_band", "medium")
+        if band in bands:
+            bands[band].append(r)
+
+    band_stats = {}
+    for band_name, band_runs in bands.items():
+        if len(band_runs) >= 3:
+            neg = sum(1 for r in band_runs if r["neg_split"].get("is_negative_split"))
+            band_stats[band_name] = {
+                "rate": round(neg / len(band_runs) * 100, 1),
+                "total": len(band_runs),
+                "neg_count": neg,
+            }
+
+    # LOESS trend (reuse statsmodels if available)
+    if len(runs) >= 10:
+        try:
+            from statsmodels.nonparametric.smoothers_lowess import lowess
+            ref_dt = datetime.fromisoformat(runs[0]["date"].replace("Z", "+00:00"))
+            xs = np.array([(datetime.fromisoformat(r["date"].replace("Z", "+00:00")) - ref_dt).total_seconds() / 86400 for r in runs])
+            ys = np.array([1.0 if r["neg_split"].get("is_negative_split") else 0.0 for r in runs])
+            # Compute rolling-10 rate as target for LOESS
+            rates = np.array([sum(ys[max(0, i - 9):i + 1]) / min(10, i + 1) * 100 for i in range(len(ys))])
+            loess = lowess(rates, xs, frac=0.4, it=3, return_sorted=True)
+            loess_trend = [{"days": round(float(x), 1), "value": round(float(y), 2)} for x, y in loess] if len(loess) > 0 else []
+        except Exception:
+            loess_trend = []
+    else:
+        loess_trend = []
+
+    # Stats for headline box
+    recent_10 = runs[-10:] if len(runs) >= 10 else runs
+    recent_neg = sum(1 for r in recent_10 if r["neg_split"].get("is_negative_split"))
+    recent_rate = round(recent_neg / len(recent_10) * 100, 1) if recent_10 else 0
+
+    # 6 months ago comparison
+    sixmo_rate = None
+    if runs:
+        cutoff = (datetime.fromisoformat(runs[-1]["date"].replace("Z", "+00:00")) - timedelta(days=180)).isoformat()
+        sixmo_runs = [r for r in runs if r["date"] >= cutoff and r["date"] <= runs[-1]["date"]]
+        if len(sixmo_runs) >= 10:
+            # Find 10 runs before 6 months ago
+            older = [r for r in runs if r["date"] < cutoff]
+            if len(older) >= 10:
+                older_neg = sum(1 for r in older[-10:] if r["neg_split"].get("is_negative_split"))
+                older_rate = round(older_neg / 10 * 100, 1)
+                sixmo_rate = round(recent_rate - older_rate, 1)
+
+    return {
+        "total_qualifying": len(runs),
+        "rolling_10": rolling_10,
+        "rolling_30": rolling_30,
+        "band_stats": band_stats,
+        "loess_trend": loess_trend,
+        "headline": {
+            "recent_10_neg": recent_neg,
+            "recent_10_total": len(recent_10),
+            "recent_rate": recent_rate,
+            "vs_6mo_ago": sixmo_rate,
+        },
+    }
 
 
 def compute_dow_hour_stats(all_activities):
@@ -1851,6 +2175,7 @@ def main():
             json.dump(acts, f, indent=1, default=str)
 
     # Aggregate data
+    neg_split_summary = compute_neg_split_summary(all_activities)
     aggregate = {
         "monthly": monthly_list,
         "weekly": weekly_list,
@@ -1867,7 +2192,8 @@ def main():
         "date_range": {
             "first": all_activities[0]["start_time_utc"] if all_activities else None,
             "last": all_activities[-1]["start_time_utc"] if all_activities else None,
-        }
+        },
+        "neg_split_summary": neg_split_summary,
     }
     with open(os.path.join(OUTPUT_DIR, "aggregate.json"), "w") as f:
         json.dump(aggregate, f, indent=1, default=str)

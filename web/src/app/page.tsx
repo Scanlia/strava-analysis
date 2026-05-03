@@ -95,7 +95,7 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Sport-Specific</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <NegativeSplitChart activities={activities} />
+            <NegativeSplitChart activities={activities} summary={aggregate.neg_split_summary} />
             <NaismithChart activities={activities} />
           </div>
         </section>

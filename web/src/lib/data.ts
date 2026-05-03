@@ -55,6 +55,7 @@ export interface Activity {
   stream?: { t?: string; d: number; e?: number; hr?: number; s?: number; lat?: number; lon?: number; m?: boolean }[];
   is_negative_split?: boolean;
   neg_split_pct?: number;
+  neg_split?: NegSplit;
   naismith_ratio?: number;
   trimp: number | null;
   elevation_per_km: number | null;
@@ -63,6 +64,37 @@ export interface Activity {
   stream_points: number;
   is_manual?: boolean;
   is_indoor?: boolean;
+}
+
+export interface NegSplit {
+  qualifies: boolean;
+  reasons?: string[];
+  distance_km: number;
+  moving_time_min: number;
+  distance_band: "short" | "medium" | "long";
+  is_negative_split?: boolean;
+  split_delta_seconds?: number;
+  split_delta_pct?: number;
+  pace_first_half?: number;
+  pace_second_half?: number;
+  raw_split_delta_seconds?: number;
+  raw_split_delta_pct?: number;
+  raw_pace_first_half?: number;
+  raw_pace_second_half?: number;
+}
+
+export interface NegSplitSummary {
+  total_qualifying: number;
+  rolling_10: { date: string; rate: number }[];
+  rolling_30: { date: string; rate: number }[];
+  band_stats: Record<string, { rate: number; total: number; neg_count: number }>;
+  loess_trend: { days: number; value: number }[];
+  headline: {
+    recent_10_neg: number;
+    recent_10_total: number;
+    recent_rate: number;
+    vs_6mo_ago: number | null;
+  };
 }
 
 export interface MonthlyEntry {
@@ -114,6 +146,7 @@ export interface Aggregate {
   sport_counts: Record<string, number>;
   total_activities: number;
   date_range: { first: string | null; last: string | null };
+  neg_split_summary?: NegSplitSummary | null;
 }
 
 export interface SpeedDuration {
