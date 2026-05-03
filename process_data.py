@@ -7,7 +7,9 @@ import gzip
 import math
 import os
 import io
+import shutil
 import fitparse
+import h3
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
@@ -1605,6 +1607,193 @@ def compute_neg_split_summary(all_activities):
     }
 
 
+def densify_track(coords, max_spacing=10):
+    """Insert interpolated points so consecutive points are <= max_spacing metres apart.
+
+    coords: [[lng, lat], [lng, lat], ...] — longitude first.
+    """
+    if len(coords) < 2:
+        return coords[:]
+    result = [coords[0][:]]
+    for i in range(1, len(coords)):
+        prev_lng, prev_lat = result[-1][0], result[-1][1]
+        curr_lng, curr_lat = coords[i][0], coords[i][1]
+        dist = haversine(prev_lat, prev_lng, curr_lat, curr_lng)
+        if dist > max_spacing:
+            n = int(dist // max_spacing)
+            for j in range(1, n + 1):
+                frac = j / (n + 1)
+                interp_lng = prev_lng + frac * (curr_lng - prev_lng)
+                interp_lat = prev_lat + frac * (curr_lat - prev_lat)
+                result.append([interp_lng, interp_lat])
+        result.append([curr_lng, curr_lat])
+    return result
+
+
+def index_track(densified_coords, resolutions=range(3, 14)):
+    """Returns dict mapping resolution -> set of H3 cell IDs touched by track.
+
+    Uses sets so each cell counts once per activity regardless of how many
+    track points fall in it.
+    """
+    cells_by_res = {r: set() for r in resolutions}
+    for lng, lat in densified_coords:
+        for r in resolutions:
+            try:
+                cell = h3.latlng_to_cell(lat, lng, r)
+                cells_by_res[r].add(cell)
+            except Exception:
+                pass  # skip points that H3 can't index (pole, etc.)
+    return cells_by_res
+
+
+def build_h3_heatmap(tracks_raw):
+    """V2 heatmap: H3 hexagonal binning with per-resolution GeoJSON output.
+
+    Produces one GeoJSON file per resolution (3–13) with circle features
+    at hex centroids. Also writes manifest.json with percentiles for
+    data-anchored colour ramp.
+    """
+    if not tracks_raw:
+        print("  No GPS tracks for H3 heatmap")
+        return
+
+    resolutions = list(range(3, 14))
+    # index structure: {(res, cell): {count, sports: {sport: n}, years: {year: n},
+    #                                  first: date, last: date, activity_ids: [...]}}
+    index = defaultdict(lambda: {
+        "count": 0,
+        "sports": defaultdict(int),
+        "years": defaultdict(int),
+        "first": None,
+        "last": None,
+        "activity_ids": [],
+    })
+
+    for track in tracks_raw:
+        coords = track["coords"]
+        if len(coords) < 2:
+            continue
+        sport = track["sport"]
+        date_str = track.get("date", "")
+        year = track.get("year", 0)
+        aid = track["id"]
+
+        # Step 1: densify
+        dense = densify_track(coords, max_spacing=10)
+
+        # Step 2: index at all resolutions
+        cells_by_res = index_track(dense, resolutions)
+
+        # Step 3: aggregate
+        for res, cells in cells_by_res.items():
+            for cell in cells:
+                key = (res, cell)
+                entry = index[key]
+                entry["count"] += 1
+                entry["sports"][sport] += 1
+                entry["years"][year] += 1
+                if len(entry["activity_ids"]) < 20:
+                    entry["activity_ids"].append(aid)
+                if date_str:
+                    if entry["first"] is None or date_str < entry["first"]:
+                        entry["first"] = date_str
+                    if entry["last"] is None or date_str > entry["last"]:
+                        entry["last"] = date_str
+
+    print(f"  Total H3 cells across all resolutions: {sum(1 for _ in index)}")
+
+    # Compute count percentiles for colour ramp anchoring
+    all_counts = [v["count"] for v in index.values()]
+    all_counts.sort()
+    n = len(all_counts)
+
+    def pct(p):
+        if n == 0:
+            return 1
+        idx = min(n - 1, int(n * p / 100))
+        return all_counts[idx]
+
+    percentiles = {
+        "p25": pct(25),
+        "p50": pct(50),
+        "p75": pct(75),
+        "p90": pct(90),
+        "p95": pct(95),
+        "p99": pct(99),
+    }
+    print(f"  Count percentiles: {percentiles}")
+
+    # Emit GeoJSON per resolution
+    heatmap_dir = os.path.join(OUTPUT_DIR, "heatmap")
+    os.makedirs(heatmap_dir, exist_ok=True)
+
+    # Clean out old V1 GeoJSON files (optional — keep for now during transition)
+    feature_counts = {}
+    bbox = [180, 90, -180, -90]
+
+    for res in resolutions:
+        features = []
+        for (r, cell), data in index.items():
+            if r != res:
+                continue
+            try:
+                lat, lng = h3.cell_to_latlng(cell)
+            except Exception:
+                continue
+
+            # Update bbox
+            bbox[0] = min(bbox[0], lng)
+            bbox[1] = min(bbox[1], lat)
+            bbox[2] = max(bbox[2], lng)
+            bbox[3] = max(bbox[3], lat)
+
+            years_dict = dict(data["years"])
+            year_keys = [int(y) for y in years_dict.keys() if str(y).isdigit()]
+
+            features.append({
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lng, lat]},
+                "properties": {
+                    "c":  cell,           # h3 cell id
+                    "n":  data["count"],  # activity count
+                    "sr": data["sports"].get("Run", 0),
+                    "sd": data["sports"].get("Ride", 0),
+                    "sw": data["sports"].get("Swim", 0),
+                    "sh": data["sports"].get("Hike", 0),
+                    "ymin": min(year_keys) if year_keys else 0,
+                    "ymax": max(year_keys) if year_keys else 0,
+                    "yr": years_dict,
+                    "f":  data["first"],
+                    "l":  data["last"],
+                }
+            })
+
+        fc = {"type": "FeatureCollection", "features": features}
+        fname = f"h3_res{str(res).zfill(2)}.geojson"
+        filepath = os.path.join(heatmap_dir, fname)
+        with open(filepath, "w") as f:
+            json.dump(fc, f, separators=(",", ":"))
+
+        size_kb = os.path.getsize(filepath) / 1024
+        feature_counts[f"res{str(res).zfill(2)}"] = len(features)
+        print(f"  {fname}: {len(features)} features, {size_kb:.0f} KB")
+
+    # Emit manifest
+    manifest = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "activity_count": len(tracks_raw),
+        "bbox": bbox,
+        "percentiles": percentiles,
+        "feature_counts": feature_counts,
+    }
+    with open(os.path.join(heatmap_dir, "manifest.json"), "w") as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  H3 heatmap V2 written to {heatmap_dir}/")
+    return index
+
+
 def build_geojson_tracks(tracks_raw):
     """Build GeoJSON track files from accumulated raw track data.
 
@@ -2298,9 +2487,9 @@ def main():
 
     print(f"\nProcessed: {sport_counts}")
 
-    # Build GeoJSON heatmap files
-    print("\nBuilding GeoJSON heatmap tracks...")
-    build_geojson_tracks(tracks_raw)
+    # Build H3 V2 heatmap files
+    print("\nBuilding H3 V2 heatmap...")
+    build_h3_heatmap(tracks_raw)
 
     # Sort by date
     for sport in by_sport:
@@ -2818,6 +3007,29 @@ def main():
 
     print(f"\nTotal activities processed: {len(all_activities)}")
     print(f"Data files written to {OUTPUT_DIR}/")
+
+    # Copy to web public dir if it exists
+    web_public = "web/public/data"
+    if os.path.isdir(web_public):
+        # Copy JSON data files
+        for fname in ["aggregate.json", "all_activities.json", "summary.json",
+                      "run_activities.json", "ride_activities.json",
+                      "swim_activities.json", "hike_activities.json"]:
+            src = os.path.join(OUTPUT_DIR, fname)
+            dst = os.path.join(web_public, fname)
+            if os.path.exists(src):
+                shutil.copy2(src, dst)
+        # Copy heatmap directory
+        heatmap_src = os.path.join(OUTPUT_DIR, "heatmap")
+        heatmap_dst = os.path.join(web_public, "heatmap")
+        if os.path.isdir(heatmap_src):
+            os.makedirs(heatmap_dst, exist_ok=True)
+            for fname in os.listdir(heatmap_src):
+                src = os.path.join(heatmap_src, fname)
+                dst = os.path.join(heatmap_dst, fname)
+                if os.path.isfile(src):
+                    shutil.copy2(src, dst)
+        print(f"Copied files to {web_public}/")
 
 
 if __name__ == "__main__":

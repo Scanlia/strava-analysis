@@ -122,7 +122,7 @@ export default function Dashboard() {
 
         <section>
           <h2 className="text-xl font-bold mb-5">GPS Activity Map</h2>
-          <GPSHeatmap activities={activities} />
+          <GPSHeatmap />
         </section>
 
         <section>

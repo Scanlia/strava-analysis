@@ -3,3 +3,7 @@ export_*.zip
 *.pyc
 __pycache__/
 .DS_Store
+
+# Generated heatmap files (large)
+data/heatmap/h3_*.geojson
+web/public/data/heatmap/h3_*.geojson

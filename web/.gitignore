@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated heatmap data (large files)
+public/data/heatmap/h3_*.geojson
