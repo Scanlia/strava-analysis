@@ -167,7 +167,7 @@ export default function NaismithChart({ activities }: Props) {
                 title: { display: true, text: "Naismith Ratio", color: "#8888a0", font: { size: 11 } },
                 ticks: { color: "#8888a0", font: { size: 10 } },
                 grid: { color: "#2a2a3a55" },
-                min: 0.5,
+                min: 0,
                 max: 2.0,
               },
             },
