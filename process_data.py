@@ -1414,7 +1414,7 @@ def compute_best_efforts(streams, sport):
         targets = [(60, "s"), (120, "s"), (300, "s"), (600, "s"), (1200, "s"),
                    (1800, "s"), (2700, "s"), (3600, "s"), (5400, "s"), (7200, "s")]
     elif sport == "Swim":
-        targets = [(30, "s"), (60, "s"), (120, "s"), (300, "s"), (600, "s"),
+        targets = [(30, "s"), (60, "s"), (120, "s"), (300, "s"),
                    (100, "m"), (400, "m"), (1500, "m")]
     else:  # Hike
         targets = [(600, "s"), (1800, "s"), (3600, "s"), (7200, "s"), (14400, "s")]
@@ -1464,6 +1464,9 @@ def compute_best_efforts(streams, sport):
                     "speed_ms": round(best_speed, 2),
                     "pace_min_km": round((1000 / best_speed) / 60, 2) if sport in ("Run", "Swim") else None,
                     "speed_kmh": round(best_speed * 3.6, 1),
+                    "duration_seconds": round(best_time, 1),
+                    "start_index": best_start,
+                    "end_index": best_end,
                 }
         else:
             # Time target: find max distance over that duration
@@ -1494,6 +1497,9 @@ def compute_best_efforts(streams, sport):
                     "speed_ms": round(best_speed, 2),
                     "pace_min_km": round((1000 / best_speed) / 60, 2) if sport in ("Run", "Swim") else None,
                     "speed_kmh": round(best_speed * 3.6, 1),
+                    "duration_seconds": target,
+                    "start_index": best_start,
+                    "end_index": best_end,
                 }
 
     return results
@@ -1780,42 +1786,182 @@ def compute_dow_hour_stats(all_activities):
 
 
 def compute_best_effort_progression(all_activities):
-    """Assemble a time series of best efforts per sport × target, with PR flags.
+    """Build per-sport per-target best-effort progression data.
 
-    Returns dict: {sport: {target: [{date, activity_id, activity_name, speed_ms, pace_min_km, speed_kmh, is_pr}, ...]}}
+    Includes: scatter points with qualifying criteria, PR step-line, LOESS trend,
+    N-year PR comparisons. Skips hiking (pace varies too much with terrain).
+
+    Returns dict: {sport: {target: {scatter, pr_line, loess, pr_box, ...}}}
+    Only includes targets with ≥1 qualifying activity. Only shows targets in the
+    canonical sport lists.
     """
+    from statsmodels.nonparametric.smoothers_lowess import lowess
+
+    # Canonical targets per sport
+    SPORT_TARGETS = {
+        "Run":   [("1000m", "m", 1000), ("5000m", "m", 5000), ("10000m", "m", 10000), ("21097m", "m", 21097)],
+        "Ride":  [("300s", "s", 300), ("1200s", "s", 1200), ("3600s", "s", 3600), ("5400s", "s", 5400)],
+        "Swim":  [("100m", "m", 100), ("400m", "m", 400), ("1500m", "m", 1500)],
+    }
+
     progression = {}
-    for sport_name in ["Run", "Ride", "Swim", "Hike"]:
-        acts = [a for a in all_activities if a["sport"] == sport_name and a.get("best_efforts") and a.get("start_time_utc")]
+
+    for sport_name, target_list in SPORT_TARGETS.items():
+        acts = [
+            a for a in all_activities
+            if a["sport"] == sport_name
+            and a.get("best_efforts")
+            and a.get("start_time_utc")
+            and not a.get("is_manual", False)
+            and not a.get("is_indoor", False)
+            and a.get("distance_m", 0) > 0
+        ]
         if not acts:
             continue
         acts.sort(key=lambda x: x["start_time_utc"])
         progression[sport_name] = {}
 
-        for a in acts:
-            for target_key, be in a["best_efforts"].items():
+        for target_key, unit, target_value in target_list:
+            # Filter activities that qualify for this target (≥1.3× buffer)
+            qualifying = []
+            for a in acts:
+                be = a["best_efforts"].get(target_key)
                 if not be or be.get("speed_ms", 0) <= 0:
                     continue
+                if unit == "m":
+                    # Need ≥1.3× target distance
+                    if a.get("distance_m", 0) < target_value * 1.3:
+                        continue
+                else:
+                    # Need ≥1.3× target duration in moving time
+                    if a.get("moving_time_sec", 0) < target_value * 1.3:
+                        continue
+                qualifying.append(a)
+
+            total_q = len(qualifying)
+            if total_q < 1:
+                continue
+
+            # Build scatter points
+            scatter = []
+            for a in qualifying:
+                be = a["best_efforts"][target_key]
                 entry = {
                     "date": a["start_time_utc"],
                     "activity_id": a["id"],
                     "activity_name": a["name"],
-                    "speed_ms": be.get("speed_ms"),
+                    "value": be.get("duration_seconds") if unit == "m" else be.get("distance_m"),
                     "pace_min_km": be.get("pace_min_km"),
                     "speed_kmh": be.get("speed_kmh"),
+                    "start_index": be.get("start_index", 0),
+                    "end_index": be.get("end_index", 0),
+                    "total_distance_m": a.get("distance_m", 0),
                 }
-                if target_key not in progression[sport_name]:
-                    progression[sport_name][target_key] = []
-                progression[sport_name][target_key].append(entry)
+                scatter.append(entry)
 
-        # Mark PRs: for each target, set is_pr=True where speed exceeds all previous
-        for target_key, entries in progression[sport_name].items():
-            best = 0
-            for e in entries:
-                spd = e["speed_ms"] or 0
-                e["is_pr"] = spd > best
-                if spd > best:
-                    best = spd
+            # Mark PRs (for distance targets: lower duration = better; time: higher distance = better)
+            best_val = None
+            for e in scatter:
+                val = e["value"]
+                is_better = False
+                if best_val is None:
+                    is_better = True
+                elif unit == "m":
+                    is_better = val < best_val
+                else:
+                    is_better = val > best_val
+                e["is_pr"] = is_better
+                if is_better:
+                    best_val = val
+
+            # PR step-line: only PR-setting points, carrying forward the PR metric
+            pr_line = [e for e in scatter if e["is_pr"]]
+
+            # Current PR
+            current_pr = pr_line[-1] if pr_line else None
+
+            # LOESS trend (needs 10+ points)
+            loess = []
+            if total_q >= 10:
+                try:
+                    def parse_dt(s):
+                        s = str(s)
+                        if s.endswith("Z"):
+                            return datetime.fromisoformat(s.replace("Z", "+00:00"))
+                        elif "+" in s or s.count("-") > 2:
+                            return datetime.fromisoformat(s)
+                        else:
+                            return datetime.fromisoformat(s).replace(tzinfo=timezone.utc)
+                    ref_dt = parse_dt(qualifying[0]["start_time_utc"])
+                    xs = np.array([
+                        (parse_dt(a["start_time_utc"]) - ref_dt).total_seconds() / 86400
+                        for a in qualifying
+                    ])
+                    ys = np.array([s["value"] for s in scatter])
+                    frac = max(0.35, min(0.55, 25 / len(xs)))
+                    loess_raw = lowess(ys, xs, frac=frac, it=3, return_sorted=True)
+                    loess = [{"days": round(float(x), 1), "value": round(float(y), 2)} for x, y in loess_raw]
+                except Exception as e:
+                    print(f"  LOESS error for {sport_name}/{target_key}: {e}")
+                    loess = []
+
+            # N-year-ago comparisons for PR stat box
+            pr_comparisons = []
+            if current_pr:
+                now = datetime.now(timezone.utc)
+                for years_ago in [1, 3]:
+                    target_date_start = now - timedelta(days=365 * years_ago + 45)
+                    target_date_end = now - timedelta(days=365 * years_ago - 45)
+                    window = [a for a in qualifying if target_date_start.isoformat() <= a.get("start_time_utc", "") <= target_date_end.isoformat()]
+                    if window:
+                        if unit == "m":
+                            best_in_window = min(a["best_efforts"][target_key].get("duration_seconds", 99999) for a in window)
+                            diff = best_in_window - (current_pr.get("value") or 0)
+                        else:
+                            best_in_window = max(a["best_efforts"][target_key].get("distance_m", 0) for a in window)
+                            diff = (current_pr.get("value") or 0) - best_in_window
+                        pr_comparisons.append({"years_ago": years_ago, "diff_value": round(diff, 1)})
+                    else:
+                        pr_comparisons.append({"years_ago": years_ago, "diff_value": None})
+
+            # Trend annotation: LOESS slope over last 12 months
+            trend_annotation = None
+            if len(loess) >= 2:
+                recent = [p for p in loess if p["days"] >= loess[-1]["days"] - 365]
+                if len(recent) >= 2:
+                    dx = recent[-1]["days"] - recent[0]["days"]
+                    dy = recent[-1]["value"] - recent[0]["value"]
+                    if abs(dx) > 30:
+                        slope = dy / dx * 365  # per year
+                        if unit == "m":
+                            slope_str = f"{abs(slope):.1f} sec/year"
+                        else:
+                            slope_str = f"{abs(slope):.0f} m/year"
+                        if abs(slope) < 3 if unit == "m" else abs(slope) < 30:
+                            trend_annotation = "stable"
+                        else:
+                            is_improving = (unit == "m" and slope < 0) or (unit != "m" and slope > 0)
+                            trend_annotation = f"{'improving' if is_improving else 'declining'} by {slope_str}"
+
+            progression[sport_name][target_key] = {
+                "target_key": target_key,
+                "target_value": target_value,
+                "unit": unit,
+                "target_label": (
+                    f"{target_value}m" if unit == "m" and target_value < 1000
+                    else f"{target_value/1000:.0f}km" if unit == "m" and target_value < 50000
+                    else f"{target_value/1000:.1f}km" if unit == "m"
+                    else f"{target_value//60}min" if target_value % 60 == 0
+                    else f"{target_value}s"
+                ),
+                "scatter": scatter,
+                "pr_line": pr_line,
+                "loess": loess,
+                "current_pr": current_pr,
+                "pr_comparisons": pr_comparisons,
+                "trend_annotation": trend_annotation,
+                "total_qualifying": total_q,
+            }
 
     return progression
 

@@ -154,17 +154,34 @@ export interface Aggregate {
 
 export interface BestEffortProgression {
   [sport: string]: {
-    [target: string]: BestEffortProgressionEntry[];
+    [target: string]: BestEffortProgressionTarget;
   };
 }
 
-export interface BestEffortProgressionEntry {
+export interface BestEffortProgressionTarget {
+  target_key: string;
+  target_value: number;
+  unit: string;
+  target_label: string;
+  scatter: BestEffortProgressionPoint[];
+  pr_line: BestEffortProgressionPoint[];
+  loess: { days: number; value: number }[];
+  current_pr: BestEffortProgressionPoint | null;
+  pr_comparisons: { years_ago: number; diff_value: number | null }[];
+  trend_annotation: string | null;
+  total_qualifying: number;
+}
+
+export interface BestEffortProgressionPoint {
   date: string;
   activity_id: string;
   activity_name: string;
-  speed_ms: number;
+  value: number;       // duration_seconds for distance targets, distance_m for time targets
   pace_min_km: number | null;
-  speed_kmh: number;
+  speed_kmh: number | null;
+  start_index: number;
+  end_index: number;
+  total_distance_m: number;
   is_pr: boolean;
 }
 
