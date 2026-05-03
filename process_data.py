@@ -1013,14 +1013,19 @@ def compute_derived_metrics(act, streams):
                     d["is_negative_split"] = second_half_time < first_half_time
                     d["neg_split_pct"] = round(((first_half_time - second_half_time) / first_half_time) * 100, 1)
 
-    # Hiking: Naismith ratio
+    # Hiking: Naismith ratio (use CSV/Strava elevation — more reliable than GPS)
     if act.get("Activity Type") in ["Hike"] and streams["moving_time"] > 0 and streams["cumulative_distance"] > 0:
         dist_km = streams["cumulative_distance"] / 1000
-        ascent_m = streams["total_elevation_gain"]
+        # Prefer CSV elevation (Strava barometric) over raw GPS elevation
+        csv_elev_str = act.get("Elevation Gain", "").strip() if act.get("Elevation Gain") else ""
+        csv_elev = float(csv_elev_str) if csv_elev_str else 0
+        ascent_m = csv_elev if csv_elev > 0 else streams["total_elevation_gain"]
         naismith_minutes = (dist_km / 5) * 60 + (ascent_m / 600) * 60
         actual_minutes = streams["moving_time"] / 60
         if naismith_minutes > 0:
-            d["naismith_ratio"] = round(actual_minutes / naismith_minutes, 3)
+            ratio = actual_minutes / naismith_minutes
+            # Clamp: physically impossible to be below 0.3 or above 5.0
+            d["naismith_ratio"] = round(max(0.3, min(5.0, ratio)), 3)
 
     return d
 

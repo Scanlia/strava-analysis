@@ -163,7 +163,7 @@ export default function NegativeSplitChart({ activities }: Props) {
                   callback: (v: any) => `${v}%`,
                 },
                 grid: { color: "#2a2a3a55" },
-                min: 0,
+                min: -5,
                 max: 100,
               },
             },
