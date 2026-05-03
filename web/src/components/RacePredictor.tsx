@@ -65,7 +65,7 @@ export default function RacePredictor({ activities }: { activities: Activity[] }
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
         <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Race Time Predictor (Riegel)</h3>
         <div className="flex items-center justify-center h-[120px] text-gray-500 text-sm">
-          No qualifying 5km or 10km best effort found. Complete a run of at least 6.5km with GPS to generate predictions.
+          No qualifying 5km or 10km best effort found. Record at least one 6.5km+ run with GPS to generate predictions.
         </div>
       </div>
     );
@@ -79,7 +79,7 @@ export default function RacePredictor({ activities }: { activities: Activity[] }
       <p className="text-[10px] text-gray-500 mb-4">
         Based on your {refDist === 5000 ? "5km" : "10km"} best of {formatTime(ref.time)}
         {ref.date ? ` (set ${new Date(ref.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })})` : ""}.
-        {!useRecent && staleDays > 90 ? ` Reference is ${staleDays} days old — predictions may not reflect current fitness.` : ""}
+        {!useRecent && staleDays > 90 ? ` Reference is ${staleDays} days old — predictions may not reflect current fitness. Record one 6.5km+ run within 90 days for fresh estimates.` : ""}
         {" "}Assumes equivalent conditions and adequate training volume. Distances beyond what you&apos;ve trained are aspirational.
       </p>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
