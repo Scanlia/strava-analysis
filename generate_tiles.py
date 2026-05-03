@@ -61,17 +61,18 @@ def kernel_sigma(zoom):
     return max(kernel_target_metres(zoom) / mpp, 1.0)
 
 
-# --- V3.1: Colour LUT with alpha floor for faint values ---
+# --- V3.2: Colour LUT with gradual alpha ramp ---
 def build_colour_lut():
     lut = np.zeros((256, 4), dtype=np.uint8)
     stops = [
-        (0.000, (0, 0, 0, 0)),
-        (0.001, (60, 100, 255, 120)),
-        (0.050, (40, 130, 255, 180)),
-        (0.200, (0, 200, 230, 220)),
-        (0.450, (250, 230, 50, 240)),
-        (0.700, (255, 130, 0, 250)),
-        (1.000, (220, 30, 0, 255)),
+        (0.000, (0, 0, 0, 0)),         # truly empty: transparent
+        (0.005, (30, 60, 180, 20)),     # barely visible: faint blue, low alpha
+        (0.020, (40, 90, 230, 100)),    # slight trace: more visible blue
+        (0.080, (30, 150, 255, 190)),   # visible blue
+        (0.220, (0, 210, 230, 220)),    # cyan
+        (0.450, (250, 225, 40, 240)),   # yellow
+        (0.700, (255, 120, 0, 250)),    # orange
+        (1.000, (220, 30, 0, 255)),     # red
     ]
     for i in range(256):
         v = i / 255.0
@@ -102,8 +103,8 @@ COLOUR_LUT = build_colour_lut()
 def metres_per_pixel(zoom):
     return 156543.03392 / (2 ** zoom)
 
-# --- V3.1: Power curve for "bleed faint, concentrate hot" ---
-GAMMA = 0.45
+# --- V3.2: Power curve ---
+GAMMA = 0.50
 
 
 def apply_power_curve(density_norm):
@@ -116,16 +117,19 @@ def apply_lut(density_norm):
     return COLOUR_LUT[indices]
 
 
-def lnglat_to_pixel(lng, lat, zoom, tx, ty):
-    """Returns (px, py) pixel coordinates within tile (tx,ty) at zoom."""
+def lnglat_to_pixel(lng, lat, zoom, tx, ty, tile_size=TILE_SIZE):
+    """Returns (px, py) pixel coordinates within tile (tx,ty) at zoom.
+    
+    The tile_size parameter supports overscan rendering where we project
+    to a larger grid then crop to 256×256.
+    """
     bounds = mercantile.bounds(tx, ty, zoom)
-    # bounds: west, south, east, north
     dw = bounds.east - bounds.west
     dn = bounds.north - bounds.south
     if dw == 0 or dn == 0:
-        return 128.0, 128.0
-    px = (lng - bounds.west) / dw * TILE_SIZE
-    py = (bounds.north - lat) / dn * TILE_SIZE
+        return tile_size / 2, tile_size / 2
+    px = (lng - bounds.west) / dw * tile_size
+    py = (bounds.north - lat) / dn * tile_size
     return px, py
 
 
@@ -164,12 +168,29 @@ def build_spatial_index(points, zoom):
     return index
 
 
+def overscan_margin(sigma):
+    """Pixels of margin to render beyond the 256x256 tile, so kernel tails
+    aren't clipped at tile boundaries. Returns 0 if sigma <= 1."""
+    if sigma <= 1.0:
+        return 0
+    return int(3.0 * sigma) + 1
+
+
 def render_tile(points, spatial_index, zoom, tx, ty, sigma, norm_factor):
-    """Render a single 256x256 PNG tile. Returns bytes or None."""
-    # Collect points from this tile and neighbors
+    """Render a single 256x256 PNG tile with overscan for seamless edges.
+
+    Uses overscan: renders at (256 + 2*margin)² then crops to 256² so
+    Gaussian kernel tails aren't clipped at tile boundaries.
+    Returns bytes or None.
+    """
+    margin = overscan_margin(sigma)
+    full_size = TILE_SIZE + 2 * margin
+
+    # Collect points from this tile and wider neighbors (enough for margin)
+    neighbor_range = max(2, int(margin / TILE_SIZE) + 2)
     relevant_indices = set()
-    for dx in range(-2, 3):
-        for dy in range(-2, 3):
+    for dx in range(-neighbor_range, neighbor_range + 1):
+        for dy in range(-neighbor_range, neighbor_range + 1):
             key = (tx + dx, ty + dy)
             if key in spatial_index:
                 relevant_indices.update(spatial_index[key])
@@ -177,33 +198,45 @@ def render_tile(points, spatial_index, zoom, tx, ty, sigma, norm_factor):
     if not relevant_indices:
         return None
 
-    counts = np.zeros((TILE_SIZE, TILE_SIZE), dtype=np.float32)
+    counts = np.zeros((full_size, full_size), dtype=np.float32)
 
+    # When margin > 0, project points relative to the overscanned tile:
+    # the geographic area is the same, but pixel coordinates extend beyond 0..255
+    # by 'margin' pixels on each side. We shift by -margin so that the original
+    # tile's (0,0) pixel becomes (margin, margin) in the overscanned grid.
     for idx in relevant_indices:
         pt = points[idx]
-        px, py = lnglat_to_pixel(pt["lng"], pt["lat"], zoom, tx, ty)
+        px, py = lnglat_to_pixel(pt["lng"], pt["lat"], zoom, tx, ty, full_size)
+        # px,py are in [0, full_size) for the overscanned tile
+        # Adjust: original tile pixels are [margin, margin+TILE_SIZE)
         ix, iy = int(px), int(py)
-        if 0 <= ix < TILE_SIZE and 0 <= iy < TILE_SIZE:
+        if 0 <= ix < full_size and 0 <= iy < full_size:
             fx = px - ix
             fy = py - iy
             w00 = (1 - fx) * (1 - fy)
             w10 = fx * (1 - fy)
             w01 = (1 - fx) * fy
             w11 = fx * fy
-            if 0 <= ix < TILE_SIZE and 0 <= iy < TILE_SIZE:
+            if 0 <= iy < full_size and 0 <= ix < full_size:
                 counts[iy, ix] += w00
-            if ix + 1 < TILE_SIZE and 0 <= iy < TILE_SIZE:
+            if 0 <= iy < full_size and ix + 1 < full_size:
                 counts[iy, ix + 1] += w10
-            if 0 <= ix < TILE_SIZE and iy + 1 < TILE_SIZE:
+            if iy + 1 < full_size and 0 <= ix < full_size:
                 counts[iy + 1, ix] += w01
-            if ix + 1 < TILE_SIZE and iy + 1 < TILE_SIZE:
+            if iy + 1 < full_size and ix + 1 < full_size:
                 counts[iy + 1, ix + 1] += w11
 
-    # Apply Gaussian kernel
+    # Apply Gaussian kernel on the full overscanned grid
     if sigma > 0.5:
-        density = gaussian_filter(counts, sigma=sigma, mode="constant", cval=0.0)
+        density_full = gaussian_filter(counts, sigma=sigma, mode="constant", cval=0.0)
     else:
-        density = counts
+        density_full = counts
+
+    # Crop to center 256x256
+    if margin > 0:
+        density = density_full[margin:margin + TILE_SIZE, margin:margin + TILE_SIZE]
+    else:
+        density = density_full
 
     # Normalise
     if norm_factor > 0:
@@ -211,7 +244,7 @@ def render_tile(points, spatial_index, zoom, tx, ty, sigma, norm_factor):
     else:
         density_norm = np.clip(density, 0.0, 1.0)
 
-    # V3.1: power curve compresses bottom range
+    # Power curve
     density_curved = apply_power_curve(density_norm)
 
     if density_curved.max() < 0.001:
@@ -286,29 +319,37 @@ def compute_percentiles(points, zooms, sample_frac=0.1):
             sample = random.sample(sample, 300)
 
         densities = []
+        margin = overscan_margin(sigma)
+        neighbor_range = max(2, int(margin / TILE_SIZE) + 2)
+        full_size = TILE_SIZE + 2 * margin
+
         for (tx, ty) in sample:
-            # Quick render: just splat, no PNG output
             relevant = set()
-            for dx in range(-2, 3):
-                for dy in range(-2, 3):
+            for dx in range(-neighbor_range, neighbor_range + 1):
+                for dy in range(-neighbor_range, neighbor_range + 1):
                     key = (tx + dx, ty + dy)
                     if key in sidx:
                         relevant.update(sidx[key])
             if not relevant:
                 continue
 
-            counts = np.zeros((TILE_SIZE, TILE_SIZE), dtype=np.float32)
+            counts = np.zeros((full_size, full_size), dtype=np.float32)
             for idx in relevant:
                 pt = points[idx]
-                px, py = lnglat_to_pixel(pt["lng"], pt["lat"], zoom, tx, ty)
+                px, py = lnglat_to_pixel(pt["lng"], pt["lat"], zoom, tx, ty, full_size)
                 ix, iy = int(px), int(py)
-                if 0 <= ix < TILE_SIZE and 0 <= iy < TILE_SIZE:
+                if 0 <= ix < full_size and 0 <= iy < full_size:
                     counts[iy, ix] += 1.0
 
             if sigma > 0.5:
-                density = gaussian_filter(counts, sigma=sigma, mode="constant", cval=0.0)
+                density_full = gaussian_filter(counts, sigma=sigma, mode="constant", cval=0.0)
             else:
-                density = counts
+                density_full = counts
+
+            if margin > 0:
+                density = density_full[margin:margin + TILE_SIZE, margin:margin + TILE_SIZE]
+            else:
+                density = density_full
 
             nz = density[density > 0]
             if len(nz) > 0:
