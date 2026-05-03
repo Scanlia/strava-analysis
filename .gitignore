@@ -10,3 +10,4 @@ data/heatmap_points.json
 web/public/data/heatmap/h3_*.geojson
 data/tiles/
 web/public/data/tiles/
+data/tiles*
