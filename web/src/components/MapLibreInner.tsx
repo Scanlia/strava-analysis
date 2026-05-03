@@ -79,14 +79,8 @@ export default function MapLibreInner() {
 
       // Build radius/opacity interpolations avoiding duplicate input values
       // when zoomMin === zoomMax (single-zoom resolutions like res 4 at z3 only)
-      const radiusStops: (string | number)[] = [
-        "interpolate", ["linear"], ["zoom"],
-        zoomFadeIn, r * 0.7,
-      ];
-      const opacityStops: (string | number)[] = [
-        "interpolate", ["linear"], ["zoom"],
-        zoomFadeIn, 0,
-      ];
+      const radiusStops: any[] = ["interpolate", ["linear"], ["zoom"], zoomFadeIn, r * 0.7];
+      const opacityStops: any[] = ["interpolate", ["linear"], ["zoom"], zoomFadeIn, 0];
       if (entry.zoomMin !== entry.zoomMax) {
         radiusStops.push(entry.zoomMin, r, entry.zoomMax, r * 1.2);
         opacityStops.push(entry.zoomMin, 0.7, entry.zoomMax, 0.7);
@@ -102,7 +96,7 @@ export default function MapLibreInner() {
         type: "circle",
         source: src,
         paint: {
-          "circle-radius": radiusStops as any,
+          "circle-radius": radiusStops,
           "circle-color": [
             "interpolate", ["linear"], ["get", "n"],
             1, "#1a3a8c",
@@ -112,7 +106,7 @@ export default function MapLibreInner() {
             Math.round(pcts.p99 || 10), "#f97316",
             Math.round((pcts.p99 || 10) * 3) || 30, "#dc2626",
           ],
-          "circle-opacity": opacityStops as any,
+          "circle-opacity": opacityStops,
           "circle-blur": 0.3,
           "circle-stroke-width": 0,
         },
