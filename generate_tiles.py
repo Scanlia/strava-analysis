@@ -26,30 +26,58 @@ ZOOM_MAX = 16
 TARGET_SIGMA_METRES = 30
 TILE_SIZE = 256
 
-# Web Mercator: metres per pixel at equator
-def metres_per_pixel(zoom):
-    return 156543.03392 / (2 ** zoom)
+# --- V3.1: Zoom-dependent kernel target metres ---
+def kernel_target_metres(zoom):
+    if zoom <= 4:
+        return 50000
+    elif zoom == 5:
+        return 25000
+    elif zoom == 6:
+        return 12000
+    elif zoom == 7:
+        return 6000
+    elif zoom == 8:
+        return 3000
+    elif zoom == 9:
+        return 1500
+    elif zoom == 10:
+        return 800
+    elif zoom == 11:
+        return 400
+    elif zoom == 12:
+        return 200
+    elif zoom == 13:
+        return 100
+    elif zoom == 14:
+        return 60
+    elif zoom == 15:
+        return 40
+    else:
+        return 30
 
 
-def kernel_sigma(zoom, target_m=TARGET_SIGMA_METRES):
+def kernel_sigma(zoom):
     mpp = metres_per_pixel(zoom)
-    return max(target_m / mpp, 0.5)
+    return max(kernel_target_metres(zoom) / mpp, 1.0)
 
 
-# Colour LUT: normalised density 0..1 -> RGBA
+# --- V3.1: Colour LUT with alpha floor for faint values ---
 def build_colour_lut():
     lut = np.zeros((256, 4), dtype=np.uint8)
     stops = [
-        (0.00, (0, 0, 0, 0)),
-        (0.02, (10, 30, 100, 40)),
-        (0.10, (26, 83, 235, 120)),
-        (0.30, (6, 182, 212, 180)),
-        (0.55, (253, 224, 71, 220)),
-        (0.80, (249, 115, 22, 240)),
-        (1.00, (220, 30, 0, 255)),
+        (0.000, (0, 0, 0, 0)),
+        (0.001, (60, 100, 255, 120)),
+        (0.050, (40, 130, 255, 180)),
+        (0.200, (0, 200, 230, 220)),
+        (0.450, (250, 230, 50, 240)),
+        (0.700, (255, 130, 0, 250)),
+        (1.000, (220, 30, 0, 255)),
     ]
     for i in range(256):
         v = i / 255.0
+        if v == 0:
+            lut[i] = [0, 0, 0, 0]
+            continue
         lo, hi = 0, len(stops) - 1
         for j in range(len(stops)):
             if stops[j][0] <= v:
@@ -69,6 +97,18 @@ def build_colour_lut():
 
 
 COLOUR_LUT = build_colour_lut()
+
+# Web Mercator: metres per pixel at equator
+def metres_per_pixel(zoom):
+    return 156543.03392 / (2 ** zoom)
+
+# --- V3.1: Power curve for "bleed faint, concentrate hot" ---
+GAMMA = 0.45
+
+
+def apply_power_curve(density_norm):
+    """Compress faint values upward, leave hot values mostly intact."""
+    return np.power(density_norm, GAMMA)
 
 
 def apply_lut(density_norm):
@@ -171,10 +211,13 @@ def render_tile(points, spatial_index, zoom, tx, ty, sigma, norm_factor):
     else:
         density_norm = np.clip(density, 0.0, 1.0)
 
-    if density_norm.max() < 0.003:
+    # V3.1: power curve compresses bottom range
+    density_curved = apply_power_curve(density_norm)
+
+    if density_curved.max() < 0.001:
         return None
 
-    rgba = apply_lut(density_norm)
+    rgba = apply_lut(density_curved)
     img = Image.fromarray(rgba, "RGBA")
     from io import BytesIO
     buf = BytesIO()
