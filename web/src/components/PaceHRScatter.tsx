@@ -130,6 +130,19 @@ export default function PaceHRScatter({
   }, [points]);
 
   const binnedTrends = useMemo(() => {
+    // Use precomputed LOESS from the aggregate if available
+    if (aggregate?.pace_hr_loess?.[sport]) {
+      const loessByYear = aggregate.pace_hr_loess[sport];
+      return years.map((year) => {
+        const loess = loessByYear[String(year)];
+        if (loess && loess.length >= 4) {
+          return loess.map((p) => ({ x: p.hr, y: p.value }));
+        }
+        // Fallback to binned if no LOESS for this year
+        return null;
+      });
+    }
+    // Fallback: binned averages (original logic)
     return years.map((year) => {
       const yearPoints = points.filter((p) => p.year === year);
       const bins = new Map<
@@ -156,7 +169,7 @@ export default function PaceHRScatter({
         }))
         .sort((a, b) => a.x - b.x);
     });
-  }, [points, years]);
+  }, [points, years, aggregate, sport]);
 
   const isRun = sport === "Run";
   const hasData = points.length > 0;
@@ -194,7 +207,7 @@ export default function PaceHRScatter({
         borderWidth: 2.5,
         pointRadius: 0,
         showLine: true,
-        tension: 0,
+        tension: 0.3,
         order: 1,
       });
     }

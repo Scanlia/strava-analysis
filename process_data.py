@@ -1779,6 +1779,198 @@ def compute_dow_hour_stats(all_activities):
     return [[{k: round(v, 1) if k == "trimp" else v for k, v in cell.items()} for cell in row] for row in grid]
 
 
+def compute_best_effort_progression(all_activities):
+    """Assemble a time series of best efforts per sport × target, with PR flags.
+
+    Returns dict: {sport: {target: [{date, activity_id, activity_name, speed_ms, pace_min_km, speed_kmh, is_pr}, ...]}}
+    """
+    progression = {}
+    for sport_name in ["Run", "Ride", "Swim", "Hike"]:
+        acts = [a for a in all_activities if a["sport"] == sport_name and a.get("best_efforts") and a.get("start_time_utc")]
+        if not acts:
+            continue
+        acts.sort(key=lambda x: x["start_time_utc"])
+        progression[sport_name] = {}
+
+        for a in acts:
+            for target_key, be in a["best_efforts"].items():
+                if not be or be.get("speed_ms", 0) <= 0:
+                    continue
+                entry = {
+                    "date": a["start_time_utc"],
+                    "activity_id": a["id"],
+                    "activity_name": a["name"],
+                    "speed_ms": be.get("speed_ms"),
+                    "pace_min_km": be.get("pace_min_km"),
+                    "speed_kmh": be.get("speed_kmh"),
+                }
+                if target_key not in progression[sport_name]:
+                    progression[sport_name][target_key] = []
+                progression[sport_name][target_key].append(entry)
+
+        # Mark PRs: for each target, set is_pr=True where speed exceeds all previous
+        for target_key, entries in progression[sport_name].items():
+            best = 0
+            for e in entries:
+                spd = e["speed_ms"] or 0
+                e["is_pr"] = spd > best
+                if spd > best:
+                    best = spd
+
+    return progression
+
+
+def compute_pace_hr_loess(all_activities):
+    """Compute per-sport per-year LOESS trend through (HR, GAP) points.
+
+    Returns dict: {sport: {year: [{hr, value}, ...]}} of LOESS-fit curves
+    where value is GAP pace (min/km for Run) or GAP speed (km/h for Ride).
+    """
+    from statsmodels.nonparametric.smoothers_lowess import lowess
+    result = {}
+
+    for sport_name in ["Run", "Ride"]:
+        is_run = (sport_name == "Run")
+        acts = [a for a in all_activities if a["sport"] == sport_name and a.get("gap_segments") and a.get("start_time_utc")]
+        if not acts:
+            continue
+
+        # Collect (HR, GAP) points by year
+        year_points = defaultdict(list)
+        for a in acts:
+            try:
+                yr = datetime.fromisoformat(a["start_time_utc"].replace("Z", "+00:00")).year
+            except:
+                continue
+            for seg in a["gap_segments"]:
+                hr = seg.get("avg_hr")
+                val = seg.get("gap_pace_min_km") if is_run else seg.get("gap_speed_kmh")
+                if hr is not None and val is not None and val > 0:
+                    year_points[yr].append((hr, val))
+
+        if not year_points:
+            continue
+
+        sport_result = {}
+        for yr, pts in year_points.items():
+            if len(pts) < 8:  # too few for meaningful LOESS
+                continue
+            pts.sort(key=lambda x: x[0])
+            xs = np.array([p[0] for p in pts])
+            ys = np.array([p[1] for p in pts])
+            frac = max(0.3, min(0.6, 30 / len(xs)))
+            try:
+                loess = lowess(ys, xs, frac=frac, it=2, return_sorted=True)
+                sport_result[str(yr)] = [{"hr": round(float(x), 1), "value": round(float(y), 2)} for x, y in loess]
+            except Exception:
+                sport_result[str(yr)] = []
+
+        if sport_result:
+            result[sport_name] = sport_result
+
+    return result
+
+
+def compute_hr_recovery(all_activities, sport_max_hr):
+    """Compute HR recovery metrics for qualifying activities.
+
+    Scans each activity's stream for a clear stop sequence: user was moving
+    (elevated HR), then stopped, and recording continued long enough to
+    observe HR decline.
+
+    Returns dict with activities list and chronological trend.
+    """
+    activity_results = []
+    trend = []
+
+    for a in all_activities:
+        sport = a.get("sport", "")
+        if sport not in ("Run", "Ride", "Swim", "Hike"):
+            continue
+        stream = a.get("stream")
+        if not stream or len(stream) < 20:
+            continue
+
+        # Scan for a moving→stopped transition followed by continued recording
+        # Find the last index where user was moving, then stopped
+        last_moving_idx = -1
+        for i, p in enumerate(stream):
+            if p.get("m", True):
+                last_moving_idx = i
+
+        if last_moving_idx < 5 or last_moving_idx >= len(stream) - 4:
+            continue  # no substantial recovery tail
+
+        # Moving portion: up to last_moving_idx
+        moving_stream = stream[:last_moving_idx + 1]
+        recovery_stream = stream[last_moving_idx + 1:]
+
+        if len(recovery_stream) < 4:
+            continue
+
+        # End-of-effort HR: last 3 moving points with HR (~30s)
+        moving_hrs = [p.get("hr") for p in moving_stream[-4:] if p.get("hr") is not None]
+        if len(moving_hrs) < 2:
+            continue
+        end_hr = sum(moving_hrs) / len(moving_hrs)
+
+        # Intensity check: Z3+ (>=80% of sport max HR)
+        sport_max = sport_max_hr.get(sport, 185)
+        if end_hr < sport_max * 0.80:
+            continue
+
+        # No movement in recovery: all points must have m=False (or missing = assumed not moving)
+        if any(p.get("m", False) is True for p in recovery_stream):
+            continue
+
+        # Find HR at approximate +60s and +120s in recovery
+        # Stream points are ~10s apart (stored every 10th original point)
+        def recovery_hr_at(approx_seconds):
+            target_idx = approx_seconds // 10
+            # Search ±2 points around target
+            for offset in range(3):
+                idx = target_idx + offset
+                if idx < 0:
+                    continue
+                if offset > 0:
+                    idx2 = target_idx - offset
+                else:
+                    idx2 = target_idx
+                for check_idx in sorted({idx, idx2}):
+                    if 0 <= check_idx < len(recovery_stream):
+                        hr = recovery_stream[check_idx].get("hr")
+                        if hr is not None:
+                            return hr
+            return None
+
+        hr60 = recovery_hr_at(60)
+        if hr60 is None:
+            continue
+        hr120 = recovery_hr_at(120)
+
+        hrr_60 = round(end_hr - hr60, 1)
+        hrr_120 = round(end_hr - hr120, 1) if hr120 is not None else None
+
+        entry = {
+            "id": a["id"],
+            "name": a["name"],
+            "date": a.get("start_time_utc", ""),
+            "sport": sport,
+            "end_hr": round(end_hr, 1),
+            "hr_60s": round(hr60, 1),
+            "hr_120s": round(hr120, 1) if hr120 is not None else None,
+            "hrr_60": hrr_60,
+            "hrr_120": hrr_120,
+        }
+        activity_results.append(entry)
+        trend.append({"date": a.get("start_time_utc", ""), "hrr_60": hrr_60, "hrr_120": hrr_120})
+
+    trend.sort(key=lambda x: x.get("date", ""))
+    activity_results.sort(key=lambda x: x.get("date", ""))
+
+    return {"activities": activity_results, "trend": trend, "total_qualifying": len(activity_results)}
+
+
 # --- Main processing ---
 def main():
     print("Loading activities CSV...")
@@ -2441,6 +2633,9 @@ def main():
             "last": all_activities[-1]["start_time_utc"] if all_activities else None,
         },
         "neg_split_summary": neg_split_summary,
+        "best_effort_progression": compute_best_effort_progression(all_activities),
+        "pace_hr_loess": compute_pace_hr_loess(all_activities),
+        "hr_recovery": compute_hr_recovery(all_activities, sport_max_hr),
     }
     with open(os.path.join(OUTPUT_DIR, "aggregate.json"), "w") as f:
         json.dump(aggregate, f, indent=1, default=str)

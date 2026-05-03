@@ -60,7 +60,9 @@ export default function RacePredictor({ activities }: { activities: Activity[] }
     <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
       <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Race Time Predictor (Riegel)</h3>
       <p className="text-[10px] text-gray-500 mb-4">
-        Based on your {predictions.ref.km5 ? `best 5km (${formatTime(predictions.ref.time)})` : `best 10km (${formatTime(predictions.ref.time)})`} set {predictions.ref.km5 ? "recently" : "recently"}. Assumes equivalent conditions and adequate training volume. Predictions for distances much longer than you&apos;ve trained are aspirational.
+        Based on your {predictions.ref.km5 ? `best 5km of ${formatTime(predictions.ref.time)}` : `best 10km of ${formatTime(predictions.ref.time)}`}
+        {predictions.ref.km5 ? predictions.ref.km5.date ? ` (set ${new Date(predictions.ref.km5.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })})` : "" : predictions.ref.km10.date ? ` (set ${new Date(predictions.ref.km10.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })})` : ""}.
+        Assumes equivalent conditions and adequate training volume. Predictions for distances much longer than you&apos;ve trained are aspirational.
       </p>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {predictions.predictions.map((p) => (

@@ -15,14 +15,6 @@
   "avg_hr": 132.6,
   "activities_with_hr": 42
  },
- "swim": {
-  "count": 13,
-  "total_distance_km": 4.0,
-  "total_time_hours": 3.2,
-  "total_elevation_m": 0.0,
-  "avg_hr": 131.8,
-  "activities_with_hr": 8
- },
  "hike": {
   "count": 23,
   "total_distance_km": 421.5,
@@ -30,5 +22,13 @@
   "total_elevation_m": 22780.5,
   "avg_hr": 107.7,
   "activities_with_hr": 7
+ },
+ "swim": {
+  "count": 13,
+  "total_distance_km": 4.0,
+  "total_time_hours": 3.2,
+  "total_elevation_m": 0.0,
+  "avg_hr": 131.8,
+  "activities_with_hr": 8
  }
 }

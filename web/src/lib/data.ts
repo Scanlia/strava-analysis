@@ -147,6 +147,43 @@ export interface Aggregate {
   total_activities: number;
   date_range: { first: string | null; last: string | null };
   neg_split_summary?: NegSplitSummary | null;
+  best_effort_progression?: BestEffortProgression;
+  pace_hr_loess?: Record<string, Record<string, { hr: number; value: number }[]>>;
+  hr_recovery?: HRRecovery;
+}
+
+export interface BestEffortProgression {
+  [sport: string]: {
+    [target: string]: BestEffortProgressionEntry[];
+  };
+}
+
+export interface BestEffortProgressionEntry {
+  date: string;
+  activity_id: string;
+  activity_name: string;
+  speed_ms: number;
+  pace_min_km: number | null;
+  speed_kmh: number;
+  is_pr: boolean;
+}
+
+export interface HRRecovery {
+  activities: HRRecoveryEntry[];
+  trend: { date: string; hrr_60: number; hrr_120: number | null }[];
+  total_qualifying: number;
+}
+
+export interface HRRecoveryEntry {
+  id: string;
+  name: string;
+  date: string;
+  sport: string;
+  end_hr: number;
+  hr_60s: number;
+  hr_120s: number | null;
+  hrr_60: number;
+  hrr_120: number | null;
 }
 
 export interface SpeedDuration {

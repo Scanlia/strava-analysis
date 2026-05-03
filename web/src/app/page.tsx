@@ -11,6 +11,8 @@ import NaismithChart from "@/components/NaismithChart";
 import CTLChart from "@/components/CTLChart";
 import SpeedDurationChart from "@/components/SpeedDurationChart";
 import RacePredictor from "@/components/RacePredictor";
+import BestEffortProgression from "@/components/BestEffortProgression";
+import HRRecoveryChart from "@/components/HRRecoveryChart";
 import CalendarHeatmap from "@/components/CalendarHeatmap";
 import GPSHeatmap from "@/components/GPSHeatmap";
 import BestEfforts from "@/components/BestEfforts";
@@ -60,6 +62,9 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Heart Rate Analysis</h2>
           <HRCharts activities={activities} />
+          <div className="mt-6">
+            <HRRecoveryChart aggregate={aggregate} />
+          </div>
         </section>
 
         <section>
@@ -85,6 +90,11 @@ export default function Dashboard() {
         <section>
           <h2 className="text-xl font-bold mb-5">Speed-Duration Curve (Critical Pace / Power)</h2>
           <SpeedDurationChart aggregate={aggregate} />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-5">Best Effort Progression</h2>
+          <BestEffortProgression aggregate={aggregate} />
         </section>
 
         <section>
