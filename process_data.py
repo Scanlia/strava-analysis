@@ -65,12 +65,74 @@ def parse_csv_date_utc(date_str):
 
 # --- Haversine distance calculation ---
 def haversine(lat1, lon1, lat2, lon2):
-    R = 6371000  # Earth radius in meters
+    """Haversine distance in metres between two lat/lon points."""
+    R = 6371000
     phi1, phi2 = math.radians(lat1), math.radians(lat2)
     dphi = math.radians(lat2 - lat1)
     dlam = math.radians(lon2 - lon1)
     a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlam / 2) ** 2
     return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+
+def douglas_peucker(coords, tolerance):
+    """Simplify a list of [lng, lat] coordinates using Douglas-Peucker.
+
+    Returns simplified list of [lng, lat] pairs.
+    Tolerance is in metres (approximate). Uses perpendicular distance in degrees
+    scaled by a rough metres-per-degree factor at the midpoint latitude.
+    """
+    if len(coords) <= 2:
+        return coords[:]
+
+    # Compute average latitude for rough degrees-to-metres conversion
+    avg_lat = sum(c[1] for c in coords) / len(coords)
+    m_per_deg_lat = 111320
+    m_per_deg_lng = 111320 * math.cos(math.radians(avg_lat))
+    # Convert tolerance in metres to approximate squared distance in degree-space
+    tol_deg_lat = tolerance / m_per_deg_lat
+    tol_deg_lng = tolerance / m_per_deg_lng
+
+    def point_line_dist_sq(px, py, ax, ay, bx, by):
+        """Squared perpendicular distance of point P from line AB."""
+        dx = bx - ax
+        dy = by - ay
+        if dx == 0 and dy == 0:
+            return ((px - ax) * (0.5)) ** 2 + ((py - ay) * (0.5)) ** 2  # simplified
+        t = max(0, min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)))
+        proj_x = ax + t * dx
+        proj_y = ay + t * dy
+        return (px - proj_x) ** 2 + (py - proj_y) ** 2
+
+    def max_distance_sq(start, end):
+        """Find point with max squared distance from line between start and end indices."""
+        max_d2 = 0
+        max_idx = start
+        ax, ay = coords[start][0], coords[start][1]
+        bx, by = coords[end][0], coords[end][1]
+        for i in range(start + 1, end):
+            px, py = coords[i][0] / 180 * math.pi if False else coords[i][0], coords[i][1]  # no transform needed
+            d2 = point_line_dist_sq(
+                coords[i][0] * m_per_deg_lng, coords[i][1] * m_per_deg_lat,
+                ax * m_per_deg_lng, ay * m_per_deg_lat,
+                bx * m_per_deg_lng, by * m_per_deg_lat
+            )
+            if d2 > max_d2:
+                max_d2 = d2
+                max_idx = i
+        return max_d2, max_idx
+
+    def recurse(start, end, tol_sq):
+        """Recursive DP simplification. Returns list of indices to keep."""
+        d2, idx = max_distance_sq(start, end)
+        if d2 <= tol_sq:
+            return [start, end]
+        left = recurse(start, idx, tol_sq)
+        right = recurse(idx, end, tol_sq)
+        return left[:-1] + right
+
+    tol_sq = tolerance * tolerance  # square of tolerance in metres
+    kept = recurse(0, len(coords) - 1, tol_sq)
+    return [coords[i] for i in kept]
 
 
 # --- Grade calculation ---
@@ -1537,6 +1599,165 @@ def compute_neg_split_summary(all_activities):
     }
 
 
+def build_geojson_tracks(tracks_raw):
+    """Build GeoJSON track files from accumulated raw track data.
+
+    Each track has {id, name, sport, date, year, coords: [[lng,lat], ...]}.
+    Produces simplified tracks at multiple detail levels plus density points.
+    """
+    if not tracks_raw:
+        return None, None
+
+    # Helper: smooth coordinates with 5-point moving average
+    def smooth_coords(coords, window=5):
+        if len(coords) < window:
+            return coords[:]
+        half = window // 2
+        result = []
+        for i in range(len(coords)):
+            start = max(0, i - half)
+            end = min(len(coords), i + half + 1)
+            avg_lng = sum(c[0] for c in coords[start:end]) / (end - start)
+            avg_lat = sum(c[1] for c in coords[start:end]) / (end - start)
+            result.append([avg_lng, avg_lat])
+        return result
+
+    # Helper: split track at >180° longitude deltas (antimeridian)
+    def handle_antimeridian(coords):
+        segments = []
+        current = [coords[0]]
+        for i in range(1, len(coords)):
+            if abs(coords[i][0] - coords[i - 1][0]) > 180:
+                if len(current) >= 2:
+                    segments.append(current)
+                current = [coords[i]]
+            else:
+                current.append(coords[i])
+        if len(current) >= 2:
+            segments.append(current)
+        return segments
+
+    # Helper: split at GPS dropouts (>500m distance between consecutive points)
+    def handle_gps_gaps(coords):
+        segments = []
+        current = [coords[0]]
+        for i in range(1, len(coords)):
+            d = haversine(coords[i][1], coords[i][0], coords[i - 1][1], coords[i - 1][0])
+            if d > 500:
+                if len(current) >= 2:
+                    segments.append(current)
+                current = [coords[i]]
+            else:
+                current.append(coords[i])
+        if len(current) >= 2:
+            segments.append(current)
+        return segments
+
+    # Helper: sample along coordinate list at ~N-metre spacing
+    def sample_along(coords, spacing=50):
+        if len(coords) < 2:
+            return coords[:]
+        sampled = [coords[0]]
+        cum = 0.0
+        for i in range(1, len(coords)):
+            d = haversine(coords[i][1], coords[i][0], coords[i - 1][1], coords[i - 1][0])
+            cum += d
+            while cum >= spacing:
+                sampled.append(coords[i])
+                cum -= spacing
+        if sampled[-1] != coords[-1]:
+            sampled.append(coords[-1])
+        return sampled
+
+    detailed_features = []
+    mid_features = []
+    low_features = []
+    density_features = []
+    bbox = [180, 90, -180, -90]  # [minLng, minLat, maxLng, maxLat]
+
+    for track in tracks_raw:
+        coords = track["coords"]
+        if len(coords) < 2:
+            continue
+
+        aid = track["id"]
+        sport = track["sport"]
+        name = track["name"]
+        date_str = track["date"]
+        year = track["year"]
+
+        # Update bbox
+        for c in coords:
+            bbox[0] = min(bbox[0], c[0])
+            bbox[1] = min(bbox[1], c[1])
+            bbox[2] = max(bbox[2], c[0])
+            bbox[3] = max(bbox[3], c[1])
+
+        # Smooth
+        smoothed = smooth_coords(coords, window=5)
+
+        # Handle antimeridian and GPS gaps
+        segments = []
+        for seg in handle_antimeridian(smoothed):
+            segments.extend(handle_gps_gaps(seg))
+
+        if not segments:
+            continue
+
+        # For MultiLineString if split, or LineString if single segment
+        def make_geometry(lnglats):
+            return {"type": "LineString", "coordinates": lnglats}
+
+        for seg in segments:
+            if len(seg) < 2:
+                continue
+
+            props = {"id": aid, "sp": sport, "y": year}
+
+            # Detailed (5m tolerance)
+            detailed = douglas_peucker(seg, 5)
+            if len(detailed) >= 2:
+                detailed_features.append({"type": "Feature", "geometry": make_geometry(detailed), "properties": props})
+
+            # Mid (20m tolerance)
+            mid = douglas_peucker(seg, 20)
+            if len(mid) >= 2:
+                mid_features.append({"type": "Feature", "geometry": make_geometry(mid), "properties": props})
+
+            # Low (200m tolerance)
+            low = douglas_peucker(seg, 200)
+            if len(low) >= 2:
+                low_features.append({"type": "Feature", "geometry": make_geometry(low), "properties": props})
+
+            # Density points (sample every 200m for manageable file size)
+            sampled = sample_along(seg, spacing=200)
+            for pt in sampled:
+                density_features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": pt[:2]}, "properties": {"s": sport[0].lower()}})  # single-char sport
+
+    heatmap_dir = os.path.join(OUTPUT_DIR, "heatmap")
+    os.makedirs(heatmap_dir, exist_ok=True)
+
+    detailed_fc = {"type": "FeatureCollection", "features": detailed_features}
+    mid_fc = {"type": "FeatureCollection", "features": mid_features}
+    low_fc = {"type": "FeatureCollection", "features": low_features}
+    density_fc = {"type": "FeatureCollection", "features": density_features}
+
+    # Write files
+    for name, fc in [("tracks_detailed.geojson", detailed_fc), ("tracks_mid.geojson", mid_fc), ("tracks_low.geojson", low_fc), ("tracks_density.geojson", density_fc)]:
+        filepath = os.path.join(heatmap_dir, name)
+        with open(filepath, "w") as f:
+            json.dump(fc, f, separators=(",", ":"))
+        size_kb = os.path.getsize(filepath) / 1024
+        print(f"  {name}: {len(fc['features'])} features, {size_kb:.0f} KB")
+
+    manifest = {"generated_at": datetime.now(timezone.utc).isoformat(), "activity_count": len(tracks_raw), "bbox": bbox, "feature_counts": {"detailed": len(detailed_features), "mid": len(mid_features), "low": len(low_features), "density": len(density_features)}}
+    with open(os.path.join(heatmap_dir, "manifest.json"), "w") as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  Total tracks: {len(tracks_raw)}, density points: {len(density_features)}")
+    return detailed_fc, density_fc
+
+
 def compute_dow_hour_stats(all_activities):
     """7x24 grid: day-of-week (Mon-Sun) x hour-of-day (0-23) coloured by count/TRIMP."""
     grid = [[{"count": 0, "trimp": 0} for _ in range(24)] for _ in range(7)]
@@ -1575,6 +1796,7 @@ def main():
     all_activities = []
     by_sport = defaultdict(list)
     sport_counts = defaultdict(int)
+    tracks_raw = []  # accumulate raw track data for GeoJSON heatmap
 
     for i, act in enumerate(activities):
         aid = act.get("Activity ID", "").strip()
@@ -1629,6 +1851,27 @@ def main():
 
         # Compute stream metrics
         streams = compute_stream_metrics(points, is_tcx, is_fit, sport)
+
+        # Collect GPS track for heatmap GeoJSON
+        if not is_manual and not is_indoor and len(streams.get("lats", [])) >= 2:
+            lats = streams.get("lats", [])
+            lons = streams.get("lons", [])
+            # Filter out None values and pair coordinates
+            coords = [[lons[j], lats[j]] for j in range(min(len(lats), len(lons))) if lats[j] is not None and lons[j] is not None]
+            if len(coords) >= 2:
+                date_str = streams.get("start_time", "") or act.get("Activity Date", "")
+                try:
+                    year = int(date_str[:4]) if date_str and len(date_str) >= 4 else 0
+                except ValueError:
+                    year = 0
+                tracks_raw.append({
+                    "id": aid,
+                    "name": name,
+                    "sport": sport,
+                    "date": date_str,
+                    "year": year,
+                    "coords": coords,
+                })
 
         # Parse UTC from CSV start time as fallback
         csv_start_time = parse_csv_date_utc(act.get("Activity Date", "").strip())
@@ -1715,6 +1958,10 @@ def main():
         sport_counts[sport] += 1
 
     print(f"\nProcessed: {sport_counts}")
+
+    # Build GeoJSON heatmap files
+    print("\nBuilding GeoJSON heatmap tracks...")
+    build_geojson_tracks(tracks_raw)
 
     # Sort by date
     for sport in by_sport:
