@@ -182,11 +182,6 @@ def render_tile(points, spatial_index, zoom, tx, ty, sigma, norm_factor):
     return buf.getvalue()
 
 
-def tms_to_xyz(ty, zoom):
-    """Convert TMS y coordinate to XYZ y coordinate."""
-    return (1 << zoom) - 1 - ty
-
-
 def render_tile_set(name, points, base_dir, zooms, p99_dict):
     """Render all tiles for one dataset. Saves tiles in XYZ scheme for MapLibre."""
     set_dir = os.path.join(base_dir, name)
@@ -205,17 +200,15 @@ def render_tile_set(name, points, base_dir, zooms, p99_dict):
             tiles.add((tx, ty, zoom))
         print(f"{len(tiles)} tiles, ", end="", flush=True)
 
-        # Render each tile
+        # Render each tile (mercantile.tile() already returns XYZ coords)
         zoom_dir = os.path.join(set_dir, str(zoom))
         os.makedirs(zoom_dir, exist_ok=True)
 
         rendered = 0
         for tx, ty, z in sorted(tiles):
-            # Convert TMS y to XYZ y for file naming (MapLibre uses XYZ)
-            xyz_y = tms_to_xyz(ty, zoom)
             x_dir = os.path.join(zoom_dir, str(tx))
             os.makedirs(x_dir, exist_ok=True)
-            filepath = os.path.join(x_dir, f"{xyz_y}.png")
+            filepath = os.path.join(x_dir, f"{ty}.png")
 
             if os.path.exists(filepath):
                 rendered += 1
