@@ -132,11 +132,28 @@ export default function BestEffortProgression({ aggregate }: { aggregate?: Aggre
   if (targets.length === 0) {
     return (
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
+        <div className="flex items-center gap-1 mb-3">
+          {Object.entries(SPORT_LABEL).map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => { setSport(key); setSelectedTarget(null); }}
+              className={`px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+                sport === key ? "bg-violet-600 text-white" : "bg-white/5 text-gray-400 hover:text-white border border-white/10"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">Best Effort Progression</h3>
-        <p className="text-[10px] text-gray-500">Not enough data for {SPORT_LABEL[sport] ?? sport}.</p>
+        <div className="flex items-center justify-center h-[200px] text-gray-500 text-sm">
+          Not enough best-effort data for {SPORT_LABEL[sport] ?? sport} — need 3+ qualifying activities per distance target.
+        </div>
       </div>
     );
   }
+
+  const sportProgression = sportData[activeTarget] ?? [];
 
   return (
     <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">

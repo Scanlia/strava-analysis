@@ -1898,14 +1898,14 @@ def compute_hr_recovery(all_activities, sport_max_hr):
             if p.get("m", True):
                 last_moving_idx = i
 
-        if last_moving_idx < 5 or last_moving_idx >= len(stream) - 4:
+        if last_moving_idx < 3 or last_moving_idx >= len(stream) - 3:
             continue  # no substantial recovery tail
 
         # Moving portion: up to last_moving_idx
         moving_stream = stream[:last_moving_idx + 1]
         recovery_stream = stream[last_moving_idx + 1:]
 
-        if len(recovery_stream) < 4:
+        if len(recovery_stream) < 3:
             continue
 
         # End-of-effort HR: last 3 moving points with HR (~30s)
@@ -1914,9 +1914,10 @@ def compute_hr_recovery(all_activities, sport_max_hr):
             continue
         end_hr = sum(moving_hrs) / len(moving_hrs)
 
-        # Intensity check: Z3+ (>=80% of sport max HR)
+        # Intensity check: Z3+ (≥80% of sport max HR for Run/Ride, ≥70% for Hike/Swim)
         sport_max = sport_max_hr.get(sport, 185)
-        if end_hr < sport_max * 0.80:
+        intensity_pct = 0.80 if sport in ("Run", "Ride") else 0.70
+        if end_hr < sport_max * intensity_pct:
             continue
 
         # No movement in recovery: all points must have m=False (or missing = assumed not moving)

@@ -31,11 +31,18 @@ export default function HRRecoveryChart({ aggregate }: { aggregate?: Aggregate }
     return (
       <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5">
         <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">HR Recovery Rate</h3>
-        <p className="text-[10px] text-gray-500 mb-3">
-          How quickly your heart rate drops after ending a hard effort. Requires recording to continue 2+ min after stopping.
-        </p>
-        <div className="flex items-center justify-center h-[200px] text-gray-500 text-sm">
-          {recovery ? `${recovery.total_qualifying} qualifying activities — need more for chart` : "No qualifying activities yet. Keep recording for 2+ min after stopping."}
+        <p className="text-[10px] text-gray-500 mb-3">How quickly your heart rate drops after stopping a hard effort. Qualifying criteria:</p>
+        <ul className="text-[10px] text-gray-500 mb-4 space-y-1 list-disc list-inside ml-1">
+          <li>Activity ends with a clear stop (you stopped before pressing end)</li>
+          <li>Recording continues ≥60s after you stopped moving (3+ stream points in stopped tail)</li>
+          <li>Final effort intensity is Z3+ (≥80% sport max HR for Run/Ride, ≥70% for Hike/Swim)</li>
+          <li>No movement during the recovery period</li>
+          <li>HR monitor is worn and recording during the recovery tail</li>
+        </ul>
+        <div className="bg-[#1a1a2e] border border-[#2a2a3a] rounded-lg p-3 text-xs text-gray-400">
+          <strong className="text-violet-300">{recovery ? recovery.total_qualifying : 0} qualifying</strong> activities found.
+          To get more: keep your recording going for 1–2 minutes after you stop moving.
+          Most Strava activities end recording immediately — try waiting before pressing stop after a hard effort.
         </div>
       </div>
     );
@@ -49,7 +56,7 @@ export default function HRRecoveryChart({ aggregate }: { aggregate?: Aggregate }
         HR Recovery Rate
       </h3>
       <p className="text-[10px] text-gray-500 mb-3">
-        BPM drop after peak effort. Higher = better aerobic fitness. {recovery.total_qualifying} qualifying activities (Z3+ effort, ≥90s recovery recording).
+        BPM drop after stopping a hard effort. Higher = better aerobic fitness. Qualifies when: recording continues ≥60s after stop, Z3+ intensity, no movement during recovery. {recovery.total_qualifying} activities.
       </p>
 
       {hasTrend ? (
@@ -124,7 +131,8 @@ export default function HRRecoveryChart({ aggregate }: { aggregate?: Aggregate }
         </div>
       ) : (
         <div className="flex items-center justify-center h-[200px] text-gray-500 text-sm">
-          Need 2+ qualifying activities for trend chart
+          Only {recovery.total_qualifying} qualifying activities — need 2+ for trend chart.
+          Try keeping recording going 1–2 min after stopping a hard effort.
         </div>
       )}
 
