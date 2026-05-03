@@ -1020,10 +1020,12 @@ def compute_derived_metrics(act, streams):
         csv_elev_str = act.get("Elevation Gain", "").strip() if act.get("Elevation Gain") else ""
         csv_elev = float(csv_elev_str) if csv_elev_str else 0
         ascent_m = csv_elev if csv_elev > 0 else streams["total_elevation_gain"]
-        naismith_minutes = (dist_km / 5) * 60 + (ascent_m / 600) * 60
-        actual_minutes = streams["moving_time"] / 60
-        if naismith_minutes > 0:
-            d["naismith_ratio"] = round(actual_minutes / naismith_minutes, 3)
+        # Reject if elevation data is clearly GPS noise (avg grade > 50%)
+        if ascent_m > 0 and dist_km > 0 and (ascent_m / (dist_km * 1000)) < 0.5:
+            naismith_minutes = (dist_km / 5) * 60 + (ascent_m / 600) * 60
+            actual_minutes = streams["moving_time"] / 60
+            if naismith_minutes > 0:
+                d["naismith_ratio"] = round(actual_minutes / naismith_minutes, 3)
 
     return d
 
