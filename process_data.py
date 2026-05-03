@@ -292,10 +292,12 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
         return result
 
     # --- Stop detection speed thresholds (m/s) ---
-    threshold = {"Run": 0.5, "Ride": 1.0, "Hike": 0.3, "Swim": 0.2}.get(sport, 0.5)
+    threshold = {"Run": 0.5, "Ride": 1.0, "Hike": 0.15, "Swim": 0.2}.get(sport, 0.5)
     # Hysteresis: require N consecutive seconds below threshold to trigger stop
     STOP_T = 10  # seconds
     RESUME_T = 3  # seconds
+    # For hiking, GPS speed at 1-second intervals is too noisy for hysteresis
+    use_hysteresis = (sport != "Hike")
 
     cum_dist = 0
     prev_point = None
@@ -453,6 +455,8 @@ def compute_stream_metrics(points, is_tcx=False, is_fit=False, sport=""):
 
         if has_fit_moving and fit_mv is not None:
             moving_now = bool(fit_mv)
+        elif not use_hysteresis:
+            moving_now = spd >= threshold
         else:
             if spd < threshold:
                 stop_timer += dt
@@ -1014,16 +1018,20 @@ def compute_derived_metrics(act, streams):
                     d["neg_split_pct"] = round(((first_half_time - second_half_time) / first_half_time) * 100, 1)
 
     # Hiking: Naismith ratio (use CSV/Strava elevation — more reliable than GPS)
-    if act.get("Activity Type") in ["Hike"] and streams["moving_time"] > 0 and streams["cumulative_distance"] > 0:
+    if act.get("Activity Type") in ["Hike"] and streams["cumulative_distance"] > 0:
         dist_km = streams["cumulative_distance"] / 1000
         # Prefer CSV elevation (Strava barometric) over raw GPS elevation
         csv_elev_str = act.get("Elevation Gain", "").strip() if act.get("Elevation Gain") else ""
         csv_elev = float(csv_elev_str) if csv_elev_str else 0
         ascent_m = csv_elev if csv_elev > 0 else streams["total_elevation_gain"]
+        # Use CSV moving time as primary (device-reported), stream as fallback
+        csv_moving_str = act.get("Moving Time", "").strip() if act.get("Moving Time") else ""
+        csv_moving = float(csv_moving_str) if csv_moving_str else 0
+        moving_sec = csv_moving if csv_moving > 0 else streams["moving_time"]
         # Reject if elevation data is clearly GPS noise (avg grade > 50%)
-        if ascent_m > 0 and dist_km > 0 and (ascent_m / (dist_km * 1000)) < 0.5:
+        if moving_sec > 0 and ascent_m > 0 and dist_km > 0 and (ascent_m / (dist_km * 1000)) < 0.5:
             naismith_minutes = (dist_km / 5) * 60 + (ascent_m / 600) * 60
-            actual_minutes = streams["moving_time"] / 60
+            actual_minutes = moving_sec / 60
             if naismith_minutes > 0:
                 d["naismith_ratio"] = round(actual_minutes / naismith_minutes, 3)
 
