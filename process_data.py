@@ -1023,9 +1023,7 @@ def compute_derived_metrics(act, streams):
         naismith_minutes = (dist_km / 5) * 60 + (ascent_m / 600) * 60
         actual_minutes = streams["moving_time"] / 60
         if naismith_minutes > 0:
-            ratio = actual_minutes / naismith_minutes
-            # Clamp: physically impossible to be below 0.3 or above 5.0
-            d["naismith_ratio"] = round(max(0.3, min(5.0, ratio)), 3)
+            d["naismith_ratio"] = round(actual_minutes / naismith_minutes, 3)
 
     return d
 
