@@ -77,18 +77,32 @@ export default function MapLibreInner() {
         data: `/data/heatmap/${fname}`,
       });
 
+      // Build radius/opacity interpolations avoiding duplicate input values
+      // when zoomMin === zoomMax (single-zoom resolutions like res 4 at z3 only)
+      const radiusStops: (string | number)[] = [
+        "interpolate", ["linear"], ["zoom"],
+        zoomFadeIn, r * 0.7,
+      ];
+      const opacityStops: (string | number)[] = [
+        "interpolate", ["linear"], ["zoom"],
+        zoomFadeIn, 0,
+      ];
+      if (entry.zoomMin !== entry.zoomMax) {
+        radiusStops.push(entry.zoomMin, r, entry.zoomMax, r * 1.2);
+        opacityStops.push(entry.zoomMin, 0.7, entry.zoomMax, 0.7);
+      } else {
+        radiusStops.push(entry.zoomMin, r);
+        opacityStops.push(entry.zoomMin, 0.7);
+      }
+      radiusStops.push(zoomFadeOut, r * 1.4);
+      opacityStops.push(zoomFadeOut, 0);
+
       map.addLayer({
         id: lyr,
         type: "circle",
         source: src,
         paint: {
-          "circle-radius": [
-            "interpolate", ["linear"], ["zoom"],
-            zoomFadeIn, r * 0.7,
-            entry.zoomMin, r,
-            entry.zoomMax, r * 1.2,
-            zoomFadeOut, r * 1.4,
-          ],
+          "circle-radius": radiusStops as any,
           "circle-color": [
             "interpolate", ["linear"], ["get", "n"],
             1, "#1a3a8c",
@@ -98,13 +112,7 @@ export default function MapLibreInner() {
             Math.round(pcts.p99 || 10), "#f97316",
             Math.round((pcts.p99 || 10) * 3) || 30, "#dc2626",
           ],
-          "circle-opacity": [
-            "interpolate", ["linear"], ["zoom"],
-            zoomFadeIn, 0,
-            entry.zoomMin, 0.7,
-            entry.zoomMax, 0.7,
-            zoomFadeOut, 0,
-          ],
+          "circle-opacity": opacityStops as any,
           "circle-blur": 0.3,
           "circle-stroke-width": 0,
         },
@@ -113,6 +121,7 @@ export default function MapLibreInner() {
       loadedResolutions.current.add(res);
 
       // Apply current filters to the new layer
+      if (!map.getLayer(lyr)) return; // layer failed to add (e.g. bad paint spec)
       const activeSports = Object.entries(visibleSports)
         .filter(([, v]) => v)
         .map(([k]) => k);
