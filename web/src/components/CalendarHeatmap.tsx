@@ -16,7 +16,7 @@ interface DayCell {
 const CELL_SIZE = 12;
 const CELL_GAP = 2;
 const CELL_TOTAL = CELL_SIZE + CELL_GAP;
-const WEEKS = 52;
+const WEEKS = 53;
 const DAYS = 7;
 
 const DAY_LABELS = ["Mon", "", "Wed", "", "Fri", "", ""];
@@ -42,9 +42,7 @@ function formatDateStr(d: Date): string {
   return `${y}-${m}-${dd}`;
 }
 
-function dateKey(d: Date): string {
-  return formatDateStr(d);
-}
+function dateKey(d: Date): string { return formatDateStr(d); }
 
 function getMonday(d: Date): Date {
   const date = new Date(d);
@@ -75,11 +73,11 @@ function getColor(trimp: number, count: number): string {
 }
 
 export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
-  const [endDate, setEndDate] = useState<Date>(() => {
-    const d = new Date();
-    d.setHours(0, 0, 0, 0);
-    return d;
-  });
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const currentYear = today.getFullYear();
+
+  const [year, setYear] = useState<number>(currentYear);
 
   const dailyMap = useMemo(() => {
     const map = new Map<string, { trimp: number; count: number }>();
@@ -99,23 +97,22 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
     return map;
   }, [activities]);
 
-  const todayKey = useMemo(() => {
-    const d = new Date();
-    d.setHours(0, 0, 0, 0);
-    return dateKey(d);
-  }, []);
+  const todayKey = useMemo(() => dateKey(today), [today]);
 
-  const { gridStart, gridEnd, cells, monthLabels } = useMemo(() => {
-    const mon = getMonday(endDate);
-    const gridEnd = addDays(mon, 6);
-    const startMon = addDays(mon, -WEEKS * 7 + 7);
+  // Show Jan 1 – Dec 31 for the selected year, plus partial weeks before/after
+  const { cells, monthLabels } = useMemo(() => {
+    const yearStart = new Date(year, 0, 1);
+    const yearEnd = new Date(year, 11, 31);
+    const gridStart = getMonday(yearStart);
+    const totalDays = daysBetween(addDays(yearEnd, 1), gridStart);
+    const weekCount = Math.ceil(totalDays / 7);
 
     const cells: (DayCell | null)[][] = Array.from({ length: DAYS }, () =>
-      Array(WEEKS).fill(null)
+      Array(weekCount).fill(null)
     );
 
-    for (let w = 0; w < WEEKS; w++) {
-      const colStart = addDays(startMon, w * 7);
+    for (let w = 0; w < weekCount; w++) {
+      const colStart = addDays(gridStart, w * 7);
       for (let d = 0; d < DAYS; d++) {
         const cellDate = addDays(colStart, d);
         const k = dateKey(cellDate);
@@ -130,7 +127,7 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
 
     const monthLabels: { label: string; x: number }[] = [];
     let lastMonth = -1;
-    for (let w = 0; w < WEEKS; w++) {
+    for (let w = 0; w < weekCount; w++) {
       const d = cells[0][w]?.date;
       if (!d) continue;
       if (d.getMonth() !== lastMonth) {
@@ -139,8 +136,8 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
       }
     }
 
-    return { gridStart: startMon, gridEnd, cells, monthLabels };
-  }, [dailyMap, endDate]);
+    return { cells, monthLabels };
+  }, [dailyMap, year]);
 
   const { currentStreak, longestStreak, totalTRIMP } = useMemo(() => {
     const activeDays = new Set<string>();
@@ -150,13 +147,10 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
       total += v.trimp;
     }
 
-    const todayD = new Date();
-    todayD.setHours(0, 0, 0, 0);
-
     let cur = 0;
     let cursor = activeDays.has(todayKey)
-      ? new Date(todayD)
-      : new Date(todayD.getTime() - 86_400_000);
+      ? new Date(today)
+      : new Date(today.getTime() - 86_400_000);
 
     while (activeDays.has(dateKey(cursor))) {
       cur++;
@@ -171,66 +165,42 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
       .sort((a, b) => a.getTime() - b.getTime());
 
     for (const d of sorted) {
-      if (!prev) {
-        run = 1;
-      } else if (daysBetween(d, prev) === 1) {
-        run++;
-      } else {
-        run = 1;
-      }
+      if (!prev) run = 1;
+      else if (daysBetween(d, prev) === 1) run++;
+      else run = 1;
       if (run > longest) longest = run;
       prev = d;
     }
 
     return { currentStreak: cur, longestStreak: longest, totalTRIMP: total };
-  }, [dailyMap, todayKey]);
+  }, [dailyMap, todayKey, today]);
 
-  const canGoForward = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return gridEnd < today;
-  }, [gridEnd]);
-
-  const goBack = () => setEndDate((p) => addDays(p, -WEEKS * 7));
-  const goForward = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const next = addDays(endDate, WEEKS * 7);
-    if (next <= today) {
-      setEndDate(next);
-    } else {
-      setEndDate(today);
-    }
-  };
-
-  const LEFT = 36;
+  const LEFT = 34;
   const TOP = 22;
-  const BOTTOM = 36;
-  const GRID_W = WEEKS * CELL_TOTAL;
+  const BOTTOM = 34;
+  const weekCount = cells[0]?.length || WEEKS;
+  const GRID_W = weekCount * CELL_TOTAL;
   const GRID_H = DAYS * CELL_TOTAL;
   const SVG_W = LEFT + GRID_W + 8;
   const SVG_H = TOP + GRID_H + BOTTOM;
 
   return (
-    <div className="bg-[#141420] border border-[#2a2a3a] rounded-lg p-4 text-gray-300">
-      {/* Header / navigation */}
+    <div className="bg-[#141420] border border-[#2a2a3a] rounded-lg p-4 text-gray-300 h-full flex flex-col">
       <div className="flex items-center justify-between mb-3 gap-2">
         <div className="flex items-center gap-2 text-sm">
           <button
-            onClick={goBack}
-            className="px-2 py-0.5 border border-[#2a2a3a] rounded hover:bg-[#1a1a2e] transition-colors text-gray-400 hover:text-gray-200"
+            onClick={() => setYear((y) => y - 1)}
+            className="px-2 py-0.5 border border-[#2a2a3a] rounded cursor-pointer hover:bg-[#1a1a2e] transition-colors text-gray-400 hover:text-gray-200"
             aria-label="Previous year"
           >
             ←
           </button>
-          <span className="text-gray-400 text-xs whitespace-nowrap">
-            {formatDateStr(gridStart)} – {formatDateStr(gridEnd)}
-          </span>
+          <span className="text-gray-400 text-xs whitespace-nowrap font-medium">{year}</span>
           <button
-            onClick={goForward}
-            disabled={!canGoForward}
-            className={`px-2 py-0.5 border border-[#2a2a3a] rounded transition-colors text-gray-400 ${
-              canGoForward
+            onClick={() => setYear((y) => Math.min(y + 1, currentYear))}
+            disabled={year >= currentYear}
+            className={`px-2 py-0.5 border border-[#2a2a3a] rounded cursor-pointer transition-colors text-gray-400 ${
+              year < currentYear
                 ? "hover:bg-[#1a1a2e] hover:text-gray-200"
                 : "opacity-30 cursor-not-allowed"
             }`}
@@ -244,16 +214,14 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
         </span>
       </div>
 
-      {/* Scrollable SVG grid */}
-      <div className="overflow-x-auto">
+      <div className="flex-1 min-h-0 w-full">
         <svg
-          width={SVG_W}
-          height={SVG_H}
-          className="min-w-[420px]"
+          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+          className="w-full h-auto"
+          preserveAspectRatio="xMidYMid meet"
           role="img"
           aria-label="TRIMP calendar heatmap"
         >
-          {/* Month labels */}
           {monthLabels.map((m, i) => (
             <text
               key={`${m.label}-${i}`}
@@ -267,7 +235,6 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
             </text>
           ))}
 
-          {/* Day-of-week labels */}
           {DAY_LABELS.map((lbl, i) =>
             lbl ? (
               <text
@@ -284,7 +251,6 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
             ) : null
           )}
 
-          {/* Cells */}
           {cells.map((row, dayIdx) =>
             row.map((cell, weekIdx) => {
               if (!cell) return null;
@@ -292,8 +258,7 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
               const y = TOP + dayIdx * CELL_TOTAL;
               const fill = getColor(cell.trimp, cell.count);
               const isToday = dateKey(cell.date) === todayKey;
-              const actLabel =
-                cell.count === 1 ? "activity" : "activities";
+              const actLabel = cell.count === 1 ? "activity" : "activities";
 
               return (
                 <g key={`${weekIdx}-${dayIdx}`}>
@@ -305,7 +270,7 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
                     rx={2}
                     ry={2}
                     fill={fill}
-                    stroke={isToday ? "#6b7280" : undefined}
+                    stroke={isToday ? "#6b7280" : "none"}
                     strokeWidth={isToday ? 1 : 0}
                     style={isToday ? { strokeOpacity: 0.6 } : undefined}
                   >
@@ -316,15 +281,8 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
             })
           )}
 
-          {/* Legend */}
           <g transform={`translate(${LEFT}, ${TOP + GRID_H + 14})`}>
-            <text
-              x={0}
-              y={8}
-              fill="#6b7280"
-              fontSize="9"
-              fontFamily="system-ui, sans-serif"
-            >
+            <text x={0} y={8} fill="#6b7280" fontSize="9" fontFamily="system-ui, sans-serif">
               Less
             </text>
             {TRIMP_COLORS.map((c, i) => (
@@ -352,17 +310,10 @@ export default function CalendarHeatmap({ activities }: CalendarHeatmapProps) {
         </svg>
       </div>
 
-      {/* Summary */}
       <div className="mt-3 pt-3 border-t border-[#2a2a3a] text-xs text-gray-500 flex flex-wrap gap-x-4 gap-y-1">
-        <span>
-          Current streak: <span className="text-gray-300 font-medium">{currentStreak}</span>d
-        </span>
-        <span>
-          Longest streak: <span className="text-gray-300 font-medium">{longestStreak}</span>d
-        </span>
-        <span>
-          Total TRIMP: <span className="text-gray-300 font-medium">{totalTRIMP.toLocaleString()}</span>
-        </span>
+        <span>Current streak: <span className="text-gray-300 font-medium">{currentStreak}</span>d</span>
+        <span>Longest streak: <span className="text-gray-300 font-medium">{longestStreak}</span>d</span>
+        <span>Total TRIMP: <span className="text-gray-300 font-medium">{totalTRIMP.toLocaleString()}</span></span>
       </div>
     </div>
   );

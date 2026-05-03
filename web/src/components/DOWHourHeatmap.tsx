@@ -189,7 +189,7 @@ export default function DOWHourHeatmap({ aggregate }: Props) {
   const isEmpty = !cells || cells.every((row) => row.every((c) => c.count === 0));
 
   return (
-    <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5 text-gray-300">
+    <div className="bg-[#141420] border border-[#2a2a3a] rounded-xl p-5 text-gray-300 h-full flex flex-col">
       <h3 className="text-sm uppercase tracking-wider text-gray-300 font-semibold mb-1">
         Day-of-Week × Hour Heatmap
       </h3>
@@ -230,7 +230,7 @@ export default function DOWHourHeatmap({ aggregate }: Props) {
           No day-of-week/hour data available
         </div>
       ) : (
-        <div className="w-full">
+        <div className="flex-1 min-h-0 w-full">
           <svg
             viewBox={`0 0 ${SVG_W} ${SVG_H}`}
             className="w-full h-auto"
